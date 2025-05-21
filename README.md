@@ -13,6 +13,26 @@ Flick implements a UDF approach to ensure:
 
 ---
 
+## 🔑 TMDB API Key Setup
+
+This project integrates with [The Movie Database (TMDB)](https://www.themoviedb.org/) API to fetch movie data.
+
+### 🔧 To run the app properly, you need to:
+
+1. **Create a TMDB account** and generate an API key:  
+   [https://www.themoviedb.org/settings/api](https://www.themoviedb.org/settings/api)
+
+2. **Add your API key** in the appropriate configuration file or environment.  
+   For this project, issert you API key in kTMDBApiKey property in [`BaseAPI.swift`](./API/Sources/API/BaseAPI.swift)
+
+   ```swift
+   public let kTMDBApiKey = "YOUR_API_KEY_HERE"
+   ```
+
+> 🛑 Without a TMDB key, the app will immediately produce fatal error.
+
+---
+
 ## 🗂️ Modules
 
 Modularity is at the heart of Flick. Each feature is encapsulated in its own folder under `Modules/` and follows a clean separation of UI, logic, and state.
