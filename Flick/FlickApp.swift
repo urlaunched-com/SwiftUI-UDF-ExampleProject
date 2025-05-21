@@ -5,6 +5,7 @@
 //  Created by Max Kuznetsov on 02.11.2022.
 //
 
+import API
 import SwiftUI
 import UDF
 
@@ -18,7 +19,8 @@ struct FlickApp: App {
             initial: AppState(),
             logger: .consoleDebug
         )
-
+        
+        checkAPIKey()
         originalSubscribe()
         configureAppearances()
     }
@@ -68,5 +70,14 @@ extension FlickApp {
         UINavigationBar.appearance().standardAppearance = navigationBarAppearance
         UINavigationBar.appearance().compactAppearance = navigationBarAppearance
         UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
+    }
+}
+
+private extension FlickApp {
+    func checkAPIKey() {
+        guard kTMDBApiKey.isNotEmpty else {
+            fatalError("API key was not found in BaseAPI.swift")
+        }
+        self.configureAppearances()
     }
 }
