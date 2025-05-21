@@ -1,0 +1,80 @@
+// MARK: - Onboarding
+"onboarding.firstPageTitle" = "Discover your favorite\nmovies & TV shows";
+"onboarding.secondPageTitle" = "Express your opinion\nin ratings and reviews";
+"onboarding.thirdPageTitle" = "Add the best movies &\nTV Shows to favorites";
+"onboarding.fourthPageTitle" = "Stay up with\nnew releases";
+"onboarding.skipButtonTitle" = "Skip";
+"onboarding.getStartedButtonTitle" = "Get Started";
+
+//MARK: - Auth
+"auth.navigationTitle" = "Flick";
+"auth.signUpTitle" = "Create your account";
+"auth.usernamePlaceholder" = "Username";
+"auth.passwordPlaceholder" = "Password";
+"auth.confirmPasswordPlaceholder" = "Confirm Password";
+"auth.emailPlaceholder" = "Email";
+"auth.createAccountButtonTitle" = "Create account";
+"auth.signInButtonDescription" = "Already have an account?";
+"auth.signInButtonTitle" = "Sign in";
+"auth.signInTitle" = "Login to your account";
+"auth.forgotPasswordButtonTitle" = "Forgot password?";
+"auth.signUpButtonDescription" = "Don`t have an account?";
+"auth.signUpButtonTitle" = "SignUp";
+"auth.resetPasswordTitle" = "Reset password";
+"auth.resetPasswordButtonTitle" = "Reset password";
+"auth.savePasswordButtonTitle" = "Save password";
+
+//MARK: - Home
+"home.navigationTitle" = "Home";
+"home.sectionHeaderButtonTitle" = "See all";
+"home.popularMoviesSectionTitle" = "Popular";
+"home.nowPlayingMoviesSectionTitle" = "Now playing";
+"home.upcomingMoviesSectionTitle" = "Upcoming";
+"home.topRatedMoviesSectionTitle" = "Top Rated";
+"home.popularShowsSectionTitle" = "Popular";
+"home.airingTodayShowsSectionTitle" = "Airing today";
+"home.onTVShowsSectionTitle" = "On TV";
+"home.topRatedShowsSectionTitle" = "Top Rated";
+
+//MARK: - Search
+"search.navigationTitle" = "Search";
+"search.searchPlaceholder" = "Search for a movie, TV series...";
+"search.listPlaceholder" = "Start search right now!";
+"search.noResultsPlaceholder" = "No search results.";
+
+//MARK: - Item Details
+"itemDetails.whereToWatchButtonTitle" = "Where to watch";
+"itemDetails.statusSectionTitle" = "Status";
+"itemDetails.languageSectionTitle" = "Language";
+"itemDetails.budgetSectionTitle" = "Budget";
+"itemDetails.revenueSectionTitle" = "Revenue";
+"itemDetails.networkSectionTitle" = "Network";
+"itemDetails.typeSectionTitle" = "Type";
+"itemDetails.trailerButtonTitle" = "Trailer";
+"itemDetails.castNavigationTitle" = "Cast";
+"itemDetails.castSectionTitle" = "Cast";
+"itemDetails.recommendationsSectionTitle" = "Recommendations";
+"itemDetails.reviewHeaderTitle" = "A review by %@";
+"itemDetails.reviewsSectionTitle" = "Reviews (%d)";
+"itemDetails.reviewsNavigationTitle" = "Reviews";
+"itemDetails.reviewDetailsNavigationTitle" = "Reviews";
+
+//MARK: - Settings
+"settings.navigationTitle" = "Settings";
+"settings.privacyPolicyTitle" = "Privacy Policy";
+"settings.tmdbAPITitle" = "TMDB API";
+"settings.aboutUsTitle" = "About Us";
+"settings.rateThisAppTitle" = "Rate this App";
+
+//MARK: - Where To Watch
+"whereToWatch.navigationTitle" = "Where to Watch";
+"whereToWatch.selectCountryTitle" = "Select country";
+"whereToWatch.streamTitle" = "Stream";
+"whereToWatch.buyTitle" = "Buy";
+
+//MARK: - My Favorites
+"myFavorites.navigationTitle" = "My Favorites";
+
+//MARK: - Content Toggle
+"contentToggle.moviesTitle" = "Movies";
+"contentToggle.showsTitle" = "TV Series";

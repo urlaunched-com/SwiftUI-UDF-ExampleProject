@@ -1,0 +1,25 @@
+//
+//  ShowGenresFlow.swift
+//  Flick
+//
+//  Created by Alexander Sharko on 21.12.2022.
+//  Copyright © 2022 urlaunched.com. All rights reserved.
+//
+
+import UDF
+
+enum ShowGenresFlow: IdentifiableFlow {
+    case none, loading
+
+    init() { self = .loading }
+
+    mutating func reduce(_ action: some Action) {
+        switch action {
+        case let action as Actions.DidLoadItems<Genre> where action.id == Self.id:
+            self = .none
+
+        default:
+            break
+        }
+    }
+}

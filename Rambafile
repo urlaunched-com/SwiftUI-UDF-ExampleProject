@@ -1,0 +1,44 @@
+### Headers settings
+company: urlaunched.com
+
+### Xcode project settings
+project_name: Flick
+xcodeproj_path: Flick.xcodeproj
+
+### Code generation settings section
+# The main project target nameFlick
+project_targets: [Flick]
+
+# The file path for new modules
+project_file_path: Flick/Code/Modules/
+
+# The Xcode group path to new modules
+project_group_path: Flick/Code/Modules/
+
+### Tests generation settings section
+# The tests target name
+# test_targets: [UnitTests, SnapshotTests]
+
+# The file path for new tests
+# test_file_path: ModulesTests/Modules/
+
+# The Xcode group path to new tests
+# test_group_path: ModulesTests/Modules/
+
+test_unit_target: UnitTests
+test_unit_path: UnitTests/Modules
+test_unit_testable_import: Flick
+
+test_snapshot_target: SnapshotTests
+test_snapshot_path: SnapshotTests/Snapshots
+test_snapshot_testable_import: Flick
+
+## Catalogs
+catalogs:
+- 'https://github.com/Maks-Jago/SwiftUI-UDF-GenerambaTemplate'
+
+### Templates
+templates:
+- { name: udf }
+- { name: udf-storage }
+- { name: udf-auth-flow }
