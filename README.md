@@ -4,7 +4,7 @@
 
 ---
 
-## 🧠 Architecture: Unidirectional Data Flow (UDF)
+## 🧠 Architecture: [Unidirectional Data Flow (UDF)](https://github.com/Maks-Jago/SwiftUI-UDF)
 
 Flick implements a UDF approach to ensure:
 - Predictable state management
