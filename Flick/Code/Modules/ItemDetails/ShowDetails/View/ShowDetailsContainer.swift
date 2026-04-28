@@ -21,7 +21,7 @@ struct ShowDetailsContainer: BindableContainer {
         .init(
             item: store.state.allShows.showBy(id: id),
             genreById: store.state.allGenres.genreBy,
-            alert: store.$state.showDetailsForm[id].alert
+            dialog: store.$state.showDetailsForm[id].dialog
         )
     }
 

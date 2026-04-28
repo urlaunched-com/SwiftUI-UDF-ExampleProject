@@ -9,13 +9,13 @@
 import UDF
 
 struct MovieDetailsForm: Form {
-    var alert: AlertBuilder.AlertStatus = .dismissed
+    var dialog: DialogStatus = .dismissed
     var movieId: Movie.ID?
 
     mutating func reduce(_ action: some Action) {
         switch action {
         case let action as Actions.Error where action.id == MovieDetailsFlow.id:
-            alert = .init(error: action.error)
+            dialog = .init(error: action.error)
 
         default:
             break

@@ -16,7 +16,7 @@ struct ItemDetailsComponent: Component {
     struct Props {
         var item: any Item
         var genreById: (Genre.ID) -> Genre?
-        var alert: Binding<AlertBuilder.AlertStatus>
+        var dialog: Binding<DialogStatus>
         var router: Router<ItemDetailsRouting> = .init()
     }
 
@@ -75,7 +75,7 @@ struct ItemDetailsComponent: Component {
                 }
             }
         }
-        .alert(status: props.alert)
+        .dialog(status: props.dialog)
     }
 }
 
@@ -164,7 +164,7 @@ private extension ItemDetailsComponent {
                     .frame(maxWidth: .infinity)
                     .embedInPlainButton {
                         // TODO: - Add action later ???
-                        globalRouter.navigate(to: .whereToWatch(props.item), with: props.router)
+                        globalRouter.navigate(for: ItemDetailsRouting.self, to: .whereToWatch(props.item))
                     }
                     .buttonStyle(PrimaryButtonStyle(fillColor: .flMainPink))
             }
@@ -262,7 +262,7 @@ private extension ItemDetailsComponent {
         props: .init(
             item: Movie.fakeItem(),
             genreById: { _ in .fakeItem() },
-            alert: .constant(.dismissed)
+            dialog: .constant(.dismissed)
         )
     )
     .embedInNavigationStack()

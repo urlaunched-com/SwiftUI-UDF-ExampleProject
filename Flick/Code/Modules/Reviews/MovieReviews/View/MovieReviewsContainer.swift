@@ -23,7 +23,7 @@ struct MovieReviewsContainer: BindableContainer {
             reviews: form.reviews,
             reviewById: store.state.allReviews.reviewBy,
             loadMoreAction: loadNewPageIfNeeded,
-            alertStatus: store.$state.movieReviewsForm[id].alert
+            dialogStatus: store.$state.movieReviewsForm[id].dialog
         )
     }
 

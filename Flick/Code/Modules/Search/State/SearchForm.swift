@@ -19,12 +19,12 @@ struct SearchForm: Form {
     )
     var page: PaginationPage { paginator.page }
     var items: [SearchItem.ID] { paginator.items.elements }
-    var alert: AlertBuilder.AlertStatus = .dismissed
+    var dialog: DialogStatus = .dismissed
 
     mutating func reduce(_ action: some Action) {
         switch action {
         case let action as Actions.Error where action.id == SearchFlow.id:
-            alert = .init(error: action.error)
+            dialog = .init(error: action.error)
 
         default:
             break

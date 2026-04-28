@@ -19,7 +19,7 @@ struct HomeComponent: Component {
         var showsForSection: (ShowSection) -> [Show]
         var isMoviesRedacted: (MovieSection) -> Bool
         var isShowsRedacted: (ShowSection) -> Bool
-        var alertStatus: Binding<AlertBuilder.AlertStatus>
+        var dialogStatus: Binding<DialogStatus>
     }
 
     var props: Props
@@ -88,7 +88,7 @@ extension HomeComponent {
             .isRedacted(isRedacted)
             .disabled(isRedacted)
         }
-        .alert(status: props.alertStatus)
+        .dialog(status: props.dialogStatus)
     }
 }
 
@@ -104,7 +104,7 @@ extension HomeComponent {
             showsForSection: { _ in Show.fakeItems() },
             isMoviesRedacted: { _ in false },
             isShowsRedacted: { _ in false },
-            alertStatus: .constant(.dismissed)
+            dialogStatus: .constant(.dismissed)
         )
     )
 }
