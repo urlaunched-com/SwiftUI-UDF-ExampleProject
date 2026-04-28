@@ -9,13 +9,13 @@
 import UDF
 
 struct ShowDetailsForm: Form {
-    var dialog: DialogStatus = .dismissed
+    var alert: AlertBuilder.AlertStatus = .dismissed
     var showId: Show.ID?
 
     mutating func reduce(_ action: some Action) {
         switch action {
         case let action as Actions.Error where action.id == ShowDetailsFlow.id:
-            dialog = .init(error: action.error)
+            alert = .init(error: action.error)
 
         default:
             break

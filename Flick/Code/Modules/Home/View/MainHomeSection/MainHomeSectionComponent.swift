@@ -27,7 +27,7 @@ struct MainHomeSectionComponent<S: Section>: Component {
             SectionHeaderView(
                 title: props.section.title,
                 seeAllAction: {
-                    globalRouter.navigate(for: MainHomeSectionRouting.self, to: .sectionDetails(props.section))
+                    globalRouter.navigate(to: .sectionDetails(props.section), with: props.router)
                 }
             )
             .padding(.bottom)
@@ -36,7 +36,7 @@ struct MainHomeSectionComponent<S: Section>: Component {
                 items: props.items,
                 genresByItem: { $0.genres(action: props.genreById) },
                 navigateToItemDetails: { item in
-                    globalRouter.navigate(for: MainHomeSectionRouting.self, to: .itemDetails(item))
+                    globalRouter.navigate(to: .itemDetails(item), with: props.router)
                 }
             )
         }

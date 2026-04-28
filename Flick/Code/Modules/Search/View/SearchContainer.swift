@@ -18,7 +18,7 @@ struct SearchContainer: Container {
 
     func map(store: EnvironmentStore<AppState>) -> ContainerComponent.Props {
         .init(
-            searchText: Binding(projectedValue: store.$state.searchForm.searchText).didSet { _, _ in
+            searchText: Binding(store.$state.searchForm.searchText).didSet { _, _ in
                 store.dispatch(Actions.LoadPage(id: SearchFlow.id))
             },
             itemIds: store.state.searchForm.items,

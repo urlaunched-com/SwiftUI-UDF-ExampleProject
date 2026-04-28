@@ -26,18 +26,18 @@ struct MyFavoritesForm: Form {
     var showsPage: PaginationPage { showsPaginator.page }
     var shows: [Show.ID] { showsPaginator.items.elements }
 
-    var dialog: DialogStatus = .dismissed
+    var alert: AlertBuilder.AlertStatus = .dismissed
 
     mutating func reduce(_ action: some Action) {
         switch action {
         case let action as Actions.Error where action.id == MyFavoritesFlow.id:
-            dialog = .init(error: action.error)
+            alert = .init(error: action.error)
 
         case let action as Actions.Error where action.id == MyFavoritesFlow.loadMoviesId:
-            dialog = .init(error: action.error)
+            alert = .init(error: action.error)
 
         case let action as Actions.Error where action.id == MyFavoritesFlow.loadShowsId:
-            dialog = .init(error: action.error)
+            alert = .init(error: action.error)
 
         default:
             break

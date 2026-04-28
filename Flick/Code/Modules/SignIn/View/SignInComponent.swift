@@ -17,7 +17,7 @@ struct SignInComponent: Component {
         var password: Binding<String>
         var signInAction: Command
         var isLoaderPresented: Binding<Bool>
-        var dialogStatus: Binding<DialogStatus>
+        var alertStatus: Binding<AlertBuilder.AlertStatus>
         var router: Router<SignInRouting> = .init()
     }
 
@@ -61,7 +61,7 @@ struct SignInComponent: Component {
                     .foregroundStyle(.flMainPink)
                     .frame(maxWidth: .infinity, alignment: .trailing)
                     .embedInPlainButton {
-                        globalRouter.navigate(for: SignInRouting.self, to: .resetPassword)
+                        globalRouter.navigate(to: .resetPassword, with: props.router)
                     }
                     .padding(.top)
 
@@ -78,7 +78,7 @@ struct SignInComponent: Component {
                     Text(Localization.authSignUpButtonTitle())
                         .foregroundStyle(.flMainPink)
                         .embedInPlainButton {
-                            globalRouter.navigate(for: SignInRouting.self, to: .signUp)
+                            globalRouter.navigate(to: .signUp, with: props.router)
                         }
                 }
                 .customFont(.subheadline)
@@ -93,7 +93,7 @@ struct SignInComponent: Component {
         .hideKeyboardByTap()
         .navigationDestination(for: SignInRouting.self)
         .embedInNavigationStack()
-        .dialog(status: props.dialogStatus)
+        .alert(status: props.alertStatus)
         .loaderSheet(isPresented: props.isLoaderPresented)
     }
 }
@@ -126,7 +126,7 @@ private extension SignInComponent {
             password: .constant(""),
             signInAction: {},
             isLoaderPresented: .constant(false),
-            dialogStatus: .constant(.dismissed)
+            alertStatus: .constant(.dismissed)
         )
     )
 }

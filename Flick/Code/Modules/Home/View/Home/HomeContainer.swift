@@ -34,7 +34,7 @@ struct HomeContainer: Container {
             showsForSection: { isShowsRedacted(section: $0) ? Show.fakeItems(count: 3) : showsForSection($0, store: store) },
             isMoviesRedacted: { isMoviesRedacted(section: $0) },
             isShowsRedacted: { isShowsRedacted(section: $0) },
-            dialogStatus: store.$state.homeForm.dialog
+            alertStatus: store.$state.homeForm.alert
         )
     }
 }

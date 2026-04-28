@@ -24,7 +24,7 @@ struct SectionDetailsContainer<S: Section>: Container {
             items: items,
             genreById: store.state.allGenres.genreBy,
             loadMoreAction: loadNewPageIfNeeded,
-            dialogStatus: store.$state.homeForm.dialog
+            alertStatus: store.$state.homeForm.alert
         )
     }
 

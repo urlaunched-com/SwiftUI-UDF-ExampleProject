@@ -21,7 +21,7 @@ struct MovieDetailsContainer: BindableContainer {
         .init(
             item: store.state.allMovies.movieBy(id: id),
             genreById: store.state.allGenres.genreBy,
-            dialog: store.$state.movieDetailsForm[id].dialog
+            alert: store.$state.movieDetailsForm[id].alert
         )
     }
 

@@ -30,13 +30,13 @@ struct ItemDetailsReviewsComponent: Component {
                 SectionHeaderView(
                     title: Localization.itemDetailsReviewsSectionTitle(props.reviews.count),
                     seeAllAction: {
-                        globalRouter.navigate(for: ItemDetailsReviewsRouting.self, to: .reviews(props.item))
+                        globalRouter.navigate(to: .reviews(props.item), with: props.router)
                     }
                 )
 
                 ReviewRow(review: props.reviewById(id))
                     .embedInPlainButton {
-                        globalRouter.navigate(for: ItemDetailsReviewsRouting.self, to: .reviewDetails(id))
+                        globalRouter.navigate(to: .reviewDetails(id), with: props.router)
                     }
                     .buttonStyle(.scaled)
                     .padding(.horizontal)

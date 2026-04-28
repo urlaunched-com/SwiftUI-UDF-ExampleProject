@@ -16,12 +16,12 @@ struct ShowReviewsForm: Form {
     )
     var page: PaginationPage { paginator.page }
     var reviews: [Review.ID] { paginator.items.elements }
-    var dialog: DialogStatus = .dismissed
+    var alert: AlertBuilder.AlertStatus = .dismissed
 
     mutating func reduce(_ action: some Action) {
         switch action {
         case let action as Actions.Error where action.id == ShowReviewsFlow.id:
-            dialog = .init(error: action.error)
+            alert = .init(error: action.error)
 
         default:
             break

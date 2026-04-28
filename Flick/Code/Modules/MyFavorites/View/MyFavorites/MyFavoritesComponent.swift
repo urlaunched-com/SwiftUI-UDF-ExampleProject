@@ -18,7 +18,7 @@ struct MyFavoritesComponent: Component {
         var genreById: (Genre.ID) -> Genre?
         var loadMoreAction: Command
         var isRedacted: Bool
-        var dialogStatus: Binding<DialogStatus>
+        var alertStatus: Binding<AlertBuilder.AlertStatus>
     }
 
     var props: Props
@@ -38,7 +38,7 @@ struct MyFavoritesComponent: Component {
                 }
             }
         }
-        .dialog(status: props.dialogStatus)
+        .alert(status: props.alertStatus)
     }
 }
 
@@ -52,7 +52,7 @@ struct MyFavoritesComponent: Component {
             genreById: { _ in .testItem() },
             loadMoreAction: {},
             isRedacted: true,
-            dialogStatus: .constant(.dismissed)
+            alertStatus: .constant(.dismissed)
         )
     )
 }

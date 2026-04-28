@@ -30,7 +30,7 @@ struct ItemDetailsRecommendationsComponent: Component {
                 SectionHeaderView(
                     title: Localization.itemDetailsRecommendationsSectionTitle(),
                     seeAllAction: {
-                        globalRouter.navigate(for: ItemDetailsRecommendationsRouting.self, to: .recommendations(props.item))
+                        globalRouter.navigate(to: .recommendations(props.item), with: props.router)
                     }
                 )
 
@@ -45,7 +45,7 @@ struct ItemDetailsRecommendationsComponent: Component {
                             .padding(.leading, index == props.items.indices.first ? 16 : 0)
                             .padding(.trailing, index == props.items.indices.last ? 16 : 0)
                             .embedInPlainButton {
-                                globalRouter.navigate(for: ItemDetailsRecommendationsRouting.self, to: .itemDetails(item))
+                                globalRouter.navigate(to: .itemDetails(item), with: props.router)
                             }
                             .buttonStyle(.scaled)
                         }

@@ -27,7 +27,7 @@ struct HomeSectionComponent<S: Section>: Component {
             SectionHeaderView(
                 title: props.section.title,
                 seeAllAction: {
-                    globalRouter.navigate(for: HomeRouting.self, to: .sectionDetails(props.section))
+                    globalRouter.navigate(to: .sectionDetails(props.section), with: props.router)
                 }
             )
 
@@ -42,7 +42,7 @@ struct HomeSectionComponent<S: Section>: Component {
                         .padding(.leading, index == props.items.indices.first ? 16 : 0)
                         .padding(.trailing, index == props.items.indices.last ? 16 : 0)
                         .embedInPlainButton {
-                            globalRouter.navigate(for: HomeRouting.self, to: .itemDetails(item))
+                            globalRouter.navigate(to: .itemDetails(item), with: props.router)
                         }
                         .buttonStyle(.scaled)
                     }

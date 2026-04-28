@@ -30,7 +30,7 @@ struct ItemDetailsCastComponent: Component {
                 SectionHeaderView(
                     title: Localization.itemDetailsCastSectionTitle(),
                     seeAllAction: {
-                        globalRouter.navigate(for: ItemDetailsCastRouting.self, to: .cast(props.cast))
+                        globalRouter.navigate(to: .cast(props.cast), with: props.router)
                     }
                 )
 

@@ -17,7 +17,7 @@ struct SectionDetailsComponent: Component {
         var items: [any Item]
         var genreById: (Genre.ID) -> Genre?
         var loadMoreAction: Command
-        var dialogStatus: Binding<DialogStatus>
+        var alertStatus: Binding<AlertBuilder.AlertStatus>
         var router: Router<SectionDetailsRouting> = .init()
     }
 
@@ -42,7 +42,7 @@ struct SectionDetailsComponent: Component {
                     }
                 }
                 .embedInPlainButton {
-                    globalRouter.navigate(for: SectionDetailsRouting.self, to: .itemDetails(item))
+                    globalRouter.navigate(to: .itemDetails(item), with: props.router)
                 }
                 .listRowInsets(.zero)
                 .listRowSeparator(.hidden)
@@ -59,7 +59,7 @@ struct SectionDetailsComponent: Component {
                 }
             }
             .toolbar(.hidden, for: .tabBar)
-            .dialog(status: props.dialogStatus)
+            .alert(status: props.alertStatus)
         }
     }
 }
@@ -73,7 +73,7 @@ struct SectionDetailsComponent: Component {
             items: Movie.testItems(count: 10),
             genreById: { _ in .fakeItem() },
             loadMoreAction: {},
-            dialogStatus: .constant(.dismissed)
+            alertStatus: .constant(.dismissed)
         )
     )
 }
