@@ -13,7 +13,7 @@ import UDF
 struct SignInForm: Form {
     var username: String = ""
     var password: String = ""
-    var alert: AlertBuilder.AlertStatus = .dismissed
+    var dialog: DialogStatus = .dismissed
 
     mutating func reduce(_: some Action) {}
 }

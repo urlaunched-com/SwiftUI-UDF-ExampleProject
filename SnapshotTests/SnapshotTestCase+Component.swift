@@ -6,9 +6,11 @@
 //
 
 import Foundation
+import SDWebImage
 import SwiftUI
 import SwiftUISnapshotTestCase
 import UDF
+import XCTest
 
 @testable import Flick
 
@@ -17,8 +19,6 @@ extension SnapshotTestCase {
         component: V,
         precision: Float = 0.99,
         perceptualPrecision: Float = 0.98,
-        renderingMode: RenderingMode = .drawHierarchy(afterScreenUpdates: true),
-        colorScheme: ColorScheme = .light,
         delayForLayout: TimeInterval = 0.01,
         file: StaticString = #file,
         testName: String = #function,
@@ -26,10 +26,8 @@ extension SnapshotTestCase {
     ) {
         snapshot(
             for: component,
-            renderingMode: renderingMode,
             precision: precision,
             perceptualPrecision: perceptualPrecision,
-            colorScheme: colorScheme,
             delayForLayout: delayForLayout,
             file: file,
             testName: testName,
@@ -42,20 +40,16 @@ extension SnapshotTestCase {
         size: CGSize,
         precision: Float = 0.99,
         perceptualPrecision: Float = 0.98,
-        renderingMode: RenderingMode = .drawHierarchy(afterScreenUpdates: true),
-        colorScheme: ColorScheme = .light,
         delayForLayout: TimeInterval = 0.01,
         file: StaticString = #file,
         testName: String = #function,
         line: UInt = #line
     ) {
         snapshot(
-            for: component,
-            size: size,
-            renderingMode: renderingMode,
+            component: component,
+            sizes: [size],
             precision: precision,
             perceptualPrecision: perceptualPrecision,
-            colorScheme: colorScheme,
             delayForLayout: delayForLayout,
             file: file,
             testName: testName,
@@ -68,20 +62,16 @@ extension SnapshotTestCase {
         sizes: [CGSize],
         precision: Float = 0.99,
         perceptualPrecision: Float = 0.98,
-        renderingMode: RenderingMode = .drawHierarchy(afterScreenUpdates: true),
-        colorScheme: ColorScheme = .light,
         delayForLayout: TimeInterval = 0.01,
         file: StaticString = #file,
         testName: String = #function,
         line: UInt = #line
     ) {
         snapshot(
-            for: component,
+            component: component,
             sizes: sizes,
-            renderingMode: renderingMode,
             precision: precision,
             perceptualPrecision: perceptualPrecision,
-            colorScheme: colorScheme,
             delayForLayout: delayForLayout,
             file: file,
             testName: testName,
@@ -93,19 +83,15 @@ extension SnapshotTestCase {
         component: V,
         precision: Float = 0.99,
         perceptualPrecision: Float = 0.98,
-        renderingMode: RenderingMode = .drawHierarchy(afterScreenUpdates: true),
-        colorScheme: ColorScheme = .light,
         delayForLayout: TimeInterval = 0.01,
         file: StaticString = #file,
         testName: String = #function,
         line: UInt = #line
     ) {
         snapshotSizeThatFits(
-            for: component,
-            renderingMode: renderingMode,
+            component: component,
             precision: precision,
             perceptualPrecision: perceptualPrecision,
-            colorScheme: colorScheme,
             delayForLayout: delayForLayout,
             file: file,
             testName: testName,

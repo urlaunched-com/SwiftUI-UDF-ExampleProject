@@ -15,7 +15,7 @@ struct CastComponent: Component {
     struct Props {
         var cast: [Cast.ID]
         var castById: (Cast.ID) -> Cast
-        var alertStatus: Binding<AlertBuilder.AlertStatus>
+        var dialogStatus: Binding<DialogStatus>
         var router: Router<ItemDetailsCastRouting> = .init()
     }
 
@@ -46,7 +46,7 @@ struct CastComponent: Component {
         }
         .background(Color.flMain.edgesIgnoringSafeArea(.all))
         .customNavigationTitle(Localization.itemDetailsCastNavigationTitle())
-        .alert(status: props.alertStatus)
+        .dialog(status: props.dialogStatus)
     }
 }
 
@@ -57,7 +57,7 @@ struct CastComponent: Component {
         props: .init(
             cast: [],
             castById: { _ in .fakeItem() },
-            alertStatus: .constant(.dismissed)
+            dialogStatus: .constant(.dismissed)
         )
     )
 }
