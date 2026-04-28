@@ -16,7 +16,7 @@ struct ReviewsComponent: Component {
         var reviews: [Review.ID]
         var reviewById: (Review.ID) -> Review
         var loadMoreAction: Command
-        var alertStatus: Binding<AlertBuilder.AlertStatus>
+        var dialogStatus: Binding<DialogStatus>
         var router: Router<ReviewsRouting> = .init()
     }
 
@@ -29,7 +29,7 @@ struct ReviewsComponent: Component {
             List(props.reviews, id: \.self) { id in
                 ReviewRow(review: props.reviewById(id))
                     .embedInPlainButton {
-                        globalRouter.navigate(to: .reviewDetails(id), with: props.router)
+                        globalRouter.navigate(for: ReviewsRouting.self, to: .reviewDetails(id))
                     }
                     .onAppear {
                         if id == props.reviews.last {
@@ -56,7 +56,7 @@ struct ReviewsComponent: Component {
             reviews: Review.testItemIds(count: 10),
             reviewById: { _ in .fakeItem() },
             loadMoreAction: {},
-            alertStatus: .constant(.dismissed)
+            dialogStatus: .constant(.dismissed)
         )
     )
 }

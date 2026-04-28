@@ -11,7 +11,7 @@ import Foundation
 import Network
 import UDF
 
-final class NetworkConnectivityMiddleware: BaseMiddleware<AppState>, EnvironmentMiddleware {
+final class NetworkConnectivityMiddleware: Middleware<AppState> {
     var environment: Void!
 
     enum Cancellation {

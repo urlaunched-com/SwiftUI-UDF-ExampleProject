@@ -10,7 +10,7 @@ import SwiftFoundation
 import UDF
 
 struct RootForm: Form {
-    var alert: AlertBuilder.AlertStatus = .dismissed
+    var dialog: DialogStatus = .dismissed
 
     @StorableValue(key: StorageKey.isNeedToPresentOnboarding, defaultValue: true, storage: UserDefaults.standard)
     var isNeedToPresentOnboarding: Bool

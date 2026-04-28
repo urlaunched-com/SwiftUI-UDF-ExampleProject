@@ -26,7 +26,7 @@ struct MyFavoritesContainer: Container {
             genreById: { store.state.allGenres.byId[$0] },
             loadMoreAction: loadNewPageIfNeeded,
             isRedacted: isRedacted,
-            alertStatus: store.$state.myFavoritesForm.alert
+            dialogStatus: store.$state.myFavoritesForm.dialog
         )
     }
 

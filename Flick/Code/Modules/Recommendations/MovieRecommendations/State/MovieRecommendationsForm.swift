@@ -18,12 +18,12 @@ struct MovieRecommendationsForm: Form {
     var page: PaginationPage { paginator.page }
     var movies: [Movie.ID] { paginator.items.elements }
 
-    var alert: AlertBuilder.AlertStatus = .dismissed
+    var dialog: DialogStatus = .dismissed
 
     mutating func reduce(_ action: some Action) {
         switch action {
         case let action as Actions.Error where action.id == MovieRecommendationsFlow.id:
-            alert = .init(error: action.error)
+            dialog = .init(error: action.error)
 
         default:
             break

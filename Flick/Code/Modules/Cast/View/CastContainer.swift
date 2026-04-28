@@ -21,7 +21,7 @@ struct CastContainer: Container {
         .init(
             cast: cast,
             castById: store.state.allCast.castBy,
-            alertStatus: store.$state.castForm.alert
+            dialogStatus: store.$state.castForm.dialog
         )
     }
 }

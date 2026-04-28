@@ -23,7 +23,7 @@ struct SignInContainer: Container {
             password: store.$state.signInForm.password,
             signInAction: { dismiss() },
             isLoaderPresented: .init { store.state.signInFlow != .none },
-            alertStatus: store.$state.signInForm.alert
+            dialogStatus: store.$state.signInForm.dialog
         )
     }
 }

@@ -24,7 +24,7 @@ struct ShowRecommendationsContainer: BindableContainer {
             items: shows,
             genreById: store.state.allGenres.genreBy,
             loadMoreAction: loadNewPageIfNeeded,
-            alertStatus: store.$state.showRecommendationsForm[id].alert
+            dialogStatus: store.$state.showRecommendationsForm[id].dialog
         )
     }
 

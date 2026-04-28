@@ -14,50 +14,36 @@ import UDF
 import XCTest
 
 final class SignInComponentTests: SnapshotTestCase {
+    private var initialComponent: SignInComponent!
     override func setUp() {
+        super.setUp()
         isRecording = false
-    }
-
-    func test_TextFields_areEmpty() {
-        snapshot(
-            component: SignInComponent(
-                props: .init(
-                    username: .constant(""),
-                    password: .constant(""),
-                    signInAction: {},
-                    isLoaderPresented: .constant(false),
-                    alertStatus: .constant(.dismissed)
-                )
+        
+        initialComponent = .init(
+            props: .init(
+                username: .constant(""),
+                password: .constant(""),
+                signInAction: {},
+                isLoaderPresented: .constant(false),
+                dialogStatus: .constant(.dismissed)
             )
         )
+    }
+    
+    override func tearDown() {
+        initialComponent = nil
+        super.tearDown()
+    }
+
+
+    func test_TextFields_areEmpty() {
+        snapshot(for: initialComponent)
     }
 
     func test_TextFields_areFilled() {
-        snapshot(
-            component: SignInComponent(
-                props: .init(
-                    username: .constant("Username"),
-                    password: .constant("Password"),
-                    signInAction: {},
-                    isLoaderPresented: .constant(false),
-                    alertStatus: .constant(.dismissed)
-                )
-            )
-        )
-    }
+        initialComponent.props.password = .constant("Password")
+        initialComponent.props.username = .constant("Username")
 
-    func test_ColorScheme_isDark() {
-        snapshot(
-            component: SignInComponent(
-                props: .init(
-                    username: .constant("Username"),
-                    password: .constant("Password"),
-                    signInAction: {},
-                    isLoaderPresented: .constant(false),
-                    alertStatus: .constant(.dismissed)
-                )
-            ),
-            colorScheme: .dark
-        )
+        snapshot(for: initialComponent)
     }
 }
