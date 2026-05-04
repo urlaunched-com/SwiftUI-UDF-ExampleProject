@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "swiftuikit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Maks-Jago/SwiftUIKit",
+      "state" : {
+        "revision" : "49d867da40648159be659cea1eb019c90f9114b0",
+        "version" : "0.6.5"
+      }
+    }
+  ],
+  "version" : 2
+}
