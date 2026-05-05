@@ -73,6 +73,15 @@
       }
     },
     {
+      "identity" : "swiftfoundation",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Maks-Jago/SwiftFoundation.git",
+      "state" : {
+        "revision" : "b03db4a15a9f77c78f69b02fb8c5469c477be31b",
+        "version" : "0.4.1"
+      }
+    },
+    {
       "identity" : "swiftui-snapshot-test-case",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Maks-Jago/swiftui-snapshot-test-case",

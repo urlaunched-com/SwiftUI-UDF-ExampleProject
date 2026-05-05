@@ -46,7 +46,6 @@ public struct Module {
 }
 
 extension Project {
-    /// Helper function to create the Project for this ExampleApp
     public static func app(
         name: String,
         organizationName: String,

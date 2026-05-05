@@ -23,10 +23,8 @@ let project = Project.app(
     name: "Flick",
     organizationName: "urlaunched",
     packages: [
-        .local(path: "./API"),
         .local(path: "./DesignSystem"),
         .local(path: "./Localizations"),
-        .remote(url: "https://github.com/Maks-Jago/SwiftFoundation.git", requirement: .upToNextMajor(from: "0.3.6")),
         .remote(url: "https://github.com/Maks-Jago/SwiftUIKit", requirement: .upToNextMajor(from: "0.4.0")),
     ],
     settings: settings,
@@ -35,36 +33,70 @@ let project = Project.app(
         .external(name: "FlagKit"),
         .external(name: "SDWebImageSwiftUI"),
         .external(name: "UDF"),
+        .external(name: "SwiftFoundation"),
         .package(product: "SwiftUI-Kit"),
-        .package(product: "SwiftFoundation"),
-        .package(product: "API"),
         .package(product: "DesignSystem"),
         .package(product: "Localizations"),
+        .target(name: "Models"),
+        .target(name: "Common"),
+        .target(name: "API"),
     ],
     moduleTargets: [
-        Module(
-            name: "Models",
-            moduleType: .core,
-            path: "Models",
-            frameworkDependancies: [
-                .package(product: "SwiftFoundation"),
-                .external(name: "UDF"),
-                .package(product: "API"),
-                .package(product: "DesignSystem"),
-                .target(name: "Common"),
-            ],
-            frameworkResources: []
-        ),
-        Module(
-            name: "Common",
-            moduleType: .core,
-            path: "Common",
-            frameworkDependancies: [
-                .external(name: "UDF"),
-                .package(product: "SwiftUI-Kit"),
-                .package(product: "DesignSystem"),
-            ],
-            frameworkResources: []
-        )
-    ]
+        makeAllCoreModules(),
+        makeAllFeatures()
+    ].flatMap { $0 }
 )
+
+func makeAllCoreModules() -> [Module] {
+    return [
+        makeCommanModule(),
+        makeModelsModule(),
+        makeAPIModule(),
+    ]
+}
+
+func makeAllFeatures() -> [Module] {
+    return []
+}
+
+func makeModelsModule() -> Module {
+    Module(
+        name: "Models",
+        moduleType: .core,
+        path: "Models",
+        frameworkDependancies: [
+            .external(name: "SwiftFoundation"),
+            .external(name: "UDF"),
+            .package(product: "DesignSystem"),
+            .target(name: "Common"),
+            .target(name: "API"),
+        ],
+        frameworkResources: []
+    )
+}
+
+func makeCommanModule() -> Module {
+    return Module(
+        name: "Common",
+        moduleType: .core,
+        path: "Common",
+        frameworkDependancies: [
+            .external(name: "UDF"),
+            .package(product: "SwiftUI-Kit"),
+            .package(product: "DesignSystem"),
+        ],
+        frameworkResources: []
+    )
+}
+
+func makeAPIModule() -> Module {
+    return Module(
+        name: "API",
+        moduleType: .core,
+        path: "API",
+        frameworkDependancies: [
+            .external(name: "SwiftFoundation"),
+        ],
+        frameworkResources: []
+    )
+}

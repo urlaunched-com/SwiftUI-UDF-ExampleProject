@@ -17,7 +17,7 @@ let package = Package(
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-        .package(url: "https://github.com/Maks-Jago/SwiftFoundation.git", from: "0.3.5"),
+        .package(url: "https://github.com/Maks-Jago/SwiftFoundation.git", from: "0.4.1"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.

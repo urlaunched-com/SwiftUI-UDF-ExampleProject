@@ -9,7 +9,7 @@
 import SwiftFoundation
 import SwiftUI
 import UDF
-import Common
+@preconcurrency import Common
 
 struct TabBarForm: UDF.Form {
     enum HomeTab {}
