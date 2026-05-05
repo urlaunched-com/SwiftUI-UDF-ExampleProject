@@ -7,7 +7,7 @@
 //
 
 import UDF
-@preconcurrency import Models
+import Models
 
 struct ReviewDetailsContainer: Container {
     typealias ContainerComponent = ReviewDetailsComponent

@@ -8,7 +8,7 @@
 
 import SwiftUI
 import Common
-@preconcurrency import Models
+import Models
 
 struct HomeCardView: View {
     @Environment(\.isRedacted) var isRedacted

@@ -6,7 +6,7 @@
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 import SwiftUI
-@preconcurrency import Models
+import Models
 import Localizations
 
 @ViewBuilder

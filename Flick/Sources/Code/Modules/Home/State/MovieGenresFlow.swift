@@ -7,7 +7,7 @@
 //
 
 import UDF
-@preconcurrency import Models
+import Models
 
 enum MovieGenresFlow: IdentifiableFlow {
     case none, loading

@@ -7,7 +7,7 @@
 //
 
 import UDF
-@preconcurrency import Models
+import Models
 
 enum ShowGenresFlow: IdentifiableFlow {
     case none, loading

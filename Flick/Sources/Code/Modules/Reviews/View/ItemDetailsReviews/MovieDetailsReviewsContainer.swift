@@ -7,7 +7,7 @@
 //
 
 import UDF
-@preconcurrency import Models
+import Models
 
 struct MovieDetailsReviewsContainer: BindableContainer {
     typealias ContainerComponent = ItemDetailsReviewsComponent

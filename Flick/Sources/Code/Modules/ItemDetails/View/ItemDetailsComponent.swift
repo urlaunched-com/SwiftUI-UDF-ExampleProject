@@ -11,7 +11,7 @@ import Localizations
 import SwiftUI
 import SwiftUI_Kit
 import UDF
-@preconcurrency import Models
+import Models
 
 struct ItemDetailsComponent: Component {
     struct Props {

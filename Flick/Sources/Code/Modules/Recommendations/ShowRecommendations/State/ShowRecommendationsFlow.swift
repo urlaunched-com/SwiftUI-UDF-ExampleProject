@@ -7,7 +7,7 @@
 //
 
 import UDF
-@preconcurrency import Models
+import Models
 
 enum ShowRecommendationsFlow: IdentifiableFlow {
     case none, loadShows(Int)

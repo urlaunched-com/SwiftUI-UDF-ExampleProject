@@ -10,12 +10,12 @@ import SwiftUI
 import UDF
 
 private let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJidW5kbGVfaWRzIjpbImNvbS51cmxhdW5jaGVkLmZsaWNrIl19.HjROptJlsO915Ju0fw7VtO-FhHZlZSdDRALOrFQOvPU"
-private var store: EnvironmentStore<AppState>!
+var globalStore: EnvironmentStore<AppState>!
 
 @main
 struct FlickApp: App {
     init() {
-        store = EnvironmentStore(
+        globalStore = EnvironmentStore(
             initial: AppState(),
             logger: .consoleDebug
         )
@@ -36,7 +36,7 @@ struct FlickApp: App {
 
 private extension FlickApp {
     func originalSubscribe() {
-        store.subscribe { _ in
+        globalStore.subscribe { _ in
             HomeMiddleware.self
             GenresMiddleware.self
             NetworkConnectivityMiddleware.self

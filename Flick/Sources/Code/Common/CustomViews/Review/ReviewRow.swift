@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-@preconcurrency import Models
+import Models
 
 struct ReviewRow: View {
     let review: Review

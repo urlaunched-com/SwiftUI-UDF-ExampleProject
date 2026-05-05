@@ -23,7 +23,7 @@ struct RootRouting: Routing {
 
     @ViewBuilder func view(for route: Route) -> some View {
         switch route {
-        case .onboarding: OnboardingContainer()
+        case .onboarding: OnboardingContainer(store: globalStore)
         case .signIn: SignInContainer()
         case .home: HomeContainer()
         case .search: SearchContainer()

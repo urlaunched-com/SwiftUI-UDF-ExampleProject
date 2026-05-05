@@ -8,7 +8,7 @@
 
 import DesignSystem
 import SwiftUI
-@preconcurrency import Models
+import Models
 
 struct SectionDetailsRow: View {
     var item: any Item

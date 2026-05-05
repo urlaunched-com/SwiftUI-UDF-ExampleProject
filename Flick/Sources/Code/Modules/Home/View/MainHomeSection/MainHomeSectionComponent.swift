@@ -9,7 +9,7 @@
 import SwiftUI
 import SwiftUI_Kit
 import UDF
-@preconcurrency import Models
+import Models
 
 struct MainHomeSectionComponent<S: Models.Section>: Component {
     struct Props {

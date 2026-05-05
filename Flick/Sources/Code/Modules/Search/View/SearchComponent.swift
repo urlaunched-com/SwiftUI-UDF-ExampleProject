@@ -11,7 +11,7 @@ import DesignSystem
 import Localizations
 import SwiftUI
 import UDF
-@preconcurrency import Models
+import Models
 
 struct SearchComponent: Component {
     struct Props {

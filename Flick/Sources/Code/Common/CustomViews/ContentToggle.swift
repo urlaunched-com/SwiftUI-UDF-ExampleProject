@@ -8,7 +8,7 @@
 
 import Localizations
 import SwiftUI
-@preconcurrency import Models
+import Models
 
 struct ContentToggle: View {
     @Binding var contentType: ContentType

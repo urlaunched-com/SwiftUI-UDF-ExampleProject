@@ -7,7 +7,7 @@
 //
 
 import UDF
-@preconcurrency import Models
+import Models
 
 struct MainHomeSectionContainer<S: Section>: Container {
     typealias ContainerComponent = MainHomeSectionComponent<S>

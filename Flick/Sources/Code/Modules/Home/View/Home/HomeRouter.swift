@@ -9,7 +9,7 @@
 import SwiftUI
 import UDF
 import Common
-@preconcurrency import Models
+import Models
 
 struct HomeRouting: Routing {
     enum Route: Hashable {

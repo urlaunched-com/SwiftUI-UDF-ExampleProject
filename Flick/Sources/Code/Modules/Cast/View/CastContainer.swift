@@ -7,7 +7,7 @@
 //
 
 import UDF
-@preconcurrency import Models
+import Models
 
 struct CastContainer: Container {
     typealias ContainerComponent = CastComponent

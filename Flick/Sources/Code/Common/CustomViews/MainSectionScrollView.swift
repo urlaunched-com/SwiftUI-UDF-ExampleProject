@@ -10,7 +10,7 @@ import Combine
 import DesignSystem
 import SwiftUI
 import UDF
-@preconcurrency import Models
+import Models
 import Common
 
 struct MainSectionScrollView: View {

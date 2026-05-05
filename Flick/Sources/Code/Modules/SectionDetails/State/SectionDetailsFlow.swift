@@ -8,7 +8,7 @@
 
 import SwiftUI
 import UDF
-@preconcurrency import Models
+import Models
 
 enum SectionDetailsFlow: IdentifiableFlow {
     case none, loadMovies(Int), loadShows(Int)

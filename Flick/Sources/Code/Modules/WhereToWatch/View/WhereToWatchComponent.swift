@@ -10,7 +10,7 @@ import FlagKit
 import Localizations
 import SwiftUI
 import UDF
-@preconcurrency import Models
+import Models
 
 struct WhereToWatchComponent: Component {
     struct Props {
