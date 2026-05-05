@@ -8,8 +8,8 @@
 
 import DesignSystem
 import Foundation
-import Localizations
 import SwiftUI
+import Localizations
 
 protocol Pageable: Identifiable where ID == Int {
     var id: Int { get }

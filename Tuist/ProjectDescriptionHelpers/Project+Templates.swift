@@ -1,6 +1,6 @@
 import ProjectDescription
 
-let featuresPath = "Features"
+let uiPath = "UI"
 let corePath = "Core"
 let appPath = "Flick"
 let reverseOrganizationName = "com.urlaunched"
@@ -8,15 +8,15 @@ let infoPlistPath: Path = "Info.plist"
 
 public enum ModuleType {
     case core
-    case feature
+    case ui
     case app
     
     func path() -> String {
         switch self {
         case .core:
             return corePath
-        case .feature:
-            return featuresPath
+        case .ui:
+            return uiPath
         case .app:
             return appPath
         }
@@ -29,19 +29,22 @@ public struct Module {
     let frameworkDependancies: [TargetDependency]
     let frameworkResources: [String]
     let moduleType: ModuleType
+    let scripts: [TargetScript]
     
     public init(
         name: String,
         moduleType: ModuleType,
         path: String,
         frameworkDependancies: [TargetDependency],
-        frameworkResources: [String]
+        frameworkResources: [String],
+        scripts: [TargetScript] = []
     ) {
         self.name = name
         self.path = path
         self.moduleType = moduleType
         self.frameworkDependancies = frameworkDependancies
         self.frameworkResources = frameworkResources
+        self.scripts = scripts
     }
 }
 
@@ -101,6 +104,7 @@ extension Project {
                 "\(frameworkPath)/Sources/**",
             ],
             resources: .resources(frameworkResourceFilePaths),
+            scripts: module.scripts,
             dependencies: module.frameworkDependancies,
         )
         
@@ -126,7 +130,7 @@ extension Project {
             sources: ["\(appPath)/Sources/**"],
             resources: ["\(appPath)/Resources/**"],
             dependencies: dependencies,
-            settings: settings
+            settings: settings,
         )
         
         targets.append(mainTarget)

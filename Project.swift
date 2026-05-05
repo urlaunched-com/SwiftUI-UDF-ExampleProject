@@ -23,7 +23,6 @@ let project = Project.app(
     name: "Flick",
     organizationName: "urlaunched",
     packages: [
-        .local(path: "./Localizations"),
     ],
     settings: settings,
     appSettings: appSettings,
@@ -33,11 +32,10 @@ let project = Project.app(
         .external(name: "UDF"),
         .external(name: "SwiftFoundation"),
         .external(name: "SwiftUI-Kit"),
-        .package(product: "Localizations"),
     ],
     moduleTargets: [
         makeAllCoreModules(),
-        makeAllFeatures()
+        makeUIModules()
     ].flatMap { $0 }
 )
 
@@ -46,12 +44,15 @@ func makeAllCoreModules() -> [Module] {
         makeCommanModule(),
         makeModelsModule(),
         makeAPIModule(),
-        makeDesignSystemModule()
+        makeDesignSystemModule(),
+        makeLocalizationModule()
     ]
 }
 
-func makeAllFeatures() -> [Module] {
-    return []
+func makeUIModules() -> [Module] {
+    return [
+        makeOnboardingUIComponent()
+    ]
 }
 
 func makeModelsModule() -> Module {
@@ -107,5 +108,43 @@ func makeDesignSystemModule() -> Module {
         frameworkResources: [
             "Resources/**"
         ]
+    )
+}
+
+func makeLocalizationModule() -> Module {
+    return Module(
+        name: "Localizations",
+        moduleType: .core,
+        path: "Localizations",
+        frameworkDependancies: [
+            .external(name: "RswiftLibrary")
+        ],
+        frameworkResources: [
+            "Resources/**"
+        ],
+        scripts: [
+            .pre(
+                script: """
+                "$PROJECT_DIR/Core/Localizations/rswift" generate --access-level public "$PROJECT_DIR/Core/Localizations/Sources/R.generated.swift"
+                """,
+                name: "R.swift"
+            )
+        ]
+    )
+}
+
+func makeOnboardingUIComponent() -> Module {
+    return Module(
+        name: "Onboarding",
+        moduleType: .ui,
+        path: "Onboarding",
+        frameworkDependancies: [
+            .external(name: "UDF"),
+            .external(name: "SwiftUI-Kit"),
+            .target(name: "DesignSystem"),
+            .target(name: "Localizations"),
+            .external(name: "RswiftLibrary")
+        ],
+        frameworkResources: []
     )
 }

@@ -8,14 +8,9 @@
 
 import SwiftUI
 import UDF
+import Onboarding
 
 struct OnboardingContainer: Container {
-    var store: EnvironmentStore<ContainerState>
-    
-    init(store: EnvironmentStore<ContainerState>) {
-        self.store = store
-    }
-    
     typealias ContainerComponent = OnboardingComponent
 
     func scope(for state: AppState) -> Scope {

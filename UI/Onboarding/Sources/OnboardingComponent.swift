@@ -12,15 +12,19 @@ import SwiftUI
 import SwiftUI_Kit
 import UDF
 
-struct OnboardingComponent: Component {
-    struct Props {
-        let skipAction: Command
+public struct OnboardingComponent: Component {
+    public struct Props {
+        public let skipAction: Command
+        
+        public init(skipAction: @escaping Command) {
+            self.skipAction = skipAction
+        }
     }
 
-    var props: Props
+    public var props: Props
     @State private var page: any Pageable
 
-    init(props: Props) {
+    public init(props: Props) {
         self.props = props
         _page = .init(initialValue: Page.first)
     }
@@ -30,7 +34,7 @@ struct OnboardingComponent: Component {
         _page = .init(initialValue: page)
     }
 
-    var body: some View {
+    public var body: some View {
         ZStack {
             page.color
             GeometryReader {

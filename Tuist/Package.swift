@@ -12,6 +12,7 @@ import PackageDescription
             "UDF": .framework,
             "SwiftFoundation": .framework,
             "SwiftUI-Kit": .framework,
+            "RswiftLibrary": .framework,
         ]
     )
 #endif // TUIST
@@ -25,5 +26,6 @@ let package = Package(
         .package(url: "https://github.com/Maks-Jago/SwiftUI-UDF", .upToNextMajor(from: "1.5.1-rc.1")),
         .package(url: "https://github.com/Maks-Jago/SwiftFoundation", .upToNextMajor(from: "0.4.1")),
         .package(url: "https://github.com/Maks-Jago/SwiftUIKit", .upToNextMajor(from: "0.6.5")),
+        .package(url: "https://github.com/mac-cain13/R.swift.git", .upToNextMajor(from: "7.0.0"))
     ]
 )
