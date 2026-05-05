@@ -8,11 +8,13 @@
 
 import SwiftUI
 import UDF
+@preconcurrency import Models
+import Common
 
 struct MainHomeSectionRouting: Routing {
     enum Route: Hashable {
         case itemDetails(any Item)
-        case sectionDetails(any Section)
+        case sectionDetails(any Models.Section)
 
         func hash(into hasher: inout Hasher) {
             switch self {

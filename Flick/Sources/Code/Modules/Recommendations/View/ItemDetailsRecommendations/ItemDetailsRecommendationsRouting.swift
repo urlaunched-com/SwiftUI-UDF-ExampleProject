@@ -8,6 +8,8 @@
 
 import SwiftUI
 import UDF
+@preconcurrency import Models
+import Common
 
 struct ItemDetailsRecommendationsRouting: Routing {
     enum Route: Hashable {

@@ -8,6 +8,7 @@
 
 import SwiftUI
 import UDF
+@preconcurrency import Models
 
 enum MyFavoritesFlow: IdentifiableFlow {
     case none, loadMovies(Int), loadShows(Int)

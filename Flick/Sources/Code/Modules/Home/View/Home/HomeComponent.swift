@@ -9,6 +9,7 @@
 import Localizations
 import SwiftUI
 import UDF
+@preconcurrency import Models
 
 struct HomeComponent: Component {
     struct Props {

@@ -2,43 +2,12 @@
 //  Common.swift
 //  Flick
 //
-//  Created by Alexander Sharko on 20.01.2023.
-//  Copyright © 2023 urlaunched.com. All rights reserved.
+//  Created by Bogdan Petkanych on 04.05.2026.
+//  Copyright © 2026 urlaunched. All rights reserved.
 //
-
-import Localizations
 import SwiftUI
-
-// MARK: - Typealiases
-
-typealias Minutes = Int
-
-let Localization = R.string.localizable
-
-// MARK: - Constants
-
-let kPerPage: Int = 20
-
-// MARK: - AppLink
-
-enum AppLink: String, Identifiable {
-    case aboutUs = "https://www.themoviedb.org/about"
-    case tmdbAPI = "https://developer.themoviedb.org/docs/getting-started"
-    case privacyPolicy = "https://www.themoviedb.org/privacy-policy"
-
-    var id: Self { self }
-    var urlValue: URL { URL(string: rawValue)! }
-}
-
-// MARK: - Helpers
-
-func areEqual<Lhs: Equatable>(_ lhs: Lhs, _ rhs: some Equatable) -> Bool {
-    guard let rhsAs = rhs as? Lhs else {
-        return false
-    }
-
-    return lhs == rhsAs
-}
+@preconcurrency import Models
+import Localizations
 
 @ViewBuilder
 func buildView(
@@ -55,3 +24,5 @@ func buildView(
         EmptyView()
     }
 }
+
+public let Localization = R.string.localizable

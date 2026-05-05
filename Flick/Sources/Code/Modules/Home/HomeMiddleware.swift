@@ -9,6 +9,7 @@
 import API
 import Foundation
 import UDF
+@preconcurrency import Models
 
 final class HomeMiddleware: BaseReducibleMiddleware<AppState> {
     var environment: Environment!

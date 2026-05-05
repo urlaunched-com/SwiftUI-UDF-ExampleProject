@@ -10,6 +10,7 @@ import DesignSystem
 import SwiftUI
 import SwiftUI_Kit
 import UDF
+@preconcurrency import Models
 
 struct SectionDetailsComponent: Component {
     struct Props {

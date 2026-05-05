@@ -8,6 +8,7 @@
 
 import Localizations
 import SwiftUI
+@preconcurrency import Models
 
 struct ReviewHeaderView: View {
     let review: Review

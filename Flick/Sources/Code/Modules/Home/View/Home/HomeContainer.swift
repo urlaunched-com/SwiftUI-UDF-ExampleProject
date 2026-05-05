@@ -8,6 +8,7 @@
 
 import SwiftUI
 import UDF
+@preconcurrency import Models
 
 struct HomeContainer: Container {
     typealias ContainerComponent = HomeComponent

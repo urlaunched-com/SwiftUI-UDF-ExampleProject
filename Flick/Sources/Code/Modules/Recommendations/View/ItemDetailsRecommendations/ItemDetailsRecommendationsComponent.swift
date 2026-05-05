@@ -10,6 +10,7 @@ import DesignSystem
 import Localizations
 import SwiftUI
 import UDF
+@preconcurrency import Models
 
 struct ItemDetailsRecommendationsComponent: Component {
     struct Props {

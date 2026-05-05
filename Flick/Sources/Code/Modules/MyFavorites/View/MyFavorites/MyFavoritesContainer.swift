@@ -8,6 +8,7 @@
 
 import SwiftUI
 import UDF
+@preconcurrency import Models
 
 struct MyFavoritesContainer: Container {
     typealias ContainerComponent = MyFavoritesComponent

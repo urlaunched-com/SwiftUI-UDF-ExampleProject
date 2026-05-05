@@ -9,6 +9,7 @@
 import API
 import Foundation
 import UDF
+@preconcurrency import Models
 
 final class SearchMiddleware: BaseObservableMiddleware<AppState> {
     var environment: Environment!

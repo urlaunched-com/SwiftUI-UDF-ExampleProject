@@ -10,6 +10,7 @@ import DesignSystem
 import SwiftUI
 import SwiftUI_Kit
 import UDF
+import Common
 
 struct TabBarComponent: Component {
     struct Props {

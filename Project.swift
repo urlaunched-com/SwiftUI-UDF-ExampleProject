@@ -41,5 +41,30 @@ let project = Project.app(
         .package(product: "DesignSystem"),
         .package(product: "Localizations"),
     ],
-    moduleTargets: []
+    moduleTargets: [
+        Module(
+            name: "Models",
+            moduleType: .core,
+            path: "Models",
+            frameworkDependancies: [
+                .package(product: "SwiftFoundation"),
+                .external(name: "UDF"),
+                .package(product: "API"),
+                .package(product: "DesignSystem"),
+                .target(name: "Common"),
+            ],
+            frameworkResources: []
+        ),
+        Module(
+            name: "Common",
+            moduleType: .core,
+            path: "Common",
+            frameworkDependancies: [
+                .external(name: "UDF"),
+                .package(product: "SwiftUI-Kit"),
+                .package(product: "DesignSystem"),
+            ],
+            frameworkResources: []
+        )
+    ]
 )

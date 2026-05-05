@@ -8,6 +8,7 @@
 
 import SwiftUI
 import UDF
+@preconcurrency import Models
 
 enum ShowReviewsFlow: IdentifiableFlow {
     case none, loadShowReviews(Int)

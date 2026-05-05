@@ -8,6 +8,7 @@
 
 import SwiftUI
 import UDF
+@preconcurrency import Models
 
 struct SelectiveItemsList<Header: View>: View {
     var items: [any Item]

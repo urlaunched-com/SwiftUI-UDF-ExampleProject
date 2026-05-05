@@ -7,6 +7,7 @@
 //
 
 import UDF
+@preconcurrency import Models
 
 enum MovieRecommendationsFlow: IdentifiableFlow {
     case none, loadMovies(Int)

@@ -8,6 +8,7 @@
 
 import Foundation
 import UDF
+@preconcurrency import Models
 
 struct AllSearchItems: Reducible {
     var byId: [SearchItem.ID: SearchItem] = [:]

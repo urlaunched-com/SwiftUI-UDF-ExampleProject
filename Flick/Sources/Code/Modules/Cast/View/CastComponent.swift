@@ -10,6 +10,7 @@ import DesignSystem
 import Localizations
 import SwiftUI
 import UDF
+@preconcurrency import Models
 
 struct CastComponent: Component {
     struct Props {

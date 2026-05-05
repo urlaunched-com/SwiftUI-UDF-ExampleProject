@@ -9,8 +9,9 @@
 import DesignSystem
 import SwiftUI
 import UDF
+@preconcurrency import Models
 
-struct HomeSectionComponent<S: Section>: Component {
+struct HomeSectionComponent<S: Models.Section>: Component {
     struct Props {
         var section: S
         var items: [any Item]

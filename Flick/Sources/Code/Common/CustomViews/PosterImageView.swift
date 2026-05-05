@@ -8,6 +8,7 @@
 
 import SDWebImageSwiftUI
 import SwiftUI
+import Common
 
 struct PosterImageView: View {
     @Environment(\.isRedacted) var isRedacted

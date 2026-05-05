@@ -8,6 +8,7 @@
 
 import API
 import UDF
+@preconcurrency import Models
 
 final class ShowReviewsMiddleware: BaseObservableMiddleware<AppState> {
     enum Cancellation: Hashable {

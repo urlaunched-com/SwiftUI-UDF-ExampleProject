@@ -8,6 +8,7 @@
 
 import FlagKit
 import UDF
+@preconcurrency import Models
 
 struct WhereToWatchContainer: Container {
     typealias ContainerComponent = WhereToWatchComponent

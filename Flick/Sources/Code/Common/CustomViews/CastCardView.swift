@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+@preconcurrency import Models
 
 struct CastCardView: View {
     @Environment(\.isRedacted) var isRedacted

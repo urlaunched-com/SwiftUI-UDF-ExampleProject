@@ -7,6 +7,7 @@
 //
 
 import UDF
+@preconcurrency import Models
 
 enum ImageConfigsFlow: IdentifiableFlow {
     case none, loading

@@ -8,6 +8,7 @@
 
 import Foundation
 import UDF
+@preconcurrency import Models
 
 struct AllShows: Reducible {
     var byId: [Show.ID: Show] = [:]

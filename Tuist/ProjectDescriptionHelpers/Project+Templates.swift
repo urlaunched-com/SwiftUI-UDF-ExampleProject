@@ -35,9 +35,7 @@ public struct Module {
         moduleType: ModuleType,
         path: String,
         frameworkDependancies: [TargetDependency],
-        frameworkResources: [String],
-        exampleResources: [String],
-        testResources: [String]
+        frameworkResources: [String]
     ) {
         self.name = name
         self.path = path

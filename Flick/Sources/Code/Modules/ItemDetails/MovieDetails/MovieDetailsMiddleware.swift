@@ -8,6 +8,7 @@
 
 import API
 import UDF
+@preconcurrency import Models
 
 final class MovieDetailsMiddleware: BaseObservableMiddleware<AppState> {
     enum Cancellation: Hashable {

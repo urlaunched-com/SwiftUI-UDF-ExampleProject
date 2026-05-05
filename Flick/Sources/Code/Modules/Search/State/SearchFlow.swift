@@ -8,6 +8,7 @@
 
 import SwiftUI
 import UDF
+@preconcurrency import Models
 
 enum SearchFlow: IdentifiableFlow {
     case none, loadItems(Int)

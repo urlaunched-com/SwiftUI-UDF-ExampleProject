@@ -7,6 +7,7 @@
 //
 
 import UDF
+@preconcurrency import Models
 
 struct MovieDetailsForm: Form {
     var dialog: DialogStatus = .dismissed

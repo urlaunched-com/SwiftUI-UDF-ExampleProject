@@ -10,6 +10,7 @@ import Localizations
 import SwiftUI
 import SwiftUI_Kit
 import UDF
+import Common
 
 struct SettingsComponent: Component {
     struct Props {

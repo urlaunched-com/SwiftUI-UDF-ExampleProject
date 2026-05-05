@@ -8,6 +8,7 @@
 
 import Foundation
 import UDF
+@preconcurrency import Models
 
 struct AllMovies: Reducible {
     var byId: [Movie.ID: Movie] = [:]
