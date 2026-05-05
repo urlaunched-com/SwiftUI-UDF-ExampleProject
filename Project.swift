@@ -23,9 +23,7 @@ let project = Project.app(
     name: "Flick",
     organizationName: "urlaunched",
     packages: [
-        .local(path: "./DesignSystem"),
         .local(path: "./Localizations"),
-        .remote(url: "https://github.com/Maks-Jago/SwiftUIKit", requirement: .upToNextMajor(from: "0.4.0")),
     ],
     settings: settings,
     appSettings: appSettings,
@@ -34,12 +32,8 @@ let project = Project.app(
         .external(name: "SDWebImageSwiftUI"),
         .external(name: "UDF"),
         .external(name: "SwiftFoundation"),
-        .package(product: "SwiftUI-Kit"),
-        .package(product: "DesignSystem"),
+        .external(name: "SwiftUI-Kit"),
         .package(product: "Localizations"),
-        .target(name: "Models"),
-        .target(name: "Common"),
-        .target(name: "API"),
     ],
     moduleTargets: [
         makeAllCoreModules(),
@@ -52,6 +46,7 @@ func makeAllCoreModules() -> [Module] {
         makeCommanModule(),
         makeModelsModule(),
         makeAPIModule(),
+        makeDesignSystemModule()
     ]
 }
 
@@ -67,7 +62,7 @@ func makeModelsModule() -> Module {
         frameworkDependancies: [
             .external(name: "SwiftFoundation"),
             .external(name: "UDF"),
-            .package(product: "DesignSystem"),
+            .target(name: "DesignSystem"),
             .target(name: "Common"),
             .target(name: "API"),
         ],
@@ -82,8 +77,8 @@ func makeCommanModule() -> Module {
         path: "Common",
         frameworkDependancies: [
             .external(name: "UDF"),
-            .package(product: "SwiftUI-Kit"),
-            .package(product: "DesignSystem"),
+            .external(name: "SwiftUI-Kit"),
+            .target(name: "DesignSystem"),
         ],
         frameworkResources: []
     )
@@ -98,5 +93,19 @@ func makeAPIModule() -> Module {
             .external(name: "SwiftFoundation"),
         ],
         frameworkResources: []
+    )
+}
+
+func makeDesignSystemModule() -> Module {
+    return Module(
+        name: "DesignSystem",
+        moduleType: .core,
+        path: "DesignSystem",
+        frameworkDependancies: [
+            .external(name: "SwiftUI-Kit"),
+        ],
+        frameworkResources: [
+            "Resources/**"
+        ]
     )
 }
