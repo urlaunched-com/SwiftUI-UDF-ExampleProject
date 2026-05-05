@@ -24,5 +24,3 @@ func buildView(
         EmptyView()
     }
 }
-
-public let Localization = R.string.localizable

@@ -1,4 +1,5 @@
 {
+  "originHash" : "9d2c391dc946ad5b30f17826ffdc1e8790a14b5f4064662b59cfbbb44d2be204",
   "pins" : [
     {
       "identity" : "r.swift",
@@ -19,24 +20,6 @@
       }
     },
     {
-      "identity" : "swiftfoundation",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Maks-Jago/SwiftFoundation.git",
-      "state" : {
-        "revision" : "b03db4a15a9f77c78f69b02fb8c5469c477be31b",
-        "version" : "0.4.1"
-      }
-    },
-    {
-      "identity" : "swiftuikit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Maks-Jago/SwiftUIKit",
-      "state" : {
-        "revision" : "49d867da40648159be659cea1eb019c90f9114b0",
-        "version" : "0.6.5"
-      }
-    },
-    {
       "identity" : "xcodeedit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/tomlokhorst/XcodeEdit",
@@ -46,5 +29,5 @@
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

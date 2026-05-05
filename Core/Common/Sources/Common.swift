@@ -10,8 +10,6 @@ import SwiftUI
 
 // MARK: - Typealiases
 
-//public let Localization = R.string.localizable
-
 public typealias Minutes = Int
 
 // MARK: - Constants
