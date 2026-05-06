@@ -8,6 +8,7 @@
 
 import SwiftUI
 import UDF
+import SignInComponent
 
 struct SignInContainer: Container {
     typealias ContainerComponent = SignInComponent
@@ -23,7 +24,15 @@ struct SignInContainer: Container {
             password: store.$state.signInForm.password,
             signInAction: { dismiss() },
             isLoaderPresented: .init { store.state.signInFlow != .none },
-            dialogStatus: store.$state.signInForm.dialog
+            dialogStatus: store.$state.signInForm.dialog,
+            router: .init(routing: SignInRouting(destination: { route in
+                switch route {
+                case .resetPassword:
+                    Text("Reset password")
+                case .signUp:
+                    Text("Sign Up")
+                }
+            }))
         )
     }
 }

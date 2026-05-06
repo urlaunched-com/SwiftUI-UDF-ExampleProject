@@ -51,7 +51,8 @@ func makeAllCoreModules() -> [Module] {
 
 func makeUIModules() -> [Module] {
     return [
-        makeOnboardingUIComponent()
+        makeOnboardingUIComponent(),
+        makeOnboardingSignInComponent()
     ]
 }
 
@@ -135,9 +136,9 @@ func makeLocalizationModule() -> Module {
 
 func makeOnboardingUIComponent() -> Module {
     return Module(
-        name: "Onboarding",
+        name: "OnboardingComponent",
         moduleType: .ui,
-        path: "Onboarding",
+        path: "OnboardingComponent",
         frameworkDependancies: [
             .external(name: "UDF"),
             .external(name: "SwiftUI-Kit"),
@@ -148,3 +149,21 @@ func makeOnboardingUIComponent() -> Module {
         frameworkResources: []
     )
 }
+
+func makeOnboardingSignInComponent() -> Module {
+    return Module(
+        name: "SignInComponent",
+        moduleType: .ui,
+        path: "SignInComponent",
+        frameworkDependancies: [
+            .external(name: "UDF"),
+            .target(name: "DesignSystem"),
+            .target(name: "Localizations"),
+            .external(name: "RswiftLibrary"),
+            .target(name: "Common"),
+        ],
+        frameworkResources: []
+    )
+}
+
+

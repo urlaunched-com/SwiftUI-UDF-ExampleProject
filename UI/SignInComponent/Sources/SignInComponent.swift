@@ -10,23 +10,43 @@ import DesignSystem
 import Localizations
 import SwiftUI
 import UDF
+import Common
 
-struct SignInComponent: Component {
-    struct Props {
+public struct SignInComponent: Component {
+    public struct Props {
         var username: Binding<String>
         var password: Binding<String>
         var signInAction: Command
         var isLoaderPresented: Binding<Bool>
         var dialogStatus: Binding<DialogStatus>
         var router: Router<SignInRouting> = .init()
+        
+        public init(
+            username: Binding<String>,
+            password: Binding<String>,
+            signInAction: @escaping Command,
+            isLoaderPresented: Binding<Bool>,
+            dialogStatus: Binding<DialogStatus>,
+            router: Router<SignInRouting> = .init()
+        ) {
+            self.username = username
+            self.password = password
+            self.signInAction = signInAction
+            self.isLoaderPresented = isLoaderPresented
+            self.dialogStatus = dialogStatus
+        }
     }
 
-    var props: Props
+    public var props: Props
 
     @FocusState private var focusedField: Field?
     @Environment(\.globalRouter) private var globalRouter
+    
+    public init(props: Props) {
+        self.props = props
+    }
 
-    var body: some View {
+    public var body: some View {
         AuthView(title: Localization.authSignUpTitle()) {
             VStack {
                 AuthTextField(
