@@ -8,6 +8,7 @@
 
 import Foundation
 import Common
+import Localizations
 
 public enum ShowSection: Section {
     case popular
@@ -17,13 +18,12 @@ public enum ShowSection: Section {
 
     public var id: Self { self }
     public var title: String {
-//        switch self {
-//        case .popular: Localization.homePopularShowsSectionTitle()
-//        case .airingToday: Localization.homeAiringTodayShowsSectionTitle()
-//        case .onTheAir: Localization.homeOnTVShowsSectionTitle()
-//        case .topRated: Localization.homeTopRatedShowsSectionTitle()
-//        }
-        return ""
+        switch self {
+        case .popular: Localization.homePopularShowsSectionTitle()
+        case .airingToday: Localization.homeAiringTodayShowsSectionTitle()
+        case .onTheAir: Localization.homeOnTVShowsSectionTitle()
+        case .topRated: Localization.homeTopRatedShowsSectionTitle()
+        }
     }
 
     public var urlValue: String {

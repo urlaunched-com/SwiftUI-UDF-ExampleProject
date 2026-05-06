@@ -7,8 +7,7 @@
 //
 
 import Foundation
-
-//public let Localization = R.string.localizable
+import Localizations
 
 public enum MovieSection: Section {
     case popular
@@ -19,13 +18,12 @@ public enum MovieSection: Section {
     public var id: Self { self }
 
     public var title: String {
-//        switch self {
-//        case .popular: Localization.homePopularMoviesSectionTitle()
-//        case .nowPlaying: Localization.homeNowPlayingMoviesSectionTitle()
-//        case .upcoming: Localization.homeUpcomingMoviesSectionTitle()
-//        case .topRated: Localization.homeTopRatedMoviesSectionTitle()
-//        }
-        return ""
+        switch self {
+        case .popular: Localization.homePopularMoviesSectionTitle()
+        case .nowPlaying: Localization.homeNowPlayingMoviesSectionTitle()
+        case .upcoming: Localization.homeUpcomingMoviesSectionTitle()
+        case .topRated: Localization.homeTopRatedMoviesSectionTitle()
+        }
     }
 
     public var urlValue: String {

@@ -67,6 +67,8 @@ func makeModelsModule() -> Module {
             .target(name: "DesignSystem"),
             .target(name: "Common"),
             .target(name: "API"),
+            .target(name: "Localizations"),
+            .external(name: "RswiftLibrary"),
         ],
         frameworkResources: []
     )

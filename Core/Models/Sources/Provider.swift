@@ -9,6 +9,7 @@
 import Foundation
 import SwiftFoundation
 import Common
+import Localizations
 
 public struct Provider {
     public var type: ProviderType
@@ -46,13 +47,12 @@ public enum ProviderType {
     case buy
 
     public var localizableTitle: String {
-//        switch self {
-//        case .flatRate, .rent:
-//            Localization.whereToWatchStreamTitle()
-//        case .buy:
-//            Localization.whereToWatchBuyTitle()
-//        }
-        return ""
+        switch self {
+        case .flatRate, .rent:
+            Localization.whereToWatchStreamTitle()
+        case .buy:
+            Localization.whereToWatchBuyTitle()
+        }
     }
 }
 
