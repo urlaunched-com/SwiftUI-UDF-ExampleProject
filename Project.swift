@@ -168,7 +168,11 @@ func makeOnboardingSignInComponent() -> Module {
             .external(name: "RswiftLibrary"),
             .target(name: "Common"),
         ],
-        frameworkResources: []
+        frameworkResources: [],
+        snapshotDependencies: [
+            .external(name: "SwiftUISnapshotTestCase"),
+        ],
+        targets: [.framework, .snapshotTests]
     )
 }
 

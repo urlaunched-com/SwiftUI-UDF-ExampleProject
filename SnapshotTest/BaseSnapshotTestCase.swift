@@ -10,6 +10,7 @@ import SwiftUISnapshotTestCase
 import XCTest
 import UDF
 
+@MainActor
 class BaseSnapshotTestCase: SnapshotTestCase {
     override class func setUp() {
         deviceReference = "iPhone 17 Pro"
