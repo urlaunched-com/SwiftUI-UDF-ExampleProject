@@ -125,7 +125,7 @@ func makeLocalizationModule() -> Module {
         frameworkResources: [
             "Resources/**"
         ],
-        scripts: [
+        frameworkScripts: [
             .pre(
                 script: """
                 "$PROJECT_DIR/Core/Localizations/rswift" generate --access-level public "$PROJECT_DIR/Core/Localizations/Sources/R.generated.swift"
@@ -148,7 +148,11 @@ func makeOnboardingUIComponent() -> Module {
             .target(name: "Localizations"),
             .external(name: "RswiftLibrary")
         ],
-        frameworkResources: []
+        frameworkResources: [],
+        snapshotDependencies: [
+            .external(name: "SwiftUISnapshotTestCase"),
+        ],
+        targets: [.framework, .snapshotTests]
     )
 }
 

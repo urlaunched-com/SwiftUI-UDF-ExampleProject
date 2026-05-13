@@ -8,7 +8,7 @@
 
 import SwiftUI
 import UDF
-import Onboarding
+import OnboardingComponent
 
 struct OnboardingContainer: Container {
     typealias ContainerComponent = OnboardingComponent

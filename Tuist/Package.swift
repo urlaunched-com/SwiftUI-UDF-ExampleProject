@@ -13,6 +13,7 @@ import PackageDescription
             "SwiftFoundation": .framework,
             "SwiftUI-Kit": .framework,
             "RswiftLibrary": .framework,
+            "SwiftUISnapshotTestCase": .staticFramework,
         ]
     )
 #endif // TUIST

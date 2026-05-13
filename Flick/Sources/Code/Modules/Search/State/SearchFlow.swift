@@ -10,10 +10,14 @@ import SwiftUI
 import UDF
 import Models
 
-enum SearchFlow: IdentifiableFlow {
+enum SearchFlow: IdentifiableFlow, InitialSetup {
     case none, loadItems(Int)
 
     init() { self = .none }
+    
+    func initialSetup(with state: AppState) {
+        
+    }
 
     mutating func reduce(_ action: some Action) {
         switch action {

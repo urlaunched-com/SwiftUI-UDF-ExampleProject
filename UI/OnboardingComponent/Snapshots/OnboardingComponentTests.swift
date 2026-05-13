@@ -5,16 +5,17 @@
 //  Created by Alexander Sharko on 16.11.2022.
 //
 
-@testable import Flick
+@testable import OnboardingComponentSnapshotTestsHostApp
 import Foundation
 import SwiftUI
 import SwiftUISnapshotTestCase
 import UDF
 import XCTest
 
-final class OnboardingComponentTests: SnapshotTestCase {
+final class OnboardingComponentTests: BaseSnapshotTestCase {
     override func setUp() {
         isRecording = false
+        super.setUp()
     }
 
     func test_Onboarding_firstPage() {

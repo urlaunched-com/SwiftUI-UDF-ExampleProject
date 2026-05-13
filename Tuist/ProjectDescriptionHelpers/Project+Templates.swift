@@ -23,13 +23,20 @@ public enum ModuleType {
     }
 }
 
+public enum FeatureTarget {
+    case framework
+    case snapshotTests
+}
+
 public struct Module {
     let name: String
     let path: String
     let frameworkDependancies: [TargetDependency]
     let frameworkResources: [String]
+    let snapshotDependencies: [TargetDependency]
     let moduleType: ModuleType
-    let scripts: [TargetScript]
+    let frameworkScripts: [TargetScript]
+    let targets: Set<FeatureTarget>
     
     public init(
         name: String,
@@ -37,14 +44,18 @@ public struct Module {
         path: String,
         frameworkDependancies: [TargetDependency],
         frameworkResources: [String],
-        scripts: [TargetScript] = []
+        snapshotDependencies: [TargetDependency] = [],
+        frameworkScripts: [TargetScript] = [],
+        targets: Set<FeatureTarget> = Set(arrayLiteral: .framework)
     ) {
         self.name = name
         self.path = path
         self.moduleType = moduleType
         self.frameworkDependancies = frameworkDependancies
         self.frameworkResources = frameworkResources
-        self.scripts = scripts
+        self.snapshotDependencies = snapshotDependencies
+        self.frameworkScripts = frameworkScripts
+        self.targets = targets
     }
 }
 
@@ -59,7 +70,6 @@ extension Project {
         targetDependancies: [TargetDependency] = [],
         moduleTargets: [Module],
     ) -> Project {
-        
         let organizationName = organizationName
         var targets = [Target]()
         var dependencies = moduleTargets.map { TargetDependency.target(name: $0.name) }
@@ -85,30 +95,73 @@ extension Project {
     }
     
     public static func makeFrameworkTargets(module: Module) -> [Target] {
+        var targets = [Target]()
         let frameworkPath = "\(module.moduleType.path())/\(module.path)"
-        
         let frameworkResourceFilePaths = module.frameworkResources.map {
             ResourceFileElement.glob(pattern: Path(stringLiteral: "\(module.moduleType.path())/\(module.path)/" + $0), tags: [])
         }
         
+        if module.targets.contains(.framework) {
+            let frameworkTarget = Target.target(
+                name: module.name,
+                destinations: .iOS,
+                product: .framework,
+                bundleId: "\(reverseOrganizationName).\(module.name)",
+                infoPlist: .default,
+                sources: [
+                    "\(frameworkPath)/Sources/**",
+                ],
+                resources: .resources(frameworkResourceFilePaths),
+                scripts: module.frameworkScripts,
+                dependencies: module.frameworkDependancies,
+            )
+            
+            targets.append(frameworkTarget)
+        }
         
-        var targets = [Target]()
-        
-        let frameworkTarget = Target.target(
-            name: module.name,
-            destinations: .iOS,
-            product: .framework,
-            bundleId: "\(reverseOrganizationName).\(module.name)",
-            infoPlist: .default,
-            sources: [
-                "\(frameworkPath)/Sources/**",
-            ],
-            resources: .resources(frameworkResourceFilePaths),
-            scripts: module.scripts,
-            dependencies: module.frameworkDependancies,
-        )
-        
-        targets.append(frameworkTarget)
+        if module.targets.contains(.snapshotTests) {
+            let settings: Settings = .settings(
+                configurations: [
+                    .debug(name: "Debug", xcconfig: "./xcconfigs/SnapshotTests.xcconfig"),
+                    .release(name: "Release", xcconfig: "./xcconfigs/SnapshotTests.xcconfig"),
+                ]
+            )
+            let hostAppName = "\(module.name)SnapshotTestsHostApp"
+            let appTarget = Target.target(
+                name: hostAppName,
+                destinations: .iOS,
+                product: .app,
+                bundleId: "\(reverseOrganizationName).\(module.name).app",
+                infoPlist: .extendingDefault(with: [
+                    "UIMainStoryboardFile": "",
+                    "UILaunchStoryboardName": "LaunchScreen"
+                ]),
+                sources: ["\(frameworkPath)/Sources/**"],
+                resources: .resources(frameworkResourceFilePaths),
+                dependencies: module.frameworkDependancies,
+            )
+            
+            let snapshotTarget = Target.target(
+                name: "\(module.name)SnapshotTests",
+                destinations: .iOS,
+                product: .unitTests,
+                bundleId: "\(reverseOrganizationName).\(module.name)SnapshotTests",
+                infoPlist: .default,
+                sources: [
+                    "\(frameworkPath)/Snapshots/**",
+                    "SnapshotTest/**"
+                ],
+                resources: ["\(frameworkPath)/Snapshots/__Snapshots__/**"],
+                dependencies: module.snapshotDependencies + [
+                    .target(name: hostAppName),
+                    .sdk(name: "XCTest", type: .framework, status: .required)
+                ],
+                settings: settings
+            )
+            
+            targets.append(appTarget)
+            targets.append(snapshotTarget)
+        }
         
         return targets
     }
