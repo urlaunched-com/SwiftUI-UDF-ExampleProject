@@ -11,31 +11,54 @@ import SwiftUI
 import SwiftUI_Kit
 import UDF
 import Models
+import Common
 
-struct SectionDetailsComponent: Component {
-    struct Props {
+public struct SectionDetailsComponent<R: Routing>: Component where R.Route == SectionDetailsRoute {
+    public struct Props {
         var title: String
         var items: [any Item]
         var genreById: (Genre.ID) -> Genre?
         var loadMoreAction: Command
         var dialogStatus: Binding<DialogStatus>
-        var router: Router<SectionDetailsRouting> = .init()
+        var router: R = .init()
+        
+        public init(
+            title: String,
+            items: [any Item],
+            genreById: @escaping (Genre.ID) -> Genre?,
+            loadMoreAction: @escaping Command,
+            dialogStatus: Binding<DialogStatus>,
+            router: R = .init()
+        ) {
+            self.title = title
+            self.items = items
+            self.genreById = genreById
+            self.loadMoreAction = loadMoreAction
+            self.dialogStatus = dialogStatus
+            self.router = router
+        }
     }
 
-    var props: Props
+    public var props: Props
+    
+    public init(props: Props) {
+        self.props = props
+    }
 
     @Environment(\.globalRouter) private var globalRouter
 
-    var body: some View {
+    public var body: some View {
         GeometryReader { geometry in
             List(props.items.indices, id: \.self) { index in
                 let item = props.items[index]
+                let size = CGSize(width: geometry.size.width, height: geometry.size.height * 0.75)
                 SectionDetailsRow(
                     item: item,
                     genres: item.genres(action: props.genreById),
                     size: .init(width: geometry.size.width, height: geometry.size.height * 0.75),
                     toggleFavoriteAction: {},
-                    shareAction: {}
+                    shareAction: {},
+                    imageView: props.router.view(for: .imageContainer(path: item.posterPath, size: size))
                 )
                 .onAppear {
                     if index == props.items.indices.last {
@@ -43,7 +66,7 @@ struct SectionDetailsComponent: Component {
                     }
                 }
                 .embedInPlainButton {
-                    globalRouter.navigate(for: SectionDetailsRouting.self, to: .itemDetails(item))
+                    globalRouter.navigate(for: R.self, to: .itemDetails(item))
                 }
                 .listRowInsets(.zero)
                 .listRowSeparator(.hidden)
@@ -68,13 +91,14 @@ struct SectionDetailsComponent: Component {
 // MARK: - Preview
 
 #Preview {
-    SectionDetailsComponent(
+    SectionDetailsComponent<MockRouter<SectionDetailsRoute>>(
         props: .init(
             title: "Popular",
             items: Movie.testItems(count: 10),
             genreById: { _ in .fakeItem() },
             loadMoreAction: {},
-            dialogStatus: .constant(.dismissed)
+            dialogStatus: .constant(.dismissed),
+            router: MockRouter<SectionDetailsRoute>()
         )
     )
 }

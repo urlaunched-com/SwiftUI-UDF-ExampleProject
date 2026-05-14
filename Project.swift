@@ -56,6 +56,7 @@ func makeUIModules() -> [Module] {
         makeWhereToWatchComponent(),
         makeTabBarComponent(),
         makeImageComponent(),
+        makeSectionDetails(),
     ]
 }
 
@@ -224,7 +225,24 @@ func makeImageComponent() -> Module {
             .external(name: "UDF"),
             .external(name: "SDWebImageSwiftUI"),
             .external(name: "SwiftUI-Kit"),
-            .target(name: "DesignSystem")
+            .target(name: "DesignSystem"),
+            .target(name: "Common"),
+        ],
+        frameworkResources: [],
+        snapshotDependencies: [],
+        targets: [.framework]
+    )
+}
+
+func makeSectionDetails() -> Module {
+    return Module(
+        name: "SectionDetailsComponent",
+        moduleType: .ui,
+        path: "SectionDetailsComponent",
+        frameworkDependancies: [
+            .external(name: "UDF"),
+            .target(name: "Common"),
+            .target(name: "Models"),
         ],
         frameworkResources: [],
         snapshotDependencies: [],

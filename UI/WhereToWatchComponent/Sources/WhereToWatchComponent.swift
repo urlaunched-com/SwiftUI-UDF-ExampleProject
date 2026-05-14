@@ -18,13 +18,18 @@ public struct WhereToWatchComponent: Component {
         var item: any Item
         var countries: [DropdownItem]
         var providers: [Provider]
-        var router: RouteDestinationBuilder<WhereToWatchRoute> = .init()
+        var destinationBuilder: DestinationBuilder<WhereToWatchContent> = .init()
         
-        public init(item: any Item, countries: [DropdownItem], providers: [Provider], router: RouteDestinationBuilder<WhereToWatchRoute>) {
+        public init(
+            item: any Item,
+            countries: [DropdownItem],
+            providers: [Provider],
+            destinationBuilder: DestinationBuilder<WhereToWatchContent> = .init()
+        ) {
             self.item = item
             self.countries = countries
             self.providers = providers
-            self.router = router
+            self.destinationBuilder = destinationBuilder
         }
     }
     
@@ -41,7 +46,7 @@ public struct WhereToWatchComponent: Component {
         ScrollView(showsIndicators: false) {
             VStack {
                 HStack(spacing: 19) {
-                    props.router.view(for: .imageContainer(path: props.item.posterPath, size: .init(width: 97, height: 132)))
+                    props.destinationBuilder.view(for: .imageContainer(path: props.item.posterPath, size: .init(width: 97, height: 132)))
                     .frame(width: 97, height: 132)
                     .clipShape(RoundedRectangle(cornerRadius: 18))
                     Text(props.item.title)
@@ -119,7 +124,7 @@ private extension WhereToWatchComponent {
     }
 
     func providerItem(_ item: ProviderItem) -> some View {
-        props.router.view(for: .imageContainer(path: item.logoPath, size: .init(width: 70, height: 70), type: .profile))
+        props.destinationBuilder.view(for: .imageContainer(path: item.logoPath, size: .init(width: 70, height: 70), type: .profile))
         .frame(width: 70, height: 70)
         .clipShape(RoundedRectangle(cornerRadius: 14.0))
     }
@@ -145,7 +150,7 @@ private extension WhereToWatchComponent {
                     return .init(title: code, image: image)
                 }
             }(),
-            providers: Provider.fakeItems(count: 3), router: .init()
+            providers: Provider.fakeItems(count: 3)
         )
     )
 }

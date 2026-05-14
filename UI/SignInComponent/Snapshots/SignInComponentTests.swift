@@ -7,6 +7,7 @@
 //
 
 @testable import SignInComponentSnapshotTestsHostApp
+@testable import Common
 import Foundation
 import SwiftUI
 import SwiftUISnapshotTestCase
@@ -15,7 +16,7 @@ import XCTest
 
 @MainActor
 final class SignInComponentTests: BaseSnapshotTestCase {
-    private var initialComponent: SignInComponent!
+    private var initialComponent: SignInComponent<MockRouter<SignInRoute>>!
     
     override func setUp() {
         super.setUp()

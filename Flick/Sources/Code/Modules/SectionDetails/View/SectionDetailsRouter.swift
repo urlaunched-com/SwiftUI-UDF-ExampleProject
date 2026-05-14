@@ -10,26 +10,11 @@ import SwiftUI
 import UDF
 import Models
 import Common
+import SectionDetailsComponent
 
 struct SectionDetailsRouting: Routing {
-    enum Route: Hashable {
-        case itemDetails(any Item)
-
-        func hash(into hasher: inout Hasher) {
-            switch self {
-            case let .itemDetails(item):
-                hasher.combine(item)
-            }
-        }
-
-        static func == (lhs: Self, rhs: Self) -> Bool {
-            switch (lhs, rhs) {
-            case let (.itemDetails(lhsItem), .itemDetails(rhsItem)):
-                areEqual(lhsItem, rhsItem)
-            }
-        }
-    }
-
+    typealias Route = SectionDetailsRoute
+    
     @ViewBuilder func view(for route: Route) -> some View {
         switch route {
         case let .itemDetails(item):
@@ -38,6 +23,8 @@ struct SectionDetailsRouting: Routing {
             } else if let show = item as? Show {
                 ShowDetailsContainer(id: show.id)
             }
+        case .imageContainer(path: let path, size: let size):
+            ImageContainer(size: size, path: path)
         }
     }
 }

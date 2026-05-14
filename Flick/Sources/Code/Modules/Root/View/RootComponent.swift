@@ -88,6 +88,6 @@ private extension View {
             .navigationDestination(for: ItemDetailsReviewsRouting.self)
             .navigationDestination(for: ItemDetailsRecommendationsRouting.self)
             .navigationDestination(for: ReviewsRouting.self)
-            .navigationDestination(for: RouteDestinationBuilder<SignInRoute>.self)
+            .navigationDestination(for: SectionDetailsRouting.self)
     }
 }

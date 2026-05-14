@@ -12,14 +12,14 @@ import SwiftUI
 import UDF
 import Common
 
-public struct SignInComponent: Component {
+public struct SignInComponent<R: Routing>: Component where R.Route == SignInRoute {
     public struct Props {
         var username: Binding<String>
         var password: Binding<String>
         var signInAction: Command
         var isLoaderPresented: Binding<Bool>
         var dialogStatus: Binding<DialogStatus>
-        var router: RouteDestinationBuilder<SignInRoute> = .init()
+        var router: R = .init()
         
         public init(
             username: Binding<String>,
@@ -27,13 +27,14 @@ public struct SignInComponent: Component {
             signInAction: @escaping Command,
             isLoaderPresented: Binding<Bool>,
             dialogStatus: Binding<DialogStatus>,
-            router: RouteDestinationBuilder<SignInRoute> = .init()
+            router: R = .init()
         ) {
             self.username = username
             self.password = password
             self.signInAction = signInAction
             self.isLoaderPresented = isLoaderPresented
             self.dialogStatus = dialogStatus
+            self.router = router
         }
     }
 
@@ -81,7 +82,7 @@ public struct SignInComponent: Component {
                     .foregroundStyle(.flMainPink)
                     .frame(maxWidth: .infinity, alignment: .trailing)
                     .embedInPlainButton {
-                        globalRouter.navigate(for: RouteDestinationBuilder.self, to: SignInRoute.resetPassword)
+                        globalRouter.navigate(for: R.self, to: .resetPassword)
                     }
                     .padding(.top)
 
@@ -98,7 +99,7 @@ public struct SignInComponent: Component {
                     Text(Localization.authSignUpButtonTitle())
                         .foregroundStyle(.flMainPink)
                         .embedInPlainButton {
-                            globalRouter.navigate(for: RouteDestinationBuilder.self, to: SignInRoute.signUp)
+                            globalRouter.navigate(for: R.self, to: .signUp)
                         }
                 }
                 .customFont(.subheadline)
@@ -111,7 +112,7 @@ public struct SignInComponent: Component {
             focusedField = .none
         }
         .hideKeyboardByTap()
-        .navigationDestination(for: RouteDestinationBuilder<SignInRoute>.self)
+        .navigationDestination(for: R.self)
         .embedInNavigationStack()
         .dialog(status: props.dialogStatus)
         .loaderSheet(isPresented: props.isLoaderPresented)
@@ -146,7 +147,8 @@ private extension SignInComponent {
             password: .constant(""),
             signInAction: {},
             isLoaderPresented: .constant(false),
-            dialogStatus: .constant(.dismissed)
+            dialogStatus: .constant(.dismissed),
+            router: MockRouter<SignInRoute>()
         )
     )
 }

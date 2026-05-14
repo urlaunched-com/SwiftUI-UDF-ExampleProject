@@ -8,10 +8,12 @@
 
 import UDF
 import Models
+import SectionDetailsComponent
+import Common
+import SwiftUI
 
-struct SectionDetailsContainer<S: Section>: Container {
-    typealias ContainerComponent = SectionDetailsComponent
-
+struct SectionDetailsContainer<S: Models.Section>: Container {
+    typealias ContainerComponent = SectionDetailsComponent<SectionDetailsRouting>
     let section: S
 
     func scope(for state: AppState) -> Scope {
@@ -25,7 +27,8 @@ struct SectionDetailsContainer<S: Section>: Container {
             items: items,
             genreById: store.state.allGenres.genreBy,
             loadMoreAction: loadNewPageIfNeeded,
-            dialogStatus: store.$state.homeForm.dialog
+            dialogStatus: store.$state.homeForm.dialog,
+            router: SectionDetailsRouting()
         )
     }
 

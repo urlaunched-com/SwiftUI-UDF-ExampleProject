@@ -8,9 +8,10 @@
 
 import UDF
 import Models
+import SectionDetailsComponent
 
 struct MovieRecommendationsContainer: BindableContainer {
-    typealias ContainerComponent = SectionDetailsComponent
+    typealias ContainerComponent = SectionDetailsComponent<SectionDetailsRouting>
 
     let id: Movie.ID
 
@@ -25,7 +26,7 @@ struct MovieRecommendationsContainer: BindableContainer {
             items: movies,
             genreById: store.state.allGenres.genreBy,
             loadMoreAction: loadNewPageIfNeeded,
-            dialogStatus: store.$state.movieRecommendationsForm[id].dialog
+            dialogStatus: store.$state.movieRecommendationsForm[id].dialog,
         )
     }
 

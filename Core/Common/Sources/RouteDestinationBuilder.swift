@@ -9,18 +9,19 @@
 import SwiftUI
 import UDF
 
-public struct RouteDestinationBuilder<Route: Hashable>: Routing {
+public struct DestinationBuilder<Value: Hashable> {
+    private var destination: (Value) -> any View
     
-    public init() { }
-    
-    public init(destination: @escaping (Route) -> some View) {
+    public init() {
+        self.destination = { _ in EmptyView() }
+    }
+
+    public init(@ViewBuilder destination: @escaping (Value) -> any View) {
         self.destination = destination
     }
-    
-    public var destination: (Route) -> any View = { _ in EmptyView() }
 
     @ViewBuilder
-    public func view(for route: Route) -> some View {
-        AnyView(destination(route))
+    public func view(for value: Value) -> some View {
+        AnyView(destination(value))
     }
 }

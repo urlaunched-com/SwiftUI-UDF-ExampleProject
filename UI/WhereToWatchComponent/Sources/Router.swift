@@ -11,6 +11,6 @@ import UDF
 import UIKit
 import Common
 
-public enum WhereToWatchRoute: Hashable {
+public enum WhereToWatchContent: Hashable {
     case imageContainer(path: String?, size: CGSize, type: ImageType = .poster)
 }
