@@ -55,6 +55,7 @@ func makeUIModules() -> [Module] {
         makeOnboardingSignInComponent(),
         makeWhereToWatchComponent(),
         makeTabBarComponent(),
+        makeImageComponent(),
     ]
 }
 
@@ -214,3 +215,19 @@ func makeTabBarComponent() -> Module {
     )
 }
 
+func makeImageComponent() -> Module {
+    return Module(
+        name: "ImageComponent",
+        moduleType: .ui,
+        path: "ImageComponent",
+        frameworkDependancies: [
+            .external(name: "UDF"),
+            .external(name: "SDWebImageSwiftUI"),
+            .external(name: "SwiftUI-Kit"),
+            .target(name: "DesignSystem")
+        ],
+        frameworkResources: [],
+        snapshotDependencies: [],
+        targets: [.framework]
+    )
+}

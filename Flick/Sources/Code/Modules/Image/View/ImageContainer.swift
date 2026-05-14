@@ -9,6 +9,7 @@
 import SwiftUI
 import UDF
 import Common
+import ImageComponent
 
 struct ImageContainer: Container {
     typealias ContainerComponent = ImageComponent
