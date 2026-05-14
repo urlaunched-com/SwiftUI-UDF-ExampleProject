@@ -1,5 +1,5 @@
 //
-//  Router.swift
+//  WhereToWatchContent.swift
 //  Flick
 //
 //  Created by Bogdan Petkanych on 14.05.2026.

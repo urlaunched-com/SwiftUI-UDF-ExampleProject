@@ -10,7 +10,7 @@ import API
 import UDF
 @preconcurrency import Models
 
-final class MovieReviewsMiddleware: BaseObservableMiddleware<AppState> {
+final class MovieReviewsMiddleware: Middleware<AppState>, @unchecked Sendable {
     enum Cancellation: Hashable {
         case loadMovieReviews(Movie.ID)
     }

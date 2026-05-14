@@ -9,13 +9,11 @@
 import SwiftUI
 import UDF
 import Models
+import ReviewsComponent
 
 struct ReviewsRouting: Routing {
-    enum Route: Hashable {
-        case reviewDetails(Review.ID)
-    }
-
-    @ViewBuilder func view(for route: Route) -> some View {
+    
+    @ViewBuilder func view(for route: ReviewsRoute) -> some View {
         switch route {
         case let .reviewDetails(id): ReviewDetailsContainer(reviewId: id)
         }

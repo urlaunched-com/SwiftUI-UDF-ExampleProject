@@ -1,5 +1,5 @@
 //
-//  Router.swift
+//  SectionDetailsRoute.swift
 //  Flick
 //
 //  Created by Bogdan Petkanych on 14.05.2026.

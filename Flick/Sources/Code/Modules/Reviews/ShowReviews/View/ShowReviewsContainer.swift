@@ -8,9 +8,10 @@
 
 import UDF
 import Models
+import ReviewsComponent
 
 struct ShowReviewsContainer: BindableContainer {
-    typealias ContainerComponent = ReviewsComponent
+    typealias ContainerComponent = ReviewsComponent<ReviewsRouting>
 
     let id: Show.ID
 
