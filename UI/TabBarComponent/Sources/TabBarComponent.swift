@@ -12,15 +12,24 @@ import SwiftUI_Kit
 import UDF
 import Common
 
-struct TabBarComponent: Component {
-    struct Props {
+public struct TabBarComponent: Component {
+    public struct Props {
         var selectedTab: Binding<TabBarItem>
         var isHidden: Binding<Bool>
+        
+        public init(selectedTab: Binding<TabBarItem>, isHidden: Binding<Bool>) {
+            self.selectedTab = selectedTab
+            self.isHidden = isHidden
+        }
     }
 
-    var props: Props
+    public var props: Props
+    
+    public init(props: Props) {
+        self.props = props
+    }
 
-    var body: some View {
+    public var body: some View {
         HStack(spacing: 0) {
             ForEach(TabBarItem.allCases, id: \.self) { tab in
                 let presenter = TabBarItemPresenter(

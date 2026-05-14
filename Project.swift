@@ -53,7 +53,8 @@ func makeUIModules() -> [Module] {
     return [
         makeOnboardingUIComponent(),
         makeOnboardingSignInComponent(),
-        makeWhereToWatchComponent()
+        makeWhereToWatchComponent(),
+        makeTabBarComponent(),
     ]
 }
 
@@ -196,4 +197,20 @@ func makeWhereToWatchComponent() -> Module {
     )
 }
 
+func makeTabBarComponent() -> Module {
+    return Module(
+        name: "TabBarComponent",
+        moduleType: .ui,
+        path: "TabBarComponent",
+        frameworkDependancies: [
+            .external(name: "UDF"),
+            .external(name: "SwiftUI-Kit"),
+            .target(name: "DesignSystem"),
+            .target(name: "Common"),
+        ],
+        frameworkResources: [],
+        snapshotDependencies: [],
+        targets: [.framework]
+    )
+}
 
