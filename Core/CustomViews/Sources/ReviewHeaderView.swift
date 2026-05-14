@@ -9,21 +9,31 @@
 import Localizations
 import SwiftUI
 import Models
+import DesignSystem
 
-struct ReviewHeaderView: View {
+public struct ReviewHeaderView<ImageView: View>: View {
     let review: Review
-    let size = CGSize(width: 48, height: 48)
-    var placeholderColor: Color = .flMain
+    let size: CGSize
+    var placeholderColor: Color
+    var imageView: ImageView
+    
+    public init(
+        review: Review,
+        size: CGSize = CGSize(width: 48, height: 48),
+        placeholderColor: Color = .flMain,
+        imageView: ImageView = EmptyView()
+    ) {
+        self.review = review
+        self.size = size
+        self.placeholderColor = placeholderColor
+        self.imageView = imageView
+    }
 
-    var body: some View {
+    public var body: some View {
         HStack(spacing: 10) {
             Group {
                 if let path = review.authorDetails.avatarPath {
-                    ImageContainer(
-                        size: size,
-                        path: path,
-                        type: .profile
-                    )
+                    imageView
                 } else {
                     placeholderColor
                         .overlay(
@@ -52,5 +62,5 @@ struct ReviewHeaderView: View {
 // MARK: - Preview
 
 #Preview {
-    ReviewHeaderView(review: .fakeItem())
+    ReviewHeaderView<EmptyView>(review: .fakeItem())
 }

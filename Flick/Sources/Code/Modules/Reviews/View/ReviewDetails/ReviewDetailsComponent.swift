@@ -11,6 +11,7 @@ import Localizations
 import SwiftUI
 import UDF
 import Models
+import CustomViews
 
 struct ReviewDetailsComponent: Component {
     struct Props {
@@ -22,7 +23,11 @@ struct ReviewDetailsComponent: Component {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
-                ReviewHeaderView(review: props.review, placeholderColor: .flSecondary)
+                    ReviewHeaderView(review: props.review, placeholderColor: .flSecondary, imageView: ImageContainer(
+                        size: CGSize(width: 48, height: 48),
+                        path: props.review.authorDetails.avatarPath,
+                        type: .profile
+                    ))
                     .padding(.horizontal, 10)
                 Text(props.review.content)
                     .customFont(.body)

@@ -45,7 +45,8 @@ func makeAllCoreModules() -> [Module] {
         makeModelsModule(),
         makeAPIModule(),
         makeDesignSystemModule(),
-        makeLocalizationModule()
+        makeLocalizationModule(),
+        makeCustomViewsModule(),
     ]
 }
 
@@ -115,6 +116,20 @@ func makeDesignSystemModule() -> Module {
         frameworkResources: [
             "Resources/**"
         ]
+    )
+}
+
+func makeCustomViewsModule() -> Module {
+    return Module(
+        name: "CustomViews",
+        moduleType: .core,
+        path: "CustomViews",
+        frameworkDependancies: [
+            .external(name: "SwiftUI-Kit"),
+            .target(name: "DesignSystem"),
+            .target(name: "Models"),
+        ],
+        frameworkResources: []
     )
 }
 

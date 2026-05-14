@@ -11,6 +11,7 @@ import Localizations
 import SwiftUI
 import UDF
 import Models
+import CustomViews
 
 struct ReviewsComponent: Component {
     struct Props {
@@ -28,7 +29,12 @@ struct ReviewsComponent: Component {
     var body: some View {
         VStack(spacing: 16) {
             List(props.reviews, id: \.self) { id in
-                ReviewRow(review: props.reviewById(id))
+                    let review = props.reviewById(id)
+                    ReviewRow(review: review, imageView: ImageContainer(
+                        size: CGSize(width: 48, height: 48),
+                        path: review.authorDetails.avatarPath,
+                        type: .profile
+                    ))
                     .embedInPlainButton {
                         globalRouter.navigate(for: ReviewsRouting.self, to: .reviewDetails(id))
                     }

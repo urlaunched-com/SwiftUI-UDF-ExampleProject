@@ -9,10 +9,14 @@
 import DesignSystem
 import SwiftUI
 
-struct ReviewRatingView: View {
-    let rating: Int
+public struct ReviewRatingView: View {
+    public let rating: Int
+    
+    public init(rating: Int) {
+        self.rating = rating
+    }
 
-    var body: some View {
+    public var body: some View {
         HStack(spacing: 6) {
             Image.starFill
                 .template

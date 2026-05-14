@@ -9,12 +9,18 @@
 import SwiftUI
 import Models
 
-struct ReviewRow: View {
+public struct ReviewRow<ImageView: View>: View {
     let review: Review
+    var imageView: ImageView
+    
+    public init(review: Review, imageView: ImageView) {
+        self.review = review
+        self.imageView = imageView
+    }
 
-    var body: some View {
+    public var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            ReviewHeaderView(review: review)
+            ReviewHeaderView(review: review, imageView: imageView)
 
             Text(review.content)
                 .customFont(.body)
@@ -33,5 +39,5 @@ struct ReviewRow: View {
 // MARK: - Preview
 
 #Preview {
-    ReviewRow(review: .fakeItem())
+    ReviewRow(review: .fakeItem(), imageView: EmptyView())
 }

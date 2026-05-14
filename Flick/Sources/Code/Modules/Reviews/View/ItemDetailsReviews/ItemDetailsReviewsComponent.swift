@@ -11,6 +11,7 @@ import Localizations
 import SwiftUI
 import UDF
 import Models
+import CustomViews
 
 struct ItemDetailsReviewsComponent: Component {
     struct Props {
@@ -34,13 +35,18 @@ struct ItemDetailsReviewsComponent: Component {
                         globalRouter.navigate(for: ItemDetailsReviewsRouting.self, to: .reviews(props.item))
                     }
                 )
-
-                ReviewRow(review: props.reviewById(id))
-                    .embedInPlainButton {
-                        globalRouter.navigate(for: ItemDetailsReviewsRouting.self, to: .reviewDetails(id))
-                    }
-                    .buttonStyle(.scaled)
-                    .padding(.horizontal)
+                
+                let review = props.reviewById(id)
+                ReviewRow(review: review, imageView: ImageContainer(
+                    size: CGSize(width: 48, height: 48),
+                    path: review.authorDetails.avatarPath,
+                    type: .profile
+                ))
+                .embedInPlainButton {
+                    globalRouter.navigate(for: ItemDetailsReviewsRouting.self, to: .reviewDetails(id))
+                }
+                .buttonStyle(.scaled)
+                .padding(.horizontal)
             }
             .isRedacted(props.isRedacted)
             .disabled(props.isRedacted)
