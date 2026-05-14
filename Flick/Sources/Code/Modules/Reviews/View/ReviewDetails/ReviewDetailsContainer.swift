@@ -8,6 +8,8 @@
 
 import UDF
 import Models
+import ReviewDetailsComponent
+import Common
 
 struct ReviewDetailsContainer: Container {
     typealias ContainerComponent = ReviewDetailsComponent
@@ -20,7 +22,13 @@ struct ReviewDetailsContainer: Container {
 
     func map(store: EnvironmentStore<AppState>) -> ContainerComponent.Props {
         .init(
-            review: store.state.allReviews.byId[reviewId]!
+            review: store.state.allReviews.byId[reviewId]!,
+            destinationBuilder: DestinationBuilder<ReviewDetailsContent> { value in
+                switch value {
+                case let .imageContainer(path: path, size: size, type: type):
+                    ImageContainer(size: size, path: path, type: type)
+                }
+            }
         )
     }
 }
