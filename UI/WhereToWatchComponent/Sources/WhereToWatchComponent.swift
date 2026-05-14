@@ -6,32 +6,42 @@
 //  Copyright © 2023 urlaunched.com. All rights reserved.
 //
 
-import FlagKit
 import Localizations
 import SwiftUI
 import UDF
 import Models
+import Common
+import FlagKit
 
-struct WhereToWatchComponent: Component {
-    struct Props {
+public struct WhereToWatchComponent: Component {
+    public struct Props {
         var item: any Item
         var countries: [DropdownItem]
         var providers: [Provider]
+        var router: RouteDestinationBuilder<WhereToWatchRoute> = .init()
+        
+        public init(item: any Item, countries: [DropdownItem], providers: [Provider], router: RouteDestinationBuilder<WhereToWatchRoute>) {
+            self.item = item
+            self.countries = countries
+            self.providers = providers
+            self.router = router
+        }
+    }
+    
+    public init(props: Props) {
+        self.props = props
     }
 
-    var props: Props
+    public var props: Props
 
     @State private var isSelecting: Bool = false
     @State private var selectedCountry: DropdownItem?
 
-    var body: some View {
+    public var body: some View {
         ScrollView(showsIndicators: false) {
             VStack {
                 HStack(spacing: 19) {
-                    ImageContainer(
-                        size: .init(width: 97, height: 132),
-                        path: props.item.posterPath
-                    )
+                    props.router.view(for: .imageContainer(path: props.item.posterPath, size: .init(width: 97, height: 132)))
                     .frame(width: 97, height: 132)
                     .clipShape(RoundedRectangle(cornerRadius: 18))
                     Text(props.item.title)
@@ -109,11 +119,7 @@ private extension WhereToWatchComponent {
     }
 
     func providerItem(_ item: ProviderItem) -> some View {
-        ImageContainer(
-            size: .init(width: 70, height: 70),
-            path: item.logoPath,
-            type: .profile
-        )
+        props.router.view(for: .imageContainer(path: item.logoPath, size: .init(width: 70, height: 70), type: .profile))
         .frame(width: 70, height: 70)
         .clipShape(RoundedRectangle(cornerRadius: 14.0))
     }
@@ -139,7 +145,7 @@ private extension WhereToWatchComponent {
                     return .init(title: code, image: image)
                 }
             }(),
-            providers: Provider.fakeItems(count: 3)
+            providers: Provider.fakeItems(count: 3), router: .init()
         )
     )
 }

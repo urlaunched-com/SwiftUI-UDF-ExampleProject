@@ -1,18 +1,15 @@
 //
-//  SignInRouter.swift
+//  RouteDestinationBuilder.swift
 //  Flick
 //
-//  Created by Bogdan Petkanych on 06.05.2026.
+//  Created by Bogdan Petkanych on 14.05.2026.
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
+
 import SwiftUI
 import UDF
 
-public struct SignInRouting: Routing {
-    public enum Route: Hashable {
-        case resetPassword
-        case signUp
-    }
+public struct RouteDestinationBuilder<Route: Hashable>: Routing {
     
     public init() { }
     
@@ -22,7 +19,8 @@ public struct SignInRouting: Routing {
     
     public var destination: (Route) -> any View = { _ in EmptyView() }
 
-    @ViewBuilder public func view(for route: Route) -> some View {
+    @ViewBuilder
+    public func view(for route: Route) -> some View {
         AnyView(destination(route))
     }
 }

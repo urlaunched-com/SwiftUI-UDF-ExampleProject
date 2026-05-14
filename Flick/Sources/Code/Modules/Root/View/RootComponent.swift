@@ -8,6 +8,7 @@
 import SwiftUI
 import UDF
 import Common
+import SignInComponent
 
 struct RootComponent: Component {
     struct Props {
@@ -87,5 +88,6 @@ private extension View {
             .navigationDestination(for: ItemDetailsReviewsRouting.self)
             .navigationDestination(for: ItemDetailsRecommendationsRouting.self)
             .navigationDestination(for: ReviewsRouting.self)
+            .navigationDestination(for: RouteDestinationBuilder<SignInRoute>.self)
     }
 }

@@ -36,3 +36,7 @@ public func areEqual<Lhs: Equatable>(_ lhs: Lhs, _ rhs: some Equatable) -> Bool 
 
     return lhs == rhsAs
 }
+
+public enum ImageType {
+    case backdrop, logo, poster, profile, still
+}

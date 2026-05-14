@@ -52,7 +52,8 @@ func makeAllCoreModules() -> [Module] {
 func makeUIModules() -> [Module] {
     return [
         makeOnboardingUIComponent(),
-        makeOnboardingSignInComponent()
+        makeOnboardingSignInComponent(),
+        makeWhereToWatchComponent()
     ]
 }
 
@@ -173,6 +174,25 @@ func makeOnboardingSignInComponent() -> Module {
             .external(name: "SwiftUISnapshotTestCase"),
         ],
         targets: [.framework, .snapshotTests]
+    )
+}
+
+func makeWhereToWatchComponent() -> Module {
+    return Module(
+        name: "WhereToWatchComponent",
+        moduleType: .ui,
+        path: "WhereToWatchComponent",
+        frameworkDependancies: [
+            .external(name: "UDF"),
+            .target(name: "Localizations"),
+            .external(name: "RswiftLibrary"),
+            .target(name: "Common"),
+            .target(name: "Models"),
+            .external(name: "FlagKit"),
+        ],
+        frameworkResources: [],
+        snapshotDependencies: [],
+        targets: [.framework]
     )
 }
 

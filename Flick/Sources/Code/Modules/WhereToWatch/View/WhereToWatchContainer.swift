@@ -9,6 +9,7 @@
 import FlagKit
 import UDF
 import Models
+import WhereToWatchComponent
 
 struct WhereToWatchContainer: Container {
     typealias ContainerComponent = WhereToWatchComponent
@@ -36,7 +37,13 @@ struct WhereToWatchContainer: Container {
                     return .init(title: code, image: image)
                 }
             }(),
-            providers: Provider.fakeItems(count: 3)
+            providers: Provider.fakeItems(count: 3),
+            router: .init(destination: { route in
+                switch route {
+                case let .imageContainer(path: path, size: size, type: type):
+                    ImageContainer(size: size, path: path, type: type)
+                }
+            })
         )
     }
 }

@@ -9,6 +9,7 @@
 import SwiftUI
 import UDF
 import SignInComponent
+import Common
 
 struct SignInContainer: Container {
     typealias ContainerComponent = SignInComponent
@@ -19,20 +20,21 @@ struct SignInContainer: Container {
     }
 
     func map(store: EnvironmentStore<AppState>) -> ContainerComponent.Props {
-        .init(
+        let routing = RouteDestinationBuilder(destination: { (route: SignInRoute) in
+            switch route {
+            case .resetPassword:
+                Text("Reset password")
+            case .signUp:
+                Text("Sign Up")
+            }
+        })
+        return .init(
             username: store.$state.signInForm.username,
             password: store.$state.signInForm.password,
             signInAction: { dismiss() },
             isLoaderPresented: .init { store.state.signInFlow != .none },
             dialogStatus: store.$state.signInForm.dialog,
-            router: .init(routing: SignInRouting(destination: { route in
-                switch route {
-                case .resetPassword:
-                    Text("Reset password")
-                case .signUp:
-                    Text("Sign Up")
-                }
-            }))
+            router: routing
         )
     }
 }

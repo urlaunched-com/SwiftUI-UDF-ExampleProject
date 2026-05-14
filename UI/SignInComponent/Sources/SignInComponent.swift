@@ -19,7 +19,7 @@ public struct SignInComponent: Component {
         var signInAction: Command
         var isLoaderPresented: Binding<Bool>
         var dialogStatus: Binding<DialogStatus>
-        var router: Router<SignInRouting> = .init()
+        var router: RouteDestinationBuilder<SignInRoute> = .init()
         
         public init(
             username: Binding<String>,
@@ -27,7 +27,7 @@ public struct SignInComponent: Component {
             signInAction: @escaping Command,
             isLoaderPresented: Binding<Bool>,
             dialogStatus: Binding<DialogStatus>,
-            router: Router<SignInRouting> = .init()
+            router: RouteDestinationBuilder<SignInRoute> = .init()
         ) {
             self.username = username
             self.password = password
@@ -81,7 +81,7 @@ public struct SignInComponent: Component {
                     .foregroundStyle(.flMainPink)
                     .frame(maxWidth: .infinity, alignment: .trailing)
                     .embedInPlainButton {
-                        globalRouter.navigate(for: SignInRouting.self, to: .resetPassword)
+                        globalRouter.navigate(for: RouteDestinationBuilder.self, to: SignInRoute.resetPassword)
                     }
                     .padding(.top)
 
@@ -98,7 +98,7 @@ public struct SignInComponent: Component {
                     Text(Localization.authSignUpButtonTitle())
                         .foregroundStyle(.flMainPink)
                         .embedInPlainButton {
-                            globalRouter.navigate(for: SignInRouting.self, to: .signUp)
+                            globalRouter.navigate(for: RouteDestinationBuilder.self, to: SignInRoute.signUp)
                         }
                 }
                 .customFont(.subheadline)
@@ -111,7 +111,7 @@ public struct SignInComponent: Component {
             focusedField = .none
         }
         .hideKeyboardByTap()
-        .navigationDestination(for: SignInRouting.self)
+        .navigationDestination(for: RouteDestinationBuilder<SignInRoute>.self)
         .embedInNavigationStack()
         .dialog(status: props.dialogStatus)
         .loaderSheet(isPresented: props.isLoaderPresented)

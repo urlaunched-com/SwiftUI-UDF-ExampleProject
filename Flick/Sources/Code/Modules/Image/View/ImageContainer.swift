@@ -8,6 +8,7 @@
 
 import SwiftUI
 import UDF
+import Common
 
 struct ImageContainer: Container {
     typealias ContainerComponent = ImageComponent
@@ -46,20 +47,17 @@ private extension ImageContainer {
     }
 }
 
-extension ImageContainer {
-    enum ImageType {
-        case backdrop, logo, poster, profile, still
-
-        func sizes(_ state: AppState) -> [Int] {
-            let configs = state.imageConfigsForm.configs
-
-            switch self {
-            case .backdrop: return configs.backdropSizes
-            case .logo: return configs.logoSizes
-            case .poster: return configs.posterSizes
-            case .profile: return configs.profileSizes
-            case .still: return configs.stillSizes
-            }
+extension ImageType {
+    
+    func sizes(_ state: AppState) -> [Int] {
+        let configs = state.imageConfigsForm.configs
+        
+        switch self {
+        case .backdrop: return configs.backdropSizes
+        case .logo: return configs.logoSizes
+        case .poster: return configs.posterSizes
+        case .profile: return configs.profileSizes
+        case .still: return configs.stillSizes
         }
     }
 }
