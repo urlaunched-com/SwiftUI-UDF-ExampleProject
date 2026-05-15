@@ -10,34 +10,10 @@ import SwiftUI
 import UDF
 import Models
 import Common
+import ItemDetailsReviewsComponent
 
 struct ItemDetailsReviewsRouting: Routing {
-    enum Route: Hashable {
-        case reviewDetails(Review.ID)
-        case reviews(any Item)
-
-        func hash(into hasher: inout Hasher) {
-            switch self {
-            case let .reviewDetails(id):
-                hasher.combine(id)
-            case let .reviews(item):
-                hasher.combine(item)
-            }
-        }
-
-        static func == (lhs: Self, rhs: Self) -> Bool {
-            switch (lhs, rhs) {
-            case let (.reviewDetails(lhsId), .reviewDetails(rhsId)):
-                areEqual(lhsId, rhsId)
-            case let (.reviews(lhsItem), .reviews(rhsItem)):
-                areEqual(lhsItem, rhsItem)
-            default:
-                false
-            }
-        }
-    }
-
-    @ViewBuilder func view(for route: Route) -> some View {
+    @ViewBuilder func view(for route: ItemDetailsReviewsRoute) -> some View {
         switch route {
         case let .reviewDetails(id):
             ReviewDetailsContainer(reviewId: id)

@@ -8,10 +8,11 @@
 
 import UDF
 import Models
+import ItemDetailsReviewsComponent
+import Common
 
 struct MovieDetailsReviewsContainer: BindableContainer {
-    typealias ContainerComponent = ItemDetailsReviewsComponent
-
+    typealias ContainerComponent = ItemDetailsReviewsComponent<ItemDetailsReviewsRouting>
     let id: Movie.ID
 
     func scope(for state: AppState) -> Scope {
@@ -26,7 +27,14 @@ struct MovieDetailsReviewsContainer: BindableContainer {
             item: store.state.allMovies.movieBy(id: id),
             reviews: isRedacted ? Review.fakeItems().ids : reviews,
             reviewById: reviewById,
-            isRedacted: isRedacted
+            isRedacted: isRedacted,
+            router: .init(),
+            destinationBuilder: DestinationBuilder<ItemDetailsReviewsContent>.init(destination: { value in
+                switch value {
+                case let .imageContainer(path: path, size: size, type: type):
+                    ImageContainer(size: size, path: path, type: type)
+                }
+            })
         )
     }
 

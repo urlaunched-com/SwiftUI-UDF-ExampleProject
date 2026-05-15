@@ -8,9 +8,11 @@
 
 import UDF
 import Models
+import ItemDetailsReviewsComponent
+import Common
 
 struct ShowDetailsReviewsContainer: BindableContainer {
-    typealias ContainerComponent = ItemDetailsReviewsComponent
+    typealias ContainerComponent =  ItemDetailsReviewsComponent<ItemDetailsReviewsRouting>
 
     let id: Show.ID
 
@@ -26,7 +28,14 @@ struct ShowDetailsReviewsContainer: BindableContainer {
             item: store.state.allShows.showBy(id: id),
             reviews: isRedacted ? Review.fakeItems().ids : reviews,
             reviewById: reviewById,
-            isRedacted: isRedacted
+            isRedacted: isRedacted,
+            router: .init(),
+            destinationBuilder: DestinationBuilder<ItemDetailsReviewsContent>.init(destination: { value in
+                switch value {
+                case let .imageContainer(path: path, size: size, type: type):
+                    ImageContainer(size: size, path: path, type: type)
+                }
+            })
         )
     }
 

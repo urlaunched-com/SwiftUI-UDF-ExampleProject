@@ -60,6 +60,7 @@ func makeUIModules() -> [Module] {
         makeSectionDetailsComponent(),
         makeReviewsComponent(),
         makeReviewDetailsComponent(),
+        makeItemDetailsReviewsComponent(),
     ]
 }
 
@@ -292,6 +293,27 @@ func makeReviewDetailsComponent() -> Module {
             .external(name: "UDF"),
             .target(name: "Common"),
             .target(name: "Models"),
+            .target(name: "CustomViews"),
+            .target(name: "DesignSystem"),
+            .target(name: "Localizations"),
+        ],
+        frameworkResources: [],
+        snapshotDependencies: [],
+        targets: [.framework]
+    )
+}
+
+func makeItemDetailsReviewsComponent() -> Module {
+    return Module(
+        name: "ItemDetailsReviewsComponent",
+        moduleType: .ui,
+        path: "ItemDetailsReviewsComponent",
+        frameworkDependancies: [
+            .external(name: "UDF"),
+            .target(name: "Models"),
+            .target(name: "CustomViews"),
+            .target(name: "DesignSystem"),
+            .target(name: "Localizations"),
         ],
         frameworkResources: [],
         snapshotDependencies: [],
