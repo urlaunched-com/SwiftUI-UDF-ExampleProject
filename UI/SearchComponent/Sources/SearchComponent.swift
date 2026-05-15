@@ -12,21 +12,45 @@ import Localizations
 import SwiftUI
 import UDF
 import Models
+import CustomViews
+import Common
 
-struct SearchComponent: Component {
-    struct Props {
+public struct SearchComponent: Component {
+    public struct Props {
         var searchText: Binding<String>
         var itemIds: [SearchItem.ID]
         var searchItemById: (SearchItem.ID) -> SearchItem
         var genreById: (Genre.ID) -> Genre
         var loadMoreAction: Command
+        var destinationBuilder: DestinationBuilder<SearchContent>
+        
+        public init(
+            searchText: Binding<String>,
+            itemIds: [SearchItem.ID],
+            searchItemById: @escaping (SearchItem.ID) -> SearchItem,
+            genreById: @escaping (Genre.ID) -> Genre,
+            loadMoreAction: @escaping Command,
+            destinationBuilder: DestinationBuilder<SearchContent>
+        ) {
+            self.searchText = searchText
+            self.itemIds = itemIds
+            self.searchItemById = searchItemById
+            self.genreById = genreById
+            self.loadMoreAction = loadMoreAction
+            self.destinationBuilder = destinationBuilder
+        }
     }
 
-    var props: Props
+    public var props: Props
+    
+    public init(props: Props) {
+        self.props = props
+        self.focusedField = focusedField
+    }
 
     @FocusState private var focusedField: Field?
 
-    var body: some View {
+    public var body: some View {
         VStack(spacing: 16) {
             searchTextField
                 .padding(.horizontal)
@@ -96,7 +120,14 @@ private extension SearchComponent {
     func searchRow(item: SearchItem) -> some View {
         HStack(spacing: 16) {
             PosterImageView(
-                posterPath: item.posterPath, year: item.year, rating: item.rating
+                year: item.year,
+                rating: item.rating,
+                imageView: props.destinationBuilder.view(
+                    for: .imageContainer(
+                        path: item.posterPath,
+                        size: ItemSizeStyle.default.coverSize
+                    )
+                )
             )
             .overlay(alignment: .topLeading) {
                 heartButton
@@ -193,7 +224,8 @@ private extension SearchComponent {
             itemIds: SearchItem.testItems(count: 10).ids,
             searchItemById: { _ in .fakeItem() },
             genreById: { _ in .testItem() },
-            loadMoreAction: {}
+            loadMoreAction: {},
+            destinationBuilder: .init()
         )
     )
 }
@@ -205,7 +237,8 @@ private extension SearchComponent {
             itemIds: [],
             searchItemById: { _ in .fakeItem() },
             genreById: { _ in .testItem() },
-            loadMoreAction: {}
+            loadMoreAction: {},
+            destinationBuilder: .init()
         )
     )
 }

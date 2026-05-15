@@ -61,6 +61,7 @@ func makeUIModules() -> [Module] {
         makeReviewsComponent(),
         makeReviewDetailsComponent(),
         makeItemDetailsReviewsComponent(),
+        makeSearchComponent(),
     ]
 }
 
@@ -129,6 +130,7 @@ func makeCustomViewsModule() -> Module {
         path: "CustomViews",
         frameworkDependancies: [
             .external(name: "SwiftUI-Kit"),
+            .external(name: "SDWebImageSwiftUI"),
             .target(name: "DesignSystem"),
             .target(name: "Models"),
         ],
@@ -308,6 +310,24 @@ func makeItemDetailsReviewsComponent() -> Module {
         name: "ItemDetailsReviewsComponent",
         moduleType: .ui,
         path: "ItemDetailsReviewsComponent",
+        frameworkDependancies: [
+            .external(name: "UDF"),
+            .target(name: "Models"),
+            .target(name: "CustomViews"),
+            .target(name: "DesignSystem"),
+            .target(name: "Localizations"),
+        ],
+        frameworkResources: [],
+        snapshotDependencies: [],
+        targets: [.framework]
+    )
+}
+
+func makeSearchComponent() -> Module {
+    return Module(
+        name: "SearchComponent",
+        moduleType: .ui,
+        path: "SearchComponent",
         frameworkDependancies: [
             .external(name: "UDF"),
             .target(name: "Models"),

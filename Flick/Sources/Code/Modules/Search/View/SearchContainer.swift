@@ -8,6 +8,8 @@
 
 import SwiftUI
 import UDF
+import SearchComponent
+import Common
 
 struct SearchContainer: Container {
     typealias ContainerComponent = SearchComponent
@@ -24,7 +26,13 @@ struct SearchContainer: Container {
             itemIds: store.state.searchForm.items,
             searchItemById: store.state.allSearchItems.searchItemBy,
             genreById: { _ in .testItem() },
-            loadMoreAction: loadNewPageIfNeeded
+            loadMoreAction: loadNewPageIfNeeded,
+            destinationBuilder: DestinationBuilder<SearchContent>(destination: { value in
+                switch value {
+                case let .imageContainer(path: path, size: size):
+                    ImageContainer(size: size, path: path)
+                }
+            })
         )
     }
 
