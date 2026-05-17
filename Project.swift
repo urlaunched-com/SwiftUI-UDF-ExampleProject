@@ -64,7 +64,8 @@ func makeUIModules() -> [Module] {
         makeSearchComponent(),
         makeItemDetailsRecommendationsComponent(),
         makeSettingsComponent(),
-        makeMyFavoritesComponentComponent(),
+        makeMyFavoritesComponent(),
+        makeItemDetailsComponent(),
     ]
 }
 
@@ -381,7 +382,7 @@ func makeSettingsComponent() -> Module {
     )
 }
 
-func makeMyFavoritesComponentComponent() -> Module {
+func makeMyFavoritesComponent() -> Module {
     return Module(
         name: "MyFavoritesComponent",
         moduleType: .ui,
@@ -393,6 +394,26 @@ func makeMyFavoritesComponentComponent() -> Module {
             .target(name: "Localizations"),
             .target(name: "CustomViews"),
             .target(name: "Common"),
+        ],
+        frameworkResources: [],
+        snapshotDependencies: [],
+        targets: [.framework]
+    )
+}
+
+func makeItemDetailsComponent() -> Module {
+    return Module(
+        name: "ItemDetailsComponent",
+        moduleType: .ui,
+        path: "ItemDetailsComponent",
+        frameworkDependancies: [
+            .external(name: "UDF"),
+            .external(name: "SwiftUI-Kit"),
+            .target(name: "Common"),
+            .target(name: "Models"),
+            .target(name: "DesignSystem"),
+            .target(name: "Localizations"),
+            .target(name: "CustomViews"),
         ],
         frameworkResources: [],
         snapshotDependencies: [],

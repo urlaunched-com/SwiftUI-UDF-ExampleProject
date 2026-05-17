@@ -12,28 +12,51 @@ import SwiftUI
 import SwiftUI_Kit
 import UDF
 import Models
+import Common
+import CustomViews
 
-struct ItemDetailsComponent: Component {
-    struct Props {
+public struct ItemDetailsComponent<R: Routing>: Component where R.Route == ItemDetailsRoute {
+    public struct Props {
         var item: any Item
         var genreById: (Genre.ID) -> Genre?
         var dialog: Binding<DialogStatus>
-        var router: Router<ItemDetailsRouting> = .init()
+        var router: R = .init()
+        var destinationBuilder: DestinationBuilder<ItemDetailsContent> = .init()
+        
+        public init(
+            item: any Item,
+            genreById: @escaping (Genre.ID) -> Genre?,
+            dialog: Binding<DialogStatus>,
+            router: R = .init(),
+            destinationBuilder: DestinationBuilder<ItemDetailsContent> = .init()
+        ) {
+            self.item = item
+            self.genreById = genreById
+            self.dialog = dialog
+            self.router = router
+            self.destinationBuilder = destinationBuilder
+        }
     }
 
-    var props: Props
+    public var props: Props
     @State private var imageScale: CGFloat = 1
+    
+    public init(props: Props) {
+        self.props = props
+    }
 
     @Environment(\.globalRouter) private var globalRouter
 
-    var body: some View {
+    public var body: some View {
         GeometryReader { geometry in
             ScrollView {
                 ZStack(alignment: .top) {
                     let imageHeight = geometry.size.height * 0.7
-                    ImageContainer(
-                        size: .init(width: geometry.size.width, height: imageHeight),
-                        path: props.item.posterPath
+                    props.destinationBuilder.view(
+                        for: .imageContainer(
+                            path: props.item.posterPath,
+                            size: .init(width: geometry.size.width, height: imageHeight),
+                        )
                     )
                     .frame(width: geometry.size.width, height: imageHeight)
                     .clipped()
@@ -165,7 +188,7 @@ private extension ItemDetailsComponent {
                     .frame(maxWidth: .infinity)
                     .embedInPlainButton {
                         // TODO: - Add action later ???
-                        globalRouter.navigate(for: ItemDetailsRouting.self, to: .whereToWatch(props.item))
+                        globalRouter.navigate(for: R.self, to: .whereToWatch(props.item))
                     }
                     .buttonStyle(PrimaryButtonStyle(fillColor: .flMainPink))
             }
@@ -259,7 +282,7 @@ private extension ItemDetailsComponent {
 // MARK: - Preview
 
 #Preview {
-    ItemDetailsComponent(
+    ItemDetailsComponent<MockRouter<ItemDetailsRoute>>(
         props: .init(
             item: Movie.fakeItem(),
             genreById: { _ in .fakeItem() },

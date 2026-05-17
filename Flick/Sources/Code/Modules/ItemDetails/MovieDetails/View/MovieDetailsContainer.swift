@@ -8,9 +8,11 @@
 
 import UDF
 import Models
+import Common
+import ItemDetailsComponent
 
 struct MovieDetailsContainer: BindableContainer {
-    typealias ContainerComponent = ItemDetailsComponent
+    typealias ContainerComponent = ItemDetailsComponent<ItemDetailsRouting>
 
     let id: Movie.ID
 
@@ -22,7 +24,13 @@ struct MovieDetailsContainer: BindableContainer {
         .init(
             item: store.state.allMovies.movieBy(id: id),
             genreById: store.state.allGenres.genreBy,
-            dialog: store.$state.movieDetailsForm[id].dialog
+            dialog: store.$state.movieDetailsForm[id].dialog,
+            destinationBuilder: DestinationBuilder<ItemDetailsContent>(destination: { value in
+                switch value {
+                case let .imageContainer(path: path, size: size, type: type):
+                    ImageContainer(size: size, path: path, type: type)
+                }
+            })
         )
     }
 
