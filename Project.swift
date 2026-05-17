@@ -64,6 +64,7 @@ func makeUIModules() -> [Module] {
         makeSearchComponent(),
         makeItemDetailsRecommendationsComponent(),
         makeSettingsComponent(),
+        makeMyFavoritesComponentComponent(),
     ]
 }
 
@@ -363,7 +364,7 @@ func makeItemDetailsRecommendationsComponent() -> Module {
     )
 }
 
-func  makeSettingsComponent() -> Module {
+func makeSettingsComponent() -> Module {
     return Module(
         name: "SettingsComponent",
         moduleType: .ui,
@@ -373,6 +374,25 @@ func  makeSettingsComponent() -> Module {
             .external(name: "SwiftUI-Kit"),
             .target(name: "Common"),
             .target(name: "Localizations"),
+        ],
+        frameworkResources: [],
+        snapshotDependencies: [],
+        targets: [.framework]
+    )
+}
+
+func makeMyFavoritesComponentComponent() -> Module {
+    return Module(
+        name: "MyFavoritesComponent",
+        moduleType: .ui,
+        path: "MyFavoritesComponent",
+        frameworkDependancies: [
+            .external(name: "UDF"),
+            .target(name: "Models"),
+            .target(name: "DesignSystem"),
+            .target(name: "Localizations"),
+            .target(name: "CustomViews"),
+            .target(name: "Common"),
         ],
         frameworkResources: [],
         snapshotDependencies: [],

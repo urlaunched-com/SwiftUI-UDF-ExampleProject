@@ -9,6 +9,8 @@
 import SwiftUI
 import UDF
 import Models
+import MyFavoritesComponent
+import Common
 
 struct MyFavoritesContainer: Container {
     typealias ContainerComponent = MyFavoritesComponent
@@ -27,7 +29,13 @@ struct MyFavoritesContainer: Container {
             genreById: { store.state.allGenres.byId[$0] },
             loadMoreAction: loadNewPageIfNeeded,
             isRedacted: isRedacted,
-            dialogStatus: store.$state.myFavoritesForm.dialog
+            dialogStatus: store.$state.myFavoritesForm.dialog,
+            destinationBuilder: DestinationBuilder<MyFavoritesContent>(destination: { value in
+                switch value {
+                case let .imageContainer(path: path, size: size, type: type):
+                    ImageContainer(size: size, path: path, type: type)
+                }
+            })
         )
     }
 
