@@ -12,16 +12,24 @@ import SwiftUI_Kit
 import UDF
 import Common
 
-struct SettingsComponent: Component {
-    struct Props {
+public struct SettingsComponent: Component {
+    public struct Props {
         var rateThisAppAction: Command
+        
+        public init(rateThisAppAction: @escaping Command) {
+            self.rateThisAppAction = rateThisAppAction
+        }
     }
 
     @State private var selectedLink: AppLink?
 
-    var props: Props
+    public var props: Props
+    
+    public init(props: Props) {
+        self.props = props
+    }
 
-    var body: some View {
+    public var body: some View {
         ScrollView {
             settingsRow(title: Localization.settingsPrivacyPolicyTitle()) {
                 selectedLink = .privacyPolicy

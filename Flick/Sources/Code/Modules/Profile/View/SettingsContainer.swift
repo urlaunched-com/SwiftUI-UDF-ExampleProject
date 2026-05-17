@@ -8,6 +8,7 @@
 
 import UDF
 import UIKit
+import SettingsComponent
 
 struct SettingsContainer: Container {
     typealias ContainerComponent = SettingsComponent

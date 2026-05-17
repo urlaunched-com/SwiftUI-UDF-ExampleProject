@@ -63,6 +63,7 @@ func makeUIModules() -> [Module] {
         makeItemDetailsReviewsComponent(),
         makeSearchComponent(),
         makeItemDetailsRecommendationsComponent(),
+        makeSettingsComponent(),
     ]
 }
 
@@ -355,6 +356,23 @@ func makeItemDetailsRecommendationsComponent() -> Module {
             .target(name: "DesignSystem"),
             .target(name: "Localizations"),
             .target(name: "Common"),
+        ],
+        frameworkResources: [],
+        snapshotDependencies: [],
+        targets: [.framework]
+    )
+}
+
+func  makeSettingsComponent() -> Module {
+    return Module(
+        name: "SettingsComponent",
+        moduleType: .ui,
+        path: "SettingsComponent",
+        frameworkDependancies: [
+            .external(name: "UDF"),
+            .external(name: "SwiftUI-Kit"),
+            .target(name: "Common"),
+            .target(name: "Localizations"),
         ],
         frameworkResources: [],
         snapshotDependencies: [],
