@@ -9,9 +9,11 @@
 import SwiftUI
 import UDF
 import Models
+import Common
+import HomeSectionComponent
 
 struct HomeSectionContainer<S: Models.Section>: Container {
-    typealias ContainerComponent = HomeSectionComponent<S>
+    typealias ContainerComponent = HomeSectionComponent<S, HomeSectionRouter>
 
     let section: S
     var retrieveItems: () -> [any Item]
@@ -33,7 +35,13 @@ struct HomeSectionContainer<S: Models.Section>: Container {
         .init(
             section: section,
             items: retrieveItems(),
-            genreById: { store.state.allGenres.byId[$0] }
+            genreById: { store.state.allGenres.byId[$0] },
+            destinationBuilder: DestinationBuilder<HomeContent>(destination: { value in
+                switch value {
+                case let .imageContainer(path: path, size: size, type: type):
+                    ImageContainer(size: size, path: path, type: type)
+                }
+            })
         )
     }
 

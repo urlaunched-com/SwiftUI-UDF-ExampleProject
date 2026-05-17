@@ -68,6 +68,7 @@ func makeUIModules() -> [Module] {
         makeItemDetailsComponent(),
         makeHomeComponent(),
         makeMainHomeSectionComponent(),
+        makeHomeSectionComponent(),
     ]
 }
 
@@ -448,6 +449,26 @@ func makeMainHomeSectionComponent() -> Module {
         name: "MainHomeSectionComponent",
         moduleType: .ui,
         path: "MainHomeSectionComponent",
+        frameworkDependancies: [
+            .external(name: "UDF"),
+            .external(name: "SwiftUI-Kit"),
+            .target(name: "Common"),
+            .target(name: "Models"),
+            .target(name: "DesignSystem"),
+            .target(name: "Localizations"),
+            .target(name: "CustomViews"),
+        ],
+        frameworkResources: [],
+        snapshotDependencies: [],
+        targets: [.framework]
+    )
+}
+
+func makeHomeSectionComponent() -> Module {
+    return Module(
+        name: "HomeSectionComponent",
+        moduleType: .ui,
+        path: "HomeSectionComponent",
         frameworkDependancies: [
             .external(name: "UDF"),
             .external(name: "SwiftUI-Kit"),

@@ -1,0 +1,33 @@
+//
+//  HomeSectionRouter.swift
+//  Flick
+//
+//  Created by Valentin Petrulia on 27.02.2025.
+//  Copyright © 2025 urlaunched.com. All rights reserved.
+//
+
+import SwiftUI
+import UDF
+import Models
+import Common
+import HomeSectionComponent
+
+struct HomeSectionRouter: Routing {
+    @ViewBuilder func view(for route: HomeSectionRoute) -> some View {
+        switch route {
+        case let .itemDetails(item):
+            buildView(
+                item: item,
+                movieView: { MovieDetailsContainer(id: $0.id) },
+                showView: { ShowDetailsContainer(id: $0.id) }
+            )
+
+        case let .sectionDetails(section):
+            if let movieSection = section as? MovieSection {
+                SectionDetailsContainer(section: movieSection)
+            } else if let showSection = section as? ShowSection {
+                SectionDetailsContainer(section: showSection)
+            }
+        }
+    }
+}
