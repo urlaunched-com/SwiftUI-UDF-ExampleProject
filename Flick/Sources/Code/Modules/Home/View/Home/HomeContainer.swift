@@ -9,6 +9,8 @@
 import SwiftUI
 import UDF
 import Models
+import Common
+import HomeComponent
 
 struct HomeContainer: Container {
     typealias ContainerComponent = HomeComponent
@@ -35,7 +37,21 @@ struct HomeContainer: Container {
             showsForSection: { isShowsRedacted(section: $0) ? Show.fakeItems(count: 3) : showsForSection($0, store: store) },
             isMoviesRedacted: { isMoviesRedacted(section: $0) },
             isShowsRedacted: { isShowsRedacted(section: $0) },
-            dialogStatus: store.$state.homeForm.dialog
+            dialogStatus: store.$state.homeForm.dialog,
+            destinationBuilder: DestinationBuilder<HomeContent>(destination: { value in
+                switch value {
+                case let .mainHomeSection(section: section as Models.MovieSection, retrieveItems: retrieveItems):
+                    MainHomeSectionContainer(section: section, retrieveItems: retrieveItems)
+                case let .mainHomeSection(section: section as Models.ShowSection, retrieveItems: retrieveItems):
+                    MainHomeSectionContainer(section: section, retrieveItems: retrieveItems)
+                case let .homeSection(section: section as Models.MovieSection, retrieveItems: retrieveItems):
+                    HomeSectionContainer(section: section, retrieveItems: retrieveItems)
+                case let .homeSection(section: section as Models.ShowSection, retrieveItems: retrieveItems):
+                    HomeSectionContainer(section: section, retrieveItems: retrieveItems)
+                default:
+                    EmptyView()
+                }
+            })
         )
     }
 }

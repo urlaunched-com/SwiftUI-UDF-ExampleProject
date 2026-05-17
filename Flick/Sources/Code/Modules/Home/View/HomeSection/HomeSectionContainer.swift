@@ -15,20 +15,18 @@ struct HomeSectionContainer<S: Models.Section>: Container {
 
     let section: S
     var retrieveItems: () -> [any Item]
-    var scopeOfWork: (_ state: AppState) -> Scope
 
     init(
         section: S,
-        retrieveItems: @escaping () -> [any Item],
-        @ScopeBuilder scopeOfWork: @escaping (_ state: AppState) -> Scope
+        retrieveItems: @escaping () -> [any Item]
     ) {
         self.section = section
         self.retrieveItems = retrieveItems
-        self.scopeOfWork = scopeOfWork
     }
 
     func scope(for state: AppState) -> Scope {
-        return scopeOfWork(state)
+        state.allShows
+        state.allMovies
     }
 
     func map(store: EnvironmentStore<AppState>) -> ContainerComponent.Props {

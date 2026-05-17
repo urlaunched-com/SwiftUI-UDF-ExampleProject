@@ -9,7 +9,7 @@
 import SwiftUI
 import UDF
 
-public struct DestinationBuilder<Value: Hashable> {
+public struct DestinationBuilder<Value> {
     private var destination: (Value) -> any View
     
     public init() {
