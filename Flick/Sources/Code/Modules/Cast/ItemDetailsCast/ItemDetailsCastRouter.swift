@@ -9,13 +9,10 @@
 import SwiftUI
 import UDF
 import Models
+import ItemDetailsCastComponent
 
 struct ItemDetailsCastRouting: Routing {
-    enum Route: Hashable {
-        case cast([Cast.ID])
-    }
-
-    @ViewBuilder func view(for route: Route) -> some View {
+    @ViewBuilder func view(for route: ItemDetailsCastRoute) -> some View {
         switch route {
         case let .cast(cast): CastContainer(cast: cast)
         }

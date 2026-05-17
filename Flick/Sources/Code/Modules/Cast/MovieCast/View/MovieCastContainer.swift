@@ -8,9 +8,11 @@
 
 import UDF
 import Models
+import ItemDetailsCastComponent
+import Common
 
 struct MovieCastContainer: BindableContainer {
-    typealias ContainerComponent = ItemDetailsCastComponent
+    typealias ContainerComponent = ItemDetailsCastComponent<ItemDetailsCastRouting>
 
     let id: Movie.ID
 
@@ -22,7 +24,13 @@ struct MovieCastContainer: BindableContainer {
         .init(
             cast: cast,
             castById: { castById(id: $0) },
-            isRedacted: isRedacted
+            isRedacted: isRedacted,
+            destinationBuilder: DestinationBuilder<ItemDetailsCastContent>(destination: { value in
+                switch value {
+                case let .imageContainer(path: path, size: size, type: type):
+                    ImageContainer(size: size, path: path, type: type)
+                }
+            })
         )
     }
 
