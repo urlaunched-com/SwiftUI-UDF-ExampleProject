@@ -11,27 +11,50 @@ import Localizations
 import SwiftUI
 import UDF
 import Models
+import CustomViews
+import Common
 
-struct ItemDetailsRecommendationsComponent: Component {
-    struct Props {
+public struct ItemDetailsRecommendationsComponent<R: Routing>: Component where R.Route == ItemDetailsRecommendationsRoute {
+    public struct Props {
         var item: any Item
         var items: [any Item]
         var isRedacted: Bool
         var genreById: (Genre.ID) -> Genre?
-        var router: Router<ItemDetailsRecommendationsRouting> = .init()
+        var router: R = .init()
+        var destinationBuilder: DestinationBuilder<ItemDetailsRecommendationsContent> = .init()
+        
+        public init(
+            item: any Item,
+            items: [any Item],
+            isRedacted: Bool,
+            genreById: @escaping (Genre.ID) -> Genre?,
+            router: R = .init(),
+            destinationBuilder: DestinationBuilder<ItemDetailsRecommendationsContent> = .init()
+        ) {
+            self.item = item
+            self.items = items
+            self.isRedacted = isRedacted
+            self.genreById = genreById
+            self.router = router
+            self.destinationBuilder = destinationBuilder
+        }
     }
 
-    var props: Props
-
+    public var props: Props
+    
     @Environment(\.globalRouter) private var globalRouter
 
-    var body: some View {
+    public init(props: Props) {
+        self.props = props
+    }
+    
+    public var body: some View {
         if !props.items.isEmpty {
             VStack(alignment: .leading, spacing: 24) {
                 SectionHeaderView(
                     title: Localization.itemDetailsRecommendationsSectionTitle(),
                     seeAllAction: {
-                        globalRouter.navigate(for: ItemDetailsRecommendationsRouting.self, to: .recommendations(props.item))
+                        globalRouter.navigate(for: R.self, to: .recommendations(props.item))
                     }
                 )
 
@@ -41,12 +64,19 @@ struct ItemDetailsRecommendationsComponent: Component {
                             let item = props.items[index]
                             HomeCardView(
                                 item: item,
-                                genres: item.genres(action: props.genreById)
+                                genres: item.genres(action: props.genreById),
+                                imageView: props.destinationBuilder.view(
+                                    for: .imageContainer(
+                                        path: item.posterPath,
+                                        size: ItemSizeStyle.default.coverSize,
+                                        type: .poster
+                                    )
+                                )
                             )
                             .padding(.leading, index == props.items.indices.first ? 16 : 0)
                             .padding(.trailing, index == props.items.indices.last ? 16 : 0)
                             .embedInPlainButton {
-                                globalRouter.navigate(for: ItemDetailsRecommendationsRouting.self, to: .itemDetails(item))
+                                globalRouter.navigate(for: R.self, to: .itemDetails(item))
                             }
                             .buttonStyle(.scaled)
                         }
@@ -62,7 +92,7 @@ struct ItemDetailsRecommendationsComponent: Component {
 // MARK: - Preview
 
 #Preview {
-    ItemDetailsRecommendationsComponent(
+    ItemDetailsRecommendationsComponent<MockRouter<ItemDetailsRecommendationsRoute>>(
         props: .init(
             item: Movie.fakeItem(),
             items: [],

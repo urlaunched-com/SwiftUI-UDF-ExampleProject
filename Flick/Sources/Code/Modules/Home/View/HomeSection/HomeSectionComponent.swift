@@ -38,7 +38,7 @@ struct HomeSectionComponent<S: Models.Section>: Component {
                         let item = props.items[index]
                         HomeCardView(
                             item: item,
-                            genres: item.genres(action: props.genreById)
+                            genres: item.genres(action: props.genreById),
                         )
                         .padding(.leading, index == props.items.indices.first ? 16 : 0)
                         .padding(.trailing, index == props.items.indices.last ? 16 : 0)

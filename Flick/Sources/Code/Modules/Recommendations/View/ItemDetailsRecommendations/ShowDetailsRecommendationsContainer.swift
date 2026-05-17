@@ -8,9 +8,11 @@
 
 import UDF
 import Models
+import Common
+import ItemDetailsRecommendationsComponent
 
 struct ShowDetailsRecommendationsContainer: BindableContainer {
-    typealias ContainerComponent = ItemDetailsRecommendationsComponent
+    typealias ContainerComponent = ItemDetailsRecommendationsComponent<ItemDetailsRecommendationsRouting>
 
     let id: Show.ID
 
@@ -23,7 +25,13 @@ struct ShowDetailsRecommendationsContainer: BindableContainer {
             item: store.state.allShows.showBy(id: id),
             items: isRedacted ? Show.fakeItems(count: 3) : shows,
             isRedacted: isRedacted,
-            genreById: store.state.allGenres.genreBy
+            genreById: store.state.allGenres.genreBy,
+            destinationBuilder: DestinationBuilder<ItemDetailsRecommendationsContent>(destination: { value in
+                switch value {
+                case let .imageContainer(path: path, size: size, type: type):
+                    ImageContainer(size: size, path: path, type: type)
+                }
+            })
         )
     }
 
