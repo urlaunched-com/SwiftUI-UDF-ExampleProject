@@ -10,34 +10,10 @@ import SwiftUI
 import UDF
 import Models
 import Common
+import MainHomeSectionComponent
 
 struct MainHomeSectionRouting: Routing {
-    enum Route: Hashable {
-        case itemDetails(any Item)
-        case sectionDetails(any Models.Section)
-
-        func hash(into hasher: inout Hasher) {
-            switch self {
-            case let .itemDetails(item):
-                hasher.combine(item)
-            case let .sectionDetails(section):
-                hasher.combine(section)
-            }
-        }
-
-        static func == (lhs: Self, rhs: Self) -> Bool {
-            switch (lhs, rhs) {
-            case let (.itemDetails(lhsItem), .itemDetails(rhsItem)):
-                areEqual(lhsItem, rhsItem)
-            case let (.sectionDetails(lhsSection), .sectionDetails(rhsSection)):
-                areEqual(lhsSection, rhsSection)
-            default:
-                false
-            }
-        }
-    }
-
-    @ViewBuilder func view(for route: Route) -> some View {
+    @ViewBuilder func view(for route: MainHomeSectionRoute) -> some View {
         switch route {
         case let .itemDetails(item):
             buildView(
