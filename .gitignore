@@ -67,3 +67,4 @@ fastlane/test_output
 ### Tuist derived files ###
 graph.dot
 Derived/
+.DS_Store
