@@ -27,22 +27,29 @@ This project integrates with [The Movie Database (TMDB)](https://www.themoviedb.
 	```bash
 	brew install tuist
 	```
-2. **Generate the Xcode project**
+	
+2. **Then install project dependencies:**
+
+	```bash
+	tuist install
+	```
+	
+3. **Generate the Xcode project**
 
 	```bash
 	tuist generate
 	```
 
-3. **Running Snapshot tests**
+4. **Running Snapshot tests**
 
 	```bash
 	tuist test
 	```
 
-4. **Create a TMDB account** and generate an API key:  
+5. **Create a TMDB account** and generate an API key:  
    [https://www.themoviedb.org/settings/api](https://www.themoviedb.org/settings/api)
 
-5. **Add your API key** in the appropriate configuration file or environment.  
+6. **Add your API key** in the appropriate configuration file or environment.  
    For this project, issert you API key in kTMDBApiKey property in [`BaseAPI.swift`](./API/Sources/API/BaseAPI.swift)
 
    ```swift
