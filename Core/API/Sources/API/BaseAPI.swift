@@ -10,7 +10,7 @@ import Foundation
 import SwiftFoundation
 
 let kBaseURLPath: String = "https://api.themoviedb.org/3"
-public let kTMDBApiKey = "1e8b226faa0005f3ed3c4c49144e6a82"
+public let kTMDBApiKey = "<YOUR_API_KEY>"
 let kURLTimeoutInterval: TimeInterval = 10
 
 let kRequestHeaders: [String: String] = [
