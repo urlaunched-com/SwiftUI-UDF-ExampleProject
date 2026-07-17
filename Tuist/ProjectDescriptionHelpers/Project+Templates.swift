@@ -1,22 +1,23 @@
 import ProjectDescription
 
-let uiPath = "UI"
+let featurePath = "Feature"
 let corePath = "Core"
 let appPath = "Flick"
+let snapshotTestsHostAppPath = "SnapshotTestsHostApp"
 let reverseOrganizationName = "com.urlaunched"
 let infoPlistPath: Path = "Info.plist"
 
 public enum ModuleType {
     case core
-    case ui
+    case feature
     case app
     
     func path() -> String {
         switch self {
         case .core:
             return corePath
-        case .ui:
-            return uiPath
+        case .feature:
+            return featurePath
         case .app:
             return appPath
         }
@@ -136,7 +137,9 @@ extension Project {
                     "UIMainStoryboardFile": "",
                     "UILaunchStoryboardName": "LaunchScreen"
                 ]),
-                sources: ["\(frameworkPath)/Sources/**"],
+                sources: [
+                    "\(frameworkPath)/App/**",
+                ],
                 resources: .resources(frameworkResourceFilePaths),
                 dependencies: module.frameworkDependancies,
             )

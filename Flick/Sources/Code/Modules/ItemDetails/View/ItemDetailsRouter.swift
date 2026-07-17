@@ -11,6 +11,7 @@ import UDF
 import Models
 import Common
 import ItemDetailsComponent
+import WhereToWatch
 
 struct ItemDetailsRouting: Routing {
     @ViewBuilder
@@ -38,7 +39,7 @@ struct ItemDetailsRouting: Routing {
             )
 
         case let .whereToWatch(item):
-            WhereToWatchContainer(item: item)
+            WhereToWatchContainer<AppState, WhereToWatchRouting>(item: item)
         }
     }
 }

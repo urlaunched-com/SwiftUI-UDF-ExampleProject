@@ -52,9 +52,10 @@ func makeAllCoreModules() -> [Module] {
 
 func makeUIModules() -> [Module] {
     return [
-        makeOnboardingUIComponent(),
-        makeOnboardingSignInComponent(),
-        makeWhereToWatchComponent(),
+        makeOnboardingFeature(),
+        makeSignInFeature(),
+        makeWhereToWatch(),
+        
         makeTabBarComponent(),
         makeImageComponent(),
         makeSectionDetailsComponent(),
@@ -169,11 +170,11 @@ func makeLocalizationModule() -> Module {
     )
 }
 
-func makeOnboardingUIComponent() -> Module {
+func makeOnboardingFeature() -> Module {
     return Module(
-        name: "OnboardingComponent",
-        moduleType: .ui,
-        path: "OnboardingComponent",
+        name: "Onboarding",
+        moduleType: .feature,
+        path: "Onboarding",
         frameworkDependancies: [
             .external(name: "UDF"),
             .external(name: "SwiftUI-Kit"),
@@ -189,11 +190,11 @@ func makeOnboardingUIComponent() -> Module {
     )
 }
 
-func makeOnboardingSignInComponent() -> Module {
+func makeSignInFeature() -> Module {
     return Module(
-        name: "SignInComponent",
-        moduleType: .ui,
-        path: "SignInComponent",
+        name: "SignIn",
+        moduleType: .feature,
+        path: "SignIn",
         frameworkDependancies: [
             .external(name: "UDF"),
             .target(name: "DesignSystem"),
@@ -209,11 +210,11 @@ func makeOnboardingSignInComponent() -> Module {
     )
 }
 
-func makeWhereToWatchComponent() -> Module {
+func makeWhereToWatch() -> Module {
     return Module(
-        name: "WhereToWatchComponent",
-        moduleType: .ui,
-        path: "WhereToWatchComponent",
+        name: "WhereToWatch",
+        moduleType: .feature,
+        path: "WhereToWatch",
         frameworkDependancies: [
             .external(name: "UDF"),
             .target(name: "Localizations"),
@@ -231,7 +232,7 @@ func makeWhereToWatchComponent() -> Module {
 func makeTabBarComponent() -> Module {
     return Module(
         name: "TabBarComponent",
-        moduleType: .ui,
+        moduleType: .feature,
         path: "TabBarComponent",
         frameworkDependancies: [
             .external(name: "UDF"),
@@ -248,7 +249,7 @@ func makeTabBarComponent() -> Module {
 func makeImageComponent() -> Module {
     return Module(
         name: "ImageComponent",
-        moduleType: .ui,
+        moduleType: .feature,
         path: "ImageComponent",
         frameworkDependancies: [
             .external(name: "UDF"),
@@ -266,7 +267,7 @@ func makeImageComponent() -> Module {
 func makeSectionDetailsComponent() -> Module {
     return Module(
         name: "SectionDetailsComponent",
-        moduleType: .ui,
+        moduleType: .feature,
         path: "SectionDetailsComponent",
         frameworkDependancies: [
             .external(name: "UDF"),
@@ -282,7 +283,7 @@ func makeSectionDetailsComponent() -> Module {
 func makeReviewsComponent() -> Module {
     return Module(
         name: "ReviewsComponent",
-        moduleType: .ui,
+        moduleType: .feature,
         path: "ReviewsComponent",
         frameworkDependancies: [
             .external(name: "UDF"),
@@ -299,7 +300,7 @@ func makeReviewsComponent() -> Module {
 func makeReviewDetailsComponent() -> Module {
     return Module(
         name: "ReviewDetailsComponent",
-        moduleType: .ui,
+        moduleType: .feature,
         path: "ReviewDetailsComponent",
         frameworkDependancies: [
             .external(name: "UDF"),
@@ -318,7 +319,7 @@ func makeReviewDetailsComponent() -> Module {
 func makeItemDetailsReviewsComponent() -> Module {
     return Module(
         name: "ItemDetailsReviewsComponent",
-        moduleType: .ui,
+        moduleType: .feature,
         path: "ItemDetailsReviewsComponent",
         frameworkDependancies: [
             .external(name: "UDF"),
@@ -336,7 +337,7 @@ func makeItemDetailsReviewsComponent() -> Module {
 func makeSearchComponent() -> Module {
     return Module(
         name: "SearchComponent",
-        moduleType: .ui,
+        moduleType: .feature,
         path: "SearchComponent",
         frameworkDependancies: [
             .external(name: "UDF"),
@@ -354,7 +355,7 @@ func makeSearchComponent() -> Module {
 func makeItemDetailsRecommendationsComponent() -> Module {
     return Module(
         name: "ItemDetailsRecommendationsComponent",
-        moduleType: .ui,
+        moduleType: .feature,
         path: "ItemDetailsRecommendationsComponent",
         frameworkDependancies: [
             .external(name: "UDF"),
@@ -373,7 +374,7 @@ func makeItemDetailsRecommendationsComponent() -> Module {
 func makeSettingsComponent() -> Module {
     return Module(
         name: "SettingsComponent",
-        moduleType: .ui,
+        moduleType: .feature,
         path: "SettingsComponent",
         frameworkDependancies: [
             .external(name: "UDF"),
@@ -390,7 +391,7 @@ func makeSettingsComponent() -> Module {
 func makeMyFavoritesComponent() -> Module {
     return Module(
         name: "MyFavoritesComponent",
-        moduleType: .ui,
+        moduleType: .feature,
         path: "MyFavoritesComponent",
         frameworkDependancies: [
             .external(name: "UDF"),
@@ -409,7 +410,7 @@ func makeMyFavoritesComponent() -> Module {
 func makeItemDetailsComponent() -> Module {
     return Module(
         name: "ItemDetailsComponent",
-        moduleType: .ui,
+        moduleType: .feature,
         path: "ItemDetailsComponent",
         frameworkDependancies: [
             .external(name: "UDF"),
@@ -429,7 +430,7 @@ func makeItemDetailsComponent() -> Module {
 func makeHomeComponent() -> Module {
     return Module(
         name: "HomeComponent",
-        moduleType: .ui,
+        moduleType: .feature,
         path: "HomeComponent",
         frameworkDependancies: [
             .external(name: "UDF"),
@@ -449,7 +450,7 @@ func makeHomeComponent() -> Module {
 func makeMainHomeSectionComponent() -> Module {
     return Module(
         name: "MainHomeSectionComponent",
-        moduleType: .ui,
+        moduleType: .feature,
         path: "MainHomeSectionComponent",
         frameworkDependancies: [
             .external(name: "UDF"),
@@ -469,7 +470,7 @@ func makeMainHomeSectionComponent() -> Module {
 func makeHomeSectionComponent() -> Module {
     return Module(
         name: "HomeSectionComponent",
-        moduleType: .ui,
+        moduleType: .feature,
         path: "HomeSectionComponent",
         frameworkDependancies: [
             .external(name: "UDF"),
@@ -489,7 +490,7 @@ func makeHomeSectionComponent() -> Module {
 func makeCastComponent() -> Module {
     return Module(
         name: "CastComponent",
-        moduleType: .ui,
+        moduleType: .feature,
         path: "CastComponent",
         frameworkDependancies: [
             .external(name: "UDF"),
@@ -509,7 +510,7 @@ func makeCastComponent() -> Module {
 func makeItemDetailsCastComponent() -> Module {
     return Module(
         name: "ItemDetailsCastComponent",
-        moduleType: .ui,
+        moduleType: .feature,
         path: "ItemDetailsCastComponent",
         frameworkDependancies: [
             .external(name: "UDF"),

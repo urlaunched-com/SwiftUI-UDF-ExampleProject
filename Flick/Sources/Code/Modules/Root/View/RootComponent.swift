@@ -8,7 +8,7 @@
 import SwiftUI
 import UDF
 import Common
-import SignInComponent
+import SignIn
 
 struct RootComponent: Component {
     struct Props {

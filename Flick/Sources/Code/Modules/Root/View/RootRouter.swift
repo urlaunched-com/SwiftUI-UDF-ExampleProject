@@ -8,6 +8,8 @@
 
 import SwiftUI
 import UDF
+import SignIn
+import Onboarding
 
 struct RootRouting: Routing {
     enum Route {
@@ -23,8 +25,8 @@ struct RootRouting: Routing {
 
     @ViewBuilder func view(for route: Route) -> some View {
         switch route {
-        case .onboarding: OnboardingContainer()
-        case .signIn: SignInContainer()
+        case .onboarding: OnboardingContainer<AppState>()
+        case .signIn: SignInContainer<AppState, SignInRouting>()
         case .home: HomeContainer()
         case .search: SearchContainer()
         case .randomizer: Text("Randomizer")
