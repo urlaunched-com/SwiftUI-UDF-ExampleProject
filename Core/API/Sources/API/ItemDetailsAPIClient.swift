@@ -67,4 +67,11 @@ public enum ItemDetailsAPIClient {
         }
         return try await request.loadValidResult(type: ItemsResponse<ShowRemote>.self).items
     }
+    
+    public static func loadReview(reviewID: String) async throws -> ReviewRemote {
+        let request = URLRequest.request(for: .review(id: reviewID), httpMethod: .get) {
+            URLQueryItem(name: URLParameter.apiKey.rawValue, value: kTMDBApiKey)
+        }
+        return try await request.loadValidResult(type: ReviewRemote.self)
+    }
 }

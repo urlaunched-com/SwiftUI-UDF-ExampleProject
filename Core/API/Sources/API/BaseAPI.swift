@@ -65,6 +65,7 @@ enum URLEndpoint: RawRepresentable {
     case movieRecommendations(id: Int)
     case showRecommendations(id: Int)
     case multiSearch
+    case review(id: String)
     case custom(urlPath: String)
 
     init?(rawValue _: RawValue) {
@@ -109,6 +110,8 @@ enum URLEndpoint: RawRepresentable {
             return "/tv/\(id)/recommendations"
         case .multiSearch:
             return "/search/multi"
+        case let .review(id: id):
+            return "/review/\(id)"
         case let .custom(urlPath):
             return urlPath
         }
@@ -123,6 +126,7 @@ enum URLParameter: String {
     case apiKey = "api_key"
     case page
     case query
+    case reviewID = "review_id"
 }
 
 @discardableResult

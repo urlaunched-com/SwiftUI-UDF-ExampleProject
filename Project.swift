@@ -55,12 +55,12 @@ func makeUIModules() -> [Module] {
         makeOnboardingFeature(),
         makeSignInFeature(),
         makeWhereToWatch(),
+        makeReviewDetails(),
         
         makeTabBarComponent(),
         makeImageComponent(),
         makeSectionDetailsComponent(),
         makeReviewsComponent(),
-        makeReviewDetailsComponent(),
         makeItemDetailsReviewsComponent(),
         makeSearchComponent(),
         makeItemDetailsRecommendationsComponent(),
@@ -297,25 +297,6 @@ func makeReviewsComponent() -> Module {
     )
 }
 
-func makeReviewDetailsComponent() -> Module {
-    return Module(
-        name: "ReviewDetailsComponent",
-        moduleType: .feature,
-        path: "ReviewDetailsComponent",
-        frameworkDependancies: [
-            .external(name: "UDF"),
-            .target(name: "Common"),
-            .target(name: "Models"),
-            .target(name: "CustomViews"),
-            .target(name: "DesignSystem"),
-            .target(name: "Localizations"),
-        ],
-        frameworkResources: [],
-        snapshotDependencies: [],
-        targets: [.framework]
-    )
-}
-
 func makeItemDetailsReviewsComponent() -> Module {
     return Module(
         name: "ItemDetailsReviewsComponent",
@@ -512,6 +493,26 @@ func makeItemDetailsCastComponent() -> Module {
         name: "ItemDetailsCastComponent",
         moduleType: .feature,
         path: "ItemDetailsCastComponent",
+        frameworkDependancies: [
+            .external(name: "UDF"),
+            .external(name: "SwiftUI-Kit"),
+            .target(name: "Common"),
+            .target(name: "Models"),
+            .target(name: "DesignSystem"),
+            .target(name: "Localizations"),
+            .target(name: "CustomViews"),
+        ],
+        frameworkResources: [],
+        snapshotDependencies: [],
+        targets: [.framework]
+    )
+}
+
+func makeReviewDetails() -> Module{
+    Module(
+        name: "ReviewDetails",
+        moduleType: .feature,
+        path: "ReviewDetails",
         frameworkDependancies: [
             .external(name: "UDF"),
             .external(name: "SwiftUI-Kit"),

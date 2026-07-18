@@ -11,12 +11,13 @@ import UDF
 import Models
 import Common
 import ItemDetailsReviewsComponent
+import ReviewDetails
 
 struct ItemDetailsReviewsRouting: Routing {
     @ViewBuilder func view(for route: ItemDetailsReviewsRoute) -> some View {
         switch route {
         case let .reviewDetails(id):
-            ReviewDetailsContainer(reviewId: id)
+            ReviewDetailsContainer<AppState, ReviewDetailsRouting>(id: id)
         case let .reviews(item):
             if let movie = item as? Movie {
                 MovieReviewsContainer(id: movie.id)

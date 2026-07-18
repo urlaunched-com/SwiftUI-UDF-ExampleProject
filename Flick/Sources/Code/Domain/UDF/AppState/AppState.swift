@@ -9,6 +9,7 @@ import Foundation
 import UDF
 
 import SignIn
+import ReviewDetails
 
 struct AppState: AppReducer {
     // MARK: Storages
@@ -148,6 +149,13 @@ struct AppState: AppReducer {
     var showDetailsReviewsForm
     @BindableReducer(ShowReviewsFlow.self, bindedTo: ShowDetailsReviewsContainer.self)
     var showDetailsReviewsFlow
+    
+    // MARK: - Review Details
+    
+    @BindableReducer(ReviewDetailsForm.self, bindedTo: ReviewDetailsContainer<Self, ReviewDetailsRouting>.self)
+    var reviewDetailsForm
+    @BindableReducer(ReviewDetailsFlow.self, bindedTo: ReviewDetailsContainer<Self, ReviewDetailsRouting>.self)
+    var reviewDetailsFlow
 
     // MARK: My Favorites
 
