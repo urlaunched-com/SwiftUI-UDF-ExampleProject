@@ -225,7 +225,7 @@ func makeWhereToWatch() -> Module {
         ],
         frameworkResources: [],
         snapshotDependencies: [],
-        targets: [.framework]
+        targets: [.framework, .snapshotTests]
     )
 }
 
@@ -524,6 +524,6 @@ func makeReviewDetails() -> Module{
         ],
         frameworkResources: [],
         snapshotDependencies: [],
-        targets: [.framework]
+        targets: [.framework, .snapshotTests]
     )
 }
