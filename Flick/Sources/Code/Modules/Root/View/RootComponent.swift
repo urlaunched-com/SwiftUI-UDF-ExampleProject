@@ -82,12 +82,12 @@ private extension View {
     func homeNavigationsDestinations() -> some View {
         navigationDestination(for: HomeRouting.self)
             .navigationDestination(for: MainHomeSectionRouting.self)
+            .navigationDestination(for: HomeSectionRouter.self)
             .navigationDestination(for: SectionDetailsRouting.self)
             .navigationDestination(for: ItemDetailsRouting.self)
             .navigationDestination(for: ItemDetailsCastRouting.self)
             .navigationDestination(for: ItemDetailsReviewsRouting.self)
             .navigationDestination(for: ItemDetailsRecommendationsRouting.self)
             .navigationDestination(for: ReviewsRouting.self)
-            .navigationDestination(for: SectionDetailsRouting.self)
     }
 }
