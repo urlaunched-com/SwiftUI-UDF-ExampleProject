@@ -56,12 +56,12 @@ func makeUIModules() -> [Module] {
         makeSignInFeature(),
         makeWhereToWatch(),
         makeReviewDetails(),
+        makeReviews(),
+        makeReviewsSection(),
         
         makeTabBarComponent(),
         makeImageComponent(),
         makeSectionDetailsComponent(),
-        makeReviewsComponent(),
-        makeItemDetailsReviewsComponent(),
         makeSearchComponent(),
         makeItemDetailsRecommendationsComponent(),
         makeSettingsComponent(),
@@ -280,41 +280,6 @@ func makeSectionDetailsComponent() -> Module {
     )
 }
 
-func makeReviewsComponent() -> Module {
-    return Module(
-        name: "ReviewsComponent",
-        moduleType: .feature,
-        path: "ReviewsComponent",
-        frameworkDependancies: [
-            .external(name: "UDF"),
-            .target(name: "Common"),
-            .target(name: "Models"),
-            .target(name: "CustomViews"),
-        ],
-        frameworkResources: [],
-        snapshotDependencies: [],
-        targets: [.framework]
-    )
-}
-
-func makeItemDetailsReviewsComponent() -> Module {
-    return Module(
-        name: "ItemDetailsReviewsComponent",
-        moduleType: .feature,
-        path: "ItemDetailsReviewsComponent",
-        frameworkDependancies: [
-            .external(name: "UDF"),
-            .target(name: "Models"),
-            .target(name: "CustomViews"),
-            .target(name: "DesignSystem"),
-            .target(name: "Localizations"),
-        ],
-        frameworkResources: [],
-        snapshotDependencies: [],
-        targets: [.framework]
-    )
-}
-
 func makeSearchComponent() -> Module {
     return Module(
         name: "SearchComponent",
@@ -508,7 +473,7 @@ func makeItemDetailsCastComponent() -> Module {
     )
 }
 
-func makeReviewDetails() -> Module{
+func makeReviewDetails() -> Module {
     Module(
         name: "ReviewDetails",
         moduleType: .feature,
@@ -525,5 +490,46 @@ func makeReviewDetails() -> Module{
         frameworkResources: [],
         snapshotDependencies: [],
         targets: [.framework, .snapshotTests]
+    )
+}
+
+func makeReviews() -> Module {
+    Module(
+        name: "Reviews",
+        moduleType: .feature,
+        path: "Reviews",
+        frameworkDependancies: [
+            .external(name: "UDF"),
+            .external(name: "SwiftUI-Kit"),
+            .target(name: "Common"),
+            .target(name: "Models"),
+            .target(name: "DesignSystem"),
+            .target(name: "Localizations"),
+            .target(name: "CustomViews"),
+            .target(name: "API")
+        ],
+        frameworkResources: [],
+        snapshotDependencies: [],
+        targets: [.framework]
+    )
+}
+
+func makeReviewsSection() -> Module {
+    Module(
+        name: "ReviewsSection",
+        moduleType: .feature,
+        path: "ReviewsSection",
+        frameworkDependancies: [
+            .external(name: "UDF"),
+            .external(name: "SwiftUI-Kit"),
+            .target(name: "Common"),
+            .target(name: "Models"),
+            .target(name: "DesignSystem"),
+            .target(name: "Localizations"),
+            .target(name: "CustomViews"),
+            .target(name: "API")
+        ],
+        frameworkResources: [],
+        targets: [.framework]
     )
 }

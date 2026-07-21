@@ -10,6 +10,8 @@ import UDF
 
 import SignIn
 import ReviewDetails
+import Reviews
+import ReviewsSection
 
 struct AppState: AppReducer {
     // MARK: Storages
@@ -121,34 +123,13 @@ struct AppState: AppReducer {
     var showDetailsRecommendationsForm
     @BindableReducer(ShowRecommendationsFlow.self, bindedTo: ShowDetailsRecommendationsContainer.self)
     var showDetailsRecommendationsFlow
-
-    // MARK: Movie Reviews
-
-    @BindableReducer(MovieReviewsForm.self, bindedTo: MovieReviewsContainer.self)
-    var movieReviewsForm
-    @BindableReducer(MovieReviewsFlow.self, bindedTo: MovieReviewsContainer.self)
-    var movieReviewsFlow
-
-    // MARK: Show Reviews
-
-    @BindableReducer(ShowReviewsForm.self, bindedTo: ShowReviewsContainer.self)
-    var showReviewsForm
-    @BindableReducer(ShowReviewsFlow.self, bindedTo: ShowReviewsContainer.self)
-    var showReviewsFlow
-
-    // MARK: Movie Details Reviews
-
-    @BindableReducer(MovieReviewsForm.self, bindedTo: MovieDetailsReviewsContainer.self)
-    var movieDetailsReviewsForm
-    @BindableReducer(MovieReviewsFlow.self, bindedTo: MovieDetailsReviewsContainer.self)
-    var movieDetailsReviewsFlow
-
-    // MARK: Show Details Reviews
-
-    @BindableReducer(ShowReviewsForm.self, bindedTo: ShowDetailsReviewsContainer.self)
-    var showDetailsReviewsForm
-    @BindableReducer(ShowReviewsFlow.self, bindedTo: ShowDetailsReviewsContainer.self)
-    var showDetailsReviewsFlow
+    
+    // MARK: - Reviews
+    
+    @BindableReducer(ReviewsForm.self, bindedTo: ReviewsContainer<Self, ReviewsRouting>.self)
+    var reviewsForm
+    @BindableReducer(ReviewsFlow.self, bindedTo: ReviewsContainer<Self, ReviewsRouting>.self)
+    var reviewsFlow
     
     // MARK: - Review Details
     
@@ -156,6 +137,13 @@ struct AppState: AppReducer {
     var reviewDetailsForm
     @BindableReducer(ReviewDetailsFlow.self, bindedTo: ReviewDetailsContainer<Self, ReviewDetailsRouting>.self)
     var reviewDetailsFlow
+    
+    // MARK: - Review Section
+    
+    @BindableReducer(ReviewsSectionForm.self, bindedTo: ReviewsSectionContainer<Self, ReviewsSectionRouting>.self)
+    var reviewsSectionForm
+    @BindableReducer(ReviewsSectionFlow.self, bindedTo: ReviewsSectionContainer<Self, ReviewsSectionRouting>.self)
+    var reviewsSectionFlow
 
     // MARK: My Favorites
 

@@ -11,8 +11,8 @@ import Models
 import Common
 
 public protocol ReviewDetailsFeature: AppReducer {
-    associatedtype NetworkConnectivityForm: ShowReviewDetails.NetworkConnectivityForm
-    associatedtype AllReviews: ShowReviewDetails.AllReviews
+    associatedtype NetworkConnectivityForm: ReviewDetails.NetworkConnectivityForm
+    associatedtype AllReviews: ReviewDetails.AllReviews
     associatedtype ReviewDetailsContainerType: BindableContainer where ReviewDetailsContainerType.ContainerState == Self, ReviewDetailsContainerType.ID == Review.ID
     
     var allReviews: AllReviews { get }
@@ -22,7 +22,7 @@ public protocol ReviewDetailsFeature: AppReducer {
     var networkConnectivityForm: NetworkConnectivityForm { get }
 }
 
-public enum ShowReviewDetails {
+public enum ReviewDetails {
     public protocol NetworkConnectivityForm: Form {
         var satisfied: Bool { get }
     }

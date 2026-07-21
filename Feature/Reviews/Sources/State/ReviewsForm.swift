@@ -1,5 +1,5 @@
 //
-//  ShowReviewsForm.swift
+//  MovieReviewsForm.swift
 //  Flick
 //
 //  Created by Valentin Petrulia on 15.05.2025.
@@ -10,21 +10,23 @@ import UDF
 @preconcurrency import Models
 import Common
 
-struct ShowReviewsForm: Form {
+public struct ReviewsForm: Form {
     var paginator: Paginator = .init(
         Review.self,
-        flowId: ShowReviewsFlow.id,
+        flowId: ReviewsFlow.id,
         perPage: kPerPage
     )
     var page: PaginationPage { paginator.page }
     var reviews: [Review.ID] { paginator.items.elements }
     var dialog: DialogStatus = .dismissed
+    
+    public init() {}
 
-    mutating func reduce(_ action: some Action) {
+    public mutating func reduce(_ action: some Action) {
         switch action {
-        case let action as Actions.Error where action.id == ShowReviewsFlow.id:
+        case let action as Actions.Error where action.id == ReviewsFlow.id:
             dialog = .init(error: action.error)
-
+            
         default:
             break
         }

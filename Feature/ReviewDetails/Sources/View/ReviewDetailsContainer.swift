@@ -8,7 +8,6 @@
 
 import UDF
 import Models
-import ItemDetailsReviewsComponent
 import Common
 import SwiftUI
 
@@ -57,9 +56,8 @@ private extension ReviewDetailsContainer {
         Binding {
             form.dialog
         } set: { newValue in
-            store.dispatch(Actions.UpdateFormField(keyPath: \ReviewDetailsForm.dialog, value: newValue))
+            store.dispatch(Actions.UpdateFormField(keyPath: \ReviewDetailsForm.dialog, value: newValue).binded(to: self))
         }
-        
     }
 
     func reviewById(_ id: Review.ID) -> Review {

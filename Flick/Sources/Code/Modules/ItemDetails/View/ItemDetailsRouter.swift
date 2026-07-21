@@ -10,8 +10,9 @@ import SwiftUI
 import UDF
 import Models
 import Common
-import ItemDetailsComponent
 import WhereToWatch
+import ItemDetailsComponent
+import ReviewsSection
 
 struct ItemDetailsRouting: Routing {
     @ViewBuilder
@@ -27,8 +28,8 @@ struct ItemDetailsRouting: Routing {
         case let .reviews(item):
             buildView(
                 item: item,
-                movieView: { MovieDetailsReviewsContainer(id: $0.id) },
-                showView: { ShowDetailsReviewsContainer(id: $0.id) }
+                movieView: { ReviewsSectionContainer<AppState, ReviewsSectionRouting>(id: .movie($0.id)) },
+                showView: { ReviewsSectionContainer<AppState, ReviewsSectionRouting>(id: .show($0.id)) }
             )
 
         case let .recommendations(item):

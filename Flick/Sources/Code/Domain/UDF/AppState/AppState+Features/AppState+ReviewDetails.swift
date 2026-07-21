@@ -32,5 +32,5 @@ extension AppState: ReviewDetailsFeature {
     }
 }
 
-extension NetworkConnectivityForm: ShowReviewDetails.NetworkConnectivityForm {}
-extension AllReviews: ShowReviewDetails.AllReviews {}
+extension NetworkConnectivityForm: ReviewDetails.NetworkConnectivityForm {}
+extension AllReviews: ReviewDetails.AllReviews {}

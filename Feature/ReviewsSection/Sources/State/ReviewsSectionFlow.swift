@@ -9,21 +9,20 @@
 import UDF
 import Models
 
-enum MovieReviewsFlow: IdentifiableFlow {
-    case none, loadMovieReviews(Int)
+public enum ReviewsSectionFlow: IdentifiableFlow {
+    case none, loadReviews(Int)
 
-    init() { self = .none }
+    public init() { self = .none }
 
-    mutating func reduce(_ action: some Action) {
+    public mutating func reduce(_ action: some Action) {
         switch action {
         case let action as Actions.LoadPage where action.id == Self.id:
-            self = .loadMovieReviews(action.pageNumber)
+            self = .loadReviews(action.pageNumber)
 
         case let action as Actions.DidLoadItems<Review> where action.id == Self.id:
             self = .none
 
-        case let action as Actions.DidCancelEffect
-            where action.cancellation is MovieReviewsMiddleware.Cancellation:
+        case let action as Actions.DidCancelEffect where action.cancellation is Cancellation:
             self = .none
 
         case let action as Actions.Error where action.id == Self.id:

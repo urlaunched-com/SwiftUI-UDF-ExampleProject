@@ -9,6 +9,8 @@ import API
 import SwiftUI
 import UDF
 import ReviewDetails
+import Reviews
+import ReviewsSection
 
 private let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJidW5kbGVfaWRzIjpbImNvbS51cmxhdW5jaGVkLmZsaWNrIl19.HjROptJlsO915Ju0fw7VtO-FhHZlZSdDRALOrFQOvPU"
 var globalStore: EnvironmentStore<AppState>!
@@ -49,8 +51,8 @@ private extension FlickApp {
             ShowCastMiddleware.self
             MovieRecommendationsMiddleware.self
             ShowRecommendationsMiddleware.self
-            MovieReviewsMiddleware.self
-            ShowReviewsMiddleware.self
+            ReviewsMiddleware.self
+            ReviewsSectionMiddleware.self
             SearchMiddleware.self
             MyFavoritesMiddleware.self
             ReviewDetailsMiddleware.self

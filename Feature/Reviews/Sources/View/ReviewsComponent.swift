@@ -14,27 +14,25 @@ import Models
 import CustomViews
 import Common
 
-
 public struct ReviewsComponent<R: Routing>: Component where R.Route == ReviewsRoute {
     public struct Props {
         var reviews: [Review.ID]
         var reviewById: (Review.ID) -> Review
         var loadMoreAction: Command
-        var dialogStatus: Binding<DialogStatus>
+        var dialog: Binding<DialogStatus>
         var router: R = .init()
-        var destinationBuilder: DestinationBuilder<ReviewsContent> = .init()
         
         public init(
             reviews: [Review.ID],
             reviewById: @escaping (Review.ID) -> Review,
             loadMoreAction: @escaping Command,
-            dialogStatus: Binding<DialogStatus>,
+            dialog: Binding<DialogStatus>,
             router: R = .init()
         ) {
             self.reviews = reviews
             self.reviewById = reviewById
             self.loadMoreAction = loadMoreAction
-            self.dialogStatus = dialogStatus
+            self.dialog = dialog
             self.router = router
         }
     }
@@ -52,10 +50,11 @@ public struct ReviewsComponent<R: Routing>: Component where R.Route == ReviewsRo
                 let review = props.reviewById(id)
                 ReviewRow(
                     review: review,
-                    imageView: props.destinationBuilder.view(
+                    imageView: props.router.view(
                         for: .imageContainer(
                             path: review.authorDetails.avatarPath,
-                            size: CGSize(width: 48, height: 48), type: .profile
+                            size: CGSize(width: 48, height: 48),
+                            type: .profile
                         )
                     )
                 )
@@ -82,12 +81,13 @@ public struct ReviewsComponent<R: Routing>: Component where R.Route == ReviewsRo
 // MARK: - Preview
 
 #Preview {
-    ReviewsComponent<MockRouter<ReviewsRoute>>(
+    ReviewsComponent(
         props: .init(
             reviews: Review.testItemIds(count: 10),
             reviewById: { _ in .fakeItem() },
             loadMoreAction: {},
-            dialogStatus: .constant(.dismissed)
+            dialog: .constant(.dismissed),
+            router: MockRouter<ReviewsRoute>()
         )
     )
 }

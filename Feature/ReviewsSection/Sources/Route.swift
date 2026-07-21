@@ -9,7 +9,11 @@
 import SwiftUI
 import UDF
 import Models
+import Common
+import UIKit
 
-public enum ReviewsRoute: Hashable {
+public enum ReviewsSectionRoute: Hashable {
+    case imageContainer(path: String?, size: CGSize, type: ImageType = .poster)
     case reviewDetails(Review.ID)
+    case reviews(ReviewsTarget)
 }

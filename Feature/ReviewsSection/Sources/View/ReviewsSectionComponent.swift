@@ -14,29 +14,26 @@ import Models
 import CustomViews
 import Common
 
-public struct ItemDetailsReviewsComponent<R: Routing>: Component where R.Route == ItemDetailsReviewsRoute {
+public struct ReviewsSectionComponent<R: Routing>: Component where R.Route == ReviewsSectionRoute {
     public struct Props {
-        var item: any Item
+        var id: ReviewsTarget
         var reviews: [Review.ID]
         var reviewById: (Review.ID) -> Review
         var isRedacted: Bool
         var router: R = .init()
-        var destinationBuilder: DestinationBuilder<ItemDetailsReviewsContent> = .init()
         
         public init(
-            item: any Item,
+            id: ReviewsTarget,
             reviews: [Review.ID],
             reviewById: @escaping (Review.ID) -> Review,
             isRedacted: Bool,
-            router: R,
-            destinationBuilder: DestinationBuilder<ItemDetailsReviewsContent>
+            router: R
         ) {
-            self.item = item
+            self.id = id
             self.reviews = reviews
             self.reviewById = reviewById
             self.isRedacted = isRedacted
             self.router = router
-            self.destinationBuilder = destinationBuilder
         }
     }
 
@@ -54,12 +51,12 @@ public struct ItemDetailsReviewsComponent<R: Routing>: Component where R.Route =
                 SectionHeaderView(
                     title: Localization.itemDetailsReviewsSectionTitle(props.reviews.count),
                     seeAllAction: {
-                        globalRouter.navigate(for: R.self, to: .reviews(props.item))
+                        globalRouter.navigate(for: R.self, to: .reviews(props.id))
                     }
                 )
                 
                 let review = props.reviewById(id)
-                ReviewRow(review: review, imageView: props.destinationBuilder.view(
+                ReviewRow(review: review, imageView: props.router.view(
                     for: .imageContainer(
                         path: review.authorDetails.avatarPath,
                         size: CGSize(width: 48, height: 48),
