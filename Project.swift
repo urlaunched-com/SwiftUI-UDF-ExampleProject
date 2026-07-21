@@ -54,18 +54,18 @@ func makeUIModules() -> [Module] {
     return [
         makeOnboardingFeature(),
         makeSignInFeature(),
-        makeWhereToWatch(),
-        makeReviewDetails(),
-        makeReviews(),
-        makeReviewsSection(),
-        makeSearch(),
+        makeWhereToWatchFeature(),
+        makeReviewDetailsFeature(),
+        makeReviewsFeature(),
+        makeReviewsSectionFeature(),
+        makeSearchFeature(),
+        makeMyFavoritesFeature(),
         
         makeTabBarComponent(),
         makeImageComponent(),
         makeSectionDetailsComponent(),
         makeItemDetailsRecommendationsComponent(),
         makeSettingsComponent(),
-        makeMyFavoritesComponent(),
         makeItemDetailsComponent(),
         makeHomeComponent(),
         makeMainHomeSectionComponent(),
@@ -210,7 +210,7 @@ func makeSignInFeature() -> Module {
     )
 }
 
-func makeWhereToWatch() -> Module {
+func makeWhereToWatchFeature() -> Module {
     return Module(
         name: "WhereToWatch",
         moduleType: .feature,
@@ -280,7 +280,7 @@ func makeSectionDetailsComponent() -> Module {
     )
 }
 
-func makeSearch() -> Module {
+func makeSearchFeature() -> Module {
     return Module(
         name: "Search",
         moduleType: .feature,
@@ -334,11 +334,11 @@ func makeSettingsComponent() -> Module {
     )
 }
 
-func makeMyFavoritesComponent() -> Module {
+func makeMyFavoritesFeature() -> Module {
     return Module(
-        name: "MyFavoritesComponent",
+        name: "MyFavorites",
         moduleType: .feature,
-        path: "MyFavoritesComponent",
+        path: "MyFavorites",
         frameworkDependancies: [
             .external(name: "UDF"),
             .target(name: "Models"),
@@ -349,7 +349,7 @@ func makeMyFavoritesComponent() -> Module {
         ],
         frameworkResources: [],
         snapshotDependencies: [],
-        targets: [.framework]
+        targets: [.framework, .snapshotTests]
     )
 }
 
@@ -473,7 +473,7 @@ func makeItemDetailsCastComponent() -> Module {
     )
 }
 
-func makeReviewDetails() -> Module {
+func makeReviewDetailsFeature() -> Module {
     Module(
         name: "ReviewDetails",
         moduleType: .feature,
@@ -493,7 +493,7 @@ func makeReviewDetails() -> Module {
     )
 }
 
-func makeReviews() -> Module {
+func makeReviewsFeature() -> Module {
     Module(
         name: "Reviews",
         moduleType: .feature,
@@ -514,7 +514,7 @@ func makeReviews() -> Module {
     )
 }
 
-func makeReviewsSection() -> Module {
+func makeReviewsSectionFeature() -> Module {
     Module(
         name: "ReviewsSection",
         moduleType: .feature,

@@ -14,7 +14,7 @@ import Models
 import Common
 import CustomViews
 
-public struct MyFavoritesComponent: Component {
+public struct MyFavoritesComponent<R: Routing>: Component where R.Route == MyFavoritesRoute {
     public struct Props {
         var contentType: Binding<ContentType>
         var items: [any Item]
@@ -22,8 +22,8 @@ public struct MyFavoritesComponent: Component {
         var loadMoreAction: Command
         var isRedacted: Bool
         var dialogStatus: Binding<DialogStatus>
-        var destinationBuilder: DestinationBuilder<MyFavoritesContent>
-        
+        var router: R
+
         public init(
             contentType: Binding<ContentType>,
             items: [any Item],
@@ -31,7 +31,7 @@ public struct MyFavoritesComponent: Component {
             loadMoreAction: @escaping Command,
             isRedacted: Bool,
             dialogStatus: Binding<DialogStatus>,
-            destinationBuilder: DestinationBuilder<MyFavoritesContent> = .init()
+            router: R
         ) {
             self.contentType = contentType
             self.items = items
@@ -39,12 +39,12 @@ public struct MyFavoritesComponent: Component {
             self.loadMoreAction = loadMoreAction
             self.isRedacted = isRedacted
             self.dialogStatus = dialogStatus
-            self.destinationBuilder = destinationBuilder
+            self.router = router
         }
     }
 
     public var props: Props
-    
+
     public init(props: Props) {
         self.props = props
     }
@@ -59,7 +59,7 @@ public struct MyFavoritesComponent: Component {
                 ContentToggle(contentType: props.contentType)
             },
             imageView: { path in
-                props.destinationBuilder.view(
+                props.router.view(
                     for: .imageContainer(
                         path: path,
                         size: ItemSizeStyle.default.coverSize,
@@ -83,8 +83,6 @@ public struct MyFavoritesComponent: Component {
     }
 }
 
-// MARK: - Preview
-
 #Preview {
     MyFavoritesComponent(
         props: .init(
@@ -93,7 +91,8 @@ public struct MyFavoritesComponent: Component {
             genreById: { _ in .testItem() },
             loadMoreAction: {},
             isRedacted: true,
-            dialogStatus: .constant(.dismissed)
+            dialogStatus: .constant(.dismissed),
+            router: MockRouter<MyFavoritesRoute>()
         )
     )
 }

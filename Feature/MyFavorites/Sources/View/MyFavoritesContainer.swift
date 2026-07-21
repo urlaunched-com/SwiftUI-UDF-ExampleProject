@@ -9,42 +9,37 @@
 import SwiftUI
 import UDF
 import Models
-import MyFavoritesComponent
 import Common
 
-struct MyFavoritesContainer: Container {
-    typealias ContainerComponent = MyFavoritesComponent
+public struct MyFavoritesContainer<F: MyFavoritesFeature, R: Routing>: Container where R.Route == MyFavoritesRoute {
+    public typealias ContainerComponent = MyFavoritesComponent<R>
 
-    func scope(for state: AppState) -> Scope {
+    public init() {}
+
+    public func scope(for state: F) -> Scope {
         state.myFavoritesForm
+        state.myFavoritesFlow
     }
 
-    func map(store: EnvironmentStore<AppState>) -> ContainerComponent.Props {
+    public func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
         .init(
             contentType: Binding(
                 get: { store.state.myFavoritesForm.contentType },
                 set: { setContentType($0) }
             ),
             items: items,
-            genreById: { store.state.allGenres.byId[$0] },
+            genreById: { store.state.allGenres.genreBy(id: $0) },
             loadMoreAction: loadNewPageIfNeeded,
             isRedacted: isRedacted,
             dialogStatus: store.$state.myFavoritesForm.dialog,
-            destinationBuilder: DestinationBuilder<MyFavoritesContent>(destination: { value in
-                switch value {
-                case let .imageContainer(path: path, size: size, type: type):
-                    ImageContainer(size: size, path: path, type: type)
-                }
-            })
+            router: R()
         )
     }
 
-    func onContainerDidLoad(store: EnvironmentStore<AppState>) {
+    public func onContainerDidLoad(store: EnvironmentStore<F>) {
         store.dispatch(Actions.LoadPage(id: MyFavoritesFlow.loadMoviesId))
     }
 }
-
-// MARK: - items
 
 private extension MyFavoritesContainer {
     var items: [any Item] {
@@ -56,11 +51,11 @@ private extension MyFavoritesContainer {
     }
 
     var movies: [Movie] {
-        store.state.myFavoritesForm.movies.compactMap { store.state.allMovies.byId[$0] }
+        store.state.myFavoritesForm.movies.map { store.state.allMovies.movieBy(id: $0) }
     }
 
     var shows: [Show] {
-        store.state.myFavoritesForm.shows.compactMap { store.state.allShows.byId[$0] }
+        store.state.myFavoritesForm.shows.map { store.state.allShows.showBy(id: $0) }
     }
 
     var isRedacted: Bool {
@@ -80,7 +75,11 @@ private extension MyFavoritesContainer {
             priority: .userInteractive
         )
         store.dispatch(
-            Actions.LoadPage(id: contentType == .movie ? MyFavoritesFlow.loadMoviesId : MyFavoritesFlow.loadShowsId)
+            Actions.LoadPage(
+                id: contentType == .movie
+                    ? MyFavoritesFlow.loadMoviesId
+                    : MyFavoritesFlow.loadShowsId
+            )
         )
     }
 
@@ -90,13 +89,27 @@ private extension MyFavoritesContainer {
 
     func loadMoreMovies() {
         guard case let .number(currentPage) = store.state.myFavoritesForm.moviesPage,
-              case .none = store.state.myFavoritesFlow else { return }
-        store.dispatch(Actions.LoadPage(pageNumber: currentPage + 1, id: MyFavoritesFlow.loadMoviesId))
+              case .none = store.state.myFavoritesFlow else {
+            return
+        }
+        store.dispatch(
+            Actions.LoadPage(
+                pageNumber: currentPage + 1,
+                id: MyFavoritesFlow.loadMoviesId
+            )
+        )
     }
 
     func loadMoreShows() {
         guard case let .number(currentPage) = store.state.myFavoritesForm.showsPage,
-              case .none = store.state.myFavoritesFlow else { return }
-        store.dispatch(Actions.LoadPage(pageNumber: currentPage + 1, id: MyFavoritesFlow.loadShowsId))
+              case .none = store.state.myFavoritesFlow else {
+            return
+        }
+        store.dispatch(
+            Actions.LoadPage(
+                pageNumber: currentPage + 1,
+                id: MyFavoritesFlow.loadShowsId
+            )
+        )
     }
 }

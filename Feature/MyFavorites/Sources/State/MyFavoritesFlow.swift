@@ -2,23 +2,26 @@
 //  MyFavoritesFlow.swift
 //  Flick
 //
-//  Created by Vlad Andrieiev on 22.05.2023.
-//  Copyright © 2023 urlaunched.com. All rights reserved.
+//  Created by Bogdan Petkanych on 21.07.2026.
+//  Copyright © 2026 urlaunched. All rights reserved.
 //
 
-import SwiftUI
 import UDF
 import Models
 
-enum MyFavoritesFlow: IdentifiableFlow {
-    case none, loadMovies(Int), loadShows(Int)
+public enum MyFavoritesFlow: IdentifiableFlow {
+    case none
+    case loadMovies(Int)
+    case loadShows(Int)
 
-    init() { self = .none }
+    public init() {
+        self = .none
+    }
 
-    static var loadMoviesId: FlowId = .init(value: "loadFavoritesMovie")
-    static var loadShowsId: FlowId = .init(value: "loadFavoritesShow")
+    public static var loadMoviesId: FlowId = .init(value: "loadFavoritesMovie")
+    public static var loadShowsId: FlowId = .init(value: "loadFavoritesShow")
 
-    mutating func reduce(_ action: some Action) {
+    public mutating func reduce(_ action: some Action) {
         switch action {
         case let action as Actions.LoadPage where action.id == Self.loadMoviesId:
             self = .loadMovies(action.pageNumber)
@@ -32,7 +35,8 @@ enum MyFavoritesFlow: IdentifiableFlow {
         case let action as Actions.DidLoadItems<Show> where action.id == Self.loadShowsId:
             self = .none
 
-        case let action as Actions.DidCancelEffect where MyFavoritesMiddleware.Cancellation.allCases.contains { $0 == action.cancellation }:
+        case let action as Actions.DidCancelEffect
+            where MyFavoritesCancellation.allCases.contains(where: { $0 == action.cancellation }):
             self = .none
 
         case let action as Actions.Error where action.id == Self.loadMoviesId:
