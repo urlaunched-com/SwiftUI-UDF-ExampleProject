@@ -65,7 +65,7 @@ func makeUIModules() -> [Module] {
         makeImageComponent(),
         makeSectionDetailsComponent(),
         makeItemDetailsRecommendationsComponent(),
-        makeSettingsComponent(),
+        makeSettings(),
         makeItemDetailsComponent(),
         makeHomeComponent(),
         makeMainHomeSectionComponent(),
@@ -317,11 +317,11 @@ func makeItemDetailsRecommendationsComponent() -> Module {
     )
 }
 
-func makeSettingsComponent() -> Module {
+func makeSettings() -> Module {
     return Module(
-        name: "SettingsComponent",
+        name: "Settings",
         moduleType: .feature,
-        path: "SettingsComponent",
+        path: "Settings",
         frameworkDependancies: [
             .external(name: "UDF"),
             .external(name: "SwiftUI-Kit"),
@@ -330,7 +330,7 @@ func makeSettingsComponent() -> Module {
         ],
         frameworkResources: [],
         snapshotDependencies: [],
-        targets: [.framework]
+        targets: [.framework, .snapshotTests]
     )
 }
 

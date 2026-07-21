@@ -12,6 +12,7 @@ import SignIn
 import Onboarding
 import Search
 import MyFavorites
+import Settings
 
 struct RootRouting: Routing {
     enum Route {
@@ -33,7 +34,7 @@ struct RootRouting: Routing {
         case .search: SearchContainer<AppState, SearchRouting>()
         case .randomizer: Text("Randomizer")
         case .favorites: MyFavoritesContainer<AppState, MyFavoritesRouting>()
-        case .profile: SettingsContainer()
+        case .profile: SettingsContainer<AppState>()
         case .tabBar: TabBarContainer()
         }
     }

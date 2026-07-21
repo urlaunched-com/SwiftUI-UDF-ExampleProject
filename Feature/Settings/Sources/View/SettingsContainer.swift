@@ -8,16 +8,17 @@
 
 import UDF
 import UIKit
-import SettingsComponent
 
-struct SettingsContainer: Container {
-    typealias ContainerComponent = SettingsComponent
+public struct SettingsContainer<F: SettingsFeature>: Container {
+    public typealias ContainerComponent = SettingsComponent
 
-    func scope(for state: AppState) -> Scope {
+    public init() {}
+
+    public func scope(for state: F) -> Scope {
         state.homeForm
     }
 
-    func map(store _: EnvironmentStore<AppState>) -> ContainerComponent.Props {
+    public func map(store _: EnvironmentStore<F>) -> ContainerComponent.Props {
         .init(
             rateThisAppAction: UIApplication.shared.requestReview
         )

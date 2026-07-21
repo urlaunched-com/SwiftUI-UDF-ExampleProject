@@ -15,7 +15,7 @@ import Common
 public struct SettingsComponent: Component {
     public struct Props {
         var rateThisAppAction: Command
-        
+
         public init(rateThisAppAction: @escaping Command) {
             self.rateThisAppAction = rateThisAppAction
         }
@@ -24,7 +24,7 @@ public struct SettingsComponent: Component {
     @State private var selectedLink: AppLink?
 
     public var props: Props
-    
+
     public init(props: Props) {
         self.props = props
     }
@@ -59,8 +59,6 @@ public struct SettingsComponent: Component {
         .navigationBarTitleDisplayMode(.inline)
     }
 }
-
-// MARK: - SettingsRow
 
 private extension SettingsComponent {
     func settingsRow(
