@@ -12,7 +12,7 @@ import UDF
 @preconcurrency import Models
 import Common
 
-struct SearchForm: Form {
+public struct SearchForm: Form {
     var searchText = ""
     var paginator: Paginator = .init(
         SearchItem.self,
@@ -22,8 +22,10 @@ struct SearchForm: Form {
     var page: PaginationPage { paginator.page }
     var items: [SearchItem.ID] { paginator.items.elements }
     var dialog: DialogStatus = .dismissed
+    
+    public init() { }
 
-    mutating func reduce(_ action: some Action) {
+    public mutating func reduce(_ action: some Action) {
         switch action {
         case let action as Actions.Error where action.id == SearchFlow.id:
             dialog = .init(error: action.error)

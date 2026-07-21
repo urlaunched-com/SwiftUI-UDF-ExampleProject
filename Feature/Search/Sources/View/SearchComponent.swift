@@ -15,14 +15,14 @@ import Models
 import CustomViews
 import Common
 
-public struct SearchComponent: Component {
+public struct SearchComponent<R: Routing>: Component where R.Route == SearchRoute {
     public struct Props {
         var searchText: Binding<String>
         var itemIds: [SearchItem.ID]
         var searchItemById: (SearchItem.ID) -> SearchItem
         var genreById: (Genre.ID) -> Genre
         var loadMoreAction: Command
-        var destinationBuilder: DestinationBuilder<SearchContent>
+        var router: R
         
         public init(
             searchText: Binding<String>,
@@ -30,14 +30,14 @@ public struct SearchComponent: Component {
             searchItemById: @escaping (SearchItem.ID) -> SearchItem,
             genreById: @escaping (Genre.ID) -> Genre,
             loadMoreAction: @escaping Command,
-            destinationBuilder: DestinationBuilder<SearchContent>
+            router: R
         ) {
             self.searchText = searchText
             self.itemIds = itemIds
             self.searchItemById = searchItemById
             self.genreById = genreById
             self.loadMoreAction = loadMoreAction
-            self.destinationBuilder = destinationBuilder
+            self.router = router
         }
     }
 
@@ -122,7 +122,7 @@ private extension SearchComponent {
             PosterImageView(
                 year: item.year,
                 rating: item.rating,
-                imageView: props.destinationBuilder.view(
+                imageView: props.router.view(
                     for: .imageContainer(
                         path: item.posterPath,
                         size: ItemSizeStyle.default.coverSize
@@ -225,7 +225,7 @@ private extension SearchComponent {
             searchItemById: { _ in .fakeItem() },
             genreById: { _ in .testItem() },
             loadMoreAction: {},
-            destinationBuilder: .init()
+            router: MockRouter()
         )
     )
 }
@@ -238,7 +238,7 @@ private extension SearchComponent {
             searchItemById: { _ in .fakeItem() },
             genreById: { _ in .testItem() },
             loadMoreAction: {},
-            destinationBuilder: .init()
+            router: MockRouter()
         )
     )
 }

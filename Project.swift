@@ -58,11 +58,11 @@ func makeUIModules() -> [Module] {
         makeReviewDetails(),
         makeReviews(),
         makeReviewsSection(),
+        makeSearch(),
         
         makeTabBarComponent(),
         makeImageComponent(),
         makeSectionDetailsComponent(),
-        makeSearchComponent(),
         makeItemDetailsRecommendationsComponent(),
         makeSettingsComponent(),
         makeMyFavoritesComponent(),
@@ -280,11 +280,11 @@ func makeSectionDetailsComponent() -> Module {
     )
 }
 
-func makeSearchComponent() -> Module {
+func makeSearch() -> Module {
     return Module(
-        name: "SearchComponent",
+        name: "Search",
         moduleType: .feature,
-        path: "SearchComponent",
+        path: "Search",
         frameworkDependancies: [
             .external(name: "UDF"),
             .target(name: "Models"),

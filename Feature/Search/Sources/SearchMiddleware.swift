@@ -11,19 +11,23 @@ import Foundation
 import UDF
 @preconcurrency import Models
 
-final class SearchMiddleware: BaseObservableMiddleware<AppState> {
-    var environment: Environment!
+enum Cancellation: Hashable {
+    case loadItems
+}
 
-    func scope(for state: AppState) -> Scope {
+public final class SearchMiddleware<F: SearchFeature>: Middleware<F>, @unchecked Sendable {
+    public var environment: Environment!
+
+    public func scope(for state: F) -> Scope {
         state.networkConnectivityForm
         state.searchFlow
     }
 
-    override func status(for state: AppState) -> MiddlewareStatus {
+    public override func status(for state: F) -> MiddlewareStatus {
         state.networkConnectivityForm.satisfied ? .active : .suspend
     }
 
-    func observe(state: AppState) {
+    public func observe(state: F) {
         switch state.searchFlow {
         case let .loadItems(page):
             execute(flowId: SearchFlow.id, cancellation: Cancellation.loadItems) { [unowned self] taskId in
@@ -36,19 +40,15 @@ final class SearchMiddleware: BaseObservableMiddleware<AppState> {
         }
     }
 
-    struct Environment {
+    public struct Environment {
         var loadItems: (_ query: String, _ page: Int) async throws -> [SearchItem]
-    }
-
-    enum Cancellation: Hashable {
-        case loadItems
     }
 }
 
 // MARK: - Environment buid methods
 
-extension SearchMiddleware {
-    static func buildLiveEnvironment(for _: some Store<AppState>) -> Environment {
+public extension SearchMiddleware {
+    static func buildLiveEnvironment(for _: some Store<F>) -> Environment {
         Environment(
             loadItems: { query, page in
                 try await SearchAPIClient.loadSearchItems(query: query, page: page)

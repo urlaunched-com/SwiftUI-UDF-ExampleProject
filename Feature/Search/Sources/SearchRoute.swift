@@ -8,6 +8,6 @@
 import Foundation
 import Common
 
-public enum SearchContent: Hashable {
+public enum SearchRoute: Hashable {
     case imageContainer(path: String?, size: CGSize)
 }

@@ -10,6 +10,7 @@ import SwiftUI
 import UDF
 import SignIn
 import Onboarding
+import Search
 
 struct RootRouting: Routing {
     enum Route {
@@ -28,7 +29,7 @@ struct RootRouting: Routing {
         case .onboarding: OnboardingContainer<AppState>()
         case .signIn: SignInContainer<AppState, SignInRouting>()
         case .home: HomeContainer()
-        case .search: SearchContainer()
+        case .search: SearchContainer<AppState, SearchRouting>()
         case .randomizer: Text("Randomizer")
         case .favorites: MyFavoritesContainer()
         case .profile: SettingsContainer()

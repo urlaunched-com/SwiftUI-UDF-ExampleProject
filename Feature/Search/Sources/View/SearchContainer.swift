@@ -11,14 +11,16 @@ import UDF
 import SearchComponent
 import Common
 
-struct SearchContainer: Container {
-    typealias ContainerComponent = SearchComponent
+public struct SearchContainer<F: SearchFeature, R: Routing>: Container where R.Route == SearchRoute {
+    public typealias ContainerComponent = SearchComponent<R>
 
-    func scope(for state: AppState) -> Scope {
+    public func scope(for state: F) -> Scope {
         state.searchForm
     }
+    
+    public init() {}
 
-    func map(store: EnvironmentStore<AppState>) -> ContainerComponent.Props {
+    public func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
         .init(
             searchText: store.$state.searchForm.searchText.didSet { _, _ in
                 store.dispatch(Actions.LoadPage(id: SearchFlow.id))
@@ -27,16 +29,11 @@ struct SearchContainer: Container {
             searchItemById: store.state.allSearchItems.searchItemBy,
             genreById: { _ in .testItem() },
             loadMoreAction: loadNewPageIfNeeded,
-            destinationBuilder: DestinationBuilder<SearchContent>(destination: { value in
-                switch value {
-                case let .imageContainer(path: path, size: size):
-                    ImageContainer(size: size, path: path)
-                }
-            })
+            router: R()
         )
     }
 
-    func onContainerDidLoad(store: EnvironmentStore<AppState>) {
+    public func onContainerDidLoad(store: EnvironmentStore<F>) {
         store.dispatch(Actions.LoadPage(id: SearchFlow.id))
     }
 }

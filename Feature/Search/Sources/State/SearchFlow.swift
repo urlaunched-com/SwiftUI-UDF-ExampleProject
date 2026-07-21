@@ -10,16 +10,13 @@ import SwiftUI
 import UDF
 import Models
 
-enum SearchFlow: IdentifiableFlow, InitialSetup {
-    case none, loadItems(Int)
+public enum SearchFlow: IdentifiableFlow {
+    case none
+    case loadItems(Int)
 
-    init() { self = .none }
-    
-    func initialSetup(with state: AppState) {
-        
-    }
+    public init() { self = .none }
 
-    mutating func reduce(_ action: some Action) {
+    public mutating func reduce(_ action: some Action) {
         switch action {
         case let action as Actions.LoadPage where action.id == Self.id:
             self = .loadItems(action.pageNumber)

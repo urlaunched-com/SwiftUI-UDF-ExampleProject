@@ -12,6 +12,7 @@ import SignIn
 import ReviewDetails
 import Reviews
 import ReviewsSection
+import Search
 
 struct AppState: AppReducer {
     // MARK: Storages
