@@ -510,7 +510,7 @@ func makeReviews() -> Module {
         ],
         frameworkResources: [],
         snapshotDependencies: [],
-        targets: [.framework]
+        targets: [.framework, .snapshotTests]
     )
 }
 
@@ -530,6 +530,6 @@ func makeReviewsSection() -> Module {
             .target(name: "API")
         ],
         frameworkResources: [],
-        targets: [.framework]
+        targets: [.framework, .snapshotTests]
     )
 }
