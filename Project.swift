@@ -294,7 +294,7 @@ func makeSearch() -> Module {
         ],
         frameworkResources: [],
         snapshotDependencies: [],
-        targets: [.framework]
+        targets: [.framework, .snapshotTests]
     )
 }
 
