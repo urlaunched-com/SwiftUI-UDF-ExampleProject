@@ -10,11 +10,12 @@ import SwiftUI
 import UDF
 import Models
 import ItemDetailsCastComponent
+import Cast
 
 struct ItemDetailsCastRouting: Routing {
     @ViewBuilder func view(for route: ItemDetailsCastRoute) -> some View {
         switch route {
-        case let .cast(cast): CastContainer(cast: cast)
+        case let .cast(cast): CastContainer<AppState, CastRouting>(cast: cast)
         }
     }
 }

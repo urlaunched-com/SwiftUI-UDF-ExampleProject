@@ -70,7 +70,7 @@ func makeUIModules() -> [Module] {
         makeHomeComponent(),
         makeMainHomeSectionComponent(),
         makeHomeSectionComponent(),
-        makeCastComponent(),
+        makeCast(),
         makeItemDetailsCastComponent(),
     ]
 }
@@ -433,11 +433,11 @@ func makeHomeSectionComponent() -> Module {
     )
 }
 
-func makeCastComponent() -> Module {
+func makeCast() -> Module {
     return Module(
-        name: "CastComponent",
+        name: "Cast",
         moduleType: .feature,
-        path: "CastComponent",
+        path: "Cast",
         frameworkDependancies: [
             .external(name: "UDF"),
             .external(name: "SwiftUI-Kit"),
@@ -449,7 +449,7 @@ func makeCastComponent() -> Module {
         ],
         frameworkResources: [],
         snapshotDependencies: [],
-        targets: [.framework]
+        targets: [.framework, .snapshotTests]
     )
 }
 
