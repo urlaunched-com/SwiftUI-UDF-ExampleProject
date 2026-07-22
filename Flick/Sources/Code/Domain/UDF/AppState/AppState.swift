@@ -19,6 +19,7 @@ import Image
 import Home
 import TabBar
 import Recommendations
+import RecommendationsSection
 
 struct AppState: AppReducer {
     // MARK: Storages
@@ -110,19 +111,12 @@ struct AppState: AppReducer {
     @BindableReducer(RecommendationsFlow.self, bindedTo: RecommendationsContainer<Self, RecommendationsRouting>.self)
     var recommendationsFlow
     
-    // MARK: Movie Details Recommendations
-
-    @BindableReducer(MovieRecommendationsForm.self, bindedTo: MovieDetailsRecommendationsContainer.self)
-    var movieDetailsRecommendationsForm
-    @BindableReducer(MovieRecommendationsFlow.self, bindedTo: MovieDetailsRecommendationsContainer.self)
-    var movieDetailsRecommendationsFlow
-
-    // MARK: Show Details Recommendations
-
-    @BindableReducer(ShowRecommendationsForm.self, bindedTo: ShowDetailsRecommendationsContainer.self)
-    var showDetailsRecommendationsForm
-    @BindableReducer(ShowRecommendationsFlow.self, bindedTo: ShowDetailsRecommendationsContainer.self)
-    var showDetailsRecommendationsFlow
+    // MARK: Recomendations Section
+    
+    @BindableReducer(RecommendationsSectionForm.self, bindedTo: RecommendationsSectionContainer<Self, RecommendationsSectionRouting>.self)
+    var recomendationsSectionForm
+    @BindableReducer(RecommendationsSectionFlow.self, bindedTo: RecommendationsSectionContainer<Self, RecommendationsSectionRouting>.self)
+    var recomendationsSectionFlow
     
     // MARK: - Reviews
     

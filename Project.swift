@@ -68,9 +68,9 @@ func makeUIModules() -> [Module] {
         makeHomeFeature(),
         makeTabBarFeature(),
         makeRecommendations(),
+        makeRecommendationsSection(),
         
         makeSectionDetailsComponent(),
-        makeItemDetailsRecommendationsComponent(),
         makeItemDetailsComponent(),
         makeItemDetailsCastComponent(),
     ]
@@ -303,25 +303,6 @@ func makeSearchFeature() -> Module {
     )
 }
 
-func makeItemDetailsRecommendationsComponent() -> Module {
-    return Module(
-        name: "ItemDetailsRecommendationsComponent",
-        moduleType: .feature,
-        path: "ItemDetailsRecommendationsComponent",
-        frameworkDependancies: [
-            .external(name: "UDF"),
-            .target(name: "Models"),
-            .target(name: "CustomViews"),
-            .target(name: "DesignSystem"),
-            .target(name: "Localizations"),
-            .target(name: "Common"),
-        ],
-        frameworkResources: [],
-        snapshotDependencies: [],
-        targets: [.framework]
-    )
-}
-
 func makeSettingsFeature() -> Module {
     return Module(
         name: "Settings",
@@ -549,5 +530,25 @@ func makeRecommendations() -> Module {
         ],
         frameworkResources: [],
         targets: [.framework, .snapshotTests]
+    )
+}
+
+func makeRecommendationsSection() -> Module {
+    Module(
+        name: "RecommendationsSection",
+        moduleType: .feature,
+        path: "RecommendationsSection",
+        frameworkDependancies: [
+            .external(name: "UDF"),
+            .external(name: "SwiftUI-Kit"),
+            .target(name: "Common"),
+            .target(name: "Models"),
+            .target(name: "DesignSystem"),
+            .target(name: "Localizations"),
+            .target(name: "CustomViews"),
+            .target(name: "API")
+        ],
+        frameworkResources: [],
+        targets: [.framework]
     )
 }

@@ -1,5 +1,5 @@
 //
-//  ShowRecommendationsFlow.swift
+//  RecommendationsSectionFlow.swift
 //  Flick
 //
 //  Created by Valentin Petrulia on 14.05.2025.
@@ -9,21 +9,24 @@
 import UDF
 import Models
 
-enum ShowRecommendationsFlow: IdentifiableFlow {
-    case none, loadShows(Int)
+public enum RecommendationsSectionFlow: IdentifiableFlow {
+    case none
+    case load(Int)
 
-    init() { self = .none }
+    public init() { self = .none }
 
-    mutating func reduce(_ action: some Action) {
+    public mutating func reduce(_ action: some Action) {
         switch action {
         case let action as Actions.LoadPage where action.id == Self.id:
-            self = .loadShows(action.pageNumber)
+            self = .load(action.pageNumber)
 
+        case let action as Actions.DidLoadItems<Movie> where action.id == Self.id:
+            self = .none
+            
         case let action as Actions.DidLoadItems<Show> where action.id == Self.id:
             self = .none
 
-        case let action as Actions.DidCancelEffect
-            where action.cancellation is ShowRecommendationsMiddleware.Cancellation:
+        case let action as Actions.DidCancelEffect where action.cancellation is Cancellation:
             self = .none
 
         case let action as Actions.Error where action.id == Self.id:

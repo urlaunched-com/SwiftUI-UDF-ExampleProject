@@ -10,11 +10,12 @@ import SwiftUI
 import UDF
 import Models
 import Common
-import ItemDetailsRecommendationsComponent
 import Recommendations
+import RecommendationsSection
+import Image
 
-struct ItemDetailsRecommendationsRouting: Routing {
-    @ViewBuilder func view(for route: ItemDetailsRecommendationsRoute) -> some View {
+struct RecommendationsSectionRouting: Routing {
+    @ViewBuilder func view(for route: RecommendationsSectionRoute) -> some View {
         switch route {
         case let .itemDetails(item):
             if let movie = item as? Movie {
@@ -28,6 +29,8 @@ struct ItemDetailsRecommendationsRouting: Routing {
             } else if let show = item as? Show {
                 RecommendationsContainer<AppState, RecommendationsRouting>(id: .show(show.id))
             }
+        case .imageContainer(path: let path, size: let size):
+            ImageContainer<AppState>(size: size, path: path, type: .poster)
         }
     }
 }

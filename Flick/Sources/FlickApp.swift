@@ -16,6 +16,7 @@ import MyFavorites
 import Image
 import Home
 import Recommendations
+import RecommendationsSection
 
 private let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJidW5kbGVfaWRzIjpbImNvbS51cmxhdW5jaGVkLmZsaWNrIl19.HjROptJlsO915Ju0fw7VtO-FhHZlZSdDRALOrFQOvPU"
 var globalStore: EnvironmentStore<AppState>!
@@ -55,8 +56,7 @@ private extension FlickApp {
             MovieCastMiddleware.self
             ShowCastMiddleware.self
             RecommendationsMiddleware.self
-            MovieRecommendationsMiddleware.self
-            ShowRecommendationsMiddleware.self
+            RecommendationsSectionMiddleware.self
             ReviewsMiddleware.self
             ReviewsSectionMiddleware.self
             SearchMiddleware.self

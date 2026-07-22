@@ -13,6 +13,7 @@ import Common
 import WhereToWatch
 import ItemDetailsComponent
 import ReviewsSection
+import RecommendationsSection
 
 struct ItemDetailsRouting: Routing {
     @ViewBuilder
@@ -35,8 +36,8 @@ struct ItemDetailsRouting: Routing {
         case let .recommendations(item):
             buildView(
                 item: item,
-                movieView: { MovieDetailsRecommendationsContainer(id: $0.id) },
-                showView: { ShowDetailsRecommendationsContainer(id: $0.id) }
+                movieView: { RecommendationsSectionContainer<AppState, RecommendationsSectionRouting>(id: .movie($0.id)) },
+                showView: { RecommendationsSectionContainer<AppState, RecommendationsSectionRouting>(id: .show($0.id)) }
             )
 
         case let .whereToWatch(item):
