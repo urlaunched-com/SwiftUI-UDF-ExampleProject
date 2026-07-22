@@ -63,14 +63,14 @@ func makeUIModules() -> [Module] {
         makeSettingsFeature(),
         makeCastFeature(),
         makeImageFeature(),
+        makeMainHomeSectionFeature(),
+        makeHomeSectionFeature(),
         
         makeTabBarComponent(),
         makeSectionDetailsComponent(),
         makeItemDetailsRecommendationsComponent(),
         makeItemDetailsComponent(),
         makeHomeComponent(),
-        makeMainHomeSectionComponent(),
-        makeHomeSectionComponent(),
         makeItemDetailsCastComponent(),
     ]
 }
@@ -393,11 +393,11 @@ func makeHomeComponent() -> Module {
     )
 }
 
-func makeMainHomeSectionComponent() -> Module {
+func makeMainHomeSectionFeature() -> Module {
     return Module(
-        name: "MainHomeSectionComponent",
+        name: "MainHomeSection",
         moduleType: .feature,
-        path: "MainHomeSectionComponent",
+        path: "MainHomeSection",
         frameworkDependancies: [
             .external(name: "UDF"),
             .external(name: "SwiftUI-Kit"),
@@ -409,15 +409,15 @@ func makeMainHomeSectionComponent() -> Module {
         ],
         frameworkResources: [],
         snapshotDependencies: [],
-        targets: [.framework]
+        targets: [.framework, .snapshotTests]
     )
 }
 
-func makeHomeSectionComponent() -> Module {
+func makeHomeSectionFeature() -> Module {
     return Module(
-        name: "HomeSectionComponent",
+        name: "HomeSection",
         moduleType: .feature,
-        path: "HomeSectionComponent",
+        path: "HomeSection",
         frameworkDependancies: [
             .external(name: "UDF"),
             .external(name: "SwiftUI-Kit"),
@@ -429,7 +429,7 @@ func makeHomeSectionComponent() -> Module {
         ],
         frameworkResources: [],
         snapshotDependencies: [],
-        targets: [.framework]
+        targets: [.framework, .snapshotTests]
     )
 }
 

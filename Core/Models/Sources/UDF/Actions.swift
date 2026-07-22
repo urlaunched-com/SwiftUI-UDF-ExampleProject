@@ -18,4 +18,12 @@ public extension Actions {
             self.reviewID = reviewID
         }
     }
+    
+    public struct LoadHomeSection<H: Hashable>: Action {
+        public let sectionId: H
+        
+        public init(sectionId: H) {
+            self.sectionId = sectionId
+        }
+    }
 }

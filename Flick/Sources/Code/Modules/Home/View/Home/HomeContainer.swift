@@ -11,6 +11,8 @@ import UDF
 import Models
 import Common
 import HomeComponent
+import HomeSection
+import MainHomeSection
 
 struct HomeContainer: Container {
     typealias ContainerComponent = HomeComponent
@@ -41,13 +43,25 @@ struct HomeContainer: Container {
             destinationBuilder: DestinationBuilder<HomeContent>(destination: { value in
                 switch value {
                 case let .mainHomeSection(section: section as Models.MovieSection, retrieveItems: retrieveItems):
-                    MainHomeSectionContainer(section: section, retrieveItems: retrieveItems)
+                    MainHomeSectionContainer<AppState, Models.MovieSection, MainHomeSectionRouting>(
+                        section: section,
+                        retrieveItems: retrieveItems
+                    )
                 case let .mainHomeSection(section: section as Models.ShowSection, retrieveItems: retrieveItems):
-                    MainHomeSectionContainer(section: section, retrieveItems: retrieveItems)
+                    MainHomeSectionContainer<AppState, Models.ShowSection, MainHomeSectionRouting>(
+                        section: section,
+                        retrieveItems: retrieveItems
+                    )
                 case let .homeSection(section: section as Models.MovieSection, retrieveItems: retrieveItems):
-                    HomeSectionContainer(section: section, retrieveItems: retrieveItems)
+                    HomeSectionContainer<AppState, Models.MovieSection, HomeSectionRouting>(
+                        section: section,
+                        retrieveItems: retrieveItems
+                    )
                 case let .homeSection(section: section as Models.ShowSection, retrieveItems: retrieveItems):
-                    HomeSectionContainer(section: section, retrieveItems: retrieveItems)
+                    HomeSectionContainer<AppState, Models.ShowSection, HomeSectionRouting>(
+                        section: section,
+                        retrieveItems: retrieveItems
+                    )
                 default:
                     EmptyView()
                 }

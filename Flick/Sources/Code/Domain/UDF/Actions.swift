@@ -12,10 +12,6 @@ import UDF
 extension Actions {
     struct SignIn: Action {}
 
-    struct LoadHomeSection<H: Hashable>: Action {
-        let sectionId: H
-    }
-
     struct UpdateNetworkConnectivityStatus: Action {
         let satisfied: Bool
     }

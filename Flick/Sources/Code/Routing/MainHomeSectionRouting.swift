@@ -1,5 +1,5 @@
 //
-//  HomeSectionRouter.swift
+//  MainHomeSectionRouting.swift
 //  Flick
 //
 //  Created by Valentin Petrulia on 27.02.2025.
@@ -10,10 +10,11 @@ import SwiftUI
 import UDF
 import Models
 import Common
-import HomeSectionComponent
+import MainHomeSection
+import Image
 
-struct HomeSectionRouter: Routing {
-    @ViewBuilder func view(for route: HomeSectionRoute) -> some View {
+struct MainHomeSectionRouting: Routing {
+    @ViewBuilder func view(for route: MainHomeSectionRoute) -> some View {
         switch route {
         case let .itemDetails(item):
             buildView(
@@ -28,6 +29,13 @@ struct HomeSectionRouter: Routing {
             } else if let showSection = section as? ShowSection {
                 SectionDetailsContainer(section: showSection)
             }
+        case let .imageContainer(path, size, type, isLoaderPresented):
+            ImageContainer<AppState>(
+                size: size,
+                path: path,
+                type: type,
+                isLoaderPresented: isLoaderPresented
+            )
         }
     }
 }

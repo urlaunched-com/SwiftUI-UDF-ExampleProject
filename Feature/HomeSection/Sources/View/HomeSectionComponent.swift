@@ -2,8 +2,8 @@
 //  HomeSectionComponent.swift
 //  Flick
 //
-//  Created by Alexander Sharko on 30.11.2022.
-//  Copyright © 2022 urlaunched.com. All rights reserved.
+//  Created by Bogdan Petkanych on 22.07.2026.
+//  Copyright © 2026 urlaunched. All rights reserved.
 //
 
 import DesignSystem
@@ -18,28 +18,25 @@ public struct HomeSectionComponent<S: Models.Section, R: Routing>: Component whe
         var section: S
         var items: [any Item]
         var genreById: (Genre.ID) -> Genre?
-        var router: R = .init()
-        var destinationBuilder: DestinationBuilder<HomeContent> = .init()
-        
+        var router: R
+
         public init(
             section: S,
             items: [any Item],
             genreById: @escaping (Genre.ID) -> Genre?,
-            router: R = .init(),
-            destinationBuilder: DestinationBuilder<HomeContent> = .init()
+            router: R
         ) {
             self.section = section
             self.items = items
             self.genreById = genreById
             self.router = router
-            self.destinationBuilder = destinationBuilder
         }
     }
 
     public var props: Props
 
     @Environment(\.globalRouter) private var globalRouter
-    
+
     public init(props: Props) {
         self.props = props
     }
@@ -60,7 +57,7 @@ public struct HomeSectionComponent<S: Models.Section, R: Routing>: Component whe
                         HomeCardView(
                             item: item,
                             genres: item.genres(action: props.genreById),
-                            imageView: props.destinationBuilder.view(
+                            imageView: props.router.view(
                                 for: .imageContainer(
                                     path: item.posterPath,
                                     size: ItemSizeStyle.default.coverSize,
@@ -81,8 +78,6 @@ public struct HomeSectionComponent<S: Models.Section, R: Routing>: Component whe
         .frame(height: 340, alignment: .top)
     }
 }
-
-// MARK: - Preview
 
 #Preview {
     HomeSectionComponent(

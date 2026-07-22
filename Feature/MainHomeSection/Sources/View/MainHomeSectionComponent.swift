@@ -2,8 +2,8 @@
 //  MainHomeSectionComponent.swift
 //  Flick
 //
-//  Created by Alexander Sharko on 01.12.2022.
-//  Copyright © 2022 urlaunched.com. All rights reserved.
+//  Created by Bogdan Petkanych on 22.07.2026.
+//  Copyright © 2026 urlaunched. All rights reserved.
 //
 
 import SwiftUI
@@ -18,26 +18,23 @@ public struct MainHomeSectionComponent<S: Models.Section, R: Routing>: Component
         var section: S
         var items: [any Item]
         var genreById: (Genre.ID) -> Genre?
-        var router: R = .init()
-        var destinationBuilder: DestinationBuilder<MainHomeContent> = .init()
-        
+        var router: R
+
         public init(
             section: S,
             items: [any Item],
             genreById: @escaping (Genre.ID) -> Genre?,
-            router: R = .init(),
-            destinationBuilder: DestinationBuilder<MainHomeContent> = .init()
+            router: R
         ) {
             self.section = section
             self.items = items
             self.genreById = genreById
             self.router = router
-            self.destinationBuilder = destinationBuilder
         }
     }
 
     public var props: Props
-    
+
     public init(props: Props) {
         self.props = props
     }
@@ -61,7 +58,7 @@ public struct MainHomeSectionComponent<S: Models.Section, R: Routing>: Component
                     globalRouter.navigate(for: R.self, to: .itemDetails(item))
                 },
                 backgroundImage: { size, path in
-                    props.destinationBuilder.view(
+                    props.router.view(
                         for: .imageContainer(
                             path: path,
                             size: size,
@@ -71,7 +68,7 @@ public struct MainHomeSectionComponent<S: Models.Section, R: Routing>: Component
                     )
                 },
                 cardImage: { item in
-                    props.destinationBuilder.view(
+                    props.router.view(
                         for: .imageContainer(
                             path: item.posterPath,
                             size: ItemSizeStyle.default.coverSize,
