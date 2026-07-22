@@ -11,28 +11,29 @@ import Foundation
 import UDF
 @preconcurrency import Models
 
-final class SectionDetailsMiddleware: BaseObservableMiddleware<AppState> {
-    enum Cancellation: Hashable, CaseIterable {
-        case loadMovies, loadShows
-    }
+enum Cancellation: Hashable, CaseIterable {
+    case loadMovies
+    case loadShows
+}
 
-    struct Environment {
+public final class SectionDetailsMiddleware<F: SectionDetailsFeature>: Middleware<F>, @unchecked Sendable {
+    public struct Environment {
         var loadMovies: (_ section: String, _ page: Int) async throws -> [Movie]
         var loadShows: (_ section: String, _ page: Int) async throws -> [Show]
     }
 
-    var environment: Environment!
+    public var environment: Environment!
 
-    func scope(for state: AppState) -> Scope {
+    public func scope(for state: F) -> Scope {
         state.networkConnectivityForm
         state.sectionDetailsFlow
     }
 
-    override func status(for state: AppState) -> MiddlewareStatus {
+    public override func status(for state: F) -> MiddlewareStatus {
         state.networkConnectivityForm.satisfied ? .active : .suspend
     }
 
-    func observe(state: AppState) {
+    public func observe(state: F) {
         switch state.sectionDetailsFlow {
         case let .loadMovies(page):
             execute(
@@ -64,8 +65,8 @@ final class SectionDetailsMiddleware: BaseObservableMiddleware<AppState> {
 
 // MARK: - Environment buid methods
 
-extension SectionDetailsMiddleware {
-    static func buildLiveEnvironment(for _: some Store<AppState>) -> Environment {
+public extension SectionDetailsMiddleware {
+    static func buildLiveEnvironment(for _: some Store<F>) -> Environment {
         Environment(
             loadMovies: { section, page in
                 let movies = try await HomeAPIClient.loadMovies(section: section, page: page)

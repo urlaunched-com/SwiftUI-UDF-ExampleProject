@@ -34,4 +34,12 @@ public extension Actions {
             self.itemId = itemId
         }
     }
+    
+    public struct SectionOpened<H: Hashable>: Action {
+        public let sectionId: H
+        
+        public init(sectionId: H) {
+            self.sectionId = sectionId
+        }
+    }
 }

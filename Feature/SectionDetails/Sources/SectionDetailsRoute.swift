@@ -19,7 +19,7 @@ public enum SectionDetailsRoute: Hashable {
         switch self {
         case let .itemDetails(item):
             hasher.combine(item)
-        case .imageContainer(path: let path, size: let size):
+        case .imageContainer(path: let path, size: _):
             hasher.combine(path)
         }
     }

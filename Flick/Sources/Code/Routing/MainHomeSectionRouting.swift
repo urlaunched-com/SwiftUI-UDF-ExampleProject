@@ -12,6 +12,7 @@ import Models
 import Common
 import MainHomeSection
 import Image
+import SectionDetails
 
 struct MainHomeSectionRouting: Routing {
     @ViewBuilder func view(for route: MainHomeSectionRoute) -> some View {
@@ -25,9 +26,9 @@ struct MainHomeSectionRouting: Routing {
 
         case let .sectionDetails(section):
             if let movieSection = section as? MovieSection {
-                SectionDetailsContainer(section: movieSection)
+                SectionDetailsContainer<AppState, MovieSection, SectionDetailsRouting>(section: movieSection)
             } else if let showSection = section as? ShowSection {
-                SectionDetailsContainer(section: showSection)
+                SectionDetailsContainer<AppState, ShowSection, SectionDetailsRouting>(section: showSection)
             }
         case let .imageContainer(path, size, type, isLoaderPresented):
             ImageContainer<AppState>(

@@ -85,7 +85,6 @@ private extension View {
             .navigationDestination(for: HomeSectionRouting.self)
             .navigationDestination(for: SectionDetailsRouting.self)
             .navigationDestination(for: ItemDetailsRouting.self)
-            .navigationDestination(for: ItemDetailsCastRouting.self)
             .navigationDestination(for: ReviewsRouting.self)
             .navigationDestination(for: ReviewsSectionRouting.self)
             .navigationDestination(for: RecommendationsSectionRouting.self)

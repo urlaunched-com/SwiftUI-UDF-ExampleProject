@@ -12,27 +12,31 @@ import SectionDetailsComponent
 import Common
 import SwiftUI
 
-struct SectionDetailsContainer<S: Models.Section>: Container {
-    typealias ContainerComponent = SectionDetailsComponent<SectionDetailsRouting>
-    let section: S
+public struct SectionDetailsContainer<F: SectionDetailsFeature, S: Models.Section, R: Routing>: Container where R.Route == SectionDetailsRoute {
+    public typealias ContainerComponent = SectionDetailsComponent<R>
+    public let section: S
 
-    func scope(for state: AppState) -> Scope {
+    public func scope(for state: F) -> Scope {
         state.sectionDetailsForm
         state.sectionDetailsFlow
     }
+    
+    public init(section: S) {
+        self.section = section
+    }
 
-    func map(store: EnvironmentStore<AppState>) -> ContainerComponent.Props {
+    public func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
         .init(
             title: section.title,
             items: items,
             genreById: store.state.allGenres.genreBy,
             loadMoreAction: loadNewPageIfNeeded,
-            dialogStatus: store.$state.homeForm.dialog,
-            router: SectionDetailsRouting()
+            dialog: dialog,
+            router: R()
         )
     }
 
-    func onContainerDidLoad(store: EnvironmentStore<AppState>) {
+    public func onContainerDidLoad(store: EnvironmentStore<F>) {
         store.dispatch(
             ActionGroup {
                 Actions.SectionOpened(sectionId: section.id)
@@ -61,6 +65,15 @@ private extension SectionDetailsContainer {
             return store.state.sectionDetailsForm.shows.map { store.state.allShows.showBy(id: $0) }
         }
         return []
+    }
+    
+    var dialog: Binding<DialogStatus> {
+        Binding {
+            store.state.homeForm.dialog
+        } set: { newDialog in
+            store.dispatch(Actions.UpdateFormField(keyPath: \F.HomeForm.dialog, value: newDialog))
+        }
+
     }
 
     func loadNewPageIfNeeded() {

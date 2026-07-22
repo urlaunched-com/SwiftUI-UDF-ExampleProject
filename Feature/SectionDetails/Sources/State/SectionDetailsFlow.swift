@@ -10,15 +10,15 @@ import SwiftUI
 import UDF
 import Models
 
-enum SectionDetailsFlow: IdentifiableFlow {
+public enum SectionDetailsFlow: IdentifiableFlow {
     case none, loadMovies(Int), loadShows(Int)
 
-    init() { self = .none }
+    public init() { self = .none }
 
     static var loadMoviesId: FlowId = .init(value: "loadSectionMovies")
     static var loadShowsId: FlowId = .init(value: "loadSectionShows")
 
-    mutating func reduce(_ action: some Action) {
+    public mutating func reduce(_ action: some Action) {
         switch action {
         case let action as Actions.LoadPage where action.id == Self.loadMoviesId:
             self = .loadMovies(action.pageNumber)
@@ -32,7 +32,7 @@ enum SectionDetailsFlow: IdentifiableFlow {
         case let action as Actions.DidLoadItems<Show> where action.id == Self.loadShowsId:
             self = .none
 
-        case let action as Actions.DidCancelEffect where SectionDetailsMiddleware.Cancellation.allCases.contains { $0 == action.cancellation }:
+        case let action as Actions.DidCancelEffect where Cancellation.allCases.contains { $0 == action.cancellation }:
             self = .none
 
         default:

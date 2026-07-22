@@ -10,7 +10,7 @@ import SwiftUI
 import UDF
 import Models
 import Common
-import SectionDetailsComponent
+import SectionDetails
 import Image
 
 struct SectionDetailsRouting: Routing {

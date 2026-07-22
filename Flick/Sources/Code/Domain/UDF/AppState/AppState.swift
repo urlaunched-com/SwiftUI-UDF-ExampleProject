@@ -21,6 +21,7 @@ import Home
 import TabBar
 import Recommendations
 import RecommendationsSection
+import SectionDetails
 
 struct AppState: AppReducer {
     // MARK: Storages

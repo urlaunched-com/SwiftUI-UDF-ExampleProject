@@ -70,8 +70,8 @@ func makeUIModules() -> [Module] {
         makeTabBarFeature(),
         makeRecommendations(),
         makeRecommendationsSection(),
+        makeSectionDetails(),
         
-        makeSectionDetailsComponent(),
         makeItemDetailsComponent(),
     ]
 }
@@ -268,15 +268,16 @@ func makeImageFeature() -> Module {
     )
 }
 
-func makeSectionDetailsComponent() -> Module {
+func makeSectionDetails() -> Module {
     return Module(
-        name: "SectionDetailsComponent",
+        name: "SectionDetails",
         moduleType: .feature,
-        path: "SectionDetailsComponent",
+        path: "SectionDetails",
         frameworkDependancies: [
             .external(name: "UDF"),
             .target(name: "Common"),
             .target(name: "Models"),
+            .target(name: "CustomViews"),
         ],
         frameworkResources: [],
         snapshotDependencies: [],

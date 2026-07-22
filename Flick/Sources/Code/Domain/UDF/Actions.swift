@@ -16,10 +16,6 @@ extension Actions {
         let satisfied: Bool
     }
 
-    struct SectionOpened<H: Hashable>: Action {
-        let sectionId: H
-    }
-
     struct LoadItemDetails<H: Hashable>: Action {
         let itemId: H
     }

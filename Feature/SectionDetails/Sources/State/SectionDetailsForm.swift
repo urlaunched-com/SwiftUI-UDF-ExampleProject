@@ -10,7 +10,7 @@ import UDF
 @preconcurrency import Models
 import Common
 
-struct SectionDetailsForm: Form {
+public struct SectionDetailsForm: Form {
     var moviesPaginator: Paginator = .init(
         Movie.self,
         flowId: SectionDetailsFlow.loadMoviesId,
@@ -29,8 +29,10 @@ struct SectionDetailsForm: Form {
 
     var movieSectionId: MovieSection? = nil
     var showSectionId: ShowSection? = nil
+    
+    public init() {}
 
-    mutating func reduce(_ action: some Action) {
+    public mutating func reduce(_ action: some Action) {
         switch action {
         case let action as Actions.SectionOpened<MovieSection>:
             movieSectionId = action.sectionId

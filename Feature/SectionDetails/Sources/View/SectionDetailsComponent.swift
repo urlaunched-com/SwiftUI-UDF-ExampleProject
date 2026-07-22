@@ -12,6 +12,7 @@ import SwiftUI_Kit
 import UDF
 import Models
 import Common
+import CustomViews
 
 public struct SectionDetailsComponent<R: Routing>: Component where R.Route == SectionDetailsRoute {
     public struct Props {
@@ -19,7 +20,7 @@ public struct SectionDetailsComponent<R: Routing>: Component where R.Route == Se
         var items: [any Item]
         var genreById: (Genre.ID) -> Genre?
         var loadMoreAction: Command
-        var dialogStatus: Binding<DialogStatus>
+        var dialog: Binding<DialogStatus>
         var router: R = .init()
         
         public init(
@@ -27,14 +28,14 @@ public struct SectionDetailsComponent<R: Routing>: Component where R.Route == Se
             items: [any Item],
             genreById: @escaping (Genre.ID) -> Genre?,
             loadMoreAction: @escaping Command,
-            dialogStatus: Binding<DialogStatus>,
+            dialog: Binding<DialogStatus>,
             router: R = .init()
         ) {
             self.title = title
             self.items = items
             self.genreById = genreById
             self.loadMoreAction = loadMoreAction
-            self.dialogStatus = dialogStatus
+            self.dialog = dialog
             self.router = router
         }
     }
@@ -83,7 +84,7 @@ public struct SectionDetailsComponent<R: Routing>: Component where R.Route == Se
                 }
             }
             .toolbar(.hidden, for: .tabBar)
-            .dialog(status: props.dialogStatus)
+            .dialog(status: props.dialog)
         }
     }
 }
@@ -91,14 +92,14 @@ public struct SectionDetailsComponent<R: Routing>: Component where R.Route == Se
 // MARK: - Preview
 
 #Preview {
-    SectionDetailsComponent<MockRouter<SectionDetailsRoute>>(
+    SectionDetailsComponent(
         props: .init(
             title: "Popular",
             items: Movie.testItems(count: 10),
             genreById: { _ in .fakeItem() },
             loadMoreAction: {},
-            dialogStatus: .constant(.dismissed),
-            router: MockRouter<SectionDetailsRoute>()
+            dialog: .constant(.dismissed),
+            router: MockRouter()
         )
     )
 }
