@@ -9,11 +9,13 @@
 import UDF
 @preconcurrency import Models
 
-struct HomeForm: Form {
-    var contentType: ContentType = .movie
-    var dialog: DialogStatus = .dismissed
+public struct HomeForm: Form, HomeFeatureTypes.HomeForm {
+    public var contentType: ContentType = .movie
+    public var dialog: DialogStatus = .dismissed
 
-    mutating func reduce(_ action: some Action) {
+    public init() {}
+
+    public mutating func reduce(_ action: some Action) {
         switch action {
         case let action as Actions.Error where action.id == HomeFlow.id:
             dialog = .init(error: action.error)

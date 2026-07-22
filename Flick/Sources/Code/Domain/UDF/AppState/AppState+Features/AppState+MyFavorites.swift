@@ -9,8 +9,6 @@
 import MyFavorites
 
 extension AppState: MyFavoritesFeature {
-    typealias AllMovies = Flick.AllMovies
-    typealias AllShows = Flick.AllShows
     typealias AllGenres = Flick.AllGenres
 }
 

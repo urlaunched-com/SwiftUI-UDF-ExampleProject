@@ -10,12 +10,16 @@ import SwiftUI
 import UDF
 import Models
 
-enum HomeFlow: IdentifiableFlow {
+public enum HomeFlow: IdentifiableFlow, HomeFeatureTypes.HomeFlow {
     case none, loading
 
-    init() { self = .none }
+    public init() { self = .none }
 
-    mutating func reduce(_ action: some Action) {
+    public var isLoading: Bool {
+        self == .loading
+    }
+
+    public mutating func reduce(_ action: some Action) {
         switch action {
         case is Actions.LoadHomeSection<MovieSection>:
             self = .loading
@@ -27,6 +31,9 @@ enum HomeFlow: IdentifiableFlow {
             self = .none
 
         case is Actions.DidLoadItems<Show>:
+            self = .none
+
+        case let action as Actions.DidCancelEffect where action.cancellation is HomeCancellation:
             self = .none
 
         default:

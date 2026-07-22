@@ -9,14 +9,21 @@
 import UDF
 import Models
 
-enum ShowGenresFlow: IdentifiableFlow {
+public enum ShowGenresFlow: IdentifiableFlow, HomeFeatureTypes.ShowGenresFlow {
     case none, loading
 
-    init() { self = .loading }
+    public init() { self = .loading }
 
-    mutating func reduce(_ action: some Action) {
+    public var isLoading: Bool {
+        self == .loading
+    }
+
+    public mutating func reduce(_ action: some Action) {
         switch action {
         case let action as Actions.DidLoadItems<Genre> where action.id == Self.id:
+            self = .none
+
+        case let action as Actions.DidCancelEffect where action.cancellation == HomeGenresCancellation.loadShowGenres:
             self = .none
 
         default:

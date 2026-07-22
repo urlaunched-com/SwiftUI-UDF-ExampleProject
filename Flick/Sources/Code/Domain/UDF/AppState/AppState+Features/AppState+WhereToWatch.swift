@@ -7,11 +7,9 @@
 //
 
 import WhereToWatch
+import Home
 
 extension AppState: WhereToWatchFeature {
-    typealias HomeFlow = Flick.HomeFlow
 }
 
-extension HomeFlow: WhereToWatch.HomeFlow {}
-
-
+extension Home.HomeFlow: WhereToWatch.HomeFlow {}

@@ -11,58 +11,48 @@ import Foundation
 import UDF
 import Models
 
-final class GenresMiddleware: BaseObservableMiddleware<AppState> {
-    var environment: Environment!
+public enum HomeGenresCancellation: Hashable {
+    case loadMovieGenres
+    case loadShowGenres
+}
 
-    func scope(for state: AppState) -> Scope {
+public final class GenresMiddleware<F: HomeFeature>: Middleware<F>, @unchecked Sendable {
+    public var environment: Environment!
+
+    public func scope(for state: F) -> Scope {
         state.networkConnectivityForm
         state.movieGenresFlow
         state.showGenresFlow
     }
 
-    override func status(for state: AppState) -> MiddlewareStatus {
+    public override func status(for state: F) -> MiddlewareStatus {
         state.networkConnectivityForm.satisfied ? .active : .suspend
     }
 
-    func observe(state: AppState) {
-        switch state.movieGenresFlow {
-        case .loading:
-            execute(flowId: MovieGenresFlow.id, cancellation: Cancellation.loadMovieGenres) { [unowned self] taskId in
+    public func observe(state: F) {
+        if state.movieGenresFlow.isLoading {
+            execute(flowId: MovieGenresFlow.id, cancellation: HomeGenresCancellation.loadMovieGenres) { [unowned self] taskId in
                 let data = try await self.environment.loadMovieGenres()
                 return Actions.DidLoadItems(items: data, id: taskId)
             }
-
-        default:
-            break
         }
 
-        switch state.showGenresFlow {
-        case .loading:
-            execute(flowId: ShowGenresFlow.id, cancellation: Cancellation.loadShowGenres) { [unowned self] taskId in
+        if state.showGenresFlow.isLoading {
+            execute(flowId: ShowGenresFlow.id, cancellation: HomeGenresCancellation.loadShowGenres) { [unowned self] taskId in
                 let data = try await self.environment.loadShowGenres()
                 return Actions.DidLoadItems(items: data, id: taskId)
             }
-
-        default:
-            break
         }
     }
 
-    struct Environment {
+    public struct Environment {
         var loadMovieGenres: () async throws -> [Genre]
         var loadShowGenres: () async throws -> [Genre]
     }
-
-    enum Cancellation: Hashable {
-        case loadMovieGenres
-        case loadShowGenres
-    }
 }
 
-// MARK: - Environment buid methods
-
-extension GenresMiddleware {
-    static func buildLiveEnvironment(for _: some Store) -> Environment {
+public extension GenresMiddleware {
+    static func buildLiveEnvironment(for _: some Store<F>) -> Environment {
         Environment(
             loadMovieGenres: {
                 let movieGenres = try await HomeAPIClient.loadMovieGenres()

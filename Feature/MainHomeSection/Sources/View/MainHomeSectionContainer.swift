@@ -13,14 +13,14 @@ public struct MainHomeSectionContainer<F: MainHomeSectionFeature, S: Section, R:
     public typealias ContainerComponent = MainHomeSectionComponent<S, R>
 
     public let section: S
-    public var retrieveItems: () -> [any Item]
+    public let items: [any Item]
 
     public init(
         section: S,
-        retrieveItems: @escaping () -> [any Item]
+        items: [any Item]
     ) {
         self.section = section
-        self.retrieveItems = retrieveItems
+        self.items = items
     }
 
     public func scope(for state: F) -> Scope {
@@ -31,7 +31,7 @@ public struct MainHomeSectionContainer<F: MainHomeSectionFeature, S: Section, R:
     public func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
         .init(
             section: section,
-            items: retrieveItems(),
+            items: items,
             genreById: store.state.allGenres.genreBy,
             router: R()
         )

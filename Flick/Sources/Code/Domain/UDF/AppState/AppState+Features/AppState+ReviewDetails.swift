@@ -11,7 +11,6 @@ import Models
 import ReviewDetails
 
 extension AppState: ReviewDetailsFeature {
-    typealias NetworkConnectivityForm = Flick.NetworkConnectivityForm
     typealias AllReviews = Flick.AllReviews
     typealias ReviewDetailsContainerType = ReviewDetailsContainer<Self, ReviewDetailsRouting>
     

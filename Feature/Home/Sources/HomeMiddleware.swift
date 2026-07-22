@@ -11,27 +11,22 @@ import Foundation
 import UDF
 import Models
 
-final class HomeMiddleware: BaseReducibleMiddleware<AppState> {
-    var environment: Environment!
+public enum HomeCancellation: Hashable {
+    case loadMovies(MovieSection)
+    case loadShows(ShowSection)
+}
 
-    struct Environment {
-        var loadMovies: (_ section: String) async throws -> [Movie]
-        var loadShows: (_ section: String) async throws -> [Show]
-    }
+public final class HomeMiddleware<F: HomeFeature>: Middleware<F>, @unchecked Sendable {
+    public var environment: Environment!
 
-    enum Cancellation: Hashable {
-        case loadMovies(MovieSection)
-        case loadShows(ShowSection)
-    }
-
-    override func status(for state: AppState) -> MiddlewareStatus {
+    public override func status(for state: F) -> MiddlewareStatus {
         state.networkConnectivityForm.satisfied ? .active : .suspend
     }
 
-    func reduce(_ action: some Action, for _: AppState) {
+    public func reduce(_ action: some Action, for _: F) {
         switch action {
         case let action as Actions.LoadHomeSection<MovieSection>:
-            execute(flowId: HomeFlow.id, cancellation: Cancellation.loadMovies(action.sectionId)) { [unowned self] taskId in
+            execute(flowId: HomeFlow.id, cancellation: HomeCancellation.loadMovies(action.sectionId)) { [unowned self] taskId in
                 let data = try await environment.loadMovies(action.sectionId.urlValue)
                 return ActionGroup {
                     Actions.DidLoadItems(items: data, id: taskId)
@@ -40,7 +35,7 @@ final class HomeMiddleware: BaseReducibleMiddleware<AppState> {
             }
 
         case let action as Actions.LoadHomeSection<ShowSection>:
-            execute(flowId: HomeFlow.id, cancellation: Cancellation.loadShows(action.sectionId)) { [unowned self] taskId in
+            execute(flowId: HomeFlow.id, cancellation: HomeCancellation.loadShows(action.sectionId)) { [unowned self] taskId in
                 let data = try await environment.loadShows(action.sectionId.urlValue)
                 return ActionGroup {
                     Actions.DidLoadItems(items: data, id: taskId)
@@ -48,15 +43,19 @@ final class HomeMiddleware: BaseReducibleMiddleware<AppState> {
                 }
             }
 
-        default: break
+        default:
+            break
         }
+    }
+
+    public struct Environment {
+        var loadMovies: (_ section: String) async throws -> [Movie]
+        var loadShows: (_ section: String) async throws -> [Show]
     }
 }
 
-// MARK: - Environment buid methods
-
-extension HomeMiddleware {
-    static func buildLiveEnvironment(for _: some Store<AppState>) -> Environment {
+public extension HomeMiddleware {
+    static func buildLiveEnvironment(for _: some Store<F>) -> Environment {
         Environment(
             loadMovies: {
                 let movies = try await HomeAPIClient.loadMovies(section: $0)

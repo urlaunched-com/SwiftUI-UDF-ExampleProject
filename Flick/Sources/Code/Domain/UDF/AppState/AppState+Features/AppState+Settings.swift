@@ -7,7 +7,7 @@
 //
 
 import Settings
+import Home
 
 extension AppState: SettingsFeature {
-    typealias HomeForm = Flick.HomeForm
 }

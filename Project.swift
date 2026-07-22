@@ -65,12 +65,12 @@ func makeUIModules() -> [Module] {
         makeImageFeature(),
         makeMainHomeSectionFeature(),
         makeHomeSectionFeature(),
+        makeHomeFeature(),
         
         makeTabBarComponent(),
         makeSectionDetailsComponent(),
         makeItemDetailsRecommendationsComponent(),
         makeItemDetailsComponent(),
-        makeHomeComponent(),
         makeItemDetailsCastComponent(),
     ]
 }
@@ -377,23 +377,22 @@ func makeItemDetailsComponent() -> Module {
     )
 }
 
-func makeHomeComponent() -> Module {
+func makeHomeFeature() -> Module {
     return Module(
-        name: "HomeComponent",
+        name: "Home",
         moduleType: .feature,
-        path: "HomeComponent",
+        path: "Home",
         frameworkDependancies: [
             .external(name: "UDF"),
-            .external(name: "SwiftUI-Kit"),
+            .target(name: "API"),
             .target(name: "Common"),
             .target(name: "Models"),
-            .target(name: "DesignSystem"),
             .target(name: "Localizations"),
             .target(name: "CustomViews"),
         ],
         frameworkResources: [],
         snapshotDependencies: [],
-        targets: [.framework]
+        targets: [.framework, .snapshotTests]
     )
 }
 

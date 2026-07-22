@@ -13,7 +13,7 @@ import Models
 import Common
 import CustomViews
 
-public struct HomeComponent: Component {
+public struct HomeComponent<R: Routing>: Component where R.Route == HomeRoute {
     public struct Props {
         var contentType: Binding<ContentType>
         var movieSections: [MovieSection]
@@ -23,8 +23,8 @@ public struct HomeComponent: Component {
         var isMoviesRedacted: (MovieSection) -> Bool
         var isShowsRedacted: (ShowSection) -> Bool
         var dialogStatus: Binding<DialogStatus>
-        var destinationBuilder: DestinationBuilder<HomeContent> = .init()
-        
+        var router: R
+
         public init(
             contentType: Binding<ContentType>,
             movieSections: [MovieSection],
@@ -34,7 +34,7 @@ public struct HomeComponent: Component {
             isMoviesRedacted: @escaping (MovieSection) -> Bool,
             isShowsRedacted: @escaping (ShowSection) -> Bool,
             dialogStatus: Binding<DialogStatus>,
-            destinationBuilder: DestinationBuilder<HomeContent> = .init()
+            router: R
         ) {
             self.contentType = contentType
             self.movieSections = movieSections
@@ -44,7 +44,7 @@ public struct HomeComponent: Component {
             self.isMoviesRedacted = isMoviesRedacted
             self.isShowsRedacted = isShowsRedacted
             self.dialogStatus = dialogStatus
-            self.destinationBuilder = destinationBuilder
+            self.router = router
         }
     }
 
@@ -53,7 +53,7 @@ public struct HomeComponent: Component {
     public init(props: Props) {
         self.props = props
     }
-    
+
     public var body: some View {
         ScrollView {
             VStack(spacing: 8) {
@@ -75,21 +75,21 @@ public struct HomeComponent: Component {
 
 extension HomeComponent {
     var movieSectionsView: some View {
-        ForEach(MovieSection.allCases, id: \.self) { (movieSection: MovieSection) in
+        ForEach(props.movieSections, id: \.self) { movieSection in
             let isRedacted = props.isMoviesRedacted(movieSection)
             Group {
-                if movieSection == MovieSection.popular {
-                    props.destinationBuilder.view(
-                        for: .mainHomeSection(
+                if movieSection == .popular {
+                    props.router.view(
+                        for: .mainMovieSection(
                             section: movieSection,
-                            retrieveItems: { props.moviesForSection(movieSection) }
+                            items: props.moviesForSection(movieSection)
                         )
                     )
                 } else {
-                    props.destinationBuilder.view(
-                        for: .homeSection(
+                    props.router.view(
+                        for: .movieSection(
                             section: movieSection,
-                            retrieveItems: { props.moviesForSection(movieSection) }
+                            items: props.moviesForSection(movieSection)
                         )
                     )
                 }
@@ -100,21 +100,21 @@ extension HomeComponent {
     }
 
     var showSectionsView: some View {
-        ForEach(ShowSection.allCases, id: \.self) { (showSection: ShowSection) in
+        ForEach(props.showSections, id: \.self) { showSection in
             let isRedacted = props.isShowsRedacted(showSection)
             Group {
-                if showSection == ShowSection.popular {
-                    props.destinationBuilder.view(
-                        for: .mainHomeSection(
+                if showSection == .popular {
+                    props.router.view(
+                        for: .mainShowSection(
                             section: showSection,
-                            retrieveItems: { props.showsForSection(showSection) }
+                            items: props.showsForSection(showSection)
                         )
                     )
                 } else {
-                    props.destinationBuilder.view(
-                        for: .homeSection(
+                    props.router.view(
+                        for: .showSection(
                             section: showSection,
-                            retrieveItems: { props.showsForSection(showSection) }
+                            items: props.showsForSection(showSection)
                         )
                     )
                 }
@@ -126,19 +126,18 @@ extension HomeComponent {
     }
 }
 
-// MARK: - Preview
-
 #Preview {
     HomeComponent(
         props: .init(
             contentType: .constant(.movie),
-            movieSections: [],
-            showSections: [],
+            movieSections: MovieSection.allCases,
+            showSections: ShowSection.allCases,
             moviesForSection: { _ in Movie.fakeItems() },
             showsForSection: { _ in Show.fakeItems() },
             isMoviesRedacted: { _ in false },
             isShowsRedacted: { _ in false },
-            dialogStatus: .constant(.dismissed)
+            dialogStatus: .constant(.dismissed),
+            router: MockRouter<HomeRoute>()
         )
     )
 }
