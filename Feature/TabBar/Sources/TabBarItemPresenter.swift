@@ -6,19 +6,15 @@
 //  Copyright © 2025 urlaunched.com. All rights reserved.
 //
 
+import DesignSystem
 import SwiftUI
 import Common
 
-public struct TabBarItemPresenter {
-    private let tabBarItem: TabBarItem
-    private let isSelected: Bool
+struct TabBarItemPresenter {
+    let tabBarItem: TabBarItem
+    let isSelected: Bool
 
-    public init(item: TabBarItem, isSelected: Bool) {
-        tabBarItem = item
-        self.isSelected = isSelected
-    }
-
-    public var image: Image {
+    var icon: Image {
         switch tabBarItem {
         case .home:
             isSelected ? .videoPlayFill : .videoPlay
@@ -33,7 +29,7 @@ public struct TabBarItemPresenter {
         }
     }
 
-    public var foregroundColor: Color {
-        isSelected ? .flMainPink : .flPink60
+    var foregroundColor: Color {
+        isSelected ? .flMainPink : .flGray
     }
 }

@@ -14,6 +14,7 @@ import Search
 import MyFavorites
 import Settings
 import Home
+import TabBar
 
 struct RootRouting: Routing {
     enum Route {
@@ -36,7 +37,7 @@ struct RootRouting: Routing {
         case .randomizer: Text("Randomizer")
         case .favorites: MyFavoritesContainer<AppState, MyFavoritesRouting>()
         case .profile: SettingsContainer<AppState>()
-        case .tabBar: TabBarContainer()
+        case .tabBar: TabBarContainer<AppState>()
         }
     }
 }

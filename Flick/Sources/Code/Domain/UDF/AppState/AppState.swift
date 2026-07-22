@@ -17,6 +17,7 @@ import MyFavorites
 import Cast
 import Image
 import Home
+import TabBar
 
 struct AppState: AppReducer {
     // MARK: Storages
@@ -34,7 +35,7 @@ struct AppState: AppReducer {
 
     // MARK: Tab Bar
 
-    var tabBarForm = TabBarForm()
+    var tabBarForm = TabBar.TabBarForm()
 
     // MARK: Home
 

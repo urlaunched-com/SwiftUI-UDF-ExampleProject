@@ -67,7 +67,7 @@ func makeUIModules() -> [Module] {
         makeHomeSectionFeature(),
         makeHomeFeature(),
         
-        makeTabBarComponent(),
+        makeTabBarFeature(),
         makeSectionDetailsComponent(),
         makeItemDetailsRecommendationsComponent(),
         makeItemDetailsComponent(),
@@ -229,20 +229,21 @@ func makeWhereToWatchFeature() -> Module {
     )
 }
 
-func makeTabBarComponent() -> Module {
+func makeTabBarFeature() -> Module {
     return Module(
-        name: "TabBarComponent",
+        name: "TabBar",
         moduleType: .feature,
-        path: "TabBarComponent",
+        path: "TabBar",
         frameworkDependancies: [
             .external(name: "UDF"),
+            .external(name: "SwiftFoundation"),
             .external(name: "SwiftUI-Kit"),
             .target(name: "DesignSystem"),
             .target(name: "Common"),
         ],
         frameworkResources: [],
         snapshotDependencies: [],
-        targets: [.framework]
+        targets: [.framework, .snapshotTests]
     )
 }
 

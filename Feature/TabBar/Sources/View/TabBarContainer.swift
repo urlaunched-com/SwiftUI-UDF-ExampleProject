@@ -6,18 +6,18 @@
 //  Copyright © 2025 urlaunched.com. All rights reserved.
 //
 
-import SwiftUI
 import UDF
-import TabBarComponent
 
-struct TabBarContainer: Container {
-    typealias ContainerComponent = TabBarComponent
+public struct TabBarContainer<F: TabBarFeature>: Container {
+    public typealias ContainerComponent = TabBarComponent
 
-    func scope(for state: AppState) -> Scope {
+    public init() {}
+
+    public func scope(for state: F) -> Scope {
         state.tabBarForm
     }
 
-    func map(store: EnvironmentStore<AppState>) -> ContainerComponent.Props {
+    public func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
         .init(
             selectedTab: store.$state.tabBarForm.selectedTab,
             isHidden: store.$state.tabBarForm.isTabBarHidden

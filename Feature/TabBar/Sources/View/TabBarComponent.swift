@@ -16,7 +16,7 @@ public struct TabBarComponent: Component {
     public struct Props {
         var selectedTab: Binding<TabBarItem>
         var isHidden: Binding<Bool>
-        
+
         public init(selectedTab: Binding<TabBarItem>, isHidden: Binding<Bool>) {
             self.selectedTab = selectedTab
             self.isHidden = isHidden
@@ -24,7 +24,7 @@ public struct TabBarComponent: Component {
     }
 
     public var props: Props
-    
+
     public init(props: Props) {
         self.props = props
     }
@@ -33,19 +33,19 @@ public struct TabBarComponent: Component {
         HStack(spacing: 0) {
             ForEach(TabBarItem.allCases, id: \.self) { tab in
                 let presenter = TabBarItemPresenter(
-                    item: tab,
+                    tabBarItem: tab,
                     isSelected: tab == props.selectedTab.wrappedValue
                 )
                 ZStack {
                     switch tab {
                     case .randomizer:
-                        presenter.image
+                        presenter.icon
                             .background(
                                 Circle()
                                     .fill(Color.flMain)
                             )
                     default:
-                        presenter.image
+                        presenter.icon
                             .template
                             .foregroundStyle(presenter.foregroundColor)
                     }
@@ -69,8 +69,6 @@ public struct TabBarComponent: Component {
         .animation(.default, value: props.isHidden.wrappedValue)
     }
 }
-
-// MARK: - Preview
 
 #Preview {
     TabBarComponent(

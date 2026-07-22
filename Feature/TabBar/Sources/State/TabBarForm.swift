@@ -11,21 +11,23 @@ import SwiftUI
 import UDF
 @preconcurrency import Common
 
-struct TabBarForm: UDF.Form {
-    enum HomeTab {}
-    enum SearchTab {}
-    enum RandomizerTab {}
-    enum FavoritesTab {}
-    enum ProfileTab {}
+public struct TabBarForm: UDF.Form {
+    public enum HomeTab {}
+    public enum SearchTab {}
+    public enum RandomizerTab {}
+    public enum FavoritesTab {}
+    public enum ProfileTab {}
 
-    var selectedTab: TabBarItem = .home
-    var isTabBarHidden: Bool = false
+    public var selectedTab: TabBarItem = .home
+    public var isTabBarHidden: Bool = true
 
-    var homeNavigationForm: NavigationTabForm<HomeTab> = .init()
-    var searchNavigationForm: NavigationTabForm<SearchTab> = .init()
-    var randomizerNavigationForm: NavigationTabForm<RandomizerTab> = .init()
-    var favoritesNavigationForm: NavigationTabForm<FavoritesTab> = .init()
-    var profileNavigationForm: NavigationTabForm<ProfileTab> = .init()
+    public var homeNavigationForm: NavigationTabForm<HomeTab> = .init()
+    public var searchNavigationForm: NavigationTabForm<SearchTab> = .init()
+    public var randomizerNavigationForm: NavigationTabForm<RandomizerTab> = .init()
+    public var favoritesNavigationForm: NavigationTabForm<FavoritesTab> = .init()
+    public var profileNavigationForm: NavigationTabForm<ProfileTab> = .init()
+
+    public init() {}
 
     private var selectedTabPath: NavigationPath {
         get {
@@ -48,7 +50,7 @@ struct TabBarForm: UDF.Form {
         }
     }
 
-    mutating func reduce(_ action: some Action) {
+    public mutating func reduce(_ action: some Action) {
         switch action {
         case is Actions.NavigateBack:
             selectedTabPath.removeLastSafely()
@@ -111,7 +113,6 @@ struct TabBarForm: UDF.Form {
         }
     }
 
-    /// Hides tab bar if the user is navigating forward from the home screen.
     private mutating func updateTabBarHidden(_ path: NavigationPath? = nil) {
         if let path {
             isTabBarHidden = !path.isEmpty
@@ -123,17 +124,17 @@ struct TabBarForm: UDF.Form {
                 favoritesNavigationForm.path.isEmpty,
                 profileNavigationForm.path.isEmpty,
             ]
-            .filter { $0 == false }.isNotEmpty
+            .contains(false)
         }
     }
 }
 
-/// Provides navigation path for the given tab.
-/// Handles typed navigation methods.
-struct NavigationTabForm<Routing>: UDF.Form {
-    var path = NavigationPath()
+public struct NavigationTabForm<Routing>: UDF.Form {
+    public var path = NavigationPath()
 
-    mutating func reduce(_ action: some Action) {
+    public init() {}
+
+    public mutating func reduce(_ action: some Action) {
         switch action {
         case let action as Actions.NavigateTyped<Routing>:
             for item in action.to {
@@ -158,7 +159,7 @@ struct NavigationTabForm<Routing>: UDF.Form {
     }
 }
 
-extension NavigationPath {
+private extension NavigationPath {
     mutating func removeLastSafely() {
         if !isEmpty {
             removeLast()
