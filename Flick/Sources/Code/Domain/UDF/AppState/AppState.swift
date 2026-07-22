@@ -15,6 +15,7 @@ import ReviewsSection
 import Search
 import MyFavorites
 import Cast
+import Image
 
 struct AppState: AppReducer {
     // MARK: Storages

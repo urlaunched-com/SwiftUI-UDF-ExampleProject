@@ -10,6 +10,7 @@ import UDF
 import Models
 import Common
 import MainHomeSectionComponent
+import Image
 
 struct MainHomeSectionContainer<S: Section>: Container {
     typealias ContainerComponent = MainHomeSectionComponent<S, MainHomeSectionRouting>
@@ -38,7 +39,7 @@ struct MainHomeSectionContainer<S: Section>: Container {
             destinationBuilder: DestinationBuilder<MainHomeContent>(destination: { value in
                 switch value {
                 case let .imageContainer(path: path, size: size, type: type, isLoaderPresented: isLoaderPresented):
-                    ImageContainer(size: size, path: path, type: type, isLoaderPresented: isLoaderPresented)
+                    ImageContainer<AppState>(size: size, path: path, type: type, isLoaderPresented: isLoaderPresented)
                 }
             })
         )

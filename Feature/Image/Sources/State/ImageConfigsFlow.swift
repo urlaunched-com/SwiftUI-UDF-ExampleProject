@@ -9,12 +9,15 @@
 import UDF
 import Models
 
-enum ImageConfigsFlow: IdentifiableFlow {
-    case none, loading
+public enum ImageConfigsFlow: IdentifiableFlow {
+    case none
+    case loading
 
-    init() { self = .loading }
+    public init() {
+        self = .loading
+    }
 
-    mutating func reduce(_ action: some Action) {
+    public mutating func reduce(_ action: some Action) {
         switch action {
         case is Actions.DidLoadItem<ImageConfigs>:
             self = .none

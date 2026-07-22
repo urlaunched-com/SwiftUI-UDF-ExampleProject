@@ -13,6 +13,7 @@ import Reviews
 import ReviewsSection
 import Search
 import MyFavorites
+import Image
 
 private let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJidW5kbGVfaWRzIjpbImNvbS51cmxhdW5jaGVkLmZsaWNrIl19.HjROptJlsO915Ju0fw7VtO-FhHZlZSdDRALOrFQOvPU"
 var globalStore: EnvironmentStore<AppState>!

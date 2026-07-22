@@ -11,6 +11,7 @@ import UDF
 import Models
 import Common
 import SectionDetailsComponent
+import Image
 
 struct SectionDetailsRouting: Routing {
     typealias Route = SectionDetailsRoute
@@ -24,7 +25,7 @@ struct SectionDetailsRouting: Routing {
                 ShowDetailsContainer(id: show.id)
             }
         case .imageContainer(path: let path, size: let size):
-            ImageContainer(size: size, path: path)
+            ImageContainer<AppState>(size: size, path: path)
         }
     }
 }

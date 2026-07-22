@@ -17,7 +17,7 @@ public struct ImageComponent: Component {
         var size: CGSize
         var url: URL?
         var isLoaderPresented: Bool
-        
+
         public init(size: CGSize, url: URL? = nil, isLoaderPresented: Bool) {
             self.size = size
             self.url = url
@@ -26,7 +26,7 @@ public struct ImageComponent: Component {
     }
 
     public var props: Props
-    
+
     public init(props: Props) {
         self.props = props
     }

@@ -8,12 +8,13 @@
 import SwiftUI
 import UDF
 import MyFavorites
+import Image
 
 struct MyFavoritesRouting: Routing {
     @ViewBuilder func view(for route: MyFavoritesRoute) -> some View {
         switch route {
         case let .imageContainer(path: path, size: size, type: type):
-            ImageContainer(size: size, path: path, type: type)
+            ImageContainer<AppState>(size: size, path: path, type: type)
         }
     }
 }

@@ -10,12 +10,13 @@ import SwiftUI
 import UDF
 import Models
 import ReviewDetails
+import Image
 
 struct ReviewDetailsRouting: Routing {
     @ViewBuilder func view(for route: ReviewDetailsRoute) -> some View {
         switch route {
         case let .imageContainer(path: path, size: size, type: type):
-            ImageContainer(size: size, path: path, type: type)
+            ImageContainer<AppState>(size: size, path: path, type: type)
         }
     }
 }

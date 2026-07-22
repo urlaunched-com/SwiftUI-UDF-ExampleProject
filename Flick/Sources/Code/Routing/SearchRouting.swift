@@ -10,12 +10,13 @@ import SwiftUI
 import UDF
 import Models
 import Search
+import Image
 
 struct SearchRouting: Routing {
     @ViewBuilder func view(for route: SearchRoute) -> some View {
         switch route {
         case let .imageContainer(path: path, size: size):
-            ImageContainer(size: size, path: path)
+            ImageContainer<AppState>(size: size, path: path)
         }
     }
 }

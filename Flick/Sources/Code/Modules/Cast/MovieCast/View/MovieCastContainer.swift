@@ -10,6 +10,7 @@ import UDF
 import Models
 import ItemDetailsCastComponent
 import Common
+import Image
 
 struct MovieCastContainer: BindableContainer {
     typealias ContainerComponent = ItemDetailsCastComponent<ItemDetailsCastRouting>
@@ -28,7 +29,7 @@ struct MovieCastContainer: BindableContainer {
             destinationBuilder: DestinationBuilder<ItemDetailsCastContent>(destination: { value in
                 switch value {
                 case let .imageContainer(path: path, size: size, type: type):
-                    ImageContainer(size: size, path: path, type: type)
+                    ImageContainer<AppState>(size: size, path: path, type: type)
                 }
             })
         )

@@ -11,22 +11,25 @@ import Foundation
 import UDF
 import Models
 
-final class ImageConfigsMiddleware: BaseObservableMiddleware<AppState> {
-    var environment: Environment!
+public final class ImageConfigsMiddleware<F: ImageFeature>: Middleware<F>, @unchecked Sendable {
+    public var environment: Environment!
 
-    func scope(for state: AppState) -> Scope {
+    public func scope(for state: F) -> Scope {
         state.networkConnectivityForm
         state.imageConfigsFlow
     }
 
-    override func status(for state: AppState) -> MiddlewareStatus {
+    public override func status(for state: F) -> MiddlewareStatus {
         state.networkConnectivityForm.satisfied ? .active : .suspend
     }
 
-    func observe(state: AppState) {
+    public func observe(state: F) {
         switch state.imageConfigsFlow {
         case .loading:
-            execute(flowId: ImageConfigsFlow.id, cancellation: Cancellation.loadImageConfigs) { [unowned self] taskId in
+            execute(
+                flowId: ImageConfigsFlow.id,
+                cancellation: Cancellation.loadImageConfigs
+            ) { [unowned self] taskId in
                 let imageConfigs = try await self.environment.loadImageConfigs()
                 return ActionGroup {
                     Actions.DidLoadItem(item: imageConfigs, id: taskId)
@@ -41,19 +44,17 @@ final class ImageConfigsMiddleware: BaseObservableMiddleware<AppState> {
         }
     }
 
-    struct Environment {
+    public struct Environment {
         var loadImageConfigs: () async throws -> ImageConfigs
     }
 
-    enum Cancellation: Hashable {
+    public enum Cancellation: Hashable {
         case loadImageConfigs
     }
 }
 
-// MARK: - Environment buid methods
-
-extension ImageConfigsMiddleware {
-    static func buildLiveEnvironment(for _: some Store) -> Environment {
+public extension ImageConfigsMiddleware {
+    static func buildLiveEnvironment(for _: some Store<F>) -> Environment {
         Environment(
             loadImageConfigs: {
                 try await ImageConfigsAPIClient.loadConfigs().asImageConfigs

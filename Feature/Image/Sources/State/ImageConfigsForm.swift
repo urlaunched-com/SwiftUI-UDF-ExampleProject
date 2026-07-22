@@ -10,10 +10,12 @@ import Foundation
 import UDF
 @preconcurrency import Models
 
-struct ImageConfigsForm: Form {
-    var configs: ImageConfigs = .basic
+public struct ImageConfigsForm: Form {
+    public var configs: ImageConfigs = .basic
 
-    mutating func reduce(_ action: some Action) {
+    public init() {}
+
+    public mutating func reduce(_ action: some Action) {
         switch action {
         case let action as Actions.DidLoadItem<ImageConfigs>:
             configs = action.item

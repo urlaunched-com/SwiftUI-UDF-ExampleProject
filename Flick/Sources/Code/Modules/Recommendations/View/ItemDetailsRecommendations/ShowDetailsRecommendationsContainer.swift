@@ -10,6 +10,7 @@ import UDF
 import Models
 import Common
 import ItemDetailsRecommendationsComponent
+import Image
 
 struct ShowDetailsRecommendationsContainer: BindableContainer {
     typealias ContainerComponent = ItemDetailsRecommendationsComponent<ItemDetailsRecommendationsRouting>
@@ -29,7 +30,7 @@ struct ShowDetailsRecommendationsContainer: BindableContainer {
             destinationBuilder: DestinationBuilder<ItemDetailsRecommendationsContent>(destination: { value in
                 switch value {
                 case let .imageContainer(path: path, size: size, type: type):
-                    ImageContainer(size: size, path: path, type: type)
+                    ImageContainer<AppState>(size: size, path: path, type: type)
                 }
             })
         )

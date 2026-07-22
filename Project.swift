@@ -60,17 +60,17 @@ func makeUIModules() -> [Module] {
         makeReviewsSectionFeature(),
         makeSearchFeature(),
         makeMyFavoritesFeature(),
+        makeSettingsFeature(),
+        makeCastFeature(),
+        makeImageFeature(),
         
         makeTabBarComponent(),
-        makeImageComponent(),
         makeSectionDetailsComponent(),
         makeItemDetailsRecommendationsComponent(),
-        makeSettings(),
         makeItemDetailsComponent(),
         makeHomeComponent(),
         makeMainHomeSectionComponent(),
         makeHomeSectionComponent(),
-        makeCast(),
         makeItemDetailsCastComponent(),
     ]
 }
@@ -246,11 +246,11 @@ func makeTabBarComponent() -> Module {
     )
 }
 
-func makeImageComponent() -> Module {
+func makeImageFeature() -> Module {
     return Module(
-        name: "ImageComponent",
+        name: "Image",
         moduleType: .feature,
-        path: "ImageComponent",
+        path: "Image",
         frameworkDependancies: [
             .external(name: "UDF"),
             .external(name: "SDWebImageSwiftUI"),
@@ -260,7 +260,7 @@ func makeImageComponent() -> Module {
         ],
         frameworkResources: [],
         snapshotDependencies: [],
-        targets: [.framework]
+        targets: [.framework, .snapshotTests]
     )
 }
 
@@ -317,7 +317,7 @@ func makeItemDetailsRecommendationsComponent() -> Module {
     )
 }
 
-func makeSettings() -> Module {
+func makeSettingsFeature() -> Module {
     return Module(
         name: "Settings",
         moduleType: .feature,
@@ -433,7 +433,7 @@ func makeHomeSectionComponent() -> Module {
     )
 }
 
-func makeCast() -> Module {
+func makeCastFeature() -> Module {
     return Module(
         name: "Cast",
         moduleType: .feature,
