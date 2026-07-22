@@ -8,7 +8,6 @@
 
 import UDF
 import Models
-import SectionDetailsComponent
 import Common
 import SwiftUI
 

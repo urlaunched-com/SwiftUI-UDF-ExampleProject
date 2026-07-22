@@ -8,7 +8,6 @@
 
 import SwiftUI
 import UDF
-import SearchComponent
 import Common
 
 public struct SearchContainer<F: SearchFeature, R: Routing>: Container where R.Route == SearchRoute {

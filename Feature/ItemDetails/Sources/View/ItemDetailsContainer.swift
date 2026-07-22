@@ -9,8 +9,6 @@
 import UDF
 import Models
 import Common
-import ItemDetailsComponent
-import Image
 import SwiftUI
 
 public struct ItemDetailsContainer<F: ItemDetailsFeature, R: Routing>: BindableContainer where R.Route == ItemDetailsRoute {

@@ -9,7 +9,6 @@
 import UDF
 import Models
 import Common
-import Reviews
 
 public struct ReviewsSectionContainer<F: ReviewsSectionFeature, R: Routing>: BindableContainer where R.Route == ReviewsSectionRoute {
     public typealias ContainerComponent = ReviewsSectionComponent<R>

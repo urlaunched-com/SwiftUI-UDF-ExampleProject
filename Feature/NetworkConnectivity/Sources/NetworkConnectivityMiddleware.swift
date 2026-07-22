@@ -10,6 +10,7 @@ import Common
 import Foundation
 import Network
 import UDF
+import Models
 
 public final class NetworkConnectivityMiddleware<F: NetworkConnectivityFeature>: Middleware<F>, @unchecked Sendable {
     public var environment: Void!

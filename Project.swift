@@ -196,6 +196,7 @@ func makeSignInFeature() -> Module {
         path: "SignIn",
         frameworkDependancies: [
             .external(name: "UDF"),
+            .external(name: "SwiftFoundation"),
             .target(name: "DesignSystem"),
             .target(name: "Localizations"),
             .external(name: "RswiftLibrary"),
@@ -233,6 +234,7 @@ func makeNetworkConnectivityFeature() -> Module {
         frameworkDependancies: [
             .external(name: "UDF"),
             .target(name: "Common"),
+            .target(name: "Models"),
         ],
         frameworkResources: [],
         snapshotDependencies: [],
@@ -468,6 +470,7 @@ func makeCastSectionFeature() -> Module {
             .external(name: "UDF"),
             .target(name: "Common"),
             .target(name: "Models"),
+            .target(name: "CustomViews"),
             .target(name: "Image"),
             .target(name: "API"),
         ],

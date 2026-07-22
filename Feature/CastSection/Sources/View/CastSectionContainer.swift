@@ -7,11 +7,10 @@
 //
 
 import Common
-import Image
 import Models
 import UDF
 
-public struct CastSectionContainer<F: CastSectionFeature & ImageFeature, R: Routing>: BindableContainer where R.Route == CastSectionRoute {
+public struct CastSectionContainer<F: CastSectionFeature, R: Routing>: BindableContainer where R.Route == CastSectionRoute {
     public typealias ContainerComponent = CastSectionComponent<R>
 
     public let id: CastSectionTarget
