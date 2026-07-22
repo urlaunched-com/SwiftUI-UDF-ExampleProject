@@ -7,6 +7,7 @@
 //
 
 import MyFavorites
+import NetworkConnectivity
 
 extension AppState: MyFavoritesFeature {
     typealias AllGenres = Flick.AllGenres
@@ -15,4 +16,4 @@ extension AppState: MyFavoritesFeature {
 extension AllMovies: MyFavorites.AllMovies {}
 extension AllShows: MyFavorites.AllShows {}
 extension AllGenres: MyFavorites.AllGenres {}
-extension NetworkConnectivityForm: MyFavorites.NetworkConnectivityForm {}
+extension NetworkConnectivity.NetworkConnectivityForm: MyFavorites.NetworkConnectivityForm {}

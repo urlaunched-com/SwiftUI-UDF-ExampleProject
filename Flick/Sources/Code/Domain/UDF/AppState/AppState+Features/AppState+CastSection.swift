@@ -8,6 +8,7 @@
 
 import CastSection
 import Common
+import NetworkConnectivity
 
 extension AppState: CastSectionFeature {
     typealias CastSectionContainerType = CastSectionContainer<Self, CastSectionRouting>
@@ -22,5 +23,5 @@ extension AppState: CastSectionFeature {
     }
 }
 
-extension NetworkConnectivityForm: CastSection.NetworkConnectivityForm {}
+extension NetworkConnectivity.NetworkConnectivityForm: CastSection.NetworkConnectivityForm {}
 extension AllCast: CastSection.AllCast {}

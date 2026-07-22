@@ -3,15 +3,17 @@
 //  Flick
 //
 //  Created by Alexander Sharko on 04.01.2023.
-//  Copyright © 2023 urlaunched.com. All rights reserved.
 //
 
 import UDF
+import Models
 
-struct NetworkConnectivityForm: Form {
-    var satisfied = true
+public struct NetworkConnectivityForm: Form {
+    public var satisfied = true
 
-    mutating func reduce(_ action: some Action) {
+    public init() {}
+
+    public mutating func reduce(_ action: some Action) {
         switch action {
         case let action as Actions.UpdateNetworkConnectivityStatus:
             satisfied = action.satisfied

@@ -8,6 +8,7 @@
 
 import Common
 import Models
+import NetworkConnectivity
 import ReviewDetails
 
 extension AppState: ReviewDetailsFeature {
@@ -31,5 +32,5 @@ extension AppState: ReviewDetailsFeature {
     }
 }
 
-extension NetworkConnectivityForm: ReviewDetails.NetworkConnectivityForm {}
+extension NetworkConnectivity.NetworkConnectivityForm: ReviewDetails.NetworkConnectivityForm {}
 extension AllReviews: ReviewDetails.AllReviews {}

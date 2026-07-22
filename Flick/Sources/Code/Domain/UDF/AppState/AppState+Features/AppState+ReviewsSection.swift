@@ -9,6 +9,7 @@
 import ReviewsSection
 import Common
 import Models
+import NetworkConnectivity
 
 extension AppState: ReviewsSectionFeature {
     typealias ReviewsSectionContainerType = ReviewsSectionContainer<Self, ReviewsSectionRouting>
@@ -32,4 +33,4 @@ extension AppState: ReviewsSectionFeature {
 }
 
 extension AllReviews: ReviewsSection.AllReviews {}
-extension NetworkConnectivityForm: ReviewsSection.NetworkConnectivityForm {}
+extension NetworkConnectivity.NetworkConnectivityForm: ReviewsSection.NetworkConnectivityForm {}

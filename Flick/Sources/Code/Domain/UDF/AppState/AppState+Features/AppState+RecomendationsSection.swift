@@ -9,6 +9,7 @@
 import RecommendationsSection
 import Common
 import Models
+import NetworkConnectivity
 
 extension AppState: RecommendationsSectionFeature {
     typealias RecomendationsSectionContainerType = RecommendationsSectionContainer<Self, RecommendationsSectionRouting>
@@ -29,7 +30,7 @@ extension AppState: RecommendationsSectionFeature {
     }
 }
 
-extension NetworkConnectivityForm: RecommendationsSection.NetworkConnectivityForm {}
+extension NetworkConnectivity.NetworkConnectivityForm: RecommendationsSection.NetworkConnectivityForm {}
 extension AllShows: RecommendationsSection.AllShows {}
 extension AllMovies: RecommendationsSection.AllMovies {}
 extension AllGenres: RecommendationsSection.AllGenres {}

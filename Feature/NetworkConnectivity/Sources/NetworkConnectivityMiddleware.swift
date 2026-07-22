@@ -3,22 +3,23 @@
 //  Flick
 //
 //  Created by Alexander Sharko on 16.12.2022.
-//  Copyright © 2022 urlaunched.com. All rights reserved.
 //
 
 import Combine
+import Common
 import Foundation
 import Network
 import UDF
+import Models
 
-final class NetworkConnectivityMiddleware: Middleware<AppState> {
-    var environment: Void!
+public final class NetworkConnectivityMiddleware<F: NetworkConnectivityFeature>: Middleware<F>, @unchecked Sendable {
+    public var environment: Void!
 
-    enum Cancellation {
+    public enum Cancellation {
         case networkMonitoring
     }
 
-    required init(store: some Store<AppState>, queue: DispatchQueue) {
+    public required init(store: some Store<F>, queue: DispatchQueue) {
         super.init(store: store, queue: queue)
 
         run(NetworkMonitoringEffect(queue: queue), cancellation: Cancellation.networkMonitoring) { state, output in
@@ -39,10 +40,14 @@ final class NetworkConnectivityMiddleware: Middleware<AppState> {
     }
 }
 
-struct NetworkMonitoringEffect: Effectable {
-    var queue: DispatchQueue
+public struct NetworkMonitoringEffect: Effectable {
+    public let queue: DispatchQueue
 
-    var upstream: AnyPublisher<any Action, Never> {
+    public init(queue: DispatchQueue) {
+        self.queue = queue
+    }
+
+    public var upstream: AnyPublisher<any Action, Never> {
         NWPathMonitor()
             .publisher(queue: queue)
             .map { status in

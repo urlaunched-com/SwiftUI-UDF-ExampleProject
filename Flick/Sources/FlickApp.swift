@@ -18,6 +18,7 @@ import Home
 import Recommendations
 import RecommendationsSection
 import CastSection
+import NetworkConnectivity
 import Root
 import SectionDetails
 import ItemDetails
@@ -60,7 +61,7 @@ private extension FlickApp {
         globalStore.subscribe { _ in
             HomeMiddleware.self
             GenresMiddleware.self
-            NetworkConnectivityMiddleware.self
+            NetworkConnectivityMiddleware<AppState>.self
             ImageConfigsMiddleware.self
             SectionDetailsMiddleware.self
             ItemDetailsMiddleware.self

@@ -18,6 +18,7 @@ import Cast
 import CastSection
 import Image
 import Home
+import NetworkConnectivity
 import Root
 import TabBar
 import Recommendations
@@ -68,7 +69,7 @@ struct AppState: AppReducer {
 
     // MARK: Network Connectivity
 
-    var networkConnectivityForm = NetworkConnectivityForm()
+    var networkConnectivityForm = NetworkConnectivity.NetworkConnectivityForm()
 
     // MARK: Image Configs
 

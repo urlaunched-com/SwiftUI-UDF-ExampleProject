@@ -7,8 +7,9 @@
 //
 
 import Image
+import NetworkConnectivity
 
 extension AppState: ImageFeature {
 }
 
-extension NetworkConnectivityForm: Image.NetworkConnectivityForm {}
+extension NetworkConnectivity.NetworkConnectivityForm: Image.NetworkConnectivityForm {}

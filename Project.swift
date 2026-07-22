@@ -55,6 +55,7 @@ func makeUIModules() -> [Module] {
         makeOnboardingFeature(),
         makeSignInFeature(),
         makeWhereToWatchFeature(),
+        makeNetworkConnectivityFeature(),
         makeReviewDetailsFeature(),
         makeReviewsFeature(),
         makeReviewsSectionFeature(),
@@ -227,6 +228,21 @@ func makeWhereToWatchFeature() -> Module {
         frameworkResources: [],
         snapshotDependencies: [],
         targets: [.framework, .snapshotTests]
+    )
+}
+
+func makeNetworkConnectivityFeature() -> Module {
+    return Module(
+        name: "NetworkConnectivity",
+        moduleType: .feature,
+        path: "NetworkConnectivity",
+        frameworkDependancies: [
+            .external(name: "UDF"),
+            .target(name: "Common"),
+        ],
+        frameworkResources: [],
+        snapshotDependencies: [],
+        targets: [.framework]
     )
 }
 

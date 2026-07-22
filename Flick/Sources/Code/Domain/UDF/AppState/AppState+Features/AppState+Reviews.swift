@@ -8,6 +8,7 @@
 
 import Common
 import Models
+import NetworkConnectivity
 import Reviews
 
 extension AppState: ReviewsFeature {
@@ -30,5 +31,5 @@ extension AppState: ReviewsFeature {
     typealias ReviewsContainerType = ReviewsContainer<Self, ReviewsRouting>
 }
 
-extension NetworkConnectivityForm: Reviews.NetworkConnectivityForm {}
+extension NetworkConnectivity.NetworkConnectivityForm: Reviews.NetworkConnectivityForm {}
 extension AllReviews: Reviews.AllReviews {}

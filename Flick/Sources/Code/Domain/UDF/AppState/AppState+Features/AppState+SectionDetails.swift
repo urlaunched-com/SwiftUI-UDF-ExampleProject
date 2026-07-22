@@ -8,12 +8,12 @@
 
 import SectionDetails
 import Home
+import NetworkConnectivity
 
 extension AppState: SectionDetailsFeature {}
 
-extension NetworkConnectivityForm: SectionDetails.NetworkConnectivityForm {}
+extension NetworkConnectivity.NetworkConnectivityForm: SectionDetails.NetworkConnectivityForm {}
 extension HomeForm: SectionDetails.HomeForm {}
 extension AllMovies: SectionDetails.AllMovies {}
 extension AllShows: SectionDetails.AllShows {}
 extension AllGenres: SectionDetails.AllGenres {}
-

@@ -50,4 +50,12 @@ public extension Actions {
             self.item = item
         }
     }
+    
+    public struct UpdateNetworkConnectivityStatus: Action {
+        public let satisfied: Bool
+        
+        public init(satisfied: Bool) {
+            self.satisfied = satisfied
+        }
+    }
 }

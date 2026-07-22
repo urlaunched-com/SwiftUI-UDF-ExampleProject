@@ -7,10 +7,11 @@
 //
 
 import Search
+import NetworkConnectivity
 
 extension AppState: SearchFeature {
     typealias AllSearchItems = Flick.AllSearchItems
 }
 
 extension AllSearchItems: Search.AllSearchItems {}
-extension NetworkConnectivityForm: Search.NetworkConnectivityForm {}
+extension NetworkConnectivity.NetworkConnectivityForm: Search.NetworkConnectivityForm {}

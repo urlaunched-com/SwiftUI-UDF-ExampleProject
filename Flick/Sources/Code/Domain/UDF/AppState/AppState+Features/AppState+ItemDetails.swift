@@ -8,6 +8,7 @@
 
 import ItemDetails
 import Common
+import NetworkConnectivity
 
 extension AppState: ItemDetailsFeature {
     typealias ItemDetailsContainerType = ItemDetailsContainer<Self, ItemDetailsRouting>
@@ -29,7 +30,7 @@ extension AppState: ItemDetailsFeature {
     }
 }
 
-extension NetworkConnectivityForm: ItemDetails.NetworkConnectivityForm {}
+extension NetworkConnectivity.NetworkConnectivityForm: ItemDetails.NetworkConnectivityForm {}
 extension AllMovies: ItemDetails.AllMovies {}
 extension AllShows: ItemDetails.AllShows {}
 extension AllGenres: ItemDetails.AllGenres {}
