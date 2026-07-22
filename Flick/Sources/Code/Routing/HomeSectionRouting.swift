@@ -13,6 +13,7 @@ import Common
 import HomeSection
 import Image
 import SectionDetails
+import ItemDetails
 
 struct HomeSectionRouting: Routing {
     @ViewBuilder func view(for route: HomeSectionRoute) -> some View {
@@ -20,8 +21,8 @@ struct HomeSectionRouting: Routing {
         case let .itemDetails(item):
             buildView(
                 item: item,
-                movieView: { MovieDetailsContainer(id: $0.id) },
-                showView: { ShowDetailsContainer(id: $0.id) }
+                movieView: { ItemDetailsContainer<AppState, ItemDetailsRouting>(id: .movie($0.id)) },
+                showView: { ItemDetailsContainer<AppState, ItemDetailsRouting>(id: .show($0.id)) }
             )
 
         case let .sectionDetails(section):

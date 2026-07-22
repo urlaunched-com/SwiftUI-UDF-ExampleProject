@@ -15,8 +15,4 @@ extension Actions {
     struct UpdateNetworkConnectivityStatus: Action {
         let satisfied: Bool
     }
-
-    struct LoadItemDetails<H: Hashable>: Action {
-        let itemId: H
-    }
 }

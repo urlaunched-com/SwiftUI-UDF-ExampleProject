@@ -21,20 +21,17 @@ public struct ItemDetailsComponent<R: Routing>: Component where R.Route == ItemD
         var genreById: (Genre.ID) -> Genre?
         var dialog: Binding<DialogStatus>
         var router: R = .init()
-        var destinationBuilder: DestinationBuilder<ItemDetailsContent> = .init()
         
         public init(
             item: any Item,
             genreById: @escaping (Genre.ID) -> Genre?,
             dialog: Binding<DialogStatus>,
             router: R = .init(),
-            destinationBuilder: DestinationBuilder<ItemDetailsContent> = .init()
         ) {
             self.item = item
             self.genreById = genreById
             self.dialog = dialog
             self.router = router
-            self.destinationBuilder = destinationBuilder
         }
     }
 
@@ -52,7 +49,7 @@ public struct ItemDetailsComponent<R: Routing>: Component where R.Route == ItemD
             ScrollView {
                 ZStack(alignment: .top) {
                     let imageHeight = geometry.size.height * 0.7
-                    props.destinationBuilder.view(
+                    props.router.view(
                         for: .imageContainer(
                             path: props.item.posterPath,
                             size: .init(width: geometry.size.width, height: imageHeight),
@@ -282,7 +279,7 @@ private extension ItemDetailsComponent {
 // MARK: - Preview
 
 #Preview {
-    ItemDetailsComponent<MockRouter<ItemDetailsRoute>>(
+    ItemDetailsComponent<MockRouter>(
         props: .init(
             item: Movie.fakeItem(),
             genreById: { _ in .fakeItem() },

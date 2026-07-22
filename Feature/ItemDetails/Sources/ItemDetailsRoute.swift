@@ -16,6 +16,7 @@ public enum ItemDetailsRoute: Hashable {
     case reviews(any Item)
     case recommendations(any Item)
     case whereToWatch(any Item)
+    case imageContainer(path: String?, size: CGSize, type: ImageType = .poster)
     
     public func hash(into hasher: inout Hasher) {
         switch self {
@@ -27,6 +28,8 @@ public enum ItemDetailsRoute: Hashable {
             hasher.combine(item)
         case let .whereToWatch(item):
             hasher.combine(item)
+        case let .imageContainer(path: path, size: size, type: type):
+            hasher.combine(path)
         }
     }
     
@@ -40,6 +43,8 @@ public enum ItemDetailsRoute: Hashable {
             areEqual(lhsItem, rhsItem)
         case let (.whereToWatch(lhsItem), .whereToWatch(rhsItem)):
             areEqual(lhsItem, rhsItem)
+        case let (.imageContainer(lhsPath, lhsSize, lhsType), .imageContainer(rhsPath, rhsSize, rhsType)):
+            lhsPath == rhsPath && lhsSize == rhsSize && lhsType == rhsType
         default:
             false
         }

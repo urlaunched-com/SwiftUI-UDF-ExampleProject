@@ -1,5 +1,5 @@
 //
-//  ShowDetailsForm.swift
+//  ItemDetailsForm.swift
 //  Flick
 //
 //  Created by Valentin Petrulia on 14.05.2025.
@@ -9,13 +9,14 @@
 import UDF
 @preconcurrency import Models
 
-struct ShowDetailsForm: Form {
+public struct ItemDetailsForm: Form {
     var dialog: DialogStatus = .dismissed
-    var showId: Show.ID?
+    
+    public init() {}
 
-    mutating func reduce(_ action: some Action) {
+    public mutating func reduce(_ action: some Action) {
         switch action {
-        case let action as Actions.Error where action.id == ShowDetailsFlow.id:
+        case let action as Actions.Error where action.id == ItemDetailsFlow.id:
             dialog = .init(error: action.error)
 
         default:

@@ -19,6 +19,7 @@ import Recommendations
 import RecommendationsSection
 import CastSection
 import SectionDetails
+import ItemDetails
 
 private let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJidW5kbGVfaWRzIjpbImNvbS51cmxhdW5jaGVkLmZsaWNrIl19.HjROptJlsO915Ju0fw7VtO-FhHZlZSdDRALOrFQOvPU"
 var globalStore: EnvironmentStore<AppState>!
@@ -53,8 +54,7 @@ private extension FlickApp {
             NetworkConnectivityMiddleware.self
             ImageConfigsMiddleware.self
             SectionDetailsMiddleware.self
-            MovieDetailsMiddleware.self
-            ShowDetailsMiddleware.self
+            ItemDetailsMiddleware.self
             CastSectionMiddleware<AppState>.self
             RecommendationsMiddleware.self
             RecommendationsSectionMiddleware.self

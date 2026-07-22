@@ -71,8 +71,7 @@ func makeUIModules() -> [Module] {
         makeRecommendations(),
         makeRecommendationsSection(),
         makeSectionDetails(),
-        
-        makeItemDetailsComponent(),
+        makeItemDetailsFeature(),
     ]
 }
 
@@ -341,11 +340,11 @@ func makeMyFavoritesFeature() -> Module {
     )
 }
 
-func makeItemDetailsComponent() -> Module {
+func makeItemDetailsFeature() -> Module {
     return Module(
-        name: "ItemDetailsComponent",
+        name: "ItemDetails",
         moduleType: .feature,
-        path: "ItemDetailsComponent",
+        path: "ItemDetails",
         frameworkDependancies: [
             .external(name: "UDF"),
             .external(name: "SwiftUI-Kit"),

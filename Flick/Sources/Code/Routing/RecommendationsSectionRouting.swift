@@ -13,15 +13,16 @@ import Common
 import Recommendations
 import RecommendationsSection
 import Image
+import ItemDetails
 
 struct RecommendationsSectionRouting: Routing {
     @ViewBuilder func view(for route: RecommendationsSectionRoute) -> some View {
         switch route {
         case let .itemDetails(item):
             if let movie = item as? Movie {
-                MovieDetailsContainer(id: movie.id)
+                ItemDetailsContainer<AppState, ItemDetailsRouting>(id: .movie(movie.id))
             } else if let show = item as? Show {
-                ShowDetailsContainer(id: show.id)
+                ItemDetailsContainer<AppState, ItemDetailsRouting>(id: .show(show.id))
             }
         case let .recommendations(item):
             if let movie = item as? Movie {

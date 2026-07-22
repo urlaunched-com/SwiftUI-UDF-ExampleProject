@@ -22,6 +22,7 @@ import TabBar
 import Recommendations
 import RecommendationsSection
 import SectionDetails
+import ItemDetails
 
 struct AppState: AppReducer {
     // MARK: Storages
@@ -78,19 +79,13 @@ struct AppState: AppReducer {
     var sectionDetailsForm = SectionDetailsForm()
     var sectionDetailsFlow = SectionDetailsFlow()
 
-    // MARK: Movie Details
-
-    @BindableReducer(MovieDetailsForm.self, bindedTo: MovieDetailsContainer.self)
-    var movieDetailsForm
-    @BindableReducer(MovieDetailsFlow.self, bindedTo: MovieDetailsContainer.self)
-    var movieDetailsFlow
-
-    // MARK: Show Details
-
-    @BindableReducer(ShowDetailsForm.self, bindedTo: ShowDetailsContainer.self)
-    var showDetailsForm
-    @BindableReducer(ShowDetailsFlow.self, bindedTo: ShowDetailsContainer.self)
-    var showDetailsFlow
+    // MARK: Item Details
+    
+    @BindableReducer(ItemDetailsForm.self, bindedTo: ItemDetailsContainer<Self, ItemDetailsRouting>.self)
+    var itemDetailForm
+    
+    @BindableReducer(ItemDetailsFlow.self, bindedTo: ItemDetailsContainer<Self, ItemDetailsRouting>.self)
+    var itemDetailFlow
 
     // MARK: Cast
 

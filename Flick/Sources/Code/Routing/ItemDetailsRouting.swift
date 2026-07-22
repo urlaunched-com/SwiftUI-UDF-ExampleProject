@@ -11,10 +11,11 @@ import UDF
 import Models
 import Common
 import WhereToWatch
-import ItemDetailsComponent
-import ReviewsSection
-import RecommendationsSection
 import CastSection
+import ItemDetails
+import RecommendationsSection
+import ReviewsSection
+import Image
 
 struct ItemDetailsRouting: Routing {
     @ViewBuilder
@@ -43,6 +44,8 @@ struct ItemDetailsRouting: Routing {
 
         case let .whereToWatch(item):
             WhereToWatchContainer<AppState, WhereToWatchRouting>(item: item)
+        case let .imageContainer(path: path, size: size, type: type):
+            ImageContainer<AppState>(size: size, path: path, type: type)
         }
     }
 }

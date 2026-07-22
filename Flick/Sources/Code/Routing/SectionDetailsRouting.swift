@@ -12,6 +12,7 @@ import Models
 import Common
 import SectionDetails
 import Image
+import ItemDetails
 
 struct SectionDetailsRouting: Routing {
     typealias Route = SectionDetailsRoute
@@ -20,9 +21,9 @@ struct SectionDetailsRouting: Routing {
         switch route {
         case let .itemDetails(item):
             if let movie = item as? Movie {
-                MovieDetailsContainer(id: movie.id)
+                ItemDetailsContainer<AppState, ItemDetailsRouting>(id: .movie(movie.id))
             } else if let show = item as? Show {
-                ShowDetailsContainer(id: show.id)
+                ItemDetailsContainer<AppState, ItemDetailsRouting>(id: .show(show.id))
             }
         case .imageContainer(path: let path, size: let size):
             ImageContainer<AppState>(size: size, path: path)
