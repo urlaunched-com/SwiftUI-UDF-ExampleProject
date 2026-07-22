@@ -185,9 +185,6 @@ func makeOnboardingFeature() -> Module {
             .external(name: "RswiftLibrary")
         ],
         frameworkResources: [],
-        snapshotDependencies: [
-            .external(name: "SwiftUISnapshotTestCase"),
-        ],
         targets: [.framework, .snapshotTests]
     )
 }
@@ -205,9 +202,6 @@ func makeSignInFeature() -> Module {
             .target(name: "Common"),
         ],
         frameworkResources: [],
-        snapshotDependencies: [
-            .external(name: "SwiftUISnapshotTestCase"),
-        ],
         targets: [.framework, .snapshotTests]
     )
 }

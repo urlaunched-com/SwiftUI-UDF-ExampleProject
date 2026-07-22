@@ -46,4 +46,15 @@ final class WhereToWatchComponentTests: BaseSnapshotTestCase {
             ))
         )
     }
+
+    func test_WhereToWatch_empty_providers_state() {
+        snapshot(
+            component: WhereToWatchComponent(props: WhereToWatchComponent.Props(
+                item: Movie.testItem(),
+                countries: dropDownItems,
+                providers: [],
+                router: MockRouter<WhereToWatchRouter>()
+            ))
+        )
+    }
 }

@@ -33,4 +33,17 @@ final class MainHomeSectionComponentTests: BaseSnapshotTestCase {
             )
         )
     }
+
+    func test_MainHomeSection_show_state() {
+        snapshot(
+            component: MainHomeSectionComponent(
+                props: .init(
+                    section: ShowSection.popular,
+                    items: Show.testItems(count: 5),
+                    genreById: { _ in .testItem() },
+                    router: MockRouter<MainHomeSectionRoute>()
+                )
+            )
+        )
+    }
 }

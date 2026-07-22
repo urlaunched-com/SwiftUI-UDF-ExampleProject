@@ -157,7 +157,9 @@ extension Project {
                     "SnapshotTest/**"
                 ],
                 resources: ["\(frameworkPath)/Snapshots/__Snapshots__/**"],
-                dependencies: module.snapshotDependencies + [
+                dependencies: [
+                    .external(name: "SwiftUISnapshotTestCase")
+                ] + module.snapshotDependencies + [
                     .target(name: module.name),
                     .target(name: hostAppName),
                     .sdk(name: "XCTest", type: .framework, status: .required)

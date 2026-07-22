@@ -45,4 +45,18 @@ final class RecommendationsSectionComponentTests: BaseSnapshotTestCase {
             )
         )
     }
+
+    func test_RecommendationsSection_redacted_state() {
+        snapshot(
+            component: RecommendationsSectionComponent(
+                props: .init(
+                    item: Show.fakeItem(),
+                    items: Show.testItems(count: 10),
+                    isRedacted: true,
+                    genreById: { _ in .fakeItem() },
+                    router: MockRouter<RecommendationsSectionRoute>()
+                )
+            )
+        )
+    }
 }

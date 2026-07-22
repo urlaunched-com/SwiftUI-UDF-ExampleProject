@@ -30,4 +30,16 @@ final class ImageComponentTests: BaseSnapshotTestCase {
             )
         )
     }
+
+    func test_Image_loaded_state() {
+        snapshot(
+            component: ImageComponent(
+                props: .init(
+                    size: CGSize(width: 120, height: 180),
+                    url: URL(string: "https://image.tmdb.org/t/p/w500/test.jpg"),
+                    isLoaderPresented: false
+                )
+            )
+        )
+    }
 }

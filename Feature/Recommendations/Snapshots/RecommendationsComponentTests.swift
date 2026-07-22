@@ -47,4 +47,19 @@ final class RecommendationsComponentTests: BaseSnapshotTestCase {
             )
         )
     }
+
+    func test_Recommendations_show_loaded_state() {
+        snapshot(
+            component: RecommendationsComponent(
+                props: .init(
+                    title: "Trending Shows",
+                    items: Show.testItems(count: 10),
+                    genreById: { _ in .fakeItem() },
+                    loadMoreAction: {},
+                    dialog: .constant(.dismissed),
+                    router: MockRouter<RecommendationsRoute>()
+                )
+            )
+        )
+    }
 }

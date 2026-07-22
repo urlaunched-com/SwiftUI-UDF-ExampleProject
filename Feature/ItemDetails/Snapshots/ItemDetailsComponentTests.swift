@@ -41,4 +41,16 @@ final class ItemDetailsComponentTests: BaseSnapshotTestCase {
             )
         )
     }
+
+    func test_ItemDetails_movie_without_genres_state() {
+        snapshot(
+            component: ItemDetailsComponent<MockRouter>(
+                props: .init(
+                    item: Movie.testItem(genreIds: []),
+                    genreById: { _ in .fakeItem() },
+                    dialog: .constant(.dismissed)
+                )
+            )
+        )
+    }
 }

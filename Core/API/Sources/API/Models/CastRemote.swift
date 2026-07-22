@@ -11,7 +11,7 @@ public struct CastRemote: Decodable {
     public var id: Int
     public var name: String
     public var character: String
-    public var profilePath: String?
+    public var profilePath: String? 
 
     enum CodingKeys: String, CodingKey {
         case id

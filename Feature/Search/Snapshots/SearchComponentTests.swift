@@ -64,4 +64,18 @@ final class SearchComponentTests: BaseSnapshotTestCase {
             ))
         )
     }
+
+    func test_Search_single_result_state() {
+        let item = SearchItem.testItem()
+        snapshot(
+            component: SearchComponent(props: SearchComponent.Props(
+                searchText: .constant("One"),
+                itemIds: [item.id],
+                searchItemById: { _ in item },
+                genreById: { _ in .testItem() },
+                loadMoreAction: {},
+                router: MockRouter<SearchRoute>()
+            ))
+        )
+    }
 }

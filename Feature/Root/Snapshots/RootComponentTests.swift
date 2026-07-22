@@ -53,4 +53,22 @@ final class RootComponentTests: BaseSnapshotTestCase {
             )
         )
     }
+
+    func test_Root_favorites_tab_state() {
+        snapshot(
+            component: RootComponent(
+                props: .init(
+                    isNeedToPresentOnboarding: false,
+                    selectedTab: .constant(.favorites),
+                    homeTabPath: .constant(.init()),
+                    searchTabPath: .constant(.init()),
+                    randomizerTabPath: .constant(.init()),
+                    favoritesTabPath: .constant(.init()),
+                    profileTabPath: .constant(.init()),
+                    router: MockRouter<RootRoute>(),
+                    homeDestinations: { AnyView($0) }
+                )
+            )
+        )
+    }
 }

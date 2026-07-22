@@ -45,4 +45,17 @@ final class CastSectionComponentTests: BaseSnapshotTestCase {
             )
         )
     }
+
+    func test_CastSection_redacted_state() {
+        snapshot(
+            component: CastSectionComponent(
+                props: .init(
+                    cast: Cast.testItems(count: 6).ids,
+                    castById: { _ in .fakeItem() },
+                    isRedacted: true,
+                    router: MockRouter()
+                )
+            )
+        )
+    }
 }

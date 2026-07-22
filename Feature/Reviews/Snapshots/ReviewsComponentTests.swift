@@ -49,4 +49,19 @@ final class ReviewsComponentTests: BaseSnapshotTestCase {
             ))
         )
     }
+
+    func test_Reviews_short_list_state() {
+        let reviews = Review.testItems(count: 2)
+        snapshot(
+            component: ReviewsComponent(props: ReviewsComponent.Props(
+                reviews: reviews.map(\.id),
+                reviewById: { [reviews] id in
+                    reviews.first(where: { $0.id == id }) ?? .empty
+                },
+                loadMoreAction: {},
+                dialog: .constant(.dismissed),
+                router: MockRouter<ReviewsRoute>()
+            ))
+        )
+    }
 }

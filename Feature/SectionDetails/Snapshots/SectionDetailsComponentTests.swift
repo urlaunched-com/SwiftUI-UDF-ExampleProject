@@ -47,4 +47,19 @@ final class SectionDetailsComponentTests: BaseSnapshotTestCase {
             )
         )
     }
+
+    func test_SectionDetails_show_loaded_state() {
+        snapshot(
+            component: SectionDetailsComponent(
+                props: .init(
+                    title: "Top Rated Shows",
+                    items: Show.testItems(count: 10),
+                    genreById: { _ in .fakeItem() },
+                    loadMoreAction: {},
+                    dialog: .constant(.dismissed),
+                    router: MockRouter<SectionDetailsRoute>()
+                )
+            )
+        )
+    }
 }

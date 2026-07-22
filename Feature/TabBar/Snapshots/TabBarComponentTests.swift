@@ -39,4 +39,37 @@ final class TabBarComponentTests: BaseSnapshotTestCase {
             )
         )
     }
+
+    func test_TabBar_randomizer_selected_state() {
+        snapshot(
+            component: TabBarComponent(
+                props: .init(
+                    selectedTab: .constant(.randomizer),
+                    isHidden: .constant(false)
+                )
+            )
+        )
+    }
+
+    func test_TabBar_favorites_selected_state() {
+        snapshot(
+            component: TabBarComponent(
+                props: .init(
+                    selectedTab: .constant(.favorites),
+                    isHidden: .constant(false)
+                )
+            )
+        )
+    }
+
+    func test_TabBar_profile_selected_state() {
+        snapshot(
+            component: TabBarComponent(
+                props: .init(
+                    selectedTab: .constant(.profile),
+                    isHidden: .constant(false)
+                )
+            )
+        )
+    }
 }
