@@ -8,8 +8,6 @@
 
 import Cast
 
-extension AppState: CastFeature {
-    typealias AllCast = Flick.AllCast
-}
+extension AppState: CastFeature {}
 
 extension AllCast: Cast.AllCast {}

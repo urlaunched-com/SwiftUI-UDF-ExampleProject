@@ -26,4 +26,12 @@ public extension Actions {
             self.sectionId = sectionId
         }
     }
+    
+    public struct LoadItemCast<H: Hashable>: Action {
+        public let itemId: H
+        
+        public init(itemId: H) {
+            self.itemId = itemId
+        }
+    }
 }

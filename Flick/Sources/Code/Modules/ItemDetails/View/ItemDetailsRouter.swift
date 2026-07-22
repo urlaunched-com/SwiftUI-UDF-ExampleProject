@@ -14,6 +14,7 @@ import WhereToWatch
 import ItemDetailsComponent
 import ReviewsSection
 import RecommendationsSection
+import CastSection
 
 struct ItemDetailsRouting: Routing {
     @ViewBuilder
@@ -22,8 +23,8 @@ struct ItemDetailsRouting: Routing {
         case let .cast(item):
             buildView(
                 item: item,
-                movieView: { MovieCastContainer(id: $0.id) },
-                showView: { ShowCastContainer(id: $0.id) }
+                movieView: { CastSectionContainer<AppState, CastSectionRouting>(id: .movie($0.id)) },
+                showView: { CastSectionContainer<AppState, CastSectionRouting>(id: .show($0.id)) }
             )
 
         case let .reviews(item):

@@ -1,14 +1,15 @@
 //
-//  CastContent.swift
+//  CastSectionRoute.swift
 //  Flick
 //
-//  Created by Bogdan Petkanych on 18.05.2026.
+//  Created by Bogdan Petkanych on 22.07.2026.
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
-
-import Common
+import Models
 import UIKit
+import Common
 
-public enum ItemDetailsCastContent: Hashable {
+public enum CastSectionRoute: Hashable {
+    case cast([Cast.ID])
     case imageContainer(path: String?, size: CGSize, type: ImageType = .profile)
 }

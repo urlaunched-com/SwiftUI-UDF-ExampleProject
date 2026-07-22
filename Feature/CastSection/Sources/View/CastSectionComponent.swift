@@ -1,5 +1,5 @@
 //
-//  ItemDetailsCastComponent.swift
+//  CastSectionComponent.swift
 //  Flick
 //
 //  Created by Alexander Sharko on 19.01.2023.
@@ -14,26 +14,23 @@ import Models
 import CustomViews
 import Common
 
-public struct ItemDetailsCastComponent<R: Routing>: Component where R.Route == ItemDetailsCastRoute {
+public struct CastSectionComponent<R: Routing>: Component where R.Route == CastSectionRoute {
     public struct Props {
         var cast: [Cast.ID]
         var castById: (Cast.ID) -> Cast
         var isRedacted: Bool
         var router: R = .init()
-        var destinationBuilder: DestinationBuilder<ItemDetailsCastContent> = .init()
         
         public init(
             cast: [Cast.ID],
             castById: @escaping (Cast.ID) -> Cast,
             isRedacted: Bool,
             router: R = .init(),
-            destinationBuilder: DestinationBuilder<ItemDetailsCastContent> = .init()
         ) {
             self.cast = cast
             self.castById = castById
             self.isRedacted = isRedacted
             self.router = router
-            self.destinationBuilder = destinationBuilder
         }
     }
 
@@ -70,7 +67,7 @@ public struct ItemDetailsCastComponent<R: Routing>: Component where R.Route == I
                                 cast: props.castById(id),
                                 size: size,
                                 imageView: {
-                                    props.destinationBuilder.view(
+                                    props.router.view(
                                         for: .imageContainer(
                                             path: cast.profilePath,
                                             size: size,
@@ -96,12 +93,12 @@ public struct ItemDetailsCastComponent<R: Routing>: Component where R.Route == I
 // MARK: - Preview
 
 #Preview {
-    ItemDetailsCastComponent(
+    CastSectionComponent(
         props: .init(
             cast: [],
             castById: { _ in .fakeItem() },
             isRedacted: false,
-            router: MockRouter<ItemDetailsCastRoute>()
+            router: MockRouter()
         )
     )
 }

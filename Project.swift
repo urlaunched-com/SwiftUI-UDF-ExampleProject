@@ -62,6 +62,7 @@ func makeUIModules() -> [Module] {
         makeMyFavoritesFeature(),
         makeSettingsFeature(),
         makeCastFeature(),
+        makeCastSectionFeature(),
         makeImageFeature(),
         makeMainHomeSectionFeature(),
         makeHomeSectionFeature(),
@@ -72,7 +73,6 @@ func makeUIModules() -> [Module] {
         
         makeSectionDetailsComponent(),
         makeItemDetailsComponent(),
-        makeItemDetailsCastComponent(),
     ]
 }
 
@@ -432,23 +432,21 @@ func makeCastFeature() -> Module {
     )
 }
 
-func makeItemDetailsCastComponent() -> Module {
+func makeCastSectionFeature() -> Module {
     return Module(
-        name: "ItemDetailsCastComponent",
+        name: "CastSection",
         moduleType: .feature,
-        path: "ItemDetailsCastComponent",
+        path: "CastSection",
         frameworkDependancies: [
             .external(name: "UDF"),
-            .external(name: "SwiftUI-Kit"),
             .target(name: "Common"),
             .target(name: "Models"),
-            .target(name: "DesignSystem"),
-            .target(name: "Localizations"),
-            .target(name: "CustomViews"),
+            .target(name: "Image"),
+            .target(name: "API"),
         ],
         frameworkResources: [],
         snapshotDependencies: [],
-        targets: [.framework]
+        targets: [.framework, .snapshotTests]
     )
 }
 

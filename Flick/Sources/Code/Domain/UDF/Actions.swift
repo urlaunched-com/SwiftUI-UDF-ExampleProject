@@ -23,8 +23,4 @@ extension Actions {
     struct LoadItemDetails<H: Hashable>: Action {
         let itemId: H
     }
-
-    struct LoadItemCast<H: Hashable>: Action {
-        let itemId: H
-    }
 }

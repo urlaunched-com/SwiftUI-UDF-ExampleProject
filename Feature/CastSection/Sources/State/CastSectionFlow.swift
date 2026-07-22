@@ -1,24 +1,28 @@
 //
-//  MovieCastFlow.swift
+//  CastSectionFlow.swift
 //  Flick
 //
-//  Created by Valentin Petrulia on 13.05.2025.
-//  Copyright © 2025 urlaunched.com. All rights reserved.
+//  Created by Bogdan Petkanych on 22.07.2026.
+//  Copyright © 2026 urlaunched. All rights reserved.
 //
 
 import UDF
 @preconcurrency import Models
 
-enum MovieCastFlow: IdentifiableFlow {
+public enum CastSectionFlow: IdentifiableFlow {
     case none
     case loadMovieCast(Movie.ID)
+    case loadShowCast(Show.ID)
 
-    init() { self = .none }
+    public init() { self = .none }
 
-    mutating func reduce(_ action: some Action) {
+    public mutating func reduce(_ action: some Action) {
         switch action {
         case let action as Actions.LoadItemCast<Movie.ID>:
             self = .loadMovieCast(action.itemId)
+
+        case let action as Actions.LoadItemCast<Show.ID>:
+            self = .loadShowCast(action.itemId)
 
         case let action as Actions.DidLoadItems<Cast> where action.id == Self.id:
             self = .none
@@ -27,7 +31,7 @@ enum MovieCastFlow: IdentifiableFlow {
             self = .none
 
         case let action as Actions.DidCancelEffect
-            where action.cancellation is MovieCastMiddleware.Cancellation:
+            where action.cancellation is CastSectionCancellation:
             self = .none
 
         default:

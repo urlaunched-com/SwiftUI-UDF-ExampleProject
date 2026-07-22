@@ -15,6 +15,7 @@ import ReviewsSection
 import Search
 import MyFavorites
 import Cast
+import CastSection
 import Image
 import Home
 import TabBar
@@ -94,15 +95,10 @@ struct AppState: AppReducer {
 
     var castForm = CastForm()
 
-    // MARK: Movie Cast
+    // MARK: Cast Section
 
-    @BindableReducer(MovieCastFlow.self, bindedTo: MovieCastContainer.self)
-    var movieCastFlow
-
-    // MARK: Show Cast
-
-    @BindableReducer(ShowCastFlow.self, bindedTo: ShowCastContainer.self)
-    var showCastFlow
+    @BindableReducer(CastSectionFlow.self, bindedTo: CastSectionContainer<Self, CastSectionRouting>.self)
+    var castSectionFlow
 
     // MARK: Recommendations
 

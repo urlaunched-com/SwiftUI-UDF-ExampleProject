@@ -90,5 +90,6 @@ private extension View {
             .navigationDestination(for: ReviewsSectionRouting.self)
             .navigationDestination(for: RecommendationsSectionRouting.self)
             .navigationDestination(for: ReviewsRouting.self)
+            .navigationDestination(for: CastSectionRouting.self)
     }
 }
