@@ -549,6 +549,6 @@ func makeRecommendationsSection() -> Module {
             .target(name: "API")
         ],
         frameworkResources: [],
-        targets: [.framework]
+        targets: [.framework, .snapshotTests]
     )
 }
