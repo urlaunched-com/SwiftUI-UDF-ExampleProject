@@ -5,13 +5,12 @@
 //  Created by Max Kuznetsov on 09.11.2022.
 //
 
+import Common
 import SwiftUI
 import UDF
-import Common
-import SignIn
 
-struct RootComponent: Component {
-    struct Props {
+public struct RootComponent<R: Routing>: Component where R.Route == RootRoute {
+    public struct Props {
         var isNeedToPresentOnboarding: Bool
         var selectedTab: Binding<TabBarItem>
         var homeTabPath: Binding<NavigationPath>
@@ -19,22 +18,48 @@ struct RootComponent: Component {
         var randomizerTabPath: Binding<NavigationPath>
         var favoritesTabPath: Binding<NavigationPath>
         var profileTabPath: Binding<NavigationPath>
-        var router: Router<RootRouting> = .init()
+        var router: R
+        var homeDestinations: HomeDestinations
+
+        public init(
+            isNeedToPresentOnboarding: Bool,
+            selectedTab: Binding<TabBarItem>,
+            homeTabPath: Binding<NavigationPath>,
+            searchTabPath: Binding<NavigationPath>,
+            randomizerTabPath: Binding<NavigationPath>,
+            favoritesTabPath: Binding<NavigationPath>,
+            profileTabPath: Binding<NavigationPath>,
+            router: R,
+            homeDestinations: @escaping HomeDestinations
+        ) {
+            self.isNeedToPresentOnboarding = isNeedToPresentOnboarding
+            self.selectedTab = selectedTab
+            self.homeTabPath = homeTabPath
+            self.searchTabPath = searchTabPath
+            self.randomizerTabPath = randomizerTabPath
+            self.favoritesTabPath = favoritesTabPath
+            self.profileTabPath = profileTabPath
+            self.router = router
+            self.homeDestinations = homeDestinations
+        }
     }
 
-    var props: Props
+    public var props: Props
 
     @State private var isSignInPresented = false
-    @State private var selectedTab: TabBarItem = .home
 
-    var body: some View {
+    public init(props: Props) {
+        self.props = props
+    }
+
+    public var body: some View {
         if props.isNeedToPresentOnboarding {
             props.router.view(for: .onboarding)
         } else {
             TabView(selection: props.selectedTab) {
                 NavigationStack(path: props.homeTabPath) {
                     props.router.view(for: .home)
-                        .homeNavigationsDestinations()
+                        .applyDestinations(props.homeDestinations)
                 }
                 .tag(TabBarItem.home)
                 .environment(\.globalRouter, GlobalRouter(path: props.homeTabPath))
@@ -76,19 +101,8 @@ struct RootComponent: Component {
     }
 }
 
-// MARK: - Navigation Destinations
-
 private extension View {
-    func homeNavigationsDestinations() -> some View {
-        navigationDestination(for: HomeRouting.self)
-            .navigationDestination(for: MainHomeSectionRouting.self)
-            .navigationDestination(for: HomeSectionRouting.self)
-            .navigationDestination(for: SectionDetailsRouting.self)
-            .navigationDestination(for: ItemDetailsRouting.self)
-            .navigationDestination(for: ReviewsRouting.self)
-            .navigationDestination(for: ReviewsSectionRouting.self)
-            .navigationDestination(for: RecommendationsSectionRouting.self)
-            .navigationDestination(for: ReviewsRouting.self)
-            .navigationDestination(for: CastSectionRouting.self)
+    func applyDestinations(_ destinations: HomeDestinations) -> some View {
+        destinations(self)
     }
 }

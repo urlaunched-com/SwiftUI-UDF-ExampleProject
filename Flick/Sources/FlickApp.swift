@@ -18,8 +18,13 @@ import Home
 import Recommendations
 import RecommendationsSection
 import CastSection
+import Root
 import SectionDetails
 import ItemDetails
+import Onboarding
+import SignIn
+import Settings
+import TabBar
 
 private let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJidW5kbGVfaWRzIjpbImNvbS51cmxhdW5jaGVkLmZsaWNrIl19.HjROptJlsO915Ju0fw7VtO-FhHZlZSdDRALOrFQOvPU"
 var globalStore: EnvironmentStore<AppState>!
@@ -39,7 +44,11 @@ struct FlickApp: App {
 
     var body: some Scene {
         WindowGroup {
-            RootContainer()
+            RootContainer<AppState, RootRouting>(
+                homeDestinations: { view in
+                    return AnyView(view.navigationsDestinations())
+                }
+            )
         }
     }
 }
@@ -90,5 +99,21 @@ private extension FlickApp {
             fatalError("API key was not found in BaseAPI.swift")
         }
         self.configureAppearances()
+    }
+}
+
+// MARK: - Navigation Destinations
+private extension View {
+    func navigationsDestinations() -> some View {
+        navigationDestination(for: HomeRouting.self)
+            .navigationDestination(for: MainHomeSectionRouting.self)
+            .navigationDestination(for: HomeSectionRouting.self)
+            .navigationDestination(for: SectionDetailsRouting.self)
+            .navigationDestination(for: ItemDetailsRouting.self)
+            .navigationDestination(for: ReviewsRouting.self)
+            .navigationDestination(for: ReviewsSectionRouting.self)
+            .navigationDestination(for: RecommendationsSectionRouting.self)
+            .navigationDestination(for: ReviewsRouting.self)
+            .navigationDestination(for: CastSectionRouting.self)
     }
 }

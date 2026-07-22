@@ -18,6 +18,7 @@ import Cast
 import CastSection
 import Image
 import Home
+import Root
 import TabBar
 import Recommendations
 import RecommendationsSection

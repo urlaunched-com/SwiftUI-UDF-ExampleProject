@@ -68,6 +68,7 @@ func makeUIModules() -> [Module] {
         makeHomeSectionFeature(),
         makeHomeFeature(),
         makeTabBarFeature(),
+        makeRootFeature(),
         makeRecommendations(),
         makeRecommendationsSection(),
         makeSectionDetails(),
@@ -239,6 +240,22 @@ func makeTabBarFeature() -> Module {
             .external(name: "SwiftFoundation"),
             .external(name: "SwiftUI-Kit"),
             .target(name: "DesignSystem"),
+            .target(name: "Common"),
+        ],
+        frameworkResources: [],
+        snapshotDependencies: [],
+        targets: [.framework, .snapshotTests]
+    )
+}
+
+func makeRootFeature() -> Module {
+    return Module(
+        name: "Root",
+        moduleType: .feature,
+        path: "Root",
+        frameworkDependancies: [
+            .external(name: "UDF"),
+            .external(name: "SwiftFoundation"),
             .target(name: "Common"),
         ],
         frameworkResources: [],

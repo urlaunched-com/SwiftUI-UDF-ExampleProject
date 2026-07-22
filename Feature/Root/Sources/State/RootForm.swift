@@ -5,16 +5,18 @@
 //  Created by Max Kuznetsov on 09.11.2022.
 //
 
+import Common
 import Foundation
 import SwiftFoundation
 import UDF
-import Common
 
-struct RootForm: Form {
-    var dialog: DialogStatus = .dismissed
+public struct RootForm: Form {
+    public var dialog: DialogStatus = .dismissed
 
     @StorableValue(key: StorageKey.isNeedToPresentOnboarding, defaultValue: true, storage: UserDefaults.standard)
-    var isNeedToPresentOnboarding: Bool
+    public var isNeedToPresentOnboarding: Bool
 
-    mutating func reduce(_: some Action) {}
+    public init() {}
+
+    public mutating func reduce(_: some Action) {}
 }

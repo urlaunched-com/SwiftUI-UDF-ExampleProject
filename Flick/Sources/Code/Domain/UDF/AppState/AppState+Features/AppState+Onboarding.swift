@@ -7,9 +7,10 @@
 //
 
 import Onboarding
+import Root
 
 extension AppState: OnboardingFeature {
-    typealias RootForm = Flick.RootForm
+    typealias RootForm = Root.RootForm
 }
 
-extension RootForm: Onboarding.RootForm {}
+extension Root.RootForm: Onboarding.RootForm {}
