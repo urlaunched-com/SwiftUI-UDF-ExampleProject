@@ -141,7 +141,9 @@ extension Project {
                     "\(frameworkPath)/App/**",
                 ],
                 resources: .resources(frameworkResourceFilePaths),
-                dependencies: module.frameworkDependancies,
+                dependencies: module.frameworkDependancies + [
+                    .target(name: module.name)
+                ],
             )
             
             let snapshotTarget = Target.target(
@@ -156,6 +158,7 @@ extension Project {
                 ],
                 resources: ["\(frameworkPath)/Snapshots/__Snapshots__/**"],
                 dependencies: module.snapshotDependencies + [
+                    .target(name: module.name),
                     .target(name: hostAppName),
                     .sdk(name: "XCTest", type: .framework, status: .required)
                 ],
