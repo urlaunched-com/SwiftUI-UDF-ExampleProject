@@ -11,6 +11,7 @@ import UDF
 import Models
 import Common
 import ItemDetailsRecommendationsComponent
+import Recommendations
 
 struct ItemDetailsRecommendationsRouting: Routing {
     @ViewBuilder func view(for route: ItemDetailsRecommendationsRoute) -> some View {
@@ -23,9 +24,9 @@ struct ItemDetailsRecommendationsRouting: Routing {
             }
         case let .recommendations(item):
             if let movie = item as? Movie {
-                MovieRecommendationsContainer(id: movie.id)
+                RecommendationsContainer<AppState, RecommendationsRouting>(id: .movie(movie.id))
             } else if let show = item as? Show {
-                ShowRecommendationsContainer(id: show.id)
+                RecommendationsContainer<AppState, RecommendationsRouting>(id: .show(show.id))
             }
         }
     }

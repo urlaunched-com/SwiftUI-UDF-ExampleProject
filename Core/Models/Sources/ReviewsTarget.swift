@@ -1,5 +1,5 @@
 //
-//  Reviews.swift
+//  ReviewsTarget.swift
 //  Flick
 //
 //  Created by Bogdan Petkanych on 20.07.2026.

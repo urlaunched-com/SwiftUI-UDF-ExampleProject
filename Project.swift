@@ -66,8 +66,9 @@ func makeUIModules() -> [Module] {
         makeMainHomeSectionFeature(),
         makeHomeSectionFeature(),
         makeHomeFeature(),
-        
         makeTabBarFeature(),
+        makeRecommendations(),
+        
         makeSectionDetailsComponent(),
         makeItemDetailsRecommendationsComponent(),
         makeItemDetailsComponent(),
@@ -528,5 +529,25 @@ func makeReviewsSectionFeature() -> Module {
         ],
         frameworkResources: [],
         targets: [.framework, .snapshotTests]
+    )
+}
+
+func makeRecommendations() -> Module {
+    Module(
+        name: "Recommendations",
+        moduleType: .feature,
+        path: "Recommendations",
+        frameworkDependancies: [
+            .external(name: "UDF"),
+            .external(name: "SwiftUI-Kit"),
+            .target(name: "Common"),
+            .target(name: "Models"),
+            .target(name: "DesignSystem"),
+            .target(name: "Localizations"),
+            .target(name: "CustomViews"),
+            .target(name: "API")
+        ],
+        frameworkResources: [],
+        targets: [.framework]
     )
 }

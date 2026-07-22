@@ -23,7 +23,6 @@ final class MovieRecommendationsMiddleware: BaseObservableMiddleware<AppState> {
 
     func scope(for state: AppState) -> Scope {
         state.networkConnectivityForm
-        state.movieRecommendationsFlow
         state.movieDetailsRecommendationsFlow
     }
 
@@ -32,27 +31,6 @@ final class MovieRecommendationsMiddleware: BaseObservableMiddleware<AppState> {
     }
 
     func observe(state: AppState) {
-        for (id, flow) in state.movieRecommendationsFlow {
-            switch flow {
-            case let .loadMovies(page):
-                execute(
-                    effect: LoadMoviesEffect(
-                        movieId: id,
-                        page: page,
-                        environment: environment
-                    ),
-                    flowId: MovieRecommendationsFlow.id,
-                    cancellation: Cancellation.loadMovies(id),
-                    mapAction: {
-                        $0.binded(to: state.movieRecommendationsFlow.containerType, by: id)
-                    }
-                )
-
-            default:
-                break
-            }
-        }
-
         for (id, flow) in state.movieDetailsRecommendationsFlow {
             switch flow {
             case let .loadMovies(page):
