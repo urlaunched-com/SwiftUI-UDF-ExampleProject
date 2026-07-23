@@ -75,7 +75,7 @@ public struct MyFavoritesComponent<R: Routing>: Component where R.Route == MyFav
                 Button(action: {}) {
                     Image.filter
                         .aspectFit()
-                        .frame(24)
+                        .frame(20)
                 }
             }
         }

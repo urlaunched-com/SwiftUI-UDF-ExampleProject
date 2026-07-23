@@ -84,11 +84,11 @@ private extension MyFavoritesContainer {
     }
 
     func loadNewPageIfNeeded() {
+        print("loadNewPageIfNeeded")
         store.state.myFavoritesForm.contentType == .movie ? loadMoreMovies() : loadMoreShows()
     }
 
     func loadMoreMovies() {
-        print("load more movies")
         guard case let .number(currentPage) = store.state.myFavoritesForm.moviesPage,
               case .none = store.state.myFavoritesFlow else {
             return
