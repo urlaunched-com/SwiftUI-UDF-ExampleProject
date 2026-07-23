@@ -9,7 +9,7 @@ import Common
 import SwiftUI
 import UDF
 
-public struct RootComponent<R: Routing>: Component where R.Route == RootRoute {
+public struct RootComponent<R: Routing, HD: HomeDestinationBuilder>: Component where R.Route == RootRoute {
     public struct Props {
         var isNeedToPresentOnboarding: Bool
         var selectedTab: Binding<TabBarItem>
@@ -19,7 +19,7 @@ public struct RootComponent<R: Routing>: Component where R.Route == RootRoute {
         var favoritesTabPath: Binding<NavigationPath>
         var profileTabPath: Binding<NavigationPath>
         var router: R
-        var homeDestinations: HomeDestinations
+        var homeDestinationBuilder: HD
 
         public init(
             isNeedToPresentOnboarding: Bool,
@@ -30,7 +30,7 @@ public struct RootComponent<R: Routing>: Component where R.Route == RootRoute {
             favoritesTabPath: Binding<NavigationPath>,
             profileTabPath: Binding<NavigationPath>,
             router: R,
-            homeDestinations: @escaping HomeDestinations
+            homeDestinationBuilder: HD
         ) {
             self.isNeedToPresentOnboarding = isNeedToPresentOnboarding
             self.selectedTab = selectedTab
@@ -40,7 +40,7 @@ public struct RootComponent<R: Routing>: Component where R.Route == RootRoute {
             self.favoritesTabPath = favoritesTabPath
             self.profileTabPath = profileTabPath
             self.router = router
-            self.homeDestinations = homeDestinations
+            self.homeDestinationBuilder = homeDestinationBuilder
         }
     }
 
@@ -59,7 +59,7 @@ public struct RootComponent<R: Routing>: Component where R.Route == RootRoute {
             TabView(selection: props.selectedTab) {
                 NavigationStack(path: props.homeTabPath) {
                     props.router.view(for: .home)
-                        .applyDestinations(props.homeDestinations)
+                        .modifier(props.homeDestinationBuilder.makeDestinationModifier())
                 }
                 .tag(TabBarItem.home)
                 .environment(\.globalRouter, GlobalRouter(path: props.homeTabPath))
@@ -98,11 +98,5 @@ public struct RootComponent<R: Routing>: Component where R.Route == RootRoute {
                 props.router.view(for: .signIn)
             }
         }
-    }
-}
-
-private extension View {
-    func applyDestinations(_ destinations: HomeDestinations) -> some View {
-        destinations(self)
     }
 }

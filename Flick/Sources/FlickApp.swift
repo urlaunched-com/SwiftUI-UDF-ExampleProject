@@ -45,10 +45,8 @@ struct FlickApp: App {
 
     var body: some Scene {
         WindowGroup {
-            RootContainer<AppState, RootRouting>(
-                homeDestinations: { view in
-                    return AnyView(view.navigationsDestinations())
-                }
+            RootContainer<AppState, HomeDestinationBuilder, RootRouting>(
+                homeDestinationBuilder: HomeDestinationBuilder()
             )
         }
     }
@@ -100,21 +98,5 @@ private extension FlickApp {
             fatalError("API key was not found in BaseAPI.swift")
         }
         self.configureAppearances()
-    }
-}
-
-// MARK: - Navigation Destinations
-private extension View {
-    func navigationsDestinations() -> some View {
-        navigationDestination(for: HomeRouting.self)
-            .navigationDestination(for: MainHomeSectionRouting.self)
-            .navigationDestination(for: HomeSectionRouting.self)
-            .navigationDestination(for: SectionDetailsRouting.self)
-            .navigationDestination(for: ItemDetailsRouting.self)
-            .navigationDestination(for: ReviewsRouting.self)
-            .navigationDestination(for: ReviewsSectionRouting.self)
-            .navigationDestination(for: RecommendationsSectionRouting.self)
-            .navigationDestination(for: ReviewsRouting.self)
-            .navigationDestination(for: CastSectionRouting.self)
     }
 }

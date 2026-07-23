@@ -9,17 +9,15 @@ import Common
 import SwiftUI
 import UDF
 
-public typealias HomeDestinations = (any View) -> AnyView
+public struct RootContainer<F: RootFeature, HD: HomeDestinationBuilder, R: Routing>: Container where R.Route == RootRoute {
+    public typealias ContainerComponent = RootComponent<R, HD>
 
-public struct RootContainer<F: RootFeature, R: Routing>: Container where R.Route == RootRoute {
-    public typealias ContainerComponent = RootComponent<R>
-
-    public let homeDestinations: HomeDestinations
+    public let homeDestinationBuilder: HD
 
     public init(
-        homeDestinations: @escaping HomeDestinations
+        homeDestinationBuilder: HD
     ) {
-        self.homeDestinations = homeDestinations
+        self.homeDestinationBuilder = homeDestinationBuilder
     }
 
     public func scope(for state: F) -> Scope {
@@ -52,7 +50,7 @@ public struct RootContainer<F: RootFeature, R: Routing>: Container where R.Route
                 set: { store.dispatch(Actions.UpdateFormField(keyPath: \F.TabBarForm.profileNavigationPath, value: $0)) }
             ),
             router: R(),
-            homeDestinations: homeDestinations
+            homeDestinationBuilder: homeDestinationBuilder
         )
     }
 }
