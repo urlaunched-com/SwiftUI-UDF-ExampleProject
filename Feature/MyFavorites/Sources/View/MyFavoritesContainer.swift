@@ -37,7 +37,6 @@ public struct MyFavoritesContainer<F: MyFavoritesFeature, R: Routing>: Container
     }
 
     public func onContainerDidLoad(store: EnvironmentStore<F>) {
-        print("on container did load")
         store.dispatch(Actions.LoadPage(id: MyFavoritesFlow.loadMoviesId))
     }
 }
@@ -89,6 +88,7 @@ private extension MyFavoritesContainer {
     }
 
     func loadMoreMovies() {
+        print("load more movies")
         guard case let .number(currentPage) = store.state.myFavoritesForm.moviesPage,
               case .none = store.state.myFavoritesFlow else {
             return
