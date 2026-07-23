@@ -1,0 +1,132 @@
+# CircleCI configuration file
+version: 2.1
+
+references:
+  container_config: &container_config
+    macos:
+      xcode: "26.5"
+    resource_class: m4pro.medium
+
+jobs:
+  validate_mr:
+    <<: *container_config
+    environment:
+      FL_OUTPUT_DIR: output
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restore Cached Tuist Archive
+          keys:
+            - v1-homebrew-tuist-archive-{{ checksum ".tuist_version" }}
+            - v1-homebrew-tuist-archive-
+      - run:
+          name: Unpack Tuist Archive
+          command: |
+            if [ -f /tmp/tuist-cache.tar.gz ]; then
+              sudo tar -xzf /tmp/tuist-cache.tar.gz -C /
+            fi
+      - restore_cache:
+          name: Restore Xcode Tuist Manifest Project
+          keys:
+            - v1-tuist-project-derived-data-{{ checksum "Project.swift" }}
+            - v1-tuist-project-derived-data-
+      - restore_cache:
+          name: Restore Cached Tuist State
+          keys:
+            - v1-tuist-cache-{{ .Branch }}-{{ .Revision }}
+            - v1-tuist-cache-
+      - restore_cache:
+          name: Restore Cached SwiftPM Packages
+          keys:
+            - v1-spm-tuist-cache-{{ checksum "Tuist/Package.resolved" }}
+            - v1-spm-tuist-cache-
+      - run:
+          name: Install Tuist
+          command: |
+            TUIST_VERSION="$(cat .tuist_version)"
+            export PATH="/opt/homebrew/bin:$PATH"
+            TUIST_FORMULA="tuist@${TUIST_VERSION}"
+            TUIST_CELLAR="$(brew --cellar 2>/dev/null || true)/${TUIST_FORMULA}/${TUIST_VERSION}"
+
+            if [ -x "$TUIST_CELLAR/bin/tuist" ] && [ "$("$TUIST_CELLAR/bin/tuist" version)" = "$TUIST_VERSION" ]; then
+              echo "Reusing Tuist ${TUIST_VERSION}"
+            else
+              echo "Install Tuist ${TUIST_VERSION} using Homebrew formula"
+              HOMEBREW_NO_AUTO_UPDATE=1 brew tap tuist/tuist
+              HOMEBREW_NO_AUTO_UPDATE=1 brew install --formula "$TUIST_FORMULA"
+            fi
+
+            brew link --overwrite --force "$TUIST_FORMULA"
+            tar -czf /tmp/tuist-cache.tar.gz -C / "${TUIST_CELLAR#/}"
+      - run:
+          name: Install Tuist Dependencies
+          command: |
+            export PATH="/opt/homebrew/bin:$PATH"
+            tuist install
+      - run:
+          name: Warm Tuist Cache
+          command: |
+            export PATH="/opt/homebrew/bin:$PATH"
+            tuist cache warm --cache-profile all-possible
+      - run:
+          name: Generate Tuist Workspace
+          command: |
+            export PATH="/opt/homebrew/bin:$PATH"
+            tuist generate --cache-profile all-possible --no-open
+      - save_cache:
+          name: Cache Xcode Tuist Manifest Project
+          key: v1-tuist-project-derived-data-{{ checksum "Project.swift" }}
+          paths:
+            - ~/Library/Developer/Xcode/DerivedData
+      - run:
+          name: Run Tests
+          command: |
+            export PATH="/opt/homebrew/bin:$PATH"
+            set -o pipefail
+            mkdir -p output
+            tuist test run \
+              --device="iPhone 17 Pro" \
+              --os="26.5" \
+              --binary-cache \
+              --skip-ui-tests \
+              -- \
+              -skipPackagePluginValidation \
+              -skipMacroValidation \
+              2>&1 | tee output/test.log
+      - save_cache:
+          name: Cache Tuist Archive
+          key: v1-homebrew-tuist-archive-{{ checksum ".tuist_version" }}
+          paths:
+            - /tmp/tuist-cache.tar.gz
+      - save_cache:
+          name: Cache SwiftPM Packages
+          paths:
+            - Tuist/.build
+          key: v1-spm-tuist-cache-{{ checksum "Tuist/Package.resolved" }}
+      - save_cache:
+          name: Cache Tuist
+          paths:
+            - ~/.cache/tuist
+          key: v1-tuist-cache-{{ .Branch }}-{{ .Revision }}
+      - store_artifacts:
+          path: output
+
+workflows:
+  merge_request_workflow:
+    jobs:
+      - validate_mr:
+          context:
+            - Global
+    when:
+      or:
+        - matches:
+            pattern: /^feature\/.*/
+            value: << pipeline.git.branch >>
+        - matches:
+            pattern: /^chore\/.*/
+            value: << pipeline.git.branch >>
+        - matches:
+            pattern: /^fix\/.*/
+            value: << pipeline.git.branch >>
+              
+              
