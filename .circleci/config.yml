@@ -33,7 +33,7 @@ jobs:
       - restore_cache:
           name: Restore Cached Tuist State
           keys:
-            - v2-tuist-cache-{{ .Branch }}-{{ .Revision }}
+            - v2-tuist-cache-{{ .Branch }}
             - v2-tuist-cache-
       - restore_cache:
           name: Restore Cached SwiftPM Packages
@@ -107,7 +107,7 @@ jobs:
           name: Cache Tuist
           paths:
             - ~/.cache/tuist
-          key: v2-tuist-cache-{{ .Branch }}-{{ .Revision }}
+          key: v2-tuist-cache-{{ .Branch }}
       - store_artifacts:
           path: output
 
