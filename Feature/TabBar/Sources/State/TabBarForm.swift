@@ -129,7 +129,7 @@ public struct TabBarForm: UDF.Form {
     }
 }
 
-public struct NavigationTabForm<Routing>: UDF.Form {
+public struct NavigationTabForm<Routing>: UDF.Form, @unchecked Sendable {
     public var path = NavigationPath()
 
     public init() {}
