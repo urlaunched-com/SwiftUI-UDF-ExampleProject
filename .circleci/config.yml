@@ -17,8 +17,8 @@ jobs:
       - restore_cache:
           name: Restore Cached Tuist Archive
           keys:
-            - v1-homebrew-tuist-archive-{{ checksum ".tuist_version" }}
-            - v1-homebrew-tuist-archive-
+            - v2-homebrew-tuist-archive-{{ checksum ".tuist_version" }}
+            - v2-homebrew-tuist-archive-
       - run:
           name: Unpack Tuist Archive
           command: |
@@ -28,18 +28,18 @@ jobs:
       - restore_cache:
           name: Restore Xcode Tuist Manifest Project
           keys:
-            - v1-tuist-project-derived-data-{{ checksum "Project.swift" }}
-            - v1-tuist-project-derived-data-
+            - v2-tuist-project-derived-data-{{ checksum "Project.swift" }}
+            - v2-tuist-project-derived-data-
       - restore_cache:
           name: Restore Cached Tuist State
           keys:
-            - v1-tuist-cache-{{ .Branch }}-{{ .Revision }}
-            - v1-tuist-cache-
+            - v2-tuist-cache-{{ .Branch }}-{{ .Revision }}
+            - v2-tuist-cache-
       - restore_cache:
           name: Restore Cached SwiftPM Packages
           keys:
-            - v1-spm-tuist-cache-{{ checksum "Tuist/Package.resolved" }}
-            - v1-spm-tuist-cache-
+            - v2-spm-tuist-cache-{{ checksum "Tuist/Package.resolved" }}
+            - v2-spm-tuist-cache-
       - run:
           name: Install Tuist
           command: |
@@ -64,13 +64,18 @@ jobs:
             export PATH="/opt/homebrew/bin:$PATH"
             tuist install
       - run:
+          name: Warm External Tuist Cache
+          command: |
+            export PATH="/opt/homebrew/bin:$PATH"
+            tuist cache warm --cache-profile only-external
+      - run:
           name: Generate Tuist Workspace
           command: |
             export PATH="/opt/homebrew/bin:$PATH"
-            tuist generate --no-open
+            tuist generate --cache-profile only-external --no-open
       - save_cache:
           name: Cache Xcode Tuist Manifest Project
-          key: v1-tuist-project-derived-data-{{ checksum "Project.swift" }}
+          key: v2-tuist-project-derived-data-{{ checksum "Project.swift" }}
           paths:
             - ~/Library/Developer/Xcode/DerivedData
       - run:
@@ -90,19 +95,19 @@ jobs:
               2>&1 | tee output/test.log
       - save_cache:
           name: Cache Tuist Archive
-          key: v1-homebrew-tuist-archive-{{ checksum ".tuist_version" }}
+          key: v2-homebrew-tuist-archive-{{ checksum ".tuist_version" }}
           paths:
             - /tmp/tuist-cache.tar.gz
       - save_cache:
           name: Cache SwiftPM Packages
           paths:
             - Tuist/.build
-          key: v1-spm-tuist-cache-{{ checksum "Tuist/Package.resolved" }}
+          key: v2-spm-tuist-cache-{{ checksum "Tuist/Package.resolved" }}
       - save_cache:
           name: Cache Tuist
           paths:
             - ~/.cache/tuist
-          key: v1-tuist-cache-{{ .Branch }}-{{ .Revision }}
+          key: v2-tuist-cache-{{ .Branch }}-{{ .Revision }}
       - store_artifacts:
           path: output
 
