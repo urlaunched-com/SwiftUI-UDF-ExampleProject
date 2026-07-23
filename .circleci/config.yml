@@ -64,15 +64,10 @@ jobs:
             export PATH="/opt/homebrew/bin:$PATH"
             tuist install
       - run:
-          name: Warm Tuist Cache
-          command: |
-            export PATH="/opt/homebrew/bin:$PATH"
-            tuist cache warm --cache-profile all-possible
-      - run:
           name: Generate Tuist Workspace
           command: |
             export PATH="/opt/homebrew/bin:$PATH"
-            tuist generate --cache-profile all-possible --no-open
+            tuist generate --no-open
       - save_cache:
           name: Cache Xcode Tuist Manifest Project
           key: v1-tuist-project-derived-data-{{ checksum "Project.swift" }}
@@ -85,9 +80,9 @@ jobs:
             set -o pipefail
             mkdir -p output
             tuist test run \
+              --no-binary-cache \
               --device="iPhone 17 Pro" \
               --os="26.5" \
-              --binary-cache \
               --skip-ui-tests \
               -- \
               -skipPackagePluginValidation \
