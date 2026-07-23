@@ -28,7 +28,7 @@ final class MyFavoritesComponentTests: BaseSnapshotTestCase {
                 genreById: { _ in .testItem() },
                 loadMoreAction: {},
                 isRedacted: true,
-                dialogStatus: .constant(.dismissed),
+                dialog: .constant(.dismissed),
                 router: MockRouter<MyFavoritesRoute>()
             ))
         )
@@ -42,7 +42,7 @@ final class MyFavoritesComponentTests: BaseSnapshotTestCase {
                 genreById: { _ in .testItem() },
                 loadMoreAction: {},
                 isRedacted: false,
-                dialogStatus: .constant(.dismissed),
+                dialog: .constant(.dismissed),
                 router: MockRouter<MyFavoritesRoute>()
             ))
         )
@@ -56,7 +56,7 @@ final class MyFavoritesComponentTests: BaseSnapshotTestCase {
                 genreById: { _ in .testItem() },
                 loadMoreAction: {},
                 isRedacted: false,
-                dialogStatus: .constant(.dismissed),
+                dialog: .constant(.dismissed),
                 router: MockRouter<MyFavoritesRoute>()
             ))
         )

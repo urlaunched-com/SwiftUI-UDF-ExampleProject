@@ -21,7 +21,7 @@ public struct MyFavoritesComponent<R: Routing>: Component where R.Route == MyFav
         var genreById: (Genre.ID) -> Genre?
         var loadMoreAction: Command
         var isRedacted: Bool
-        var dialogStatus: Binding<DialogStatus>
+        var dialog: Binding<DialogStatus>
         var router: R
 
         public init(
@@ -30,7 +30,7 @@ public struct MyFavoritesComponent<R: Routing>: Component where R.Route == MyFav
             genreById: @escaping (Genre.ID) -> Genre?,
             loadMoreAction: @escaping Command,
             isRedacted: Bool,
-            dialogStatus: Binding<DialogStatus>,
+            dialog: Binding<DialogStatus>,
             router: R
         ) {
             self.contentType = contentType
@@ -38,7 +38,7 @@ public struct MyFavoritesComponent<R: Routing>: Component where R.Route == MyFav
             self.genreById = genreById
             self.loadMoreAction = loadMoreAction
             self.isRedacted = isRedacted
-            self.dialogStatus = dialogStatus
+            self.dialog = dialog
             self.router = router
         }
     }
@@ -79,7 +79,7 @@ public struct MyFavoritesComponent<R: Routing>: Component where R.Route == MyFav
                 }
             }
         }
-        .dialog(status: props.dialogStatus)
+        .dialog(status: props.dialog)
     }
 }
 
@@ -91,7 +91,7 @@ public struct MyFavoritesComponent<R: Routing>: Component where R.Route == MyFav
             genreById: { _ in .testItem() },
             loadMoreAction: {},
             isRedacted: true,
-            dialogStatus: .constant(.dismissed),
+            dialog: .constant(.dismissed),
             router: MockRouter<MyFavoritesRoute>()
         )
     )

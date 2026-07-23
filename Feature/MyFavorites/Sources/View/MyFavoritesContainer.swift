@@ -31,7 +31,7 @@ public struct MyFavoritesContainer<F: MyFavoritesFeature, R: Routing>: Container
             genreById: { store.state.allGenres.genreBy(id: $0) },
             loadMoreAction: loadNewPageIfNeeded,
             isRedacted: isRedacted,
-            dialogStatus: store.$state.myFavoritesForm.dialog,
+            dialog: store.$state.myFavoritesForm.dialog,
             router: R()
         )
     }
