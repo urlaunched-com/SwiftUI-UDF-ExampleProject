@@ -30,7 +30,7 @@ final class RootComponentTests: BaseSnapshotTestCase {
                     favoritesTabPath: .constant(.init()),
                     profileTabPath: .constant(.init()),
                     router: MockRouter<RootRoute>(),
-                    homeDestinations: { AnyView($0) }
+                    homeDestinationBuilder: TestHomeDestinationBuilder()
                 )
             )
         )
@@ -48,7 +48,7 @@ final class RootComponentTests: BaseSnapshotTestCase {
                     favoritesTabPath: .constant(.init()),
                     profileTabPath: .constant(.init()),
                     router: MockRouter<RootRoute>(),
-                    homeDestinations: { AnyView($0) }
+                    homeDestinationBuilder: TestHomeDestinationBuilder()
                 )
             )
         )
@@ -66,9 +66,21 @@ final class RootComponentTests: BaseSnapshotTestCase {
                     favoritesTabPath: .constant(.init()),
                     profileTabPath: .constant(.init()),
                     router: MockRouter<RootRoute>(),
-                    homeDestinations: { AnyView($0) }
+                    homeDestinationBuilder: TestHomeDestinationBuilder()
                 )
             )
         )
+    }
+    
+    private struct TestHomeDestinationBuilder: HomeDestinationBuilder {
+        struct DestinationModifier: ViewModifier {
+            func body(content: Content) -> some View {
+                content
+            }
+        }
+
+        func makeDestinationModifier() -> DestinationModifier {
+            DestinationModifier()
+        }
     }
 }

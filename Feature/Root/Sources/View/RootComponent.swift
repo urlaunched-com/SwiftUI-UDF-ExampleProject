@@ -49,7 +49,7 @@ public struct RootComponent<R: Routing, HD: HomeDestinationBuilder>: Component w
     @State private var isSignInPresented = false
 
     public init(props: Props) {
-        self.props = props
+        self.props = props 
     }
 
     public var body: some View {
