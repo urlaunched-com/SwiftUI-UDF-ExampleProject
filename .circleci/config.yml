@@ -114,9 +114,7 @@ jobs:
 workflows:
   merge_request_workflow:
     jobs:
-      - validate_mr:
-          context:
-            - Global
+      - validate_mr
     when:
       or:
         - matches:
