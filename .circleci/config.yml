@@ -28,8 +28,9 @@ jobs:
       - restore_cache:
           name: Restore Cached Tuist Cache
           keys:
-            - v1-tuist-cache-{{ checksum "Project.swift" }}-{{ checksum "Tuist/Package.resolved" }}-{{ .Branch }}
-            - v1-tuist-cache-{{ checksum "Project.swift" }}-{{ checksum "Tuist/Package.resolved" }}-
+            - v2-tuist-cache-{{ checksum ".tuist_version" }}-{{ checksum "Project.swift" }}-{{ checksum "Tuist/Package.resolved" }}-{{ .Branch }}
+            - v2-tuist-cache-{{ checksum ".tuist_version" }}-{{ checksum "Project.swift" }}-{{ checksum "Tuist/Package.resolved" }}-main
+            - v2-tuist-cache-{{ checksum ".tuist_version" }}-{{ checksum "Project.swift" }}-{{ checksum "Tuist/Package.resolved" }}-
       - restore_cache:
           name: Restore Cached SwiftPM Packages
           keys:
@@ -59,6 +60,18 @@ jobs:
             export PATH="/opt/homebrew/bin:$PATH"
             tuist install
       - run:
+          name: Restore Tuist Cache Directory
+          command: |
+            export TUIST_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/tuist"
+            mkdir -p "$(dirname "$TUIST_CACHE_DIR")"
+            mkdir -p .circleci-cache
+            if [ -d .circleci-cache/tuist ]; then
+              rm -rf "$TUIST_CACHE_DIR"
+              mkdir -p "$(dirname "$TUIST_CACHE_DIR")"
+              cp -R .circleci-cache/tuist "$TUIST_CACHE_DIR"
+            fi
+            du -sh "$TUIST_CACHE_DIR" || true
+      - run:
           name: Warm External Tuist Cache
           command: |
             export PATH="/opt/homebrew/bin:$PATH"
@@ -82,6 +95,16 @@ jobs:
               -skipPackagePluginValidation \
               -skipMacroValidation \
               2>&1 | tee output/test.log
+      - run:
+          name: Snapshot Tuist Cache Directory
+          command: |
+            export TUIST_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/tuist"
+            rm -rf .circleci-cache/tuist
+            mkdir -p .circleci-cache
+            if [ -d "$TUIST_CACHE_DIR" ]; then
+              cp -R "$TUIST_CACHE_DIR" .circleci-cache/tuist
+            fi
+            du -sh .circleci-cache/tuist || true
       - save_cache:
           name: Cache Tuist Archive
           key: v1-homebrew-tuist-archive-{{ checksum ".tuist_version" }}
@@ -95,8 +118,8 @@ jobs:
       - save_cache:
           name: Cache Tuist
           paths:
-            - ~/.cache/tuist
-          key: v1-tuist-cache-{{ checksum "Project.swift" }}-{{ checksum "Tuist/Package.resolved" }}-{{ .Branch }}
+            - .circleci-cache/tuist
+          key: v2-tuist-cache-{{ checksum ".tuist_version" }}-{{ checksum "Project.swift" }}-{{ checksum "Tuist/Package.resolved" }}-{{ .Branch }}
       - store_artifacts:
           path: output
 
