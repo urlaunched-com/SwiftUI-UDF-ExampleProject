@@ -28,13 +28,20 @@ jobs:
       - restore_cache:
           name: Restore Cached Tuist Cache
           keys:
-            - v4-tuist-cache-{{ checksum ".tuist_version" }}-{{ checksum "Project.swift" }}-{{ checksum "Tuist/Package.resolved" }}-{{ .Branch }}
-            - v4-tuist-cache-{{ checksum ".tuist_version" }}-{{ checksum "Project.swift" }}-{{ checksum "Tuist/Package.resolved" }}-
+            - v1-tuist-cache-{{ checksum ".tuist_version" }}-{{ checksum "Project.swift" }}-{{ checksum "Tuist/Package.resolved" }}-{{ .Branch }}-{{ .Revision }}
+            - v1-tuist-cache-{{ checksum ".tuist_version" }}-{{ checksum "Project.swift" }}-{{ checksum "Tuist/Package.resolved" }}-{{ .Branch }}
+            - v1-tuist-cache-{{ checksum ".tuist_version" }}-{{ checksum "Project.swift" }}-{{ checksum "Tuist/Package.resolved" }}-
       - restore_cache:
           name: Restore Cached SwiftPM Packages
           keys:
             - v1-spm-tuist-cache-{{ checksum "Tuist/Package.resolved" }}
             - v1-spm-tuist-cache-
+      - restore_cache:
+          name: Restore Cached DerivedData
+          keys:
+            - v1-derived-data-{{ .Branch }}-{{ .Revision }}
+            - v1-derived-data-{{ .Branch }}-
+            - v1-derived-data-
       - run:
           name: Install Tuist
           command: |
@@ -59,25 +66,10 @@ jobs:
             export PATH="/opt/homebrew/bin:$PATH"
             tuist install
       - run:
-          name: Inspect Restored Tuist Cache
-          command: |
-            export TUIST_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/tuist"
-            du -sh "$TUIST_CACHE_DIR" || true
-      - run:
           name: Warm External Tuist Cache
           command: |
             export PATH="/opt/homebrew/bin:$PATH"
             tuist cache warm --cache-profile only-external
-      - run:
-          name: Inspect Tuist Cache Contents
-          command: |
-            export TUIST_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/tuist"
-            echo "HOME=$HOME"
-            echo "XDG_CACHE_HOME=${XDG_CACHE_HOME:-}"
-            echo "TUIST_CACHE_DIR=$TUIST_CACHE_DIR"
-            du -sh "$TUIST_CACHE_DIR" || true
-            find "$TUIST_CACHE_DIR" -maxdepth 3 -type d | sort || true
-            find "$TUIST_CACHE_DIR" -type f | head -200 || true
       - run:
           name: Generate Tuist Workspace
           command: |
@@ -87,16 +79,13 @@ jobs:
           name: Run Tests
           command: |
             export PATH="/opt/homebrew/bin:$PATH"
-            set -o pipefail
-            mkdir -p output
-            tuist test run \
+            tuist test \
               --device="iPhone 17 Pro" \
               --os="26.5" \
               --skip-ui-tests \
               -- \
               -skipPackagePluginValidation \
-              -skipMacroValidation \
-              2>&1 | tee output/test.log
+              -skipMacroValidation
       - save_cache:
           name: Cache Tuist Archive
           key: v1-homebrew-tuist-archive-{{ checksum ".tuist_version" }}
@@ -111,9 +100,15 @@ jobs:
           name: Cache Tuist
           paths:
             - /Users/distiller/.cache/tuist
-          key: v4-tuist-cache-{{ checksum ".tuist_version" }}-{{ checksum "Project.swift" }}-{{ checksum "Tuist/Package.resolved" }}-{{ .Branch }}
+          key: v1-tuist-cache-{{ checksum ".tuist_version" }}-{{ checksum "Project.swift" }}-{{ checksum "Tuist/Package.resolved" }}-{{ .Branch }}-{{ .Revision }}
+      - save_cache:
+          name: Cache DerivedData
+          key: v1-derived-data-{{ .Branch }}-{{ .Revision }}
+          paths:
+            - /Users/distiller/Library/Developer/Xcode/DerivedData
       - store_artifacts:
-          path: output
+          path: /Users/distiller/.local/state/tuist/sessions
+          destination: tuist-sessions
 
 workflows:
   merge_request_workflow:
@@ -131,5 +126,3 @@ workflows:
             pattern: /^fix\/.*/
             value: << pipeline.git.branch >>
         - equal: [ main, << pipeline.git.branch >> ]
-              
-              
