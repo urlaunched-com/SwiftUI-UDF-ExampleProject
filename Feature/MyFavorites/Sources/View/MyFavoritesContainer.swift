@@ -101,7 +101,6 @@ private extension MyFavoritesContainer {
     }
 
     func loadMoreShows() {
-        print("loadMoreShows")
         guard case let .number(currentPage) = store.state.myFavoritesForm.showsPage,
               case .none = store.state.myFavoritesFlow else {
             return
