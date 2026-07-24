@@ -17,8 +17,8 @@ jobs:
       - restore_cache:
           name: Restore Cached Tuist Archive
           keys:
-            - v2-homebrew-tuist-archive-{{ checksum ".tuist_version" }}
-            - v2-homebrew-tuist-archive-
+            - v1-homebrew-tuist-archive-{{ checksum ".tuist_version" }}
+            - v1-homebrew-tuist-archive-
       - run:
           name: Unpack Tuist Archive
           command: |
@@ -26,20 +26,15 @@ jobs:
               sudo tar -xzf /tmp/tuist-cache.tar.gz -C /
             fi
       - restore_cache:
-          name: Restore Xcode Tuist Manifest Project
+          name: Restore Cached Tuist Cache
           keys:
-            - v2-tuist-project-derived-data-{{ checksum "Project.swift" }}
-            - v2-tuist-project-derived-data-
-      - restore_cache:
-          name: Restore Cached Tuist State
-          keys:
-            - v2-tuist-cache-{{ .Branch }}
-            - v2-tuist-cache-
+            - v1-tuist-cache-{{ checksum "Project.swift" }}-{{ checksum "Tuist/Package.resolved" }}-{{ .Branch }}
+            - v1-tuist-cache-{{ checksum "Project.swift" }}-{{ checksum "Tuist/Package.resolved" }}-
       - restore_cache:
           name: Restore Cached SwiftPM Packages
           keys:
-            - v2-spm-tuist-cache-{{ checksum "Tuist/Package.resolved" }}
-            - v2-spm-tuist-cache-
+            - v1-spm-tuist-cache-{{ checksum "Tuist/Package.resolved" }}
+            - v1-spm-tuist-cache-
       - run:
           name: Install Tuist
           command: |
@@ -73,11 +68,6 @@ jobs:
           command: |
             export PATH="/opt/homebrew/bin:$PATH"
             tuist generate --cache-profile only-external --no-open
-      - save_cache:
-          name: Cache Xcode Tuist Manifest Project
-          key: v2-tuist-project-derived-data-{{ checksum "Project.swift" }}
-          paths:
-            - ~/Library/Developer/Xcode/DerivedData
       - run:
           name: Run Tests
           command: |
@@ -85,7 +75,6 @@ jobs:
             set -o pipefail
             mkdir -p output
             tuist test run \
-              --no-binary-cache \
               --device="iPhone 17 Pro" \
               --os="26.5" \
               --skip-ui-tests \
@@ -95,19 +84,19 @@ jobs:
               2>&1 | tee output/test.log
       - save_cache:
           name: Cache Tuist Archive
-          key: v2-homebrew-tuist-archive-{{ checksum ".tuist_version" }}
+          key: v1-homebrew-tuist-archive-{{ checksum ".tuist_version" }}
           paths:
             - /tmp/tuist-cache.tar.gz
       - save_cache:
           name: Cache SwiftPM Packages
           paths:
             - Tuist/.build
-          key: v2-spm-tuist-cache-{{ checksum "Tuist/Package.resolved" }}
+          key: v1-spm-tuist-cache-{{ checksum "Tuist/Package.resolved" }}
       - save_cache:
           name: Cache Tuist
           paths:
             - ~/.cache/tuist
-          key: v2-tuist-cache-{{ .Branch }}
+          key: v1-tuist-cache-{{ checksum "Project.swift" }}-{{ checksum "Tuist/Package.resolved" }}-{{ .Branch }}
       - store_artifacts:
           path: output
 
@@ -126,5 +115,6 @@ workflows:
         - matches:
             pattern: /^fix\/.*/
             value: << pipeline.git.branch >>
+        - equal: [ main, << pipeline.git.branch >> ]
               
               

@@ -10,7 +10,6 @@ tuist install
 tuist cache warm --cache-profile only-external
 tuist generate --cache-profile only-external --no-open
 tuist test run \
-              --no-binary-cache \
               --device="iPhone 17 Pro" \
               --os="26.5" \
               --skip-ui-tests \
