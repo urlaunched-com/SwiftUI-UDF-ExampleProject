@@ -77,6 +77,16 @@ jobs:
             export PATH="/opt/homebrew/bin:$PATH"
             tuist cache warm --cache-profile only-external
       - run:
+          name: Inspect Tuist Cache Contents
+          command: |
+            export TUIST_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/tuist"
+            echo "HOME=$HOME"
+            echo "XDG_CACHE_HOME=${XDG_CACHE_HOME:-}"
+            echo "TUIST_CACHE_DIR=$TUIST_CACHE_DIR"
+            du -sh "$TUIST_CACHE_DIR" || true
+            find "$TUIST_CACHE_DIR" -maxdepth 3 -type d | sort || true
+            find "$TUIST_CACHE_DIR" -type f | head -200 || true
+      - run:
           name: Generate Tuist Workspace
           command: |
             export PATH="/opt/homebrew/bin:$PATH"
