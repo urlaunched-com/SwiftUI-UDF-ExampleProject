@@ -84,7 +84,6 @@ private extension MyFavoritesContainer {
     }
 
     func loadNewPageIfNeeded() {
-        print("loadNewPageIfNeeded")
         store.state.myFavoritesForm.contentType == .movie ? loadMoreMovies() : loadMoreShows()
     }
 
