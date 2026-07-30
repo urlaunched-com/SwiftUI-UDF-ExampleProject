@@ -23,4 +23,8 @@ public struct SettingsContainer<F: SettingsFeature>: Container {
             rateThisAppAction: UIApplication.shared.requestReview
         )
     }
+    
+    public func onContainerDidLoad(store: EnvironmentStore<F>) {
+        print("onContainerDidLoad(store: EnvironmentStore<F>)")
+    }
 }
