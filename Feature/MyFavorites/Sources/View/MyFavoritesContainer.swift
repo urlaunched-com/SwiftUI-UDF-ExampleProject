@@ -38,6 +38,7 @@ public struct MyFavoritesContainer<F: MyFavoritesFeature, R: Routing>: Container
 
     public func onContainerDidLoad(store: EnvironmentStore<F>) {
         store.dispatch(Actions.LoadPage(id: MyFavoritesFlow.loadMoviesId))
+        print("onContainerDidLoad(store: EnvironmentStore<F>)")
     }
 }
 
