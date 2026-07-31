@@ -12,6 +12,8 @@ jobs:
     <<: *container_config
     environment:
       FL_OUTPUT_DIR: output
+      TUIST_XDG_CACHE_HOME: /Users/distiller/.cache/tuist
+      TUIST_XDG_STATE_HOME: /Users/distiller/.local/state/tuist
     steps:
       - checkout
       - restore_cache:
@@ -33,10 +35,10 @@ jobs:
       - run:
           name: Inspect Tuist Cache
           command: |
-            if [ -d ~/.cache/tuist ]; then
-              find ~/.cache/tuist -print
+            if [ -d /Users/distiller/.cache/tuist ]; then
+              du -ah /Users/distiller/.cache/tuist
             else
-              echo "~/.cache/tuist does not exist"
+              echo "/Users/distiller/.cache/tuist does not exist"
             fi
       - restore_cache:
           name: Restore Cached SwiftPM Packages
@@ -98,6 +100,8 @@ jobs:
           command: |
             export PATH="/opt/homebrew/bin:$PATH"
             tuist test \
+              --binary-cache \
+              --selective-testing \
               --device="iPhone 17 Pro" \
               --os="26.5" \
               --skip-ui-tests \
@@ -107,15 +111,15 @@ jobs:
       - save_cache:
           name: Cache Tuist
           paths:
-            - ~/.cache/tuist
+            - /Users/distiller/.cache/tuist
           key: v1-tuist-cache-{{ checksum ".tuist_version" }}-{{ checksum "Tuist/Package.resolved" }}-{{ .Branch }}
       - save_cache:
           name: Cache DerivedData
           key: v1-derived-data-{{ .Branch }}-{{ .Revision }}
           paths:
-            - ~/Library/Developer/Xcode/DerivedData
+            - /Users/distiller/Library/Developer/Xcode/DerivedData
       - store_artifacts:
-          path: ~/.local/state/tuist/sessions
+          path: /Users/distiller/.local/state/tuist/sessions
           destination: tuist-sessions
 
 workflows:
