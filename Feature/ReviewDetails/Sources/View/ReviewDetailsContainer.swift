@@ -37,6 +37,7 @@ public struct ReviewDetailsContainer<F: ReviewDetailsFeature, R: Routing>: Binda
     }
 
     public func onContainerDidLoad(store: EnvironmentStore<F>) {
+        print("public func onContainerDidLoad(store: EnvironmentStore<F>)")
         store.dispatch(Actions.LoadReviewDetails(id: ReviewDetailsFlow.id, reviewID: id).binded(to: self))
     }
 }
