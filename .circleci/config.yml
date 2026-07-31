@@ -33,10 +33,10 @@ jobs:
       - run:
           name: Inspect Tuist Cache
           command: |
-            if [ -d ~/.tuist/Cache ]; then
-              find ~/.tuist/Cache -print
+            if [ -d ~/.cache/tuist ]; then
+              find ~/.cache/tuist -print
             else
-              echo "~/.tuist/Cache does not exist"
+              echo "~/.cache/tuist does not exist"
             fi
       - restore_cache:
           name: Restore Cached SwiftPM Packages
