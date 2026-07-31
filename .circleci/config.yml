@@ -28,12 +28,21 @@ jobs:
       - restore_cache:
           name: Restore Cached Tuist Cache
           keys:
-            - v6-tuist-cache-{{ checksum ".tuist_version" }}-{{ checksum "Tuist/Package.resolved" }}-{{ .Branch }}
+            - v1-tuist-cache-{{ checksum ".tuist_version" }}-{{ checksum "Tuist/Package.resolved" }}-{{ .Branch }}
+            - v1-tuist-cache-{{ checksum ".tuist_version" }}-{{ checksum "Tuist/Package.resolved" }}-
+      - run:
+          name: Inspect Tuist Cache
+          command: |
+            if [ -d ~/.tuist/Cache ]; then
+              find ~/.tuist/Cache -print
+            else
+              echo "~/.tuist/Cache does not exist"
+            fi
       - restore_cache:
           name: Restore Cached SwiftPM Packages
           keys:
-            - v1-spm-tuist-cache-{{ checksum "Tuist/Package.resolved" }}
-            - v1-spm-tuist-cache-
+            - v1-spm-tuist-cache-{{ checksum ".tuist_version" }}-{{ checksum "Tuist/Package.resolved" }}
+            - v1-spm-tuist-cache-{{ checksum ".tuist_version" }}-
       - restore_cache:
           name: Restore Cached DerivedData
           keys:
@@ -68,6 +77,7 @@ jobs:
           command: |
             export PATH="/opt/homebrew/bin:$PATH"
             tuist cache warm --cache-profile only-external
+            tuist hash cache
       - run:
           name: Generate Tuist Workspace
           command: |
@@ -83,11 +93,6 @@ jobs:
           paths:
             - Tuist/.build
           key: v1-spm-tuist-cache-{{ checksum "Tuist/Package.resolved" }}
-      - save_cache:
-          name: Cache Tuist
-          paths:
-            - /Users/distiller/.cache/tuist
-          key: v6-tuist-cache-{{ checksum ".tuist_version" }}-{{ checksum "Tuist/Package.resolved" }}-{{ .Branch }}
       - run:
           name: Run Tests
           command: |
@@ -100,12 +105,17 @@ jobs:
               -skipPackagePluginValidation \
               -skipMacroValidation
       - save_cache:
+          name: Cache Tuist
+          paths:
+            - ~/.cache/tuist
+          key: v1-tuist-cache-{{ checksum ".tuist_version" }}-{{ checksum "Tuist/Package.resolved" }}-{{ .Branch }}
+      - save_cache:
           name: Cache DerivedData
           key: v1-derived-data-{{ .Branch }}-{{ .Revision }}
           paths:
-            - /Users/distiller/Library/Developer/Xcode/DerivedData
+            - ~/Library/Developer/Xcode/DerivedData
       - store_artifacts:
-          path: /Users/distiller/.local/state/tuist/sessions
+          path: ~/.local/state/tuist/sessions
           destination: tuist-sessions
 
 workflows:
