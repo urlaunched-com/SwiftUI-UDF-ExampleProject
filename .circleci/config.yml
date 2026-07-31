@@ -12,6 +12,7 @@ jobs:
     <<: *container_config
     environment:
       FL_OUTPUT_DIR: output
+      TUIST_TOKEN: "tuist_019fb7f8-6d7b-73c2-8a57-b39568ac9c33_8PZpznLavbzynAvIDuUBsGyCHek="
       TUIST_XDG_CACHE_HOME: /Users/distiller/.cache/tuist
       TUIST_XDG_STATE_HOME: /Users/distiller/.local/state/tuist
     steps:
