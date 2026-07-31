@@ -130,7 +130,7 @@ jobs:
           name: Cache SwiftPM Packages
           paths:
             - Tuist/.build
-          key: v1-spm-tuist-cache-{{ checksum "Tuist/Package.resolved" }}
+          key: v1-spm-tuist-cache-{{ checksum ".tuist_version" }}-{{ checksum "Tuist/Package.resolved" }}
       - run:
           name: Run Tests
           command: |
