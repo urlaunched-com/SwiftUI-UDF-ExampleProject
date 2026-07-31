@@ -1,3 +1,10 @@
 import ProjectDescription
 
-let tuist = Tuist(project: .tuist())
+let tuist = Tuist(
+    fullHandle: "bogdanpetkanych/flick",
+    project: .tuist(
+        generationOptions: .options(
+            enableCaching: true
+        )
+    )
+)

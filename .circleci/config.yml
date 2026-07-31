@@ -71,6 +71,11 @@ jobs:
             brew link --overwrite --force "$TUIST_FORMULA"
             tar -czf /tmp/tuist-cache.tar.gz -C / "${TUIST_CELLAR#/}"
       - run:
+          name: Setup Tuist Cache
+          command: |
+            export PATH="/opt/homebrew/bin:$PATH"
+            tuist setup cache
+      - run:
           name: Install Tuist Dependencies
           command: |
             export PATH="/opt/homebrew/bin:$PATH"
