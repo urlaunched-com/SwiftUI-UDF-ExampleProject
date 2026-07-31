@@ -15,7 +15,6 @@ jobs:
       TUIST_TOKEN: "tuist_019fb7f8-6d7b-73c2-8a57-b39568ac9c33_8PZpznLavbzynAvIDuUBsGyCHek="
       TUIST_XDG_CACHE_HOME: /Users/distiller/.cache/tuist
       TUIST_XDG_STATE_HOME: /Users/distiller/.local/state/tuist
-      COMPILATION_CACHE_ENABLE_PLUGIN: "NO"
     steps:
       - checkout
       - restore_cache:
@@ -67,25 +66,21 @@ jobs:
           name: Setup Tuist Cache
           command: |
             export PATH="/opt/homebrew/bin:$PATH"
-            export COMPILATION_CACHE_ENABLE_PLUGIN=NO
             tuist setup cache
       - run:
           name: Install Tuist Dependencies
           command: |
             export PATH="/opt/homebrew/bin:$PATH"
-            export COMPILATION_CACHE_ENABLE_PLUGIN=NO
             tuist install
       - run:
           name: Warm External Tuist Cache
           command: |
             export PATH="/opt/homebrew/bin:$PATH"
-            export COMPILATION_CACHE_ENABLE_PLUGIN=NO
             tuist cache warm --cache-profile only-external
       - run:
           name: Generate Tuist Workspace
           command: |
             export PATH="/opt/homebrew/bin:$PATH"
-            export COMPILATION_CACHE_ENABLE_PLUGIN=NO
             tuist generate --cache-profile only-external --no-open
       - save_cache:
           name: Cache Tuist Archive
@@ -101,7 +96,6 @@ jobs:
           name: Run Tests
           command: |
             export PATH="/opt/homebrew/bin:$PATH"
-            export COMPILATION_CACHE_ENABLE_PLUGIN=NO
             tuist test \
               --binary-cache \
               --selective-testing \
@@ -109,7 +103,6 @@ jobs:
               --os="26.5" \
               --skip-ui-tests \
               -- \
-              COMPILATION_CACHE_ENABLE_PLUGIN=NO \
               -skipPackagePluginValidation \
               -skipMacroValidation
       - save_cache:
