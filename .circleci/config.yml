@@ -33,14 +33,6 @@ jobs:
           keys:
             - v1-tuist-cache-{{ checksum ".tuist_version" }}-{{ checksum "Tuist/Package.resolved" }}-{{ .Branch }}
             - v1-tuist-cache-{{ checksum ".tuist_version" }}-{{ checksum "Tuist/Package.resolved" }}-
-      - run:
-          name: Inspect Tuist Cache
-          command: |
-            if [ -d /Users/distiller/.cache/tuist ]; then
-              du -ah /Users/distiller/.cache/tuist
-            else
-              echo "/Users/distiller/.cache/tuist does not exist"
-            fi
       - restore_cache:
           name: Restore Cached SwiftPM Packages
           keys:
@@ -81,47 +73,10 @@ jobs:
             export PATH="/opt/homebrew/bin:$PATH"
             tuist install
       - run:
-          name: Inspect Tuist Cache Before Warm
-          command: |
-            export PATH="/opt/homebrew/bin:$PATH"
-            echo "=== Hashes before warm ==="
-            tuist hash cache || true
-            echo "=== Binaries before warm ==="
-            if [ -d /Users/distiller/.cache/tuist/Binaries ]; then
-              du -ah /Users/distiller/.cache/tuist/Binaries
-            else
-              echo "/Users/distiller/.cache/tuist/Binaries does not exist"
-            fi
-            echo "=== SelectiveTests before warm ==="
-            if [ -d /Users/distiller/.cache/tuist/SelectiveTests ]; then
-              du -ah /Users/distiller/.cache/tuist/SelectiveTests
-            else
-              echo "/Users/distiller/.cache/tuist/SelectiveTests does not exist"
-            fi
-      - run:
           name: Warm External Tuist Cache
           command: |
             export PATH="/opt/homebrew/bin:$PATH"
             tuist cache warm --cache-profile only-external
-            tuist hash cache
-      - run:
-          name: Inspect Tuist Cache After Warm
-          command: |
-            export PATH="/opt/homebrew/bin:$PATH"
-            echo "=== Hashes after warm ==="
-            tuist hash cache || true
-            echo "=== Binaries after warm ==="
-            if [ -d /Users/distiller/.cache/tuist/Binaries ]; then
-              du -ah /Users/distiller/.cache/tuist/Binaries
-            else
-              echo "/Users/distiller/.cache/tuist/Binaries does not exist"
-            fi
-            echo "=== SelectiveTests after warm ==="
-            if [ -d /Users/distiller/.cache/tuist/SelectiveTests ]; then
-              du -ah /Users/distiller/.cache/tuist/SelectiveTests
-            else
-              echo "/Users/distiller/.cache/tuist/SelectiveTests does not exist"
-            fi
       - run:
           name: Generate Tuist Workspace
           command: |
@@ -141,7 +96,6 @@ jobs:
           name: Run Tests
           command: |
             export PATH="/opt/homebrew/bin:$PATH"
-            tuist hash selective-testing
             tuist test \
               --binary-cache \
               --selective-testing \
