@@ -23,10 +23,10 @@ platform :ios do
       device: "iPhone 17 Pro (26.5)",
       scheme: "Flick",
       prelaunch_simulator: true,
+      include_simulator_logs: false,
       # Skip macro validation so tests can run on CI even if Macro Expansion
       # isn't added to the test target. Keep plugin validation skip as before.
       xcargs: @xcargs
     )
   end
 end
-
