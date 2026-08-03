@@ -13,7 +13,7 @@ import SwiftUISnapshotTestCase
 import UDF
 import XCTest
 
-final class SignInComponentTests: SnapshotTestCase {
+final class SignInComponentTests: BaseSnapshotTestCase {
     private var initialComponent: SignInComponent!
     override func setUp() {
         super.setUp()

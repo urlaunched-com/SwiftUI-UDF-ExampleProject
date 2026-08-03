@@ -14,6 +14,21 @@ import XCTest
 
 @testable import Flick
 
+@MainActor
+class BaseSnapshotTestCase: SnapshotTestCase {
+    override class func setUp() {
+        deviceReference = "iPhone 17 Pro"
+        osVersionReference = "26.5"
+        super.setUp()
+    }
+
+    override func setUp() {
+        super.setUp()
+        devices = [.iPhone17Pro]
+        super.setUp()
+    }
+}
+
 extension SnapshotTestCase {
     func snapshot<V: Component>(
         component: V,
