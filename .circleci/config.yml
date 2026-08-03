@@ -71,7 +71,7 @@ jobs:
 workflows:
   merge_request_workflow:
     jobs:
-      - validate_mr:
+      - validate_mr
 
     when:
       or:
