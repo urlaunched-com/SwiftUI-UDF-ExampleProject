@@ -12,7 +12,6 @@ jobs:
     <<: *container_config
     environment:
       FL_OUTPUT_DIR: output
-      TUIST_TOKEN: "tuist_019fb7f8-6d7b-73c2-8a57-b39568ac9c33_8PZpznLavbzynAvIDuUBsGyCHek="
       TUIST_XDG_CACHE_HOME: /Users/distiller/.cache/tuist
       TUIST_XDG_STATE_HOME: /Users/distiller/.local/state/tuist
     steps:
@@ -29,21 +28,10 @@ jobs:
               sudo tar -xzf /tmp/tuist-cache.tar.gz -C /
             fi
       - restore_cache:
-          name: Restore Cached Tuist Cache
-          keys:
-            - v1-tuist-cache-{{ checksum ".tuist_version" }}-{{ checksum "Tuist/Package.resolved" }}-{{ .Branch }}
-            - v1-tuist-cache-{{ checksum ".tuist_version" }}-{{ checksum "Tuist/Package.resolved" }}-
-      - restore_cache:
           name: Restore Cached SwiftPM Packages
           keys:
             - v1-spm-tuist-cache-{{ checksum ".tuist_version" }}-{{ checksum "Tuist/Package.resolved" }}
             - v1-spm-tuist-cache-{{ checksum ".tuist_version" }}-
-      - restore_cache:
-          name: Restore Cached DerivedData
-          keys:
-            - v1-derived-data-{{ .Branch }}-{{ .Revision }}
-            - v1-derived-data-{{ .Branch }}-
-            - v1-derived-data-
       - run:
           name: Install Tuist
           command: |
@@ -105,16 +93,6 @@ jobs:
               -- \
               -skipPackagePluginValidation \
               -skipMacroValidation
-      - save_cache:
-          name: Cache Tuist
-          paths:
-            - /Users/distiller/.cache/tuist
-          key: v1-tuist-cache-{{ checksum ".tuist_version" }}-{{ checksum "Tuist/Package.resolved" }}-{{ .Branch }}
-      - save_cache:
-          name: Cache DerivedData
-          key: v1-derived-data-{{ .Branch }}-{{ .Revision }}
-          paths:
-            - /Users/distiller/Library/Developer/Xcode/DerivedData
       - store_artifacts:
           path: /Users/distiller/.local/state/tuist/sessions
           destination: tuist-sessions
