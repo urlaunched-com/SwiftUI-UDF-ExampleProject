@@ -26,6 +26,7 @@ struct MovieCastContainer: BindableContainer {
     }
 
     func onContainerDidLoad(store: EnvironmentStore<AppState>) {
+        print("func onContainerDidLoad(store: EnvironmentStore<AppState>)")
         store.dispatch(Actions.LoadItemCast(itemId: id).binded(to: self))
     }
 }
