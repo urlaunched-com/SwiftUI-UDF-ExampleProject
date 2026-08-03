@@ -31,6 +31,7 @@ public final class SearchMiddleware<F: SearchFeature>: Middleware<F>, @unchecked
         switch state.searchFlow {
         case let .loadItems(page):
             execute(flowId: SearchFlow.id, cancellation: Cancellation.loadItems) { [unowned self] taskId in
+                print("execute task insside SearchMiddleware")
                 let items = try await self.environment.loadItems(state.searchForm.searchText, page)
                 return Actions.DidLoadItems(items: items, id: taskId)
             }
