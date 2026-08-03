@@ -1,0 +1,32 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  before_all do
+      ENV["FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT"] = "240"
+      ENV["FASTLANE_XCODE_LIST_TIMEOUT"] = "240"
+      ENV["DELIVER_ALTOOL_ADDITIONAL_UPLOAD_PARAMETERS"] = "--use-old-altool"
+      setup_circle_ci
+      
+      @xcargs = "-skipMacroValidation -skipPackagePluginValidation"
+  end
+  
+  
+  desc "Run all tests"
+  lane :test do
+    scan(
+      device: "iPhone 17 Pro (26.5)",
+      scheme: "Flick",
+      prelaunch_simulator: true,
+      # Skip macro validation so tests can run on CI even if Macro Expansion
+      # isn't added to the test target. Keep plugin validation skip as before.
+      xcargs: @xcargs
+    )
+  end
+end
+
