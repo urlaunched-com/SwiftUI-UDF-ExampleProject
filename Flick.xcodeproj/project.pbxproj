@@ -164,6 +164,7 @@
 				508E9E6F291278DC00C8BE18 /* Sources */,
 				508E9E70291278DC00C8BE18 /* Frameworks */,
 				508E9E71291278DC00C8BE18 /* Resources */,
+				EF1447223020B2E2005D2767 /*  CircleCI SPM Caching  */,
 				B96AF5CC2D79DB79000F9C6E /* Swift Format */,
 			);
 			buildRules = (
@@ -325,6 +326,24 @@
 			shellPath = /bin/sh;
 			shellScript = "#!/bin/bash\n\n# Get the value of core.hooksPath\nHOOKS_PATH=$(git config --get core.hooksPath)\n\n# Check if core.hooksPath is set to '.githooks'\nif [ \"$HOOKS_PATH\" != \".githooks\" ]; then\n    echo \"Setting up pre-commit hook...\"\n    chmod +x .githooks/pre-commit\n    git config core.hooksPath .githooks\nfi\n\n";
 		};
+		EF1447223020B2E2005D2767 /*  CircleCI SPM Caching  */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = " CircleCI SPM Caching ";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ncp Flick.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved Package.resolved\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -398,6 +417,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COMPILATION_CACHE_ENABLE_CACHING = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -460,6 +480,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COMPILATION_CACHE_ENABLE_CACHING = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;

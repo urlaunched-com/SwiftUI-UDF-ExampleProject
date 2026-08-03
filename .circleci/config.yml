@@ -1,0 +1,86 @@
+# CircleCI configuration file
+version: 2.1
+
+references:
+  container_config: &container_config
+    macos:
+      xcode: "26.5"
+    resource_class: m4pro.medium
+
+orbs:
+  macos: circleci/macos@2.5.4
+
+jobs:
+  validate_mr:
+    <<: *container_config
+    environment:
+      FL_OUTPUT_DIR: output
+    steps:
+      - checkout
+      - macos/switch-ruby:
+          version: "3.4.8"
+      - restore_cache:
+          name: Restore Fastlane Cache
+          keys: 
+            - v2-fastlane-{{ checksum ".fastlane-version" }}
+            - v2-fastlane-
+      - run:
+          name: Install Fastlane
+          command: |
+            export GEM_HOME=$HOME/.gems
+            export GEM_PATH=$GEM_HOME:$GEM_PATH
+            export PATH=$GEM_HOME/bin:$PATH
+            if ! gem list fastlane -iv "$(cat .fastlane-version)" > /dev/null; then
+                gem install fastlane -v $(cat .fastlane-version)
+            fi
+      - save_cache:
+          name: Save Fastlane
+          key: v2-fastlane-{{ checksum ".fastlane-version" }}
+          paths:
+            - ~/.gems
+      - restore_cache:
+          name: Restore SPM Cache
+          keys:
+            - v2-spm-cache-{{ checksum "Package.resolved" }}
+            - v2-spm-cache-
+      - restore_cache:
+           name: Restore DerivedData Cache
+           keys:
+            - v2-derived-data-{{ checksum "Flick.xcodeproj/project.pbxproj" }}
+            - v2-derived-data-
+      # Run all tests via fastlane
+      - run:
+          name: Run all tests
+          command: fastlane test
+      # Saving SPM cache after the build
+      - save_cache:
+          paths:
+            - ~/.swiftpm
+          key: v2-spm-cache-{{ checksum "Package.resolved" }}
+      # Saving DerivedData cache after the build
+      - save_cache:
+          paths:
+            - ~/Library/Developer/Xcode/DerivedData
+          key: v2-derived-data-{{ checksum "Flick.xcodeproj/project.pbxproj" }}
+      - store_artifacts:
+          path: output
+      - store_test_results:
+          path: output/scan
+     
+               
+workflows:
+  merge_request_workflow:
+    jobs:
+      - validate_mr
+
+    when:
+      or:
+        - matches:
+            pattern: /^feature\/.*/
+            value: << pipeline.git.branch >>
+        - matches:
+            pattern: /^chore\/.*/
+            value: << pipeline.git.branch >>
+        - matches:
+            pattern: /^fix\/.*/
+            value: << pipeline.git.branch >>
