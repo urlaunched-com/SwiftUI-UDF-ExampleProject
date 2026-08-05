@@ -1,0 +1,17 @@
+#!/bin/zsh
+
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+
+cd "$ROOT_DIR"
+
+if ! command -v tuist >/dev/null 2>&1; then
+    echo "error: tuist is not installed or not available in PATH" >&2
+    exit 1
+fi
+
+echo "Running tuist validate..."
+tuist generate --no-open
+
+echo "Validation passed."
