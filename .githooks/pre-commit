@@ -30,6 +30,7 @@ if [[ "$should_validate" -eq 0 ]]; then
 fi
 
 echo "Project configuration changed. Running Tuist validation..."
+tuist inspect implicit-imports
 tuist generate --no-open
 
 echo "Validation passed."

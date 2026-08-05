@@ -35,6 +35,7 @@ public struct Module {
     let frameworkDependancies: [TargetDependency]
     let frameworkResources: [String]
     let snapshotDependencies: [TargetDependency]
+    let snapshotHostAppDependencies: [TargetDependency]
     let moduleType: ModuleType
     let frameworkScripts: [TargetScript]
     let targets: Set<FeatureTarget>
@@ -46,6 +47,7 @@ public struct Module {
         frameworkDependancies: [TargetDependency],
         frameworkResources: [String],
         snapshotDependencies: [TargetDependency] = [],
+        snapshotHostAppDependencies: [TargetDependency] = [],
         frameworkScripts: [TargetScript] = [],
         targets: Set<FeatureTarget> = Set(arrayLiteral: .framework)
     ) {
@@ -55,6 +57,7 @@ public struct Module {
         self.frameworkDependancies = frameworkDependancies
         self.frameworkResources = frameworkResources
         self.snapshotDependencies = snapshotDependencies
+        self.snapshotHostAppDependencies = snapshotHostAppDependencies
         self.frameworkScripts = frameworkScripts
         self.targets = targets
     }
@@ -73,12 +76,10 @@ extension Project {
     ) -> Project {
         let organizationName = organizationName
         var targets = [Target]()
-        var dependencies = moduleTargets.map { TargetDependency.target(name: $0.name) }
-        dependencies.append(contentsOf: targetDependancies)
         
         let appTargets = makeAppTargets(
             name: name,
-            dependencies: dependencies,
+            dependencies: targetDependancies,
             settings: appSettings
         )
         targets.append(contentsOf: appTargets)
@@ -141,9 +142,7 @@ extension Project {
                     "\(frameworkPath)/App/**",
                 ],
                 resources: .resources(frameworkResourceFilePaths),
-                dependencies: module.frameworkDependancies + [
-                    .target(name: module.name)
-                ],
+                dependencies: module.snapshotHostAppDependencies,
             )
             
             let snapshotTarget = Target.target(

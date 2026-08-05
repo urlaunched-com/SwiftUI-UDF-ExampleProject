@@ -59,8 +59,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-collections",
       "state" : {
-        "revision" : "6675bc0ff86e61436e615df6fc5174e043e57924",
-        "version" : "1.4.1"
+        "revision" : "a0cb0954ecb21e4e31b0070e6ed5674e8556685a",
+        "version" : "1.6.0"
       }
     },
     {
@@ -106,15 +106,6 @@
       "state" : {
         "revision" : "1de718e676750e85ff0485d301e64593e6dc3921",
         "version" : "1.7.2"
-      }
-    },
-    {
-      "identity" : "swiftui-udf",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Maks-Jago/SwiftUI-UDF",
-      "state" : {
-        "revision" : "c54927076a25f2275e1cc3975d71c429190267a8",
-        "version" : "1.5.1-rc.1"
       }
     },
     {
