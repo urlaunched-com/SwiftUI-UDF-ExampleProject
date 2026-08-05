@@ -3,15 +3,33 @@
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
-
 cd "$ROOT_DIR"
+
+FILES=(
+    "Project.swift"
+    "Tuist/Package.swift"
+    "Tuist/ProjectDescriptionHelpers/Project+Templates.swift"
+)
 
 if ! command -v tuist >/dev/null 2>&1; then
     echo "error: tuist is not installed or not available in PATH" >&2
     exit 1
 fi
 
-echo "Running tuist validate..."
+should_validate=0
+
+for file in "${FILES[@]}"; do
+    if git diff --cached --name-only -- "$file" | grep -q .; then
+        should_validate=1
+        break
+    fi
+done
+
+if [[ "$should_validate" -eq 0 ]]; then
+    exit 0
+fi
+
+echo "Project configuration changed. Running Tuist validation..."
 tuist generate --no-open
 
 echo "Validation passed."
