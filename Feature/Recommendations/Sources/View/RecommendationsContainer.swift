@@ -28,7 +28,7 @@ public struct RecommendationsContainer<F: RecommendationsFeature, R: Routing>: B
         .init(
             title: "",
             items: items,
-            genreById: store.state.allGenres.genreBy,
+            genreById: store.state.allGenres.by(id:),
             loadMoreAction: loadNewPageIfNeeded,
             dialog: dialog,
         )
@@ -79,10 +79,10 @@ private extension RecommendationsContainer {
         switch id {
         case let .movie(movieID):
             let ids = store.state.allMovies.recommendationsByMovieId[movieID]?.elements ?? []
-            return ids.map { store.state.allMovies.movieBy(id: $0) }
+            return ids.map { store.state.allMovies.by(id: $0) }
         case let .show(showID):
             let ids = store.state.allShows.recommendationsByShowId[showID]?.elements ?? []
-            return ids.map { store.state.allShows.showBy(id: $0) }
+            return ids.map { store.state.allShows.by(id: $0) }
         }
         
     }

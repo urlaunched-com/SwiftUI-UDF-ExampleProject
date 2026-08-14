@@ -9,5 +9,3 @@
 import Cast
 
 extension AppState: CastFeature {}
-
-extension AllCast: Cast.AllCast {}

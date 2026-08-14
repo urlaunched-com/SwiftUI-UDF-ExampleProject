@@ -9,11 +9,5 @@
 import MyFavorites
 import NetworkConnectivity
 
-extension AppState: MyFavoritesFeature {
-    typealias AllGenres = Flick.AllGenres
-}
-
-extension AllMovies: MyFavorites.AllMovies {}
-extension AllShows: MyFavorites.AllShows {}
-extension AllGenres: MyFavorites.AllGenres {}
+extension AppState: MyFavoritesFeature {}
 extension NetworkConnectivity.NetworkConnectivityForm: MyFavorites.NetworkConnectivityForm {}

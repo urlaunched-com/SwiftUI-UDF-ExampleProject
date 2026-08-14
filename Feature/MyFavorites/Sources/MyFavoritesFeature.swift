@@ -11,9 +11,9 @@ import Models
 
 public protocol MyFavoritesFeature: AppReducer {
     associatedtype NetworkConnectivityForm: MyFavorites.NetworkConnectivityForm
-    associatedtype AllMovies: MyFavorites.AllMovies
-    associatedtype AllShows: MyFavorites.AllShows
-    associatedtype AllGenres: MyFavorites.AllGenres
+    associatedtype AllMovies: Storage<Movie>
+    associatedtype AllShows: Storage<Show>
+    associatedtype AllGenres: Storage<Genre>
 
     var myFavoritesForm: MyFavoritesForm { get }
     var myFavoritesFlow: MyFavoritesFlow { get }
@@ -26,17 +26,5 @@ public protocol MyFavoritesFeature: AppReducer {
 public enum MyFavorites {
     public protocol NetworkConnectivityForm: Form {
         var satisfied: Bool { get }
-    }
-
-    public protocol AllMovies: Reducible {
-        func movieBy(id: Movie.ID) -> Movie
-    }
-
-    public protocol AllShows: Reducible {
-        func showBy(id: Show.ID) -> Show
-    }
-
-    public protocol AllGenres: Reducible {
-        func genreBy(id: Genre.ID) -> Genre
     }
 }

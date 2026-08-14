@@ -28,7 +28,7 @@ public struct MyFavoritesContainer<F: MyFavoritesFeature, R: Routing>: Container
                 set: { setContentType($0) }
             ),
             items: items,
-            genreById: { store.state.allGenres.genreBy(id: $0) },
+            genreById: { store.state.allGenres.by(id: $0) },
             loadMoreAction: loadNewPageIfNeeded,
             isRedacted: isRedacted,
             dialog: store.$state.myFavoritesForm.dialog,
@@ -52,11 +52,11 @@ private extension MyFavoritesContainer {
     }
 
     var movies: [Movie] {
-        store.state.myFavoritesForm.movies.map { store.state.allMovies.movieBy(id: $0) }
+        store.state.myFavoritesForm.movies.map { store.state.allMovies.by(id: $0) }
     }
 
     var shows: [Show] {
-        store.state.myFavoritesForm.shows.map { store.state.allShows.showBy(id: $0) }
+        store.state.myFavoritesForm.shows.map { store.state.allShows.by(id: $0) }
     }
 
     var isRedacted: Bool {

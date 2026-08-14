@@ -11,10 +11,10 @@ import Models
 
 public protocol SectionDetailsFeature: AppReducer {
     associatedtype NetworkConnectivityForm: SectionDetails.NetworkConnectivityForm
-    associatedtype AllGenres: SectionDetails.AllGenres
     associatedtype AllMovies: SectionDetails.AllMovies
     associatedtype AllShows: SectionDetails.AllShows
     associatedtype HomeForm: SectionDetails.HomeForm
+    associatedtype AllGenres: Storage<Genre>
     
     var homeForm: HomeForm { get }
     var sectionDetailsFlow: SectionDetailsFlow { get }
@@ -31,18 +31,12 @@ public enum SectionDetails {
         var satisfied: Bool { get }
     }
     
-    public protocol AllGenres: Reducible {
-        func genreBy(id: Genre.ID) -> Genre
-    }
-    
-    public protocol AllMovies: Reducible {
+    public protocol AllMovies: Storage<Movie> {
         var moviesBySectionId: [MovieSection.ID: OrderedSet<Movie.ID>] { get }
-        func movieBy(id: Movie.ID) -> Movie
     }
     
-    public protocol AllShows: Reducible {
+    public protocol AllShows: Storage<Show> {
         var showsBySectionId: [ShowSection.ID: OrderedSet<Show.ID>] { get }
-        func showBy(id: Show.ID) -> Show
     }
     
     public protocol HomeForm: Form {

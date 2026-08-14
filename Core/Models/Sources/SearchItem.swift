@@ -12,7 +12,7 @@ import SwiftFoundation
 import UDF
 import Common
 
-public struct SearchItem {
+public struct SearchItem: EmptyValue {
     public struct ID: Hashable, Codable {
         public var value: Int
         

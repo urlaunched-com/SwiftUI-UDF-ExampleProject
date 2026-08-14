@@ -9,8 +9,9 @@
 import API
 import Foundation
 import SwiftFoundation
+import UDF
 
-public struct Cast: Identifiable {
+public struct Cast: Identifiable, EmptyValue {
     public struct ID: Hashable, Codable {
         public var value: Int
         

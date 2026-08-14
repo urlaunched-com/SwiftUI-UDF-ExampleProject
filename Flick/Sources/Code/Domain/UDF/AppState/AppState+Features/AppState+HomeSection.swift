@@ -10,7 +10,3 @@ import HomeSection
 
 extension AppState: HomeSectionFeature {
 }
-
-extension AllMovies: HomeSection.AllMovies {}
-extension AllShows: HomeSection.AllShows {}
-extension AllGenres: HomeSection.AllGenres {}

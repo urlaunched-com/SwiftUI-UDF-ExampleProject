@@ -11,9 +11,9 @@ import Models
 
 public protocol ItemDetailsFeature: AppReducer {
     associatedtype ItemDetailsContainerType: BindableContainer where ItemDetailsContainerType.ID == ItemDetailsTarget
-    associatedtype AllMovies: ItemDetails.AllMovies
-    associatedtype AllShows: ItemDetails.AllShows
-    associatedtype AllGenres: ItemDetails.AllGenres
+    associatedtype AllMovies: Storage<Movie>
+    associatedtype AllShows: Storage<Show>
+    associatedtype AllGenres: Storage<Genre>
     associatedtype NetworkConnectivityForm: ItemDetails.NetworkConnectivityForm
 
     var itemDetailsBindableFlow: BindableSource<ItemDetailsTarget, ItemDetailsFlow> { get }
@@ -28,17 +28,5 @@ public protocol ItemDetailsFeature: AppReducer {
 public enum ItemDetails {
     public protocol NetworkConnectivityForm: Form {
         var satisfied: Bool { get }
-    }
-    
-    public protocol AllMovies: Reducible {
-        func movieBy(id: Movie.ID) -> Movie
-    }
-
-    public protocol AllShows: Reducible {
-        func showBy(id: Show.ID) -> Show
-    }
-    
-    public protocol AllGenres: Reducible {
-        func genreBy(id: Genre.ID) -> Genre
     }
 }

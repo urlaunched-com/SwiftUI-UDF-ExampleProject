@@ -10,19 +10,11 @@ import UDF
 import Models
 
 public protocol HomeSectionFeature: AppReducer {
-    associatedtype AllMovies: HomeSection.AllMovies
-    associatedtype AllShows: HomeSection.AllShows
-    associatedtype AllGenres: HomeSection.AllGenres
+    associatedtype AllMovies: Storage<Movie>
+    associatedtype AllShows: Storage<Show>
+    associatedtype AllGenres: Storage<Genre>
 
     var allMovies: AllMovies { get }
     var allShows: AllShows { get }
     var allGenres: AllGenres { get }
-}
-
-public enum HomeSection {
-    public protocol AllMovies: Reducible {}
-    public protocol AllShows: Reducible {}
-    public protocol AllGenres: Reducible {
-        func genreBy(id: Genre.ID) -> Genre
-    }
 }

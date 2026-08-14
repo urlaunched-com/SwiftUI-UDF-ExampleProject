@@ -10,7 +10,7 @@ import Foundation
 import UDF
 @preconcurrency import Models
 
-struct AllMovies: Reducible {
+struct AllMovies: Storage {
     var byId: [Movie.ID: Movie] = [:]
     var moviesBySectionId: [MovieSection.ID: OrderedSet<Movie.ID>] = [:]
     var recommendationsByMovieId: [Movie.ID: OrderedSet<Movie.ID>] = [:]
@@ -38,9 +38,5 @@ struct AllMovies: Reducible {
         default:
             break
         }
-    }
-
-    func movieBy(id: Movie.ID) -> Movie {
-        byId[id] ?? .empty
     }
 }

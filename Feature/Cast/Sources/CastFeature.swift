@@ -10,14 +10,8 @@ import UDF
 import Models
 
 public protocol CastFeature: AppReducer {
-    associatedtype AllCast: Cast.AllCast
+    associatedtype AllCast: Storage<Models.Cast>
 
     var castForm: CastForm { get }
     var allCast: AllCast { get }
-}
-
-public enum Cast {
-    public protocol AllCast: Reducible {
-        func castBy(id: Models.Cast.ID) -> Models.Cast
-    }
 }

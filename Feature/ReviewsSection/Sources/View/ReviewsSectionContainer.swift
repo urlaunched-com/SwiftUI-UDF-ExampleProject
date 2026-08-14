@@ -55,7 +55,7 @@ private extension ReviewsSectionContainer {
     }
 
     func reviewById(_ id: Review.ID) -> Review {
-        isRedacted ? Review.fakeItem() : store.state.allReviews.reviewBy(id: id)
+        isRedacted ? Review.fakeItem() : store.state.allReviews.by(id: id)
     }
 
     var isRedacted: Bool {

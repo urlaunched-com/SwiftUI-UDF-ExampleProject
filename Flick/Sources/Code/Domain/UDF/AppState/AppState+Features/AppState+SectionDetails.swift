@@ -9,6 +9,8 @@
 import SectionDetails
 import Home
 import NetworkConnectivity
+import UDF
+import Models
 
 extension AppState: SectionDetailsFeature {}
 
@@ -16,4 +18,3 @@ extension NetworkConnectivity.NetworkConnectivityForm: SectionDetails.NetworkCon
 extension HomeForm: SectionDetails.HomeForm {}
 extension AllMovies: SectionDetails.AllMovies {}
 extension AllShows: SectionDetails.AllShows {}
-extension AllGenres: SectionDetails.AllGenres {}

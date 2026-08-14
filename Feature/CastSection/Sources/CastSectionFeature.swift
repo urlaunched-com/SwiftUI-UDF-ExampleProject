@@ -25,9 +25,8 @@ public enum CastSection {
         var satisfied: Bool { get }
     }
 
-    public protocol AllCast: Reducible {
+    public protocol AllCast: Storage<Models.Cast> {
         var byMovieId: [Movie.ID: OrderedSet<Models.Cast.ID>] { get }
         var byShowId: [Show.ID: OrderedSet<Models.Cast.ID>] { get }
-        func castBy(id: Models.Cast.ID) -> Models.Cast
     }
 }

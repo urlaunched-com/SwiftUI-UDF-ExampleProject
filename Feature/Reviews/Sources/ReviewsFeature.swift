@@ -26,9 +26,8 @@ public enum Reviews {
         var satisfied: Bool { get }
     }
     
-    public protocol AllReviews: Reducible {
+    public protocol AllReviews: Storage<Review> {
         var byMovieId: [Movie.ID: OrderedSet<Review.ID>] { get }
         var byShowId: [Show.ID: OrderedSet<Review.ID>] { get }
-        func reviewBy(id: Review.ID) -> Review
     }
 }

@@ -67,7 +67,7 @@ private extension CastSectionContainer {
         if flow != .none {
             return .fakeItem()
         }
-        return store.state.allCast.castBy(id: id)
+        return store.state.allCast.by(id: id)
     }
 
     var isRedacted: Bool {

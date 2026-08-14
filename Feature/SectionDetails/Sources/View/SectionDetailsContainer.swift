@@ -28,7 +28,7 @@ public struct SectionDetailsContainer<F: SectionDetailsFeature, S: Models.Sectio
         .init(
             title: section.title,
             items: items,
-            genreById: store.state.allGenres.genreBy,
+            genreById: store.state.allGenres.by(id:),
             loadMoreAction: loadNewPageIfNeeded,
             dialog: dialog,
             router: R()
@@ -59,9 +59,9 @@ private extension SectionDetailsContainer {
 
     var items: [any Item] {
         if isMovieSection {
-            return store.state.sectionDetailsForm.movies.map { store.state.allMovies.movieBy(id: $0) }
+            return store.state.sectionDetailsForm.movies.map { store.state.allMovies.by(id: $0) }
         } else if isShowSection {
-            return store.state.sectionDetailsForm.shows.map { store.state.allShows.showBy(id: $0) }
+            return store.state.sectionDetailsForm.shows.map { store.state.allShows.by(id: $0) }
         }
         return []
     }

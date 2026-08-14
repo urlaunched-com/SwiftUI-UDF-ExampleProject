@@ -29,7 +29,7 @@ public struct RecommendationsSectionContainer<F: RecommendationsSectionFeature, 
             item: item,
             items: items,
             isRedacted: isRedacted,
-            genreById: store.state.allGenres.genreBy,
+            genreById: store.state.allGenres.by(id:),
             router: R(),
         )
     }
@@ -58,19 +58,19 @@ private extension RecommendationsSectionContainer {
         switch id {
         case let .movie(movieID):
             let ids = store.state.allMovies.recommendationsByMovieId[movieID]?.elements ?? []
-            return ids.map { store.state.allMovies.movieBy(id: $0) }
+            return ids.map { store.state.allMovies.by(id: $0) }
         case let .show(showID):
             let ids = store.state.allShows.recommendationsByShowId[showID]?.elements ?? []
-            return ids.map { store.state.allShows.showBy(id: $0) }
+            return ids.map { store.state.allShows.by(id: $0) }
         }
     }
     
     var item: any Item {
         switch id {
         case let .movie(movieID):
-            return store.state.allMovies.movieBy(id: movieID)
+            return store.state.allMovies.by(id: movieID)
         case let .show(showID):
-            return store.state.allShows.showBy(id: showID)
+            return store.state.allShows.by(id: showID)
         }
     }
     

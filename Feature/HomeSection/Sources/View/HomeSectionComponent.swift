@@ -17,13 +17,13 @@ public struct HomeSectionComponent<S: Models.Section, R: Routing>: Component whe
     public struct Props {
         var section: S
         var items: [any Item]
-        var genreById: (Genre.ID) -> Genre?
+        var genreById: (Genre.ID) -> Genre
         var router: R
 
         public init(
             section: S,
             items: [any Item],
-            genreById: @escaping (Genre.ID) -> Genre?,
+            genreById: @escaping (Genre.ID) -> Genre,
             router: R
         ) {
             self.section = section

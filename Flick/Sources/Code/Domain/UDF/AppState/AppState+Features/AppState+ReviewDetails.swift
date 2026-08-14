@@ -33,4 +33,8 @@ extension AppState: ReviewDetailsFeature {
 }
 
 extension NetworkConnectivity.NetworkConnectivityForm: ReviewDetails.NetworkConnectivityForm {}
-extension AllReviews: ReviewDetails.AllReviews {}
+extension AllReviews: ReviewDetails.AllReviews {
+    var movieByID: [Models.Movie.ID: [Models.Review.ID]] {
+        byMovieId.mapValues(Array.init)
+    }
+}

@@ -25,7 +25,7 @@ public struct CastContainer<F: CastFeature, R: Routing>: Container where R.Route
     public func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
         .init(
             cast: cast,
-            castById: store.state.allCast.castBy,
+            castById: store.state.allCast.by(id:),
             dialogStatus: store.$state.castForm.dialog,
             router: R()
         )

@@ -31,6 +31,3 @@ extension AppState: ItemDetailsFeature {
 }
 
 extension NetworkConnectivity.NetworkConnectivityForm: ItemDetails.NetworkConnectivityForm {}
-extension AllMovies: ItemDetails.AllMovies {}
-extension AllShows: ItemDetails.AllShows {}
-extension AllGenres: ItemDetails.AllGenres {}

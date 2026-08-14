@@ -6,11 +6,12 @@
 //  Copyright © 2022 urlaunched.com. All rights reserved.
 //
 
+import UDF
 import API
 import Foundation
 import SwiftFoundation
 
-public struct Genre: Identifiable {
+public struct Genre: Identifiable, EmptyValue {
     public struct ID: Hashable, Codable {
         public var value: Int
         
@@ -46,8 +47,8 @@ extension Genre: Faking {
 
 // MARK: - empty
 
-public extension Genre {
-    static var empty = Genre(
+extension Genre {
+    public static var empty = Genre(
         id: .init(value: Int.random(in: Int.min ... 0)),
         name: ""
     )

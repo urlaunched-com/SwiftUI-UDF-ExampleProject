@@ -8,8 +8,9 @@
 
 import API
 import SwiftFoundation
+import UDF
 
-public struct Review: Identifiable {
+public struct Review: Identifiable, EmptyValue {
     public struct ID: Hashable, Codable {
         public var value: String
         

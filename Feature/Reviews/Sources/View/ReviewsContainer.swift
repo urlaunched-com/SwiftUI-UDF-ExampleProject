@@ -28,7 +28,7 @@ public struct ReviewsContainer<F: ReviewsFeature, R: Routing>: BindableContainer
     public func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
         .init(
             reviews: form.reviews,
-            reviewById: store.state.allReviews.reviewBy,
+            reviewById: store.state.allReviews.by(id:),
             loadMoreAction: loadNewPageIfNeeded,
             dialog: dialog
         )

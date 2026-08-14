@@ -49,13 +49,11 @@ public enum HomeFeatureTypes {
         var satisfied: Bool { get }
     }
 
-    public protocol AllMovies: Reducible {
-        var byId: [Movie.ID: Movie] { get }
+    public protocol AllMovies: Storage<Movie> {
         var moviesBySectionId: [MovieSection.ID: OrderedSet<Movie.ID>] { get }
     }
 
-    public protocol AllShows: Reducible {
-        var byId: [Show.ID: Show] { get }
+    public protocol AllShows: Storage<Show> {
         var showsBySectionId: [ShowSection.ID: OrderedSet<Show.ID>] { get }
     }
 }

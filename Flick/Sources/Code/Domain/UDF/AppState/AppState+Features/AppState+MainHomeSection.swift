@@ -8,8 +8,6 @@
 
 import MainHomeSection
 
-extension AppState: MainHomeSectionFeature {}
-
-extension AllMovies: MainHomeSection.AllMovies {}
-extension AllShows: MainHomeSection.AllShows {}
-extension AllGenres: MainHomeSection.AllGenres {}
+extension AppState: MainHomeSectionFeature {
+    typealias AllGenres = Flick.AllGenres
+}

@@ -32,7 +32,7 @@ public struct MainHomeSectionContainer<F: MainHomeSectionFeature, S: Section, R:
         .init(
             section: section,
             items: items,
-            genreById: store.state.allGenres.genreBy,
+            genreById: store.state.allGenres.by(id:),
             router: R()
         )
     }

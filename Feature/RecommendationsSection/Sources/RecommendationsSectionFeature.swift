@@ -29,17 +29,13 @@ public enum RecommendationsSection {
         var satisfied: Bool { get }
     }
     
-    public protocol AllGenres: Reducible {
-        func genreBy(id: Genre.ID) -> Genre
-    }
+    public protocol AllGenres: Storage<Genre> {}
     
-    public protocol AllMovies: Reducible {
+    public protocol AllMovies: Storage<Movie> {
         var recommendationsByMovieId: [Movie.ID: OrderedSet<Movie.ID>] { get }
-        func movieBy(id: Movie.ID) -> Movie
     }
     
-    public protocol AllShows: Reducible {
+    public protocol AllShows: Storage<Show> {
         var recommendationsByShowId: [Show.ID: OrderedSet<Show.ID>] { get }
-        func showBy(id: Show.ID) -> Show
     }
 }

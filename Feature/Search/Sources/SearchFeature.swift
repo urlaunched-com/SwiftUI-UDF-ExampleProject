@@ -10,7 +10,7 @@ import Models
 
 public protocol SearchFeature: AppReducer {
     associatedtype NetworkConnectivityForm: Search.NetworkConnectivityForm
-    associatedtype AllSearchItems: Search.AllSearchItems
+    associatedtype AllSearchItems: Storage<SearchItem>
     
     var searchForm: SearchForm { get }
     var searchFlow: SearchFlow { get }
@@ -22,9 +22,5 @@ public protocol SearchFeature: AppReducer {
 public enum Search {
     public protocol NetworkConnectivityForm: Form {
         var satisfied: Bool { get }
-    }
-    
-    public protocol AllSearchItems: Reducible {
-        func searchItemBy(id: SearchItem.ID) -> SearchItem
     }
 }

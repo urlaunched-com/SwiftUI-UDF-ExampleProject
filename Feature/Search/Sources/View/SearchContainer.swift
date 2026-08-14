@@ -25,7 +25,7 @@ public struct SearchContainer<F: SearchFeature, R: Routing>: Container where R.R
                 store.dispatch(Actions.LoadPage(id: SearchFlow.id))
             },
             itemIds: store.state.searchForm.items,
-            searchItemById: store.state.allSearchItems.searchItemBy,
+            searchItemById: store.state.allSearchItems.by(id:),
             genreById: { _ in .testItem() },
             loadMoreAction: loadNewPageIfNeeded,
             router: R()

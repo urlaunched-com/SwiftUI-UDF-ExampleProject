@@ -10,7 +10,7 @@ import Foundation
 import UDF
 @preconcurrency import Models
 
-struct AllSearchItems: Reducible {
+struct AllSearchItems: Storage {
     var byId: [SearchItem.ID: SearchItem] = [:]
 
     mutating func reduce(_ action: some Action) {
@@ -30,9 +30,5 @@ struct AllSearchItems: Reducible {
         default:
             break
         }
-    }
-
-    func searchItemBy(id: SearchItem.ID) -> SearchItem {
-        byId[id] ?? .empty
     }
 }

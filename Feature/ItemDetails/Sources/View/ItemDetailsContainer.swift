@@ -28,7 +28,7 @@ public struct ItemDetailsContainer<F: ItemDetailsFeature, R: Routing>: BindableC
     public func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
         .init(
             item: item,
-            genreById: store.state.allGenres.genreBy,
+            genreById: store.state.allGenres.by(id:),
             dialog: dialog,
             router: R()
         )
@@ -55,9 +55,9 @@ private extension ItemDetailsContainer {
     var item: any Item {
         switch id {
         case let .movie(movieID):
-            store.state.allMovies.movieBy(id: movieID)
+            store.state.allMovies.by(id: movieID)
         case let .show(showID):
-            store.state.allShows.showBy(id: showID)
+            store.state.allShows.by(id: showID)
         }
     }
     

@@ -13,7 +13,7 @@ import Common
 public protocol ReviewsSectionFeature: AppReducer {
     associatedtype ReviewsSectionContainerType: BindableContainer where ReviewsSectionContainerType.ContainerState == Self, ReviewsSectionContainerType.ID == ReviewsTarget
     associatedtype NetworkConnectivityForm: ReviewsSection.NetworkConnectivityForm
-    associatedtype AllReviews: ReviewsSection.AllReviews
+    associatedtype AllReviews: Storage<Review>
     
     var allReviews: AllReviews { get }
     var reviewsSectionBindableForm: BindableSource<ReviewsTarget, ReviewsSectionForm> { get }
@@ -24,9 +24,5 @@ public protocol ReviewsSectionFeature: AppReducer {
 public enum ReviewsSection {
     public protocol NetworkConnectivityForm: Form {
         var satisfied: Bool { get }
-    }
-    
-    public protocol AllReviews: Reducible {
-        func reviewBy(id: Review.ID) -> Review
     }
 }

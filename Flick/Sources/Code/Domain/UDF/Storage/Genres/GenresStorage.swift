@@ -10,7 +10,7 @@ import Foundation
 import UDF
 @preconcurrency import Models
 
-struct AllGenres: Reducible {
+struct AllGenres: Storage {
     var byId: [Genre.ID: Genre] = [:]
 
     mutating func reduce(_ action: some Action) {
@@ -30,9 +30,5 @@ struct AllGenres: Reducible {
         default:
             break
         }
-    }
-
-    func genreBy(id: Genre.ID) -> Genre {
-        byId[id] ?? .empty
     }
 }
