@@ -45,9 +45,7 @@ struct FlickApp: App {
 
     var body: some Scene {
         WindowGroup {
-            RootContainer<AppState, HomeDestinationBuilder, RootRouting>(
-                homeDestinationBuilder: HomeDestinationBuilder()
-            )
+            RootContainer<AppState, RootRouting>()
         }
     }
 }

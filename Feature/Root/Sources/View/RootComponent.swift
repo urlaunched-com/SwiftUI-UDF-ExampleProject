@@ -9,7 +9,7 @@ import Common
 import SwiftUI
 import UDF
 
-public struct RootComponent<R: Routing, HD: HomeDestinationBuilder>: Component where R.Route == RootRoute {
+public struct RootComponent<R: Routing & NavigationDestination>: Component where R.Route == RootRoute, R.DestinationNavigation == RootDestinationNavigation {
     public struct Props {
         var isNeedToPresentOnboarding: Bool
         var selectedTab: Binding<TabBarItem>
@@ -19,7 +19,6 @@ public struct RootComponent<R: Routing, HD: HomeDestinationBuilder>: Component w
         var favoritesTabPath: Binding<NavigationPath>
         var profileTabPath: Binding<NavigationPath>
         var router: R
-        var homeDestinationBuilder: HD
 
         public init(
             isNeedToPresentOnboarding: Bool,
@@ -30,7 +29,6 @@ public struct RootComponent<R: Routing, HD: HomeDestinationBuilder>: Component w
             favoritesTabPath: Binding<NavigationPath>,
             profileTabPath: Binding<NavigationPath>,
             router: R,
-            homeDestinationBuilder: HD
         ) {
             self.isNeedToPresentOnboarding = isNeedToPresentOnboarding
             self.selectedTab = selectedTab
@@ -40,7 +38,6 @@ public struct RootComponent<R: Routing, HD: HomeDestinationBuilder>: Component w
             self.favoritesTabPath = favoritesTabPath
             self.profileTabPath = profileTabPath
             self.router = router
-            self.homeDestinationBuilder = homeDestinationBuilder
         }
     }
 
@@ -57,32 +54,32 @@ public struct RootComponent<R: Routing, HD: HomeDestinationBuilder>: Component w
             props.router.view(for: .onboarding)
         } else {
             TabView(selection: props.selectedTab) {
-                NavigationStack(path: props.homeTabPath) {
+                NavigationStackBound(path: props.homeTabPath) {
                     props.router.view(for: .home)
-                        .modifier(props.homeDestinationBuilder.makeDestinationModifier())
+                        .modifier(props.router.destination(for: .home))
                 }
                 .tag(TabBarItem.home)
                 .environment(\.globalRouter, GlobalRouter(path: props.homeTabPath))
 
-                NavigationStack(path: props.searchTabPath) {
+                NavigationStackBound(path: props.searchTabPath) {
                     props.router.view(for: .search)
                 }
                 .tag(TabBarItem.search)
                 .environment(\.globalRouter, GlobalRouter(path: props.searchTabPath))
 
-                NavigationStack(path: props.randomizerTabPath) {
+                NavigationStackBound(path: props.randomizerTabPath) {
                     props.router.view(for: .randomizer)
                 }
                 .tag(TabBarItem.randomizer)
                 .environment(\.globalRouter, GlobalRouter(path: props.randomizerTabPath))
 
-                NavigationStack(path: props.favoritesTabPath) {
+                NavigationStackBound(path: props.favoritesTabPath) {
                     props.router.view(for: .favorites)
                 }
                 .tag(TabBarItem.favorites)
                 .environment(\.globalRouter, GlobalRouter(path: props.favoritesTabPath))
 
-                NavigationStack(path: props.profileTabPath) {
+                NavigationStackBound(path: props.profileTabPath) {
                     props.router.view(for: .profile)
                 }
                 .tag(TabBarItem.profile)

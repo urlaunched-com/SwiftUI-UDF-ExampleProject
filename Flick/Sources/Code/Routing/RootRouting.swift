@@ -15,6 +15,7 @@ import SignIn
 import SwiftUI
 import TabBar
 import UDF
+import Common
 
 struct RootRouting: Routing {
     @ViewBuilder func view(for route: RootRoute) -> some View {
@@ -38,3 +39,29 @@ struct RootRouting: Routing {
         }
     }
 }
+
+extension RootRouting: NavigationDestination {
+    func destination(for destinationNavigation: RootDestinationNavigation) -> some ViewModifier {
+        switch destinationNavigation {
+        case .home:
+            HomeDestinationModifier()
+        }
+    }
+    
+    struct HomeDestinationModifier: ViewModifier {
+        func body(content: Content) -> some View {
+            content
+                .navigationDestination(for: HomeRouting.self)
+                .navigationDestination(for: MainHomeSectionRouting.self)
+                .navigationDestination(for: HomeSectionRouting.self)
+                .navigationDestination(for: SectionDetailsRouting.self)
+                .navigationDestination(for: ItemDetailsRouting.self)
+                .navigationDestination(for: ReviewsRouting.self)
+                .navigationDestination(for: ReviewsSectionRouting.self)
+                .navigationDestination(for: RecommendationsSectionRouting.self)
+                .navigationDestination(for: ReviewsRouting.self)
+                .navigationDestination(for: CastSectionRouting.self)
+        }
+    }
+}
+

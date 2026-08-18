@@ -16,3 +16,7 @@ public enum RootRoute: Hashable {
     case profile
     case tabBar
 }
+
+public enum RootDestinationNavigation {
+    case home
+}
