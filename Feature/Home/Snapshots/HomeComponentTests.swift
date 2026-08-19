@@ -31,7 +31,7 @@ final class HomeComponentTests: BaseSnapshotTestCase {
                     isMoviesRedacted: { _ in false },
                     isShowsRedacted: { _ in false },
                     dialogStatus: .constant(.dismissed),
-                    router: MockRouter<HomeRoute>()
+                    router: .init(routing: MockRouter<HomeRoute>())
                 )
             )
         )
@@ -49,7 +49,7 @@ final class HomeComponentTests: BaseSnapshotTestCase {
                     isMoviesRedacted: { _ in false },
                     isShowsRedacted: { _ in false },
                     dialogStatus: .constant(.dismissed),
-                    router: MockRouter<HomeRoute>()
+                    router: .init(routing: MockRouter<HomeRoute>())
                 )
             )
         )

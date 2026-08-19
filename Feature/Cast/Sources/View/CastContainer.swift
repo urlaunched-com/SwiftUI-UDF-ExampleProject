@@ -27,7 +27,7 @@ public struct CastContainer<F: CastFeature, R: Routing>: Container where R.Route
             cast: cast,
             castById: store.state.allCast.by(id:),
             dialogStatus: store.$state.castForm.dialog,
-            router: R()
+            router: .init(routing: R())
         )
     }
 }

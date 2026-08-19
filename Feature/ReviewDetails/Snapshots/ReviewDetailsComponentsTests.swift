@@ -32,7 +32,7 @@ final class ReviewDetailsComponentsTests: BaseSnapshotTestCase {
                 reviewByID: { [self] _ in review },
                 isRedacted: true,
                 dialog: .constant(.dismissed),
-                router: MockRouter<ReviewDetailsRoute>()
+                router: .init(routing: MockRouter<ReviewDetailsRoute>())
             ))
         )
     }
@@ -44,7 +44,7 @@ final class ReviewDetailsComponentsTests: BaseSnapshotTestCase {
                 reviewByID: { [self] _ in review },
                 isRedacted: false,
                 dialog: .constant(.dismissed),
-                router: MockRouter<ReviewDetailsRoute>()
+                router: .init(routing: MockRouter<ReviewDetailsRoute>())
             ))
         )
     }

@@ -42,7 +42,7 @@ public struct HomeContainer<F: HomeFeature, R: Routing>: Container where R.Route
             isMoviesRedacted: { isMoviesRedacted(section: $0) },
             isShowsRedacted: { isShowsRedacted(section: $0) },
             dialogStatus: store.$state.homeForm.dialog,
-            router: R()
+            router: .init(routing: R())
         )
     }
 }

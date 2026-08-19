@@ -20,14 +20,14 @@ public struct ReviewsSectionComponent<R: Routing>: Component where R.Route == Re
         var reviews: [Review.ID]
         var reviewById: (Review.ID) -> Review
         var isRedacted: Bool
-        var router: R = .init()
+        var router: Router<R> = .init()
         
         public init(
             id: ReviewsTarget,
             reviews: [Review.ID],
             reviewById: @escaping (Review.ID) -> Review,
             isRedacted: Bool,
-            router: R
+            router: Router<R>
         ) {
             self.id = id
             self.reviews = reviews

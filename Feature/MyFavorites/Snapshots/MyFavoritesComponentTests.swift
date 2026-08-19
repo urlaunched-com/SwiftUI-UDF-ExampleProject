@@ -29,7 +29,7 @@ final class MyFavoritesComponentTests: BaseSnapshotTestCase {
                 loadMoreAction: {},
                 isRedacted: true,
                 dialog: .constant(.dismissed),
-                router: MockRouter<MyFavoritesRoute>()
+                router: .init(routing: MockRouter<MyFavoritesRoute>())
             ))
         )
     }
@@ -43,7 +43,7 @@ final class MyFavoritesComponentTests: BaseSnapshotTestCase {
                 loadMoreAction: {},
                 isRedacted: false,
                 dialog: .constant(.dismissed),
-                router: MockRouter<MyFavoritesRoute>()
+                router: .init(routing: MockRouter<MyFavoritesRoute>())
             ))
         )
     }
@@ -57,7 +57,7 @@ final class MyFavoritesComponentTests: BaseSnapshotTestCase {
                 loadMoreAction: {},
                 isRedacted: false,
                 dialog: .constant(.dismissed),
-                router: MockRouter<MyFavoritesRoute>()
+                router: .init(routing: MockRouter<MyFavoritesRoute>())
             ))
         )
     }

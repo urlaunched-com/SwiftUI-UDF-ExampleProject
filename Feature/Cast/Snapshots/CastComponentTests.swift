@@ -30,7 +30,7 @@ final class CastComponentTests: BaseSnapshotTestCase {
                 cast: castItems.map(\.id),
                 castById: { _ in .fakeItem() },
                 dialogStatus: .constant(.dismissed),
-                router: MockRouter<CastRoute>()
+                router: .init(routing: MockRouter<CastRoute>())
             ))
         )
     }
@@ -43,7 +43,7 @@ final class CastComponentTests: BaseSnapshotTestCase {
                     castItems.first(where: { $0.id == id }) ?? .fakeItem()
                 },
                 dialogStatus: .constant(.dismissed),
-                router: MockRouter<CastRoute>()
+                router: .init(routing: MockRouter<CastRoute>())
             ))
         )
     }

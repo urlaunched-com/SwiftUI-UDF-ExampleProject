@@ -31,7 +31,7 @@ final class ReviewsSectionComponentTests: BaseSnapshotTestCase {
                 reviews: reviews.map(\.id),
                 reviewById: { _ in .testItem() },
                 isRedacted: true,
-                router: MockRouter<ReviewsSectionRoute>()
+                router: .init(routing: MockRouter<ReviewsSectionRoute>())
             ))
         )
     }
@@ -45,7 +45,7 @@ final class ReviewsSectionComponentTests: BaseSnapshotTestCase {
                     reviews.first(where: { $0.id == id }) ?? .empty
                 },
                 isRedacted: false,
-                router: MockRouter<ReviewsSectionRoute>()
+                router: .init(routing: MockRouter<ReviewsSectionRoute>())
             ))
         )
     }

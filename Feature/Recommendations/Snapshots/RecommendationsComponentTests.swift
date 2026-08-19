@@ -27,7 +27,7 @@ final class RecommendationsComponentTests: BaseSnapshotTestCase {
                     genreById: { _ in .fakeItem() },
                     loadMoreAction: {},
                     dialog: .constant(.dismissed),
-                    router: MockRouter<RecommendationsRoute>()
+                    router: .init(routing: MockRouter<RecommendationsRoute>())
                 )
             )
         )
@@ -42,7 +42,7 @@ final class RecommendationsComponentTests: BaseSnapshotTestCase {
                     genreById: { _ in .fakeItem() },
                     loadMoreAction: {},
                     dialog: .constant(.dismissed),
-                    router: MockRouter<RecommendationsRoute>()
+                    router: .init(routing: MockRouter<RecommendationsRoute>())
                 )
             )
         )
@@ -57,7 +57,7 @@ final class RecommendationsComponentTests: BaseSnapshotTestCase {
                     genreById: { _ in .fakeItem() },
                     loadMoreAction: {},
                     dialog: .constant(.dismissed),
-                    router: MockRouter<RecommendationsRoute>()
+                    router: .init(routing: MockRouter<RecommendationsRoute>())
                 )
             )
         )

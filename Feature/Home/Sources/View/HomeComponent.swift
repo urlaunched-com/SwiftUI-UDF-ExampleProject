@@ -23,7 +23,7 @@ public struct HomeComponent<R: Routing>: Component where R.Route == HomeRoute {
         var isMoviesRedacted: (MovieSection) -> Bool
         var isShowsRedacted: (ShowSection) -> Bool
         var dialogStatus: Binding<DialogStatus>
-        var router: R
+        var router: Router<R>
 
         public init(
             contentType: Binding<ContentType>,
@@ -34,7 +34,7 @@ public struct HomeComponent<R: Routing>: Component where R.Route == HomeRoute {
             isMoviesRedacted: @escaping (MovieSection) -> Bool,
             isShowsRedacted: @escaping (ShowSection) -> Bool,
             dialogStatus: Binding<DialogStatus>,
-            router: R
+            router: Router<R>
         ) {
             self.contentType = contentType
             self.movieSections = movieSections
@@ -137,7 +137,7 @@ extension HomeComponent {
             isMoviesRedacted: { _ in false },
             isShowsRedacted: { _ in false },
             dialogStatus: .constant(.dismissed),
-            router: MockRouter<HomeRoute>()
+            router: .init(routing: MockRouter<HomeRoute>())
         )
     )
 }

@@ -32,7 +32,7 @@ public struct MyFavoritesContainer<F: MyFavoritesFeature, R: Routing>: Container
             loadMoreAction: loadNewPageIfNeeded,
             isRedacted: isRedacted,
             dialog: store.$state.myFavoritesForm.dialog,
-            router: R()
+            router: .init(routing: R())
         )
     }
 

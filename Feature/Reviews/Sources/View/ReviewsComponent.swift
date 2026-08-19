@@ -20,14 +20,14 @@ public struct ReviewsComponent<R: Routing>: Component where R.Route == ReviewsRo
         var reviewById: (Review.ID) -> Review
         var loadMoreAction: Command
         var dialog: Binding<DialogStatus>
-        var router: R = .init()
+        var router: Router<R> = .init()
         
         public init(
             reviews: [Review.ID],
             reviewById: @escaping (Review.ID) -> Review,
             loadMoreAction: @escaping Command,
             dialog: Binding<DialogStatus>,
-            router: R = .init()
+            router: Router<R> = .init()
         ) {
             self.reviews = reviews
             self.reviewById = reviewById
@@ -87,7 +87,7 @@ public struct ReviewsComponent<R: Routing>: Component where R.Route == ReviewsRo
             reviewById: { _ in .fakeItem() },
             loadMoreAction: {},
             dialog: .constant(.dismissed),
-            router: MockRouter<ReviewsRoute>()
+            router: .init(routing: MockRouter<ReviewsRoute>())
         )
     )
 }

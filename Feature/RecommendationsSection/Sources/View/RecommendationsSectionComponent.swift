@@ -20,14 +20,14 @@ public struct RecommendationsSectionComponent<R: Routing>: Component where R.Rou
         var items: [any Item]
         var isRedacted: Bool
         var genreById: (Genre.ID) -> Genre?
-        var router: R = .init()
+        var router: Router<R> = .init()
         
         public init(
             item: any Item,
             items: [any Item],
             isRedacted: Bool,
             genreById: @escaping (Genre.ID) -> Genre?,
-            router: R = .init()
+            router: Router<R> = .init()
         ) {
             self.item = item
             self.items = items
@@ -94,7 +94,7 @@ public struct RecommendationsSectionComponent<R: Routing>: Component where R.Rou
             items: [],
             isRedacted: false,
             genreById: { _ in .fakeItem() },
-            router: MockRouter()
+            router: .init(routing: MockRouter())
         )
     )
 }

@@ -26,7 +26,7 @@ final class RecommendationsSectionComponentTests: BaseSnapshotTestCase {
                     items: [],
                     isRedacted: false,
                     genreById: { _ in .fakeItem() },
-                    router: MockRouter<RecommendationsSectionRoute>()
+                    router: .init(routing: MockRouter<RecommendationsSectionRoute>())
                 )
             )
         )
@@ -40,7 +40,7 @@ final class RecommendationsSectionComponentTests: BaseSnapshotTestCase {
                     items: Movie.testItems(count: 10),
                     isRedacted: false,
                     genreById: { _ in .fakeItem() },
-                    router: MockRouter<RecommendationsSectionRoute>()
+                    router: .init(routing: MockRouter<RecommendationsSectionRoute>())
                 )
             )
         )
@@ -54,7 +54,7 @@ final class RecommendationsSectionComponentTests: BaseSnapshotTestCase {
                     items: Show.testItems(count: 10),
                     isRedacted: true,
                     genreById: { _ in .fakeItem() },
-                    router: MockRouter<RecommendationsSectionRoute>()
+                    router: .init(routing: MockRouter<RecommendationsSectionRoute>())
                 )
             )
         )

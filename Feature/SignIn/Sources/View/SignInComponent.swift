@@ -19,7 +19,7 @@ public struct SignInComponent<R: Routing>: Component where R.Route == SignInRout
         var signInAction: Command
         var isLoaderPresented: Binding<Bool>
         var dialogStatus: Binding<DialogStatus>
-        var router: R = .init()
+        var router: Router<R> = .init()
         
         public init(
             username: Binding<String>,
@@ -27,7 +27,7 @@ public struct SignInComponent<R: Routing>: Component where R.Route == SignInRout
             signInAction: @escaping Command,
             isLoaderPresented: Binding<Bool>,
             dialogStatus: Binding<DialogStatus>,
-            router: R = .init()
+            router: Router<R> = .init()
         ) {
             self.username = username
             self.password = password
@@ -148,7 +148,7 @@ private extension SignInComponent {
             signInAction: {},
             isLoaderPresented: .constant(false),
             dialogStatus: .constant(.dismissed),
-            router: MockRouter<SignInRoute>()
+            router: .init(routing: MockRouter<SignInRoute>())
         )
     )
 }

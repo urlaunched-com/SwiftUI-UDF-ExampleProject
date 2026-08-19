@@ -28,7 +28,7 @@ public struct SearchContainer<F: SearchFeature, R: Routing>: Container where R.R
             searchItemById: store.state.allSearchItems.by(id:),
             genreById: { _ in .testItem() },
             loadMoreAction: loadNewPageIfNeeded,
-            router: R()
+            router: .init(routing: R())
         )
     }
 

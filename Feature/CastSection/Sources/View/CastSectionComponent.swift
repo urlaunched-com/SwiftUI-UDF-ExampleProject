@@ -19,13 +19,13 @@ public struct CastSectionComponent<R: Routing>: Component where R.Route == CastS
         var cast: [Cast.ID]
         var castById: (Cast.ID) -> Cast
         var isRedacted: Bool
-        var router: R = .init()
+        var router: Router<R> = .init()
         
         public init(
             cast: [Cast.ID],
             castById: @escaping (Cast.ID) -> Cast,
             isRedacted: Bool,
-            router: R = .init(),
+            router: Router<R> = .init(),
         ) {
             self.cast = cast
             self.castById = castById
@@ -98,7 +98,7 @@ public struct CastSectionComponent<R: Routing>: Component where R.Route == CastS
             cast: [],
             castById: { _ in .fakeItem() },
             isRedacted: false,
-            router: MockRouter()
+            router: .init(routing: MockRouter())
         )
     )
 }

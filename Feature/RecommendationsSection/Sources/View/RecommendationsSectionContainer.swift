@@ -30,7 +30,7 @@ public struct RecommendationsSectionContainer<F: RecommendationsSectionFeature, 
             items: items,
             isRedacted: isRedacted,
             genreById: store.state.allGenres.by(id:),
-            router: R(),
+            router: .init(routing: R()),
         )
     }
 

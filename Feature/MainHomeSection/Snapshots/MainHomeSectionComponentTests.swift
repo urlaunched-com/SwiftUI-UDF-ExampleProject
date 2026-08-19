@@ -28,7 +28,7 @@ final class MainHomeSectionComponentTests: BaseSnapshotTestCase {
                     section: MovieSection.popular,
                     items: Movie.testItems(count: 5),
                     genreById: { _ in .testItem() },
-                    router: MockRouter<MainHomeSectionRoute>()
+                    router: .init(routing: MockRouter<MainHomeSectionRoute>())
                 )
             )
         )
@@ -41,7 +41,7 @@ final class MainHomeSectionComponentTests: BaseSnapshotTestCase {
                     section: ShowSection.popular,
                     items: Show.testItems(count: 5),
                     genreById: { _ in .testItem() },
-                    router: MockRouter<MainHomeSectionRoute>()
+                    router: .init(routing: MockRouter<MainHomeSectionRoute>())
                 )
             )
         )

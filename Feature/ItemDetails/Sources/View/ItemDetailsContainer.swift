@@ -30,7 +30,7 @@ public struct ItemDetailsContainer<F: ItemDetailsFeature, R: Routing>: BindableC
             item: item,
             genreById: store.state.allGenres.by(id:),
             dialog: dialog,
-            router: R()
+            router: .init(routing: R())
         )
     }
 

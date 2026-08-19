@@ -22,7 +22,7 @@ public struct SearchComponent<R: Routing>: Component where R.Route == SearchRout
         var searchItemById: (SearchItem.ID) -> SearchItem
         var genreById: (Genre.ID) -> Genre
         var loadMoreAction: Command
-        var router: R
+        var router: Router<R>
         
         public init(
             searchText: Binding<String>,
@@ -30,7 +30,7 @@ public struct SearchComponent<R: Routing>: Component where R.Route == SearchRout
             searchItemById: @escaping (SearchItem.ID) -> SearchItem,
             genreById: @escaping (Genre.ID) -> Genre,
             loadMoreAction: @escaping Command,
-            router: R
+            router: Router<R>
         ) {
             self.searchText = searchText
             self.itemIds = itemIds
@@ -225,7 +225,7 @@ private extension SearchComponent {
             searchItemById: { _ in .fakeItem() },
             genreById: { _ in .testItem() },
             loadMoreAction: {},
-            router: MockRouter()
+            router: .init(routing: MockRouter())
         )
     )
 }
@@ -238,7 +238,7 @@ private extension SearchComponent {
             searchItemById: { _ in .fakeItem() },
             genreById: { _ in .testItem() },
             loadMoreAction: {},
-            router: MockRouter()
+            router: .init(routing: MockRouter())
         )
     )
 }

@@ -34,7 +34,7 @@ public struct HomeSectionContainer<F: HomeSectionFeature, S: Models.Section, R: 
             section: section,
             items: items,
             genreById: store.state.allGenres.by(id:),
-            router: R()
+            router: .init(routing: R())
         )
     }
 

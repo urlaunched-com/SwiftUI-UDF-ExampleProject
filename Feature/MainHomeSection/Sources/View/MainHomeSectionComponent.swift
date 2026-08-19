@@ -18,13 +18,13 @@ public struct MainHomeSectionComponent<S: Models.Section, R: Routing>: Component
         var section: S
         var items: [any Item]
         var genreById: (Genre.ID) -> Genre?
-        var router: R
+        var router: Router<R>
 
         public init(
             section: S,
             items: [any Item],
             genreById: @escaping (Genre.ID) -> Genre?,
-            router: R
+            router: Router<R>
         ) {
             self.section = section
             self.items = items

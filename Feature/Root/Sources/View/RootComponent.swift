@@ -18,7 +18,7 @@ public struct RootComponent<R: Routing & NavigationDestination>: Component where
         var randomizerTabPath: Binding<NavigationPath>
         var favoritesTabPath: Binding<NavigationPath>
         var profileTabPath: Binding<NavigationPath>
-        var router: R
+        var router: Router<R>
 
         public init(
             isNeedToPresentOnboarding: Bool,
@@ -28,7 +28,7 @@ public struct RootComponent<R: Routing & NavigationDestination>: Component where
             randomizerTabPath: Binding<NavigationPath>,
             favoritesTabPath: Binding<NavigationPath>,
             profileTabPath: Binding<NavigationPath>,
-            router: R,
+            router: Router<R>,
         ) {
             self.isNeedToPresentOnboarding = isNeedToPresentOnboarding
             self.selectedTab = selectedTab

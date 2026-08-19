@@ -29,7 +29,7 @@ final class RootComponentTests: BaseSnapshotTestCase {
                     randomizerTabPath: .constant(.init()),
                     favoritesTabPath: .constant(.init()),
                     profileTabPath: .constant(.init()),
-                    router: MockRouter<RootRoute>(),
+                    router: .init(routing: MockRouter<RootRoute>()),
                     homeDestinationBuilder: TestHomeDestinationBuilder()
                 )
             )
@@ -47,7 +47,7 @@ final class RootComponentTests: BaseSnapshotTestCase {
                     randomizerTabPath: .constant(.init()),
                     favoritesTabPath: .constant(.init()),
                     profileTabPath: .constant(.init()),
-                    router: MockRouter<RootRoute>(),
+                    router: .init(routing: MockRouter<RootRoute>()),
                     homeDestinationBuilder: TestHomeDestinationBuilder()
                 )
             )
@@ -65,7 +65,7 @@ final class RootComponentTests: BaseSnapshotTestCase {
                     randomizerTabPath: .constant(.init()),
                     favoritesTabPath: .constant(.init()),
                     profileTabPath: .constant(.init()),
-                    router: MockRouter<RootRoute>(),
+                    router: .init(routing: MockRouter<RootRoute>()),
                     homeDestinationBuilder: TestHomeDestinationBuilder()
                 )
             )

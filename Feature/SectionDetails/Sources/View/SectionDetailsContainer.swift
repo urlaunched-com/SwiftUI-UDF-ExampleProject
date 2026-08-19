@@ -31,7 +31,7 @@ public struct SectionDetailsContainer<F: SectionDetailsFeature, S: Models.Sectio
             genreById: store.state.allGenres.by(id:),
             loadMoreAction: loadNewPageIfNeeded,
             dialog: dialog,
-            router: R()
+            router: .init(routing: R())
         )
     }
 

@@ -27,7 +27,7 @@ final class SectionDetailsComponentTests: BaseSnapshotTestCase {
                     genreById: { _ in .fakeItem() },
                     loadMoreAction: {},
                     dialog: .constant(.dismissed),
-                    router: MockRouter<SectionDetailsRoute>()
+                    router: .init(routing: MockRouter<SectionDetailsRoute>())
                 )
             )
         )
@@ -42,7 +42,7 @@ final class SectionDetailsComponentTests: BaseSnapshotTestCase {
                     genreById: { _ in .fakeItem() },
                     loadMoreAction: {},
                     dialog: .constant(.dismissed),
-                    router: MockRouter<SectionDetailsRoute>()
+                    router: .init(routing: MockRouter<SectionDetailsRoute>())
                 )
             )
         )
@@ -57,7 +57,7 @@ final class SectionDetailsComponentTests: BaseSnapshotTestCase {
                     genreById: { _ in .fakeItem() },
                     loadMoreAction: {},
                     dialog: .constant(.dismissed),
-                    router: MockRouter<SectionDetailsRoute>()
+                    router: .init(routing: MockRouter<SectionDetailsRoute>())
                 )
             )
         )

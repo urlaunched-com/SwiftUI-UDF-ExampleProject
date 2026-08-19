@@ -18,13 +18,13 @@ public struct WhereToWatchComponent<R: Routing>: Component where R.Route == Wher
         var item: any Item
         var countries: [DropdownItem]
         var providers: [Provider]
-        var router: R = .init()
+        var router: Router<R> = .init()
         
         public init(
             item: any Item,
             countries: [DropdownItem],
             providers: [Provider],
-            router: R = .init()
+            router: Router<R> = .init()
         ) {
             self.item = item
             self.countries = countries
@@ -151,7 +151,7 @@ private extension WhereToWatchComponent {
                 }
             }(),
             providers: Provider.fakeItems(count: 3),
-            router: MockRouter<WhereToWatchRouter>()
+            router: .init(routing: MockRouter<WhereToWatchRouter>())
         )
     )
 }

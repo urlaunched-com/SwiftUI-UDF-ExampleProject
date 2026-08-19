@@ -21,7 +21,7 @@ public struct RecommendationsComponent<R: Routing>: Component where R.Route == R
         var genreById: (Genre.ID) -> Genre?
         var loadMoreAction: Command
         var dialog: Binding<DialogStatus>
-        var router: R = .init()
+        var router: Router<R> = .init()
         
         public init(
             title: String,
@@ -29,7 +29,7 @@ public struct RecommendationsComponent<R: Routing>: Component where R.Route == R
             genreById: @escaping (Genre.ID) -> Genre?,
             loadMoreAction: @escaping Command,
             dialog: Binding<DialogStatus>,
-            router: R = .init()
+            router: Router<R> = .init()
         ) {
             self.title = title
             self.items = items
@@ -99,7 +99,7 @@ public struct RecommendationsComponent<R: Routing>: Component where R.Route == R
             genreById: { _ in .fakeItem() },
             loadMoreAction: {},
             dialog: .constant(.dismissed),
-            router: MockRouter()
+            router: .init(routing: MockRouter())
         )
     )
 }

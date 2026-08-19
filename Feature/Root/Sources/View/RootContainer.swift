@@ -43,7 +43,7 @@ public struct RootContainer<F: RootFeature, R: Routing & NavigationDestination>:
                 get: { store.state.tabBarForm.profileNavigationPath },
                 set: { store.dispatch(Actions.UpdateFormField(keyPath: \F.TabBarForm.profileNavigationPath, value: $0)) }
             ),
-            router: R()
+            router: .init(routing: R())
         )
     }
 }

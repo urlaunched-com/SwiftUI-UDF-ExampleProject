@@ -19,13 +19,13 @@ public struct CastComponent<R: Routing>: Component where R.Route == CastRoute {
         var cast: [Models.Cast.ID]
         var castById: (Models.Cast.ID) -> Models.Cast
         var dialogStatus: Binding<DialogStatus>
-        var router: R
+        var router: Router<R>
 
         public init(
             cast: [Models.Cast.ID],
             castById: @escaping (Models.Cast.ID) -> Models.Cast,
             dialogStatus: Binding<DialogStatus>,
-            router: R
+            router: Router<R>
         ) {
             self.cast = cast
             self.castById = castById
@@ -87,7 +87,7 @@ public struct CastComponent<R: Routing>: Component where R.Route == CastRoute {
             cast: [],
             castById: { _ in .fakeItem() },
             dialogStatus: .constant(.dismissed),
-            router: MockRouter<CastRoute>()
+            router: .init(routing: MockRouter<CastRoute>())
         )
     )
 }

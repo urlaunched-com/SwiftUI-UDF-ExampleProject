@@ -20,14 +20,14 @@ public struct ReviewDetailsComponent<R: Routing>: Component where R.Route == Rev
         var reviewByID: (Review.ID) -> Review
         var isRedacted: Bool
         var dialog: Binding<DialogStatus>
-        var router: R
+        var router: Router<R>
         
         public init(
             id: Review.ID,
             reviewByID: @escaping (Review.ID) -> Review,
             isRedacted: Bool,
             dialog: Binding<DialogStatus>,
-            router: R
+            router: Router<R> = .init()
         ) {
             self.id = id
             self.reviewByID = reviewByID
@@ -82,7 +82,7 @@ public struct ReviewDetailsComponent<R: Routing>: Component where R.Route == Rev
             reviewByID: { _ in Review.fakeItem() },
             isRedacted: false,
             dialog: .constant(.dismissed),
-            router: MockRouter<ReviewDetailsRoute>()
+            router: .init(routing: MockRouter())
         )
     )
 }

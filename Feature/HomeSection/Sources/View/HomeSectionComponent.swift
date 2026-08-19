@@ -18,13 +18,13 @@ public struct HomeSectionComponent<S: Models.Section, R: Routing>: Component whe
         var section: S
         var items: [any Item]
         var genreById: (Genre.ID) -> Genre
-        var router: R
+        var router: Router<R>
 
         public init(
             section: S,
             items: [any Item],
             genreById: @escaping (Genre.ID) -> Genre,
-            router: R
+            router: Router<R>
         ) {
             self.section = section
             self.items = items
@@ -85,7 +85,7 @@ public struct HomeSectionComponent<S: Models.Section, R: Routing>: Component whe
             section: MovieSection.nowPlaying,
             items: [],
             genreById: { _ in .fakeItem() },
-            router: MockRouter<HomeSectionRoute>()
+            router: .init(routing: MockRouter<HomeSectionRoute>())
         )
     )
 }

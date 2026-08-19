@@ -22,7 +22,7 @@ public struct MyFavoritesComponent<R: Routing>: Component where R.Route == MyFav
         var loadMoreAction: Command
         var isRedacted: Bool
         var dialog: Binding<DialogStatus>
-        var router: R
+        var router: Router<R>
 
         public init(
             contentType: Binding<ContentType>,
@@ -31,7 +31,7 @@ public struct MyFavoritesComponent<R: Routing>: Component where R.Route == MyFav
             loadMoreAction: @escaping Command,
             isRedacted: Bool,
             dialog: Binding<DialogStatus>,
-            router: R
+            router: Router<R>
         ) {
             self.contentType = contentType
             self.items = items
@@ -92,7 +92,7 @@ public struct MyFavoritesComponent<R: Routing>: Component where R.Route == MyFav
             loadMoreAction: {},
             isRedacted: true,
             dialog: .constant(.dismissed),
-            router: MockRouter<MyFavoritesRoute>()
+            router: .init(routing: MockRouter<MyFavoritesRoute>())
         )
     )
 }

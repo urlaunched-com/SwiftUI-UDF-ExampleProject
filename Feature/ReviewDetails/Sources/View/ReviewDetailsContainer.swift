@@ -32,7 +32,7 @@ public struct ReviewDetailsContainer<F: ReviewDetailsFeature, R: Routing>: Binda
             reviewByID: reviewById(_:),
             isRedacted: isRedacted,
             dialog: dialog,
-            router: .init()
+            router: Router(routing: R())
         )
     }
 

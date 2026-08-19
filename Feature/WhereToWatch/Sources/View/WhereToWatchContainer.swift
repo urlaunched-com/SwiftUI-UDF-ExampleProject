@@ -42,7 +42,7 @@ public struct WhereToWatchContainer<F: WhereToWatchFeature, R: Routing>: Contain
                 }
             }(),
             providers: Provider.fakeItems(count: 3),
-            router: R()
+            router: .init(routing: R())
         )
     }
 }

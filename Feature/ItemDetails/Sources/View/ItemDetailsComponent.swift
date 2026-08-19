@@ -20,13 +20,13 @@ public struct ItemDetailsComponent<R: Routing>: Component where R.Route == ItemD
         var item: any Item
         var genreById: (Genre.ID) -> Genre?
         var dialog: Binding<DialogStatus>
-        var router: R = .init()
+        var router: Router<R> = .init()
         
         public init(
             item: any Item,
             genreById: @escaping (Genre.ID) -> Genre?,
             dialog: Binding<DialogStatus>,
-            router: R = .init(),
+            router: Router<R> = .init(),
         ) {
             self.item = item
             self.genreById = genreById
