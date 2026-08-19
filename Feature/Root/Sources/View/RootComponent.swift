@@ -9,7 +9,7 @@ import Common
 import SwiftUI
 import UDF
 
-public struct RootComponent<R: Routing & NavigationDestination>: Component where R.Route == RootRoute, R.DestinationNavigation == RootDestinationNavigation {
+public struct RootComponent<R: Routing>: Component where R.Route == RootRoute {
     public struct Props {
         var isNeedToPresentOnboarding: Bool
         var selectedTab: Binding<TabBarItem>
@@ -56,7 +56,6 @@ public struct RootComponent<R: Routing & NavigationDestination>: Component where
             TabView(selection: props.selectedTab) {
                 NavigationStackBound(path: props.homeTabPath) {
                     props.router.view(for: .home)
-                        .modifier(props.router.destination(for: .home))
                 }
                 .tag(TabBarItem.home)
                 .environment(\.globalRouter, GlobalRouter(path: props.homeTabPath))

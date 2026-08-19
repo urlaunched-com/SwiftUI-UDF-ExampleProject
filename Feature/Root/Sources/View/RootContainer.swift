@@ -9,7 +9,7 @@ import Common
 import SwiftUI
 import UDF
 
-public struct RootContainer<F: RootFeature, R: Routing & NavigationDestination>: Container where R.Route == RootRoute, R.DestinationNavigation == RootDestinationNavigation {
+public struct RootContainer<F: RootFeature, R: Routing>: Container where R.Route == RootRoute {
     public typealias ContainerComponent = RootComponent<R>
 
     public func scope(for state: F) -> Scope {

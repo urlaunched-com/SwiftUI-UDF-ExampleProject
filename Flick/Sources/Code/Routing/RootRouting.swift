@@ -26,31 +26,6 @@ struct RootRouting: Routing {
             SignInContainer<AppState, SignInRouting>()
         case .home:
             HomeContainer<AppState, HomeRouting>()
-        case .search:
-            SearchContainer<AppState, SearchRouting>()
-        case .randomizer:
-            Text("Randomizer")
-        case .favorites:
-            MyFavoritesContainer<AppState, MyFavoritesRouting>()
-        case .profile:
-            SettingsContainer<AppState>()
-        case .tabBar:
-            TabBarContainer<AppState>()
-        }
-    }
-}
-
-extension RootRouting: NavigationDestination {
-    func destination(for destinationNavigation: RootDestinationNavigation) -> some ViewModifier {
-        switch destinationNavigation {
-        case .home:
-            HomeDestinationModifier()
-        }
-    }
-    
-    struct HomeDestinationModifier: ViewModifier {
-        func body(content: Content) -> some View {
-            content
                 .navigationDestination(for: HomeRouting.self)
                 .navigationDestination(for: MainHomeSectionRouting.self)
                 .navigationDestination(for: HomeSectionRouting.self)
@@ -61,6 +36,16 @@ extension RootRouting: NavigationDestination {
                 .navigationDestination(for: RecommendationsSectionRouting.self)
                 .navigationDestination(for: ReviewsRouting.self)
                 .navigationDestination(for: CastSectionRouting.self)
+        case .search:
+            SearchContainer<AppState, SearchRouting>()
+        case .randomizer:
+            Text("Randomizer")
+        case .favorites:
+            MyFavoritesContainer<AppState, MyFavoritesRouting>()
+        case .profile:
+            SettingsContainer<AppState>()
+        case .tabBar:
+            TabBarContainer<AppState>()
         }
     }
 }
