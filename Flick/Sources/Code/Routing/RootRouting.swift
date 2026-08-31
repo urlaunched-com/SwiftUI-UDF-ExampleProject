@@ -21,11 +21,11 @@ struct RootRouting: Routing {
     @ViewBuilder func view(for route: RootRoute) -> some View {
         switch route {
         case .onboarding:
-            OnboardingContainer<AppState>()
+            OnboardingEntryPoint<AppState>.make(with: .init())
         case .signIn:
-            SignInContainer<AppState, SignInRouting>()
+            SignInEntryPoint<AppState, SignInRouting>.make(with: .init())
         case .home:
-            HomeContainer<AppState, HomeRouting>()
+            HomeEntryPoint<AppState, HomeRouting>.make(with: .init())
                 .navigationDestination(for: HomeRouting.self)
                 .navigationDestination(for: MainHomeSectionRouting.self)
                 .navigationDestination(for: HomeSectionRouting.self)
@@ -37,16 +37,15 @@ struct RootRouting: Routing {
                 .navigationDestination(for: ReviewsRouting.self)
                 .navigationDestination(for: CastSectionRouting.self)
         case .search:
-            SearchContainer<AppState, SearchRouting>()
+            SearchEntryPoint<AppState, SearchRouting>.make(with: .init())
         case .randomizer:
             Text("Randomizer")
         case .favorites:
-            MyFavoritesContainer<AppState, MyFavoritesRouting>()
+            MyFavoritesEntryPoint<AppState, MyFavoritesRouting>.make(with: .init())
         case .profile:
-            SettingsContainer<AppState>()
+            SettingsEntryPoint<AppState>.make(with: .init())
         case .tabBar:
-            TabBarContainer<AppState>()
+            TabBarEntryPoint<AppState>.make(with: .init())
         }
     }
 }
-

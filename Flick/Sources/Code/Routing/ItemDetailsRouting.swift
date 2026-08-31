@@ -24,28 +24,28 @@ struct ItemDetailsRouting: Routing {
         case let .cast(item):
             buildView(
                 item: item,
-                movieView: { CastSectionContainer<AppState, CastSectionRouting>(id: .movie($0.id)) },
-                showView: { CastSectionContainer<AppState, CastSectionRouting>(id: .show($0.id)) }
+                movieView: { CastSectionEntryPoint<AppState, CastSectionRouting>.make(with: .init(id: .movie($0.id))) },
+                showView: { CastSectionEntryPoint<AppState, CastSectionRouting>.make(with: .init(id: .show($0.id))) }
             )
 
         case let .reviews(item):
             buildView(
                 item: item,
-                movieView: { ReviewsSectionContainer<AppState, ReviewsSectionRouting>(id: .movie($0.id)) },
-                showView: { ReviewsSectionContainer<AppState, ReviewsSectionRouting>(id: .show($0.id)) }
+                movieView: { ReviewsSectionEntryPoint<AppState, ReviewsSectionRouting>.make(with: .init(id: .movie($0.id))) },
+                showView: { ReviewsSectionEntryPoint<AppState, ReviewsSectionRouting>.make(with: .init(id: .show($0.id))) }
             )
 
         case let .recommendations(item):
             buildView(
                 item: item,
-                movieView: { RecommendationsSectionContainer<AppState, RecommendationsSectionRouting>(id: .movie($0.id)) },
-                showView: { RecommendationsSectionContainer<AppState, RecommendationsSectionRouting>(id: .show($0.id)) }
+                movieView: { RecommendationsSectionEntryPoint<AppState, RecommendationsSectionRouting>.make(with: .init(id: .movie($0.id))) },
+                showView: { RecommendationsSectionEntryPoint<AppState, RecommendationsSectionRouting>.make(with: .init(id: .show($0.id))) }
             )
 
         case let .whereToWatch(item):
-            WhereToWatchContainer<AppState, WhereToWatchRouting>(item: item)
+            WhereToWatchEntryPoint<AppState, WhereToWatchRouting>.make(with: .init(item: item))
         case let .imageContainer(path: path, size: size, type: type):
-            ImageContainer<AppState>(size: size, path: path, type: type)
+            ImageEntryPoint<AppState>.make(with: .init(size: size, path: path, type: type))
         }
     }
 }

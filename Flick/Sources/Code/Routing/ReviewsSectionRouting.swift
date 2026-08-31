@@ -18,11 +18,11 @@ struct ReviewsSectionRouting: Routing {
     @ViewBuilder func view(for route: ReviewsSectionRoute) -> some View {
         switch route {
         case let .imageContainer(path: path, size: size, type: type):
-            ImageContainer<AppState>(size: size, path: path, type: type)
+            ImageEntryPoint<AppState>.make(with: .init(size: size, path: path, type: type))
         case let .reviewDetails(reviewID):
-            ReviewDetailsContainer<AppState, ReviewDetailsRouting>(id: reviewID)
+            ReviewDetailsEntryPoint<AppState, ReviewDetailsRouting>.make(with: .init(reviewID: reviewID))
         case let .reviews(id):
-            ReviewsContainer<AppState, ReviewsRouting>(id: id)
+            ReviewsEntryPoint<AppState, ReviewsRouting>.make(with: .init(id: id))
         }
     }
 }

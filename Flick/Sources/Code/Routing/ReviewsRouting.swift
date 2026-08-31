@@ -15,9 +15,9 @@ struct ReviewsRouting: Routing {
     @ViewBuilder func view(for route: ReviewsRoute) -> some View {
         switch route {
         case let .imageContainer(path: path, size: size, type: type):
-            ImageContainer<AppState>(size: size, path: path, type: type)
+            ImageEntryPoint<AppState>.make(with: .init(size: size, path: path, type: type))
         case let .reviewDetails(reviewID):
-            ReviewDetailsContainer<AppState, ReviewDetailsRouting>(id: reviewID)
+            ReviewDetailsEntryPoint<AppState, ReviewDetailsRouting>.make(with: .init(reviewID: reviewID))
         }
     }
 }

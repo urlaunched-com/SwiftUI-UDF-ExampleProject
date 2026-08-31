@@ -20,24 +20,20 @@ struct HomeRouting: Routing {
     @ViewBuilder func view(for route: Route) -> some View {
         switch route {
         case let .mainMovieSection(section, items):
-            MainHomeSectionContainer<AppState, MovieSection, MainHomeSectionRouting>(
-                section: section,
-                items: items
+            MainHomeSectionEntryPoint<AppState, MovieSection, MainHomeSectionRouting>.make(
+                with: .init(section: section, items: items)
             )
         case let .mainShowSection(section, items):
-            MainHomeSectionContainer<AppState, ShowSection, MainHomeSectionRouting>(
-                section: section,
-                items: items
+            MainHomeSectionEntryPoint<AppState, ShowSection, MainHomeSectionRouting>.make(
+                with: .init(section: section, items: items)
             )
         case let .movieSection(section, items):
-            HomeSectionContainer<AppState, MovieSection, HomeSectionRouting>(
-                section: section,
-                items: items
+            HomeSectionEntryPoint<AppState, MovieSection, HomeSectionRouting>.make(
+                with: .init(section: section, items: items)
             )
         case let .showSection(section, items):
-            HomeSectionContainer<AppState, ShowSection, HomeSectionRouting>(
-                section: section,
-                items: items
+            HomeSectionEntryPoint<AppState, ShowSection, HomeSectionRouting>.make(
+                with: .init(section: section, items: items)
             )
         }
     }

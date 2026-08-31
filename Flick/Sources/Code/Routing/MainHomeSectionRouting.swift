@@ -21,22 +21,24 @@ struct MainHomeSectionRouting: Routing {
         case let .itemDetails(item):
             buildView(
                 item: item,
-                movieView: { ItemDetailsContainer<AppState, ItemDetailsRouting>(id: .movie($0.id)) },
-                showView: { ItemDetailsContainer<AppState, ItemDetailsRouting>(id: .show($0.id)) }
+                movieView: { ItemDetailsEntryPoint<AppState, ItemDetailsRouting>.make(with: .init(id: .movie($0.id))) },
+                showView: { ItemDetailsEntryPoint<AppState, ItemDetailsRouting>.make(with: .init(id: .show($0.id))) }
             )
 
         case let .sectionDetails(section):
             if let movieSection = section as? MovieSection {
-                SectionDetailsContainer<AppState, MovieSection, SectionDetailsRouting>(section: movieSection)
+                SectionDetailsEntryPoint<AppState, MovieSection, SectionDetailsRouting>.make(with: .init(section: movieSection))
             } else if let showSection = section as? ShowSection {
-                SectionDetailsContainer<AppState, ShowSection, SectionDetailsRouting>(section: showSection)
+                SectionDetailsEntryPoint<AppState, ShowSection, SectionDetailsRouting>.make(with: .init(section: showSection))
             }
         case let .imageContainer(path, size, type, isLoaderPresented):
-            ImageContainer<AppState>(
-                size: size,
-                path: path,
-                type: type,
-                isLoaderPresented: isLoaderPresented
+            ImageEntryPoint<AppState>.make(
+                with: .init(
+                    size: size,
+                    path: path,
+                    type: type,
+                    isLoaderPresented: isLoaderPresented
+                )
             )
         }
     }

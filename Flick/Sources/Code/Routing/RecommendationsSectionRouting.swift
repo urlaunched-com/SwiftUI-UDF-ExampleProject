@@ -20,18 +20,18 @@ struct RecommendationsSectionRouting: Routing {
         switch route {
         case let .itemDetails(item):
             if let movie = item as? Movie {
-                ItemDetailsContainer<AppState, ItemDetailsRouting>(id: .movie(movie.id))
+                ItemDetailsEntryPoint<AppState, ItemDetailsRouting>.make(with: .init(id: .movie(movie.id)))
             } else if let show = item as? Show {
-                ItemDetailsContainer<AppState, ItemDetailsRouting>(id: .show(show.id))
+                ItemDetailsEntryPoint<AppState, ItemDetailsRouting>.make(with: .init(id: .show(show.id)))
             }
         case let .recommendations(item):
             if let movie = item as? Movie {
-                RecommendationsContainer<AppState, RecommendationsRouting>(id: .movie(movie.id))
+                RecommendationsEntryPoint<AppState, RecommendationsRouting>.make(with: .init(id: .movie(movie.id)))
             } else if let show = item as? Show {
-                RecommendationsContainer<AppState, RecommendationsRouting>(id: .show(show.id))
+                RecommendationsEntryPoint<AppState, RecommendationsRouting>.make(with: .init(id: .show(show.id)))
             }
         case .imageContainer(path: let path, size: let size):
-            ImageContainer<AppState>(size: size, path: path, type: .poster)
+            ImageEntryPoint<AppState>.make(with: .init(size: size, path: path, type: .poster))
         }
     }
 }

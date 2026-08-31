@@ -16,9 +16,9 @@ struct CastSectionRouting: Routing {
     @ViewBuilder func view(for route: CastSectionRoute) -> some View {
         switch route {
         case let .imageContainer(path: path, size: size, type: type):
-            ImageContainer<AppState>(size: size, path: path, type: type)
+            ImageEntryPoint<AppState>.make(with: .init(size: size, path: path, type: type))
         case let .cast(ids):
-            CastContainer<AppState, CastRouting>(cast: ids)
+            CastEntryPoint<AppState, CastRouting>.make(with: .init(cast: ids))
         }
     }
 }
