@@ -114,16 +114,16 @@ struct AppState: AppReducer {
     
     // MARK: - Reviews
     
-    @BindableReducer(ReviewsForm.self, bindedTo: ReviewsContainer<Self, ReviewsRouting>.self)
+    @BindableReducer(ReviewsForm.self, bindedTo: ReviewsContainer<Self>.self)
     var reviewsForm
-    @BindableReducer(ReviewsFlow.self, bindedTo: ReviewsContainer<Self, ReviewsRouting>.self)
+    @BindableReducer(ReviewsFlow.self, bindedTo: ReviewsContainer<Self>.self)
     var reviewsFlow
     
     // MARK: - Review Details
     
-    @BindableReducer(ReviewDetailsForm.self, bindedTo: ReviewDetailsContainer<Self, ReviewDetailsRouting>.self)
+    @BindableReducer(ReviewDetailsForm.self, bindedTo: ReviewDetailsContainer<Self>.self)
     var reviewDetailsForm
-    @BindableReducer(ReviewDetailsFlow.self, bindedTo: ReviewDetailsContainer<Self, ReviewDetailsRouting>.self)
+    @BindableReducer(ReviewDetailsFlow.self, bindedTo: ReviewDetailsContainer<Self>.self)
     var reviewDetailsFlow
     
     // MARK: - Review Section

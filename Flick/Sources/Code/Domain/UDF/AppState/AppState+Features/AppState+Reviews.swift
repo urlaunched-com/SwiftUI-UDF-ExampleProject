@@ -28,7 +28,21 @@ extension AppState: ReviewsFeature {
         )
     }
     
-    typealias ReviewsContainerType = ReviewsContainer<Self, ReviewsRouting>
+    typealias ReviewsContainerType = ReviewsContainer<Self>
+    
+    struct ReviewsAppNavigation: Common.FeatureNavigation {
+        typealias EntryPoint = ReviewsEntryPoint<AppState>
+        
+        var routing: AppRouter.ReviewsRouting
+        
+        init(routing: AppRouter.ReviewsRouting) {
+            self.routing = routing
+        }
+    }
+    
+    var reviewsNavigation: ReviewsAppNavigation {
+        ReviewsAppNavigation(routing: AppRouter.shared.reviewsRouting)
+    }
 }
 
 extension NetworkConnectivity.NetworkConnectivityForm: Reviews.NetworkConnectivityForm {}

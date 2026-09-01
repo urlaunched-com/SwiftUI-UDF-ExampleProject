@@ -10,7 +10,7 @@ import Common
 import Models
 import UDF
 
-public struct ReviewDetailsEntryPoint<F: ReviewDetailsFeature, R: Routing>: FeatureEntryPoint where R.Route == ReviewDetailsRoute {
+public struct ReviewDetailsEntryPoint<F: ReviewDetailsFeature>: FeatureEntryPoint {
     public struct Parameters {
         public let reviewID: Review.ID
         
@@ -19,7 +19,7 @@ public struct ReviewDetailsEntryPoint<F: ReviewDetailsFeature, R: Routing>: Feat
         }
     }
     
-    public static func make(with parameters: Parameters) -> ReviewDetailsContainer<F, R> {
-        ReviewDetailsContainer<F, R>(id: parameters.reviewID)
+    public static func make(with parameters: Parameters) -> ReviewDetailsContainer<F> {
+        ReviewDetailsContainer<F>(id: parameters.reviewID)
     }
 }

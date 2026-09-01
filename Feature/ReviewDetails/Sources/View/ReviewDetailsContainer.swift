@@ -11,8 +11,8 @@ import Models
 import Common
 import SwiftUI
 
-public struct ReviewDetailsContainer<F: ReviewDetailsFeature, R: Routing>: BindableContainer where R.Route == ReviewDetailsRoute {
-    public typealias ContainerComponent = ReviewDetailsComponent<R>
+public struct ReviewDetailsContainer<F: ReviewDetailsFeature>: BindableContainer {
+    public typealias ContainerComponent = ReviewDetailsComponent<F.FeatureNavigation.Routing>
     
     public let id: Review.ID
 
@@ -32,7 +32,7 @@ public struct ReviewDetailsContainer<F: ReviewDetailsFeature, R: Routing>: Binda
             reviewByID: reviewById(_:),
             isRedacted: isRedacted,
             dialog: dialog,
-            router: Router(routing: R())
+            router: Router(routing: store.state.reviewDetailsNavigation.routing)
         )
     }
 

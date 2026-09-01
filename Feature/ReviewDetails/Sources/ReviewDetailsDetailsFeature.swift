@@ -14,12 +14,15 @@ public protocol ReviewDetailsFeature: AppReducer {
     associatedtype NetworkConnectivityForm: ReviewDetails.NetworkConnectivityForm
     associatedtype AllReviews: ReviewDetails.AllReviews
     associatedtype ReviewDetailsContainerType: BindableContainer where ReviewDetailsContainerType.ContainerState == Self, ReviewDetailsContainerType.ID == Review.ID
+    associatedtype FeatureNavigation: Common.FeatureNavigation where FeatureNavigation.Routing.Route == ReviewDetailsRoute
     
     var allReviews: AllReviews { get }
     var reviewDetailsBindableFlow: BindableSource<Review.ID, ReviewDetailsFlow> { get }
     var reviewDetailsBindableForm: BindableSource<Review.ID, ReviewDetailsForm> { get }
     
     var networkConnectivityForm: NetworkConnectivityForm { get }
+    
+    var reviewDetailsNavigation: FeatureNavigation { get }
 }
 
 public enum ReviewDetails {
