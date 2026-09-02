@@ -45,5 +45,11 @@ import Reviews
 //    }
 //}
 
+extension AppState: ReviewsFeature {
+    var routing: AppRouter.ReviewsRouting {
+        AppRouter.ReviewsRouting()
+    }
+}
+
 extension NetworkConnectivity.NetworkConnectivityForm: Reviews.NetworkConnectivityForm {}
 extension AllReviews: Reviews.AllReviews {}

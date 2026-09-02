@@ -6,10 +6,9 @@
 //
 
 import SwiftUI
-import Common
 import UDF
 
-public struct OnboardingEntryPoint<F: OnboardingFeature>: FeatureEntryPoint {
+public struct OnboardingEntryPoint<F: OnboardingFeature> {
     public struct Parameters {
         public init() {}
     }

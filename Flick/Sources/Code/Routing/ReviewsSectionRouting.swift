@@ -22,7 +22,7 @@ struct ReviewsSectionRouting: Routing {
         case let .reviewDetails(reviewID):
             ReviewDetailsEntryPoint<AppState>.make(with: .init(reviewID: reviewID))
         case let .reviews(id):
-            ReviewsEntryPoint<AppState>.make(with: .init(id: id))
+            ReviewsFeatureState<AppState>.entryPoint(input: id)
         }
     }
 }

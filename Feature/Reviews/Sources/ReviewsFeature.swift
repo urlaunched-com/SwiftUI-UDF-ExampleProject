@@ -14,15 +14,14 @@ import SwiftUI
 public protocol ReviewsFeature: AppReducer {
     associatedtype NetworkConnectivityForm: Reviews.NetworkConnectivityForm
     associatedtype AllReviews: Reviews.AllReviews
-    associatedtype ReviewsContainerType: BindableContainer where ReviewsContainerType.ContainerState == Self, ReviewsContainerType.ID == ReviewsTarget
-    associatedtype ReviewsNavigation: Common.FeatureNavigation where ReviewsNavigation.Routing.Route == ReviewsRoute
+    associatedtype ReviewsRouting: Routing<ReviewsRoute>
     
     var allReviews: AllReviews { get }
     var networkConnectivityForm: NetworkConnectivityForm { get }
-    var reviewsBindableFlow: BindableSource<ReviewsTarget, ReviewsFlow> { get }
-    var reviewsBindableForm: BindableSource<ReviewsTarget, ReviewsForm> { get }
     
-    var reviewsNavigation: ReviewsNavigation { get }
+    var routing: ReviewsRouting { get }
+    
+    var reviewsFeatureState: ReviewsFeatureState<Self> { get }
 }
 
 public enum Reviews {
@@ -36,49 +35,25 @@ public enum Reviews {
     }
 }
 
-public protocol AppRouting: Routing {
-    
-}
-
-public protocol Feature<AppState>: Reducible {
-    associatedtype AppState: AppReducer
-    associatedtype EntryPoint: View
-    associatedtype Input
-//    var navigation: FeatureRouting { get }
-    
-    static func entryPoint(input: Input) -> EntryPoint
-}
-
-
-
-public protocol ReviewsFeature2: AppReducer {
-    associatedtype NetworkConnectivityForm: Reviews.NetworkConnectivityForm
-    associatedtype AllReviews: Reviews.AllReviews
-    associatedtype ReviewsNavigation: Common.FeatureNavigation where ReviewsNavigation.Routing.Route == ReviewsRoute
-    
-    var allReviews: AllReviews { get }
-    var networkConnectivityForm: NetworkConnectivityForm { get }
-    
-    var reviewFeatureState: ReviewFeatureState<Self> { get }
-}
-
-
-public struct ReviewFeatureState<AppState: ReviewsFeature2>: Feature {
-    
+public struct ReviewsFeatureState<AppState: ReviewsFeature>: FeatureState {
     @BindableReducer(ReviewsForm.self, bindedTo: ReviewsContainer<AppState>.self)
     public var reviewsForm
     @BindableReducer(ReviewsFlow.self, bindedTo: ReviewsContainer<AppState>.self)
     public var reviewsFlow
     
     public init() {
-        fatalError()
+        fatalError("")
     }
     
-    public init(appState: AppState.Type) where AppState: ReviewsFeature2, Self.AppState == AppState {
-        
-    }
+    public init(appState: AppState.Type) where AppState: ReviewsFeature, Self.AppState == AppState { }
     
     public static func entryPoint(input: ReviewsTarget) -> some View {
         ReviewsContainer<AppState>(id: input)
     }
+}
+
+public protocol AppRouting: Routing<ReviewsRoute> {
+    associatedtype ImageView: View
+    
+    func image(path: String?, size: CGSize, type: ImageType) -> ImageView
 }

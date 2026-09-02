@@ -127,7 +127,7 @@ struct AppRouter {
     }
 
     static func reviews(id: ReviewsTarget) -> some View {
-        ReviewFeatureState<AppState>.entryPoint(input: id)
+        ReviewsFeatureState<AppState>.entryPoint(input: id)
     }
 
     static func reviewsSection(id: ReviewsTarget) -> some View {

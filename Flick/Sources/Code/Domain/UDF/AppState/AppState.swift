@@ -29,7 +29,7 @@ import ItemDetails
 struct AppState: AppReducer {
     // MARK: Storages
     
-    var reviewFeatureState = ReviewFeatureState(appState: AppState.self)
+    var reviewsFeatureState = ReviewsFeatureState(appState: AppState.self)
     
     var allMovies = AllMovies()
     var allShows = AllShows()
@@ -139,8 +139,4 @@ struct AppState: AppReducer {
 
     var myFavoritesForm = MyFavoritesForm()
     var myFavoritesFlow = MyFavoritesFlow()
-}
-
-extension AppState: ReviewsFeature2 {
-    typealias ReviewsNavigation = AppRouter.ReviewsRouting
 }

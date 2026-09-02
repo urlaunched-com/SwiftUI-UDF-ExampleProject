@@ -11,14 +11,14 @@ import Models
 import Common
 import SwiftUI
 
-public struct ReviewsContainer<F: ReviewsFeature2>: BindableContainer {
-    public typealias ContainerComponent = ReviewsComponent<F.ReviewsNavigation.Routing>
+public struct ReviewsContainer<F: ReviewsFeature>: BindableContainer {
+    public typealias ContainerComponent = ReviewsComponent<F.ReviewsRouting>
 
     public let id: ReviewsTarget
 
     public func scope(for state: F) -> Scope {
-        state.reviewFeatureState.reviewsForm[id]
-        state.reviewFeatureState.reviewsFlow[id]
+        state.reviewsFeatureState.reviewsForm[id]
+        state.reviewsFeatureState.reviewsFlow[id]
     }
     
     init(id: ReviewsTarget) {
@@ -36,7 +36,6 @@ public struct ReviewsContainer<F: ReviewsFeature2>: BindableContainer {
     }
 
     public func onContainerDidLoad(store: EnvironmentStore<F>) {
-        store.state.reviewFeatureState
         let reviews: [Review.ID]
         switch id {
         case let .movie(movieID):
@@ -68,11 +67,11 @@ private extension ReviewsContainer {
     }
     
     var form: ReviewsForm {
-        store.state.reviewsBindableForm[id] ?? .init()
+        store.state.reviewsFeatureState.reviewsForm[id] ?? .init()
     }
 
     var flow: ReviewsFlow {
-        store.state.reviewsBindableFlow[id] ?? .init()
+        store.state.reviewsFeatureState.reviewsFlow[id] ?? .init()
     }
 
     func loadNewPageIfNeeded() {
