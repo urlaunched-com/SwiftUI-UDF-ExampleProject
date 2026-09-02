@@ -11,6 +11,8 @@ import Models
 import UDF
 
 public struct ReviewsEntryPoint<F: ReviewsFeature>: FeatureEntryPoint {
+    public typealias Container = ReviewsContainer<F>
+    
     public struct Parameters {
         public let id: ReviewsTarget
 
@@ -18,8 +20,13 @@ public struct ReviewsEntryPoint<F: ReviewsFeature>: FeatureEntryPoint {
             self.id = id
         }
     }
+    var parameters: Parameters
+    
+    public init(parameters: Parameters) {
+        self.parameters = parameters
+    }
 
-    public static func make(with parameters: Parameters) -> ReviewsContainer<F> {
+    public func make() -> ReviewsContainer<F> {
         ReviewsContainer<F>(id: parameters.id)
     }
 }

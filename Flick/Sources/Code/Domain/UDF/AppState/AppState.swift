@@ -28,7 +28,9 @@ import ItemDetails
 
 struct AppState: AppReducer {
     // MARK: Storages
-
+    
+    var reviewFeatureState = ReviewFeatureState(appState: AppState.self)
+    
     var allMovies = AllMovies()
     var allShows = AllShows()
     var allGenres = AllGenres()
@@ -114,10 +116,10 @@ struct AppState: AppReducer {
     
     // MARK: - Reviews
     
-    @BindableReducer(ReviewsForm.self, bindedTo: ReviewsContainer<Self>.self)
-    var reviewsForm
-    @BindableReducer(ReviewsFlow.self, bindedTo: ReviewsContainer<Self>.self)
-    var reviewsFlow
+//    @BindableReducer(ReviewsForm.self, bindedTo: ReviewsContainer<Self>.self)
+//    var reviewsForm
+//    @BindableReducer(ReviewsFlow.self, bindedTo: ReviewsContainer<Self>.self)
+//    var reviewsFlow
     
     // MARK: - Review Details
     
@@ -137,4 +139,8 @@ struct AppState: AppReducer {
 
     var myFavoritesForm = MyFavoritesForm()
     var myFavoritesFlow = MyFavoritesFlow()
+}
+
+extension AppState: ReviewsFeature2 {
+    typealias ReviewsNavigation = AppRouter.ReviewsRouting
 }

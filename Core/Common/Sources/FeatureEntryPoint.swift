@@ -11,7 +11,9 @@ import UDF
 public protocol FeatureEntryPoint {
     associatedtype Parameters
     associatedtype Container: View
+    
+    init(parameters: Parameters)
 
     @ViewBuilder
-    static func make(with parameters: Parameters) -> Container
+    func make() -> Container
 }
