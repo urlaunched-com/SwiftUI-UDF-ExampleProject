@@ -8,10 +8,14 @@
 
 import UDF
 import Models
+import Common
 
 public protocol CastFeature: AppReducer {
-    associatedtype AllCast: Storage<Models.Cast>
+    associatedtype CastAllCast: Storage<Models.Cast>
+    associatedtype CastFeatureNavigation: Common.FeatureNavigation where CastFeatureNavigation.Routing.Route == CastRoute
 
     var castForm: CastForm { get }
-    var allCast: AllCast { get }
+    var allCast: CastAllCast { get }
+    
+    var castNavigation: CastFeatureNavigation { get }
 }

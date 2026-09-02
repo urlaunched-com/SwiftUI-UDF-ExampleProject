@@ -10,8 +10,8 @@ import Common
 import Models
 import UDF
 
-public struct CastSectionContainer<F: CastSectionFeature, R: Routing>: BindableContainer where R.Route == CastSectionRoute {
-    public typealias ContainerComponent = CastSectionComponent<R>
+public struct CastSectionContainer<F: CastSectionFeature>: BindableContainer {
+    public typealias ContainerComponent = CastSectionComponent<F.CastSectionNavigation.Routing>
 
     public let id: CastSectionTarget
 
@@ -24,12 +24,12 @@ public struct CastSectionContainer<F: CastSectionFeature, R: Routing>: BindableC
         state.castSectionBindableFlow[id]
     }
 
-    public func map(store _: EnvironmentStore<F>) -> ContainerComponent.Props {
+    public func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
         .init(
             cast: cast,
             castById: castById,
             isRedacted: isRedacted,
-            router: .init()
+            router: .init(routing: store.state.castSectionNavigation.routing)
         )
     }
 

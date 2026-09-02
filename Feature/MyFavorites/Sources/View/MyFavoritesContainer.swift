@@ -11,8 +11,8 @@ import UDF
 import Models
 import Common
 
-public struct MyFavoritesContainer<F: MyFavoritesFeature, R: Routing>: Container where R.Route == MyFavoritesRoute {
-    public typealias ContainerComponent = MyFavoritesComponent<R>
+public struct MyFavoritesContainer<F: MyFavoritesFeature>: Container {
+    public typealias ContainerComponent = MyFavoritesComponent<F.MyFavoritesNavigation.Routing>
 
     public init() {}
 
@@ -32,7 +32,7 @@ public struct MyFavoritesContainer<F: MyFavoritesFeature, R: Routing>: Container
             loadMoreAction: loadNewPageIfNeeded,
             isRedacted: isRedacted,
             dialog: store.$state.myFavoritesForm.dialog,
-            router: .init(routing: R())
+            router: .init(routing: store.state.myFavoritesNavigation.routing)
         )
     }
 

@@ -10,7 +10,7 @@ import Common
 import Models
 import UDF
 
-public struct CastSectionEntryPoint<F: CastSectionFeature, R: Routing>: FeatureEntryPoint where R.Route == CastSectionRoute {
+public struct CastSectionEntryPoint<F: CastSectionFeature>: FeatureEntryPoint {
 
     public struct Parameters {
         public let id: CastSectionTarget
@@ -20,7 +20,7 @@ public struct CastSectionEntryPoint<F: CastSectionFeature, R: Routing>: FeatureE
         }
     }
 
-    public static func make(with parameters: Parameters) -> CastSectionContainer<F, R> {
-        CastSectionContainer<F, R>(id: parameters.id)
+    public static func make(with parameters: Parameters) -> CastSectionContainer<F> {
+        CastSectionContainer<F>(id: parameters.id)
     }
 }

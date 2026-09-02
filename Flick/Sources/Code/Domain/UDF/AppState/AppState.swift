@@ -95,14 +95,14 @@ struct AppState: AppReducer {
 
     // MARK: Cast Section
 
-    @BindableReducer(CastSectionFlow.self, bindedTo: CastSectionContainer<Self, CastSectionRouting>.self)
+    @BindableReducer(CastSectionFlow.self, bindedTo: CastSectionContainer<Self>.self)
     var castSectionFlow
 
     // MARK: Recommendations
 
-    @BindableReducer(RecommendationsForm.self, bindedTo: RecommendationsContainer<Self, RecommendationsRouting>.self)
+    @BindableReducer(RecommendationsForm.self, bindedTo: RecommendationsContainer<Self>.self)
     var recommendationsForm
-    @BindableReducer(RecommendationsFlow.self, bindedTo: RecommendationsContainer<Self, RecommendationsRouting>.self)
+    @BindableReducer(RecommendationsFlow.self, bindedTo: RecommendationsContainer<Self>.self)
     var recommendationsFlow
     
     // MARK: Recomendations Section
@@ -128,9 +128,9 @@ struct AppState: AppReducer {
     
     // MARK: - Review Section
     
-    @BindableReducer(ReviewsSectionForm.self, bindedTo: ReviewsSectionContainer<Self, ReviewsSectionRouting>.self)
+    @BindableReducer(ReviewsSectionForm.self, bindedTo: ReviewsSectionContainer<Self>.self)
     var reviewsSectionForm
-    @BindableReducer(ReviewsSectionFlow.self, bindedTo: ReviewsSectionContainer<Self, ReviewsSectionRouting>.self)
+    @BindableReducer(ReviewsSectionFlow.self, bindedTo: ReviewsSectionContainer<Self>.self)
     var reviewsSectionFlow
 
     // MARK: My Favorites

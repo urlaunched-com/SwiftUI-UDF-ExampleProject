@@ -9,12 +9,12 @@ import SwiftUI
 import Common
 import UDF
 
-public struct SignInEntryPoint<F: SignInFeature, R: Routing>: FeatureEntryPoint where R.Route == SignInRoute {
+public struct SignInEntryPoint<F: SignInFeature>: FeatureEntryPoint {
     public struct Parameters {
         public init() {}
     }
 
-    public static func make(with parameters: Parameters) -> SignInContainer<F, R> {
-        SignInContainer<F, R>()
+    public static func make(with parameters: Parameters) -> SignInContainer<F> {
+        SignInContainer<F>()
     }
 }

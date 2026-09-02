@@ -10,8 +10,8 @@ import UDF
 import Models
 import Common
 
-public struct ReviewsSectionContainer<F: ReviewsSectionFeature, R: Routing>: BindableContainer where R.Route == ReviewsSectionRoute {
-    public typealias ContainerComponent = ReviewsSectionComponent<R>
+public struct ReviewsSectionContainer<F: ReviewsSectionFeature>: BindableContainer {
+    public typealias ContainerComponent = ReviewsSectionComponent<F.ReviewsSectionNavigation.Routing>
     public let id: ReviewsTarget
     
     public init(id: ReviewsTarget) {
@@ -30,7 +30,7 @@ public struct ReviewsSectionContainer<F: ReviewsSectionFeature, R: Routing>: Bin
             reviews: isRedacted ? Review.fakeItems().ids : reviews,
             reviewById: reviewById,
             isRedacted: isRedacted,
-            router: .init()
+            router: .init(routing: store.state.reviewsSectionNavigation.routing)
         )
     }
 

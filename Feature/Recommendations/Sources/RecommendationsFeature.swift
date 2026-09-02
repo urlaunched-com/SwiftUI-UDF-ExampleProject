@@ -16,6 +16,7 @@ public protocol RecommendationsFeature: AppReducer {
     associatedtype AllGenres: Recommendations.AllGenres
     associatedtype AllMovies: Recommendations.AllMovies
     associatedtype AllShows: Recommendations.AllShows
+    associatedtype RecommendationsNavigation: Common.FeatureNavigation where RecommendationsNavigation.Routing.Route == RecommendationsRoute
     
     var recommendationsBindableForm: BindableSource<RecomendationTarget, RecommendationsForm> { get }
     var recommendationsBindableFlow: BindableSource<RecomendationTarget, RecommendationsFlow> { get }
@@ -24,6 +25,7 @@ public protocol RecommendationsFeature: AppReducer {
     var allGenres: AllGenres { get }
     var allMovies: AllMovies { get }
     var allShows: AllShows { get }
+    var recommendationsNavigation: RecommendationsNavigation { get }
 }
 
 public enum Recommendations {

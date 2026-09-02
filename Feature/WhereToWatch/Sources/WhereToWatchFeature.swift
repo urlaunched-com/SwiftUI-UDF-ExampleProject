@@ -7,11 +7,14 @@
 //
 
 import UDF
+import Common
 
 public protocol WhereToWatchFeature: AppReducer {
     associatedtype HomeFlow: WhereToWatch.HomeFlow
+    associatedtype WhereToWatchNavigation: Common.FeatureNavigation where WhereToWatchNavigation.Routing.Route == WhereToWatchRouter
     
     var homeFlow: HomeFlow { get }
+    var whereToWatchNavigation: WhereToWatchNavigation { get }
 }
 
 public enum WhereToWatch {

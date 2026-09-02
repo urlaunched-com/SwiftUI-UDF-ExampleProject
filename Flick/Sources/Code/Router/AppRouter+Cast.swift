@@ -1,18 +1,18 @@
 //
-//  AppRouter+ReviewDetails.swift
+//  AppRouter+Cast.swift
 //  Flick
 //
-//  Created by Bogdan Petkanych on 01.09.2026.
+//  Created by Bogdan Petkanych on 02.09.2026.
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
-import UDF
+
 import SwiftUI
-import ReviewDetails
-import Image
+import Cast
+import UDF
 
 extension AppRouter {
-    struct ReviewDetailsRouting: Routing {
-        @ViewBuilder func view(for route: ReviewDetailsRoute) -> some View {
+    struct CastRouting: Routing {
+        @ViewBuilder func view(for route: CastRoute) -> some View {
             switch route {
             case let .imageContainer(path: path, size: size, type: type):
                 AppRouter.image(size: size, path: path, type: type)

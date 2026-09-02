@@ -14,7 +14,7 @@ public protocol ReviewDetailsFeature: AppReducer {
     associatedtype NetworkConnectivityForm: ReviewDetails.NetworkConnectivityForm
     associatedtype AllReviews: ReviewDetails.AllReviews
     associatedtype ReviewDetailsContainerType: BindableContainer where ReviewDetailsContainerType.ContainerState == Self, ReviewDetailsContainerType.ID == Review.ID
-    associatedtype FeatureNavigation: Common.FeatureNavigation where FeatureNavigation.Routing.Route == ReviewDetailsRoute
+    associatedtype ReviewDetailsNavigation: Common.FeatureNavigation where ReviewDetailsNavigation.Routing.Route == ReviewDetailsRoute
     
     var allReviews: AllReviews { get }
     var reviewDetailsBindableFlow: BindableSource<Review.ID, ReviewDetailsFlow> { get }
@@ -22,7 +22,7 @@ public protocol ReviewDetailsFeature: AppReducer {
     
     var networkConnectivityForm: NetworkConnectivityForm { get }
     
-    var reviewDetailsNavigation: FeatureNavigation { get }
+    var reviewDetailsNavigation: ReviewDetailsNavigation { get }
 }
 
 public enum ReviewDetails {

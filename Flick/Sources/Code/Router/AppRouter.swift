@@ -34,7 +34,15 @@ import WhereToWatch
 
 struct AppRouter {
     var reviewsRouting = ReviewsRouting()
+    var reviewsSectionRouting = ReviewsSectionRouting()
     var reviewDetailsRouting = ReviewDetailsRouting()
+    var castRouting = CastRouting()
+    var castSectionRouting = CastSectionRouting()
+    var signInRouting = SignInRouting()
+    var searchRouting = SearchRouting()
+    var myFavoritesRouting = MyFavoritesRouting()
+    var recommendationsRouting = RecommendationsRouting()
+    var whereToWatchRouting = WhereToWatchRouting()
     
     static var shared = Self()
     
@@ -47,7 +55,7 @@ struct AppRouter {
     }
 
     static func signIn() -> some View {
-        SignInEntryPoint<AppState, SignInRouting>.make(with: .init())
+        SignInEntryPoint<AppState>.make(with: .init())
     }
 
     static func home() -> some View {
@@ -55,11 +63,11 @@ struct AppRouter {
     }
 
     static func search() -> some View {
-        SearchEntryPoint<AppState, SearchRouting>.make(with: .init())
+        SearchEntryPoint<AppState>.make(with: .init())
     }
 
     static func myFavorites() -> some View {
-        MyFavoritesEntryPoint<AppState, MyFavoritesRouting>.make(with: .init())
+        MyFavoritesEntryPoint<AppState>.make(with: .init())
     }
 
     static func settings() -> some View {
@@ -71,11 +79,11 @@ struct AppRouter {
     }
 
     static func cast(ids: [Cast.ID]) -> some View {
-        CastEntryPoint<AppState, CastRouting>.make(with: .init(cast: ids))
+        CastEntryPoint<AppState>.make(with: .init(cast: ids))
     }
 
     static func castSection(id: CastSectionTarget) -> some View {
-        CastSectionEntryPoint<AppState, CastSectionRouting>.make(with: .init(id: id))
+        CastSectionEntryPoint<AppState>.make(with: .init(id: id))
     }
 
     static func homeSection<S: Models.Section>(section: S, items: [any Item]) -> some View {
@@ -107,7 +115,7 @@ struct AppRouter {
     }
 
     static func recommendations(id: RecomendationTarget) -> some View {
-        RecommendationsEntryPoint<AppState, RecommendationsRouting>.make(with: .init(id: id))
+        RecommendationsEntryPoint<AppState>.make(with: .init(id: id))
     }
 
     static func recommendationsSection(id: RecomendationTarget) -> some View {
@@ -123,7 +131,7 @@ struct AppRouter {
     }
 
     static func reviewsSection(id: ReviewsTarget) -> some View {
-        ReviewsSectionEntryPoint<AppState, ReviewsSectionRouting>.make(with: .init(id: id))
+        ReviewsSectionEntryPoint<AppState>.make(with: .init(id: id))
     }
 
     static func sectionDetails<S: Models.Section>(section: S) -> some View {
@@ -131,6 +139,6 @@ struct AppRouter {
     }
 
     static func whereToWatch(item: any Item) -> some View {
-        WhereToWatchEntryPoint<AppState, WhereToWatchRouting>.make(with: .init(item: item))
+        WhereToWatchEntryPoint<AppState>.make(with: .init(item: item))
     }
 }

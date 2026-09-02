@@ -10,13 +10,13 @@ import Common
 import Models
 import UDF
 
-public struct MyFavoritesEntryPoint<F: MyFavoritesFeature, R: Routing>: FeatureEntryPoint where R.Route == MyFavoritesRoute {
+public struct MyFavoritesEntryPoint<F: MyFavoritesFeature>: FeatureEntryPoint {
 
     public struct Parameters {
         public init() {}
     }
 
-    public static func make(with parameters: Parameters) -> MyFavoritesContainer<F, R> {
-        MyFavoritesContainer<F, R>()
+    public static func make(with parameters: Parameters) -> MyFavoritesContainer<F> {
+        MyFavoritesContainer<F>()
     }
 }

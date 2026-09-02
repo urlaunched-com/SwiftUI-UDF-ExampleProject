@@ -9,12 +9,12 @@ import SwiftUI
 import Common
 import UDF
 
-public struct SearchEntryPoint<F: SearchFeature, R: Routing>: FeatureEntryPoint where R.Route == SearchRoute {
+public struct SearchEntryPoint<F: SearchFeature>: FeatureEntryPoint {
     public struct Parameters {
         public init() {}
     }
 
-    public static func make(with parameters: Parameters) -> SearchContainer<F, R> {
-        SearchContainer<F, R>()
+    public static func make(with parameters: Parameters) -> SearchContainer<F> {
+        SearchContainer<F>()
     }
 }

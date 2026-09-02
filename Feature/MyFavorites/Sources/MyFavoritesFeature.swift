@@ -8,19 +8,22 @@
 
 import UDF
 import Models
+import Common
 
 public protocol MyFavoritesFeature: AppReducer {
-    associatedtype NetworkConnectivityForm: MyFavorites.NetworkConnectivityForm
-    associatedtype AllMovies: Storage<Movie>
-    associatedtype AllShows: Storage<Show>
-    associatedtype AllGenres: Storage<Genre>
+    associatedtype MyFavoritesNetworkConnectivityForm: MyFavorites.NetworkConnectivityForm
+    associatedtype MyFavoritesAllMovies: Storage<Movie>
+    associatedtype MyFavoritesAllShows: Storage<Show>
+    associatedtype MyFavoritesAllGenres: Storage<Genre>
+    associatedtype MyFavoritesNavigation: Common.FeatureNavigation where MyFavoritesNavigation.Routing.Route == MyFavoritesRoute
 
     var myFavoritesForm: MyFavoritesForm { get }
     var myFavoritesFlow: MyFavoritesFlow { get }
-    var networkConnectivityForm: NetworkConnectivityForm { get }
-    var allMovies: AllMovies { get }
-    var allShows: AllShows { get }
-    var allGenres: AllGenres { get }
+    var networkConnectivityForm: MyFavoritesNetworkConnectivityForm { get }
+    var allMovies: MyFavoritesAllMovies { get }
+    var allShows: MyFavoritesAllShows { get }
+    var allGenres: MyFavoritesAllGenres { get }
+    var myFavoritesNavigation: MyFavoritesNavigation { get }
 }
 
 public enum MyFavorites {

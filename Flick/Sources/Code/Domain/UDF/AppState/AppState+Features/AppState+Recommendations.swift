@@ -12,7 +12,17 @@ import Common
 import NetworkConnectivity
 
 extension AppState: RecommendationsFeature {
-    typealias RecomendationsContainerType = RecommendationsContainer<Self, RecommendationsRouting>
+    typealias RecomendationsContainerType = RecommendationsContainer<Self>
+    typealias RecommendationsAllGenres = Flick.AllGenres
+    typealias RecommendationsAllMovies = Flick.AllMovies
+    typealias RecommendationsAllShows = Flick.AllShows
+
+    struct RecommendationsFeatureNavigation: Common.FeatureNavigation {
+        typealias Routing = RecommendationsRouting
+        typealias EntryPoint = RecommendationsEntryPoint<AppState>
+
+        let routing: RecommendationsRouting
+    }
     
     var recommendationsBindableForm: BindableSource<RecomendationTarget, RecommendationsForm> {
         BindableSource(
@@ -28,9 +38,13 @@ extension AppState: RecommendationsFeature {
             )
         )
     }
+
+    var recommendationsNavigation: RecommendationsFeatureNavigation {
+        .init(routing: AppRouter.shared.recommendationsRouting)
+    }
 }
 
 extension NetworkConnectivity.NetworkConnectivityForm: Recommendations.NetworkConnectivityForm {}
-extension AllShows: Recommendations.AllShows {}
-extension AllMovies: Recommendations.AllMovies {}
-extension AllGenres: Recommendations.AllGenres {}
+extension Flick.AllShows: Recommendations.AllShows {}
+extension Flick.AllMovies: Recommendations.AllMovies {}
+extension Flick.AllGenres: Recommendations.AllGenres {}

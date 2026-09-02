@@ -10,8 +10,8 @@ import UDF
 import Models
 import SwiftUI
 
-public struct RecommendationsContainer<F: RecommendationsFeature, R: Routing>: BindableContainer where R.Route == RecommendationsRoute {
-    public typealias ContainerComponent = RecommendationsComponent<R>
+public struct RecommendationsContainer<F: RecommendationsFeature>: BindableContainer {
+    public typealias ContainerComponent = RecommendationsComponent<F.RecommendationsNavigation.Routing>
 
     public let id: RecomendationTarget
 
@@ -31,6 +31,7 @@ public struct RecommendationsContainer<F: RecommendationsFeature, R: Routing>: B
             genreById: store.state.allGenres.by(id:),
             loadMoreAction: loadNewPageIfNeeded,
             dialog: dialog,
+            router: .init(routing: store.state.recommendationsNavigation.routing)
         )
     }
 

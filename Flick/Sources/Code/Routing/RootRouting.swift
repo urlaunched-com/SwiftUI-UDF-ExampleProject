@@ -23,7 +23,7 @@ struct RootRouting: Routing {
         case .onboarding:
             OnboardingEntryPoint<AppState>.make(with: .init())
         case .signIn:
-            SignInEntryPoint<AppState, SignInRouting>.make(with: .init())
+            SignInEntryPoint<AppState>.make(with: .init())
         case .home:
             HomeEntryPoint<AppState, HomeRouting>.make(with: .init())
                 .navigationDestination(for: HomeRouting.self)
@@ -35,13 +35,13 @@ struct RootRouting: Routing {
                 .navigationDestination(for: ReviewsSectionRouting.self)
                 .navigationDestination(for: RecommendationsSectionRouting.self)
                 .navigationDestination(for: AppRouter.ReviewsRouting.self)
-                .navigationDestination(for: CastSectionRouting.self)
+                .navigationDestination(for: AppRouter.CastSectionRouting.self)
         case .search:
-            SearchEntryPoint<AppState, SearchRouting>.make(with: .init())
+            SearchEntryPoint<AppState>.make(with: .init())
         case .randomizer:
             Text("Randomizer")
         case .favorites:
-            MyFavoritesEntryPoint<AppState, MyFavoritesRouting>.make(with: .init())
+            MyFavoritesEntryPoint<AppState>.make(with: .init())
         case .profile:
             SettingsEntryPoint<AppState>.make(with: .init())
         case .tabBar:

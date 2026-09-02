@@ -24,15 +24,15 @@ struct ItemDetailsRouting: Routing {
         case let .cast(item):
             buildView(
                 item: item,
-                movieView: { CastSectionEntryPoint<AppState, CastSectionRouting>.make(with: .init(id: .movie($0.id))) },
-                showView: { CastSectionEntryPoint<AppState, CastSectionRouting>.make(with: .init(id: .show($0.id))) }
+                movieView: { CastSectionEntryPoint<AppState>.make(with: .init(id: .movie($0.id))) },
+                showView: { CastSectionEntryPoint<AppState>.make(with: .init(id: .show($0.id))) }
             )
 
         case let .reviews(item):
             buildView(
                 item: item,
-                movieView: { ReviewsSectionEntryPoint<AppState, ReviewsSectionRouting>.make(with: .init(id: .movie($0.id))) },
-                showView: { ReviewsSectionEntryPoint<AppState, ReviewsSectionRouting>.make(with: .init(id: .show($0.id))) }
+                movieView: { ReviewsSectionEntryPoint<AppState>.make(with: .init(id: .movie($0.id))) },
+                showView: { ReviewsSectionEntryPoint<AppState>.make(with: .init(id: .show($0.id))) }
             )
 
         case let .recommendations(item):
@@ -43,7 +43,7 @@ struct ItemDetailsRouting: Routing {
             )
 
         case let .whereToWatch(item):
-            WhereToWatchEntryPoint<AppState, WhereToWatchRouting>.make(with: .init(item: item))
+            WhereToWatchEntryPoint<AppState>.make(with: .init(item: item))
         case let .imageContainer(path: path, size: size, type: type):
             ImageEntryPoint<AppState>.make(with: .init(size: size, path: path, type: type))
         }

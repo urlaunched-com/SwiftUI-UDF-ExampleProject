@@ -11,8 +11,8 @@ import UDF
 import Models
 import Common
 
-public struct WhereToWatchContainer<F: WhereToWatchFeature, R: Routing>: Container where R.Route == WhereToWatchRouter {
-    public typealias ContainerComponent = WhereToWatchComponent<R>
+public struct WhereToWatchContainer<F: WhereToWatchFeature>: Container {
+    public typealias ContainerComponent = WhereToWatchComponent<F.WhereToWatchNavigation.Routing>
 
     public let item: any Item
     
@@ -24,7 +24,7 @@ public struct WhereToWatchContainer<F: WhereToWatchFeature, R: Routing>: Contain
         state.homeFlow // hardcoded placeholder
     }
 
-    public func map(store _: EnvironmentStore<F>) -> WhereToWatchComponent<R>.Props {
+    public func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
         .init(
             item: item,
             countries: {
@@ -42,7 +42,7 @@ public struct WhereToWatchContainer<F: WhereToWatchFeature, R: Routing>: Contain
                 }
             }(),
             providers: Provider.fakeItems(count: 3),
-            router: .init(routing: R())
+            router: .init(routing: store.state.whereToWatchNavigation.routing)
         )
     }
 }

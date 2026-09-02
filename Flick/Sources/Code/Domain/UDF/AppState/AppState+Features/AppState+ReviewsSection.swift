@@ -12,7 +12,14 @@ import Models
 import NetworkConnectivity
 
 extension AppState: ReviewsSectionFeature {
-    typealias ReviewsSectionContainerType = ReviewsSectionContainer<Self, ReviewsSectionRouting>
+    typealias ReviewsSectionContainerType = ReviewsSectionContainer<Self>
+
+    struct ReviewsSectionFeatureNavigation: Common.FeatureNavigation {
+        typealias Routing = ReviewsSectionRouting
+        typealias EntryPoint = ReviewsSectionEntryPoint<AppState>
+
+        let routing: ReviewsSectionRouting
+    }
     
     var reviewsSectionBindableForm: BindableSource<ReviewsTarget, ReviewsSectionForm> {
         BindableSource(
@@ -29,6 +36,9 @@ extension AppState: ReviewsSectionFeature {
             )
         )
     }
-    
+
+    var reviewsSectionNavigation: ReviewsSectionFeatureNavigation {
+        .init(routing: AppRouter.shared.reviewsSectionRouting)
+    }
 }
 extension NetworkConnectivity.NetworkConnectivityForm: ReviewsSection.NetworkConnectivityForm {}

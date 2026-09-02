@@ -8,6 +8,18 @@
 
 import MyFavorites
 import NetworkConnectivity
+import Common
 
-extension AppState: MyFavoritesFeature {}
+extension AppState: MyFavoritesFeature {
+    struct MyFavoritesFeatureNavigation: Common.FeatureNavigation {
+        typealias Routing = MyFavoritesRouting
+        typealias EntryPoint = MyFavoritesEntryPoint<AppState>
+
+        let routing: MyFavoritesRouting
+    }
+
+    var myFavoritesNavigation: MyFavoritesFeatureNavigation {
+        .init(routing: AppRouter.shared.myFavoritesRouting)
+    }
+}
 extension NetworkConnectivity.NetworkConnectivityForm: MyFavorites.NetworkConnectivityForm {}

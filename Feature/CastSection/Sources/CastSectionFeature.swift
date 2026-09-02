@@ -12,12 +12,14 @@ import UDF
 
 public protocol CastSectionFeature: AppReducer {
     associatedtype CastSectionContainerType: BindableContainer where CastSectionContainerType.ContainerState == Self, CastSectionContainerType.ID == CastSectionTarget
-    associatedtype NetworkConnectivityForm: CastSection.NetworkConnectivityForm
-    associatedtype AllCast: CastSection.AllCast
+    associatedtype CastSectionNetworkConnectivityForm: CastSection.NetworkConnectivityForm
+    associatedtype CastSectionAllCast: CastSection.AllCast
+    associatedtype CastSectionNavigation: Common.FeatureNavigation where CastSectionNavigation.Routing.Route == CastSectionRoute
 
     var castSectionBindableFlow: BindableSource<CastSectionTarget, CastSectionFlow> { get }
-    var networkConnectivityForm: NetworkConnectivityForm { get }
-    var allCast: AllCast { get }
+    var networkConnectivityForm: CastSectionNetworkConnectivityForm { get }
+    var allCast: CastSectionAllCast { get }
+    var castSectionNavigation: CastSectionNavigation { get }
 }
 
 public enum CastSection {

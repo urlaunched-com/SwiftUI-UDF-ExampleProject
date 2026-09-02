@@ -10,8 +10,8 @@ import SwiftUI
 import UDF
 import Common
 
-public struct SignInContainer<F: SignInFeature, R: Routing>: Container where R.Route == SignInRoute {
-    public typealias ContainerComponent = SignInComponent<R>
+public struct SignInContainer<F: SignInFeature>: Container {
+    public typealias ContainerComponent = SignInComponent<F.SignInNavigation.Routing>
     @Environment(\.dismiss) var dismiss
 
     public func scope(for state: F) -> Scope {
@@ -28,7 +28,7 @@ public struct SignInContainer<F: SignInFeature, R: Routing>: Container where R.R
             signInAction: { dismiss() },
             isLoaderPresented: .init { store.state.signInFlow != .none },
             dialogStatus: store.$state.signInForm.dialog,
-            router: .init()
+            router: .init(routing: store.state.signInNavigation.routing)
         )
     }
 }

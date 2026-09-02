@@ -8,9 +8,10 @@
 
 import UDF
 import Models
+import Common
 
-public struct CastContainer<F: CastFeature, R: Routing>: Container where R.Route == CastRoute {
-    public typealias ContainerComponent = CastComponent<R>
+public struct CastContainer<F: CastFeature>: Container {
+    public typealias ContainerComponent = CastComponent<F.CastFeatureNavigation.Routing>
 
     public let cast: [Models.Cast.ID]
 
@@ -27,7 +28,7 @@ public struct CastContainer<F: CastFeature, R: Routing>: Container where R.Route
             cast: cast,
             castById: store.state.allCast.by(id:),
             dialogStatus: store.$state.castForm.dialog,
-            router: .init(routing: R())
+            router: .init(routing: store.state.castNavigation.routing)
         )
     }
 }

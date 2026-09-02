@@ -10,8 +10,8 @@ import SwiftUI
 import UDF
 import Common
 
-public struct SearchContainer<F: SearchFeature, R: Routing>: Container where R.Route == SearchRoute {
-    public typealias ContainerComponent = SearchComponent<R>
+public struct SearchContainer<F: SearchFeature>: Container {
+    public typealias ContainerComponent = SearchComponent<F.SearchNavigation.Routing>
 
     public func scope(for state: F) -> Scope {
         state.searchForm
@@ -28,7 +28,7 @@ public struct SearchContainer<F: SearchFeature, R: Routing>: Container where R.R
             searchItemById: store.state.allSearchItems.by(id:),
             genreById: { _ in .testItem() },
             loadMoreAction: loadNewPageIfNeeded,
-            router: .init(routing: R())
+            router: .init(routing: store.state.searchNavigation.routing)
         )
     }
 

@@ -10,8 +10,8 @@ import Common
 import Models
 import UDF
 
-public struct CastEntryPoint<F: CastFeature, R: Routing>: FeatureEntryPoint where R.Route == CastRoute {
-    public typealias Container = CastContainer<F, R>
+public struct CastEntryPoint<F: CastFeature>: FeatureEntryPoint {
+    public typealias Container = CastContainer<F>
 
     public struct Parameters {
         public let cast: [Cast.ID]
@@ -21,7 +21,7 @@ public struct CastEntryPoint<F: CastFeature, R: Routing>: FeatureEntryPoint wher
         }
     }
 
-    public static func make(with parameters: Parameters) -> CastContainer<F, R> {
-        CastContainer<F, R>(cast: parameters.cast)
+    public static func make(with parameters: Parameters) -> CastContainer<F> {
+        CastContainer<F>(cast: parameters.cast)
     }
 }

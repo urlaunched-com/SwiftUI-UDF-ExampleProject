@@ -12,7 +12,7 @@ import Common
 import SwiftUI
 
 public struct ReviewDetailsContainer<F: ReviewDetailsFeature>: BindableContainer {
-    public typealias ContainerComponent = ReviewDetailsComponent<F.FeatureNavigation.Routing>
+    public typealias ContainerComponent = ReviewDetailsComponent<F.ReviewDetailsNavigation.Routing>
     
     public let id: Review.ID
 

@@ -26,9 +26,9 @@ struct RecommendationsSectionRouting: Routing {
             }
         case let .recommendations(item):
             if let movie = item as? Movie {
-                RecommendationsEntryPoint<AppState, RecommendationsRouting>.make(with: .init(id: .movie(movie.id)))
+                RecommendationsEntryPoint<AppState>.make(with: .init(id: .movie(movie.id)))
             } else if let show = item as? Show {
-                RecommendationsEntryPoint<AppState, RecommendationsRouting>.make(with: .init(id: .show(show.id)))
+                RecommendationsEntryPoint<AppState>.make(with: .init(id: .show(show.id)))
             }
         case .imageContainer(path: let path, size: let size):
             ImageEntryPoint<AppState>.make(with: .init(size: size, path: path, type: .poster))
