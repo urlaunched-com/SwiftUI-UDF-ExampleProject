@@ -35,7 +35,7 @@ struct RootRouting: Routing {
                 .navigationDestination(for: ReviewsSectionRouting.self)
                 .navigationDestination(for: RecommendationsSectionRouting.self)
                 .navigationDestination(for: ReviewsRouting.self)
-                .navigationDestination(for: AppRouter.CastSectionRouting.self)
+                .navigationDestination(for: CastSectionRouting.self)
         case .search:
             SearchEntryPoint<AppState>.make(with: .init())
         case .randomizer:

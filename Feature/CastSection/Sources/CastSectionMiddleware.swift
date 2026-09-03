@@ -25,7 +25,7 @@ public final class CastSectionMiddleware<F: CastSectionFeature>: Middleware<F>, 
 
     public func scope(for state: F) -> Scope {
         state.networkConnectivityForm
-        state.castSectionBindableFlow
+        state.castSectionFeatureState.castSectionFlow
     }
 
     public override func status(for state: F) -> MiddlewareStatus {
@@ -33,14 +33,14 @@ public final class CastSectionMiddleware<F: CastSectionFeature>: Middleware<F>, 
     }
 
     public func observe(state: F) {
-        for (id, flow) in state.castSectionBindableFlow {
+        for (id, flow) in state.castSectionFeatureState.castSectionFlow {
             switch (id, flow) {
             case let (.movie(movieId), .loadMovieCast(targetId)) where movieId == targetId:
                 execute(
                     flowId: CastSectionFlow.id,
                     cancellation: CastSectionCancellation.loadMovieCast(movieId),
                     mapAction: {
-                        $0.binded(to: F.CastSectionContainerType.self, by: id)
+                        $0.binded(to: CastSectionContainer<F>.self, by: id)
                     }
                 ) { [unowned self] taskId in
                     let cast = try await self.environment.loadMovieCast(movieId.value)
@@ -55,7 +55,7 @@ public final class CastSectionMiddleware<F: CastSectionFeature>: Middleware<F>, 
                     flowId: CastSectionFlow.id,
                     cancellation: CastSectionCancellation.loadShowCast(showId),
                     mapAction: {
-                        $0.binded(to: F.CastSectionContainerType.self, by: id)
+                        $0.binded(to: CastSectionContainer<F>.self, by: id)
                     }
                 ) { [unowned self] taskId in
                     let cast = try await self.environment.loadShowCast(showId.value)

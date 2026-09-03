@@ -9,21 +9,31 @@
 import Common
 import Models
 import UDF
+import SwiftUI
 
 public protocol CastSectionFeature: AppReducer {
-    associatedtype CastSectionContainerType: BindableContainer where CastSectionContainerType.ContainerState == Self, CastSectionContainerType.ID == CastSectionTarget
     associatedtype CastSectionNetworkConnectivityForm: CastSection.NetworkConnectivityForm
     associatedtype CastSectionAllCast: CastSection.AllCast
-    associatedtype CastSectionNavigation: Common.FeatureNavigation where CastSectionNavigation.Routing.Route == CastSectionRoute
-
-    var castSectionBindableFlow: BindableSource<CastSectionTarget, CastSectionFlow> { get }
+    associatedtype CastSectionRouting: Routing<CastSectionRoute>
+   
     var networkConnectivityForm: CastSectionNetworkConnectivityForm { get }
     var allCast: CastSectionAllCast { get }
-    var castSectionNavigation: CastSectionNavigation { get }
+    var castSectionFeatureState: CastSectionFeatureState<Self, CastSectionRouting> { get }
+}
+
+public struct CastSectionFeatureState<AppState: CastSectionFeature, FeatureRouting: Routing<CastSectionRoute>>: FeatureState {
+    @BindableReducer(CastSectionFlow.self, bindedTo: CastSectionContainer<AppState>.self)
+    var castSectionFlow
+    
+    public init() {}
+    
+    public static func entryPoint(input: CastSectionTarget) -> some View {
+        CastSectionContainer<AppState>(id: input)
+    }
 }
 
 public enum CastSection {
-    public protocol NetworkConnectivityForm: Form {
+    public protocol NetworkConnectivityForm: UDF.Form {
         var satisfied: Bool { get }
     }
 

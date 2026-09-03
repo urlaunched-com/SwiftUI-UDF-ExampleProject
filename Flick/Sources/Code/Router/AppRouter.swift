@@ -83,7 +83,7 @@ struct AppRouter {
     }
 
     static func castSection(id: CastSectionTarget) -> some View {
-        CastSectionEntryPoint<AppState>.make(with: .init(id: id))
+        CastSectionFeatureState<AppState, CastSectionRouting>.entryPoint(input: id)
     }
 
     static func homeSection<S: Models.Section>(section: S, items: [any Item]) -> some View {

@@ -93,11 +93,6 @@ struct AppState: AppReducer {
 
     var castForm = CastForm()
 
-    // MARK: Cast Section
-
-    @BindableReducer(CastSectionFlow.self, bindedTo: CastSectionContainer<Self>.self)
-    var castSectionFlow
-
     // MARK: Recommendations
 
     @BindableReducer(RecommendationsForm.self, bindedTo: RecommendationsContainer<Self>.self)
@@ -111,13 +106,6 @@ struct AppState: AppReducer {
     var recomendationsSectionForm
     @BindableReducer(RecommendationsSectionFlow.self, bindedTo: RecommendationsSectionContainer<Self, RecommendationsSectionRouting>.self)
     var recomendationsSectionFlow
-    
-    // MARK: - Review Details
-    
-    @BindableReducer(ReviewDetailsForm.self, bindedTo: ReviewDetailsContainer<Self>.self)
-    var reviewDetailsForm
-    @BindableReducer(ReviewDetailsFlow.self, bindedTo: ReviewDetailsContainer<Self>.self)
-    var reviewDetailsFlow
     
     // MARK: - Review Section
     
@@ -136,4 +124,5 @@ struct AppState: AppReducer {
     var reviewsFeatureState = ReviewsFeatureState<AppState, ReviewsRouting>()
     var reviewDetailsFeatureState = ReviewDetailsFeatureState<AppState, ReviewDetailsRouting>()
     var castFeatureState = CastFeatureState<AppState, CastRouting>()
+    var castSectionFeatureState = CastSectionFeatureState<AppState, CastSectionRouting>()
 }

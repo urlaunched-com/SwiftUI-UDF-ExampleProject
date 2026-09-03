@@ -14,7 +14,7 @@ import Models
 import CustomViews
 import Common
 
-public struct CastSectionComponent<R: Routing>: Component where R.Route == CastSectionRoute {
+public struct CastSectionComponent<R: Routing<CastSectionRoute>>: Component {
     public struct Props {
         var cast: [Cast.ID]
         var castById: (Cast.ID) -> Cast

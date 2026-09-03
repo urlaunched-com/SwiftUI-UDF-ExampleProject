@@ -24,8 +24,12 @@ struct ItemDetailsRouting: Routing {
         case let .cast(item):
             buildView(
                 item: item,
-                movieView: { CastSectionEntryPoint<AppState>.make(with: .init(id: .movie($0.id))) },
-                showView: { CastSectionEntryPoint<AppState>.make(with: .init(id: .show($0.id))) }
+                movieView: {
+                    AppRouter.castSection(id: .movie($0.id))
+                },
+                showView: {
+                    AppRouter.castSection(id: .show($0.id))
+                }
             )
 
         case let .reviews(item):

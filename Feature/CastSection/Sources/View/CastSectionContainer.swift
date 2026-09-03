@@ -10,26 +10,25 @@ import Common
 import Models
 import UDF
 
-public struct CastSectionContainer<F: CastSectionFeature>: BindableContainer {
-    public typealias ContainerComponent = CastSectionComponent<F.CastSectionNavigation.Routing>
+struct CastSectionContainer<F: CastSectionFeature>: BindableContainer {
+    typealias ContainerComponent = CastSectionComponent<F.CastSectionRouting>
 
-    public let id: CastSectionTarget
+    let id: CastSectionTarget
 
-    public init(id: CastSectionTarget) {
+    init(id: CastSectionTarget) {
         self.id = id
     }
 
     public func scope(for state: F) -> Scope {
         state.allCast
-        state.castSectionBindableFlow[id]
+        state.castSectionFeatureState.castSectionFlow[id]
     }
 
     public func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
         .init(
             cast: cast,
             castById: castById,
-            isRedacted: isRedacted,
-            router: .init(routing: store.state.castSectionNavigation.routing)
+            isRedacted: isRedacted
         )
     }
 
@@ -47,7 +46,7 @@ public struct CastSectionContainer<F: CastSectionFeature>: BindableContainer {
 
 private extension CastSectionContainer {
     var flow: CastSectionFlow {
-        store.state.castSectionBindableFlow[id] ?? .init()
+        store.state.castSectionFeatureState.castSectionFlow[id] ?? .init()
     }
 
     var cast: [Cast.ID] {

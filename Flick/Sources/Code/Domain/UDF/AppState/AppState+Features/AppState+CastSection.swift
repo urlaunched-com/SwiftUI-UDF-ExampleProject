@@ -12,30 +12,6 @@ import NetworkConnectivity
 
 extension AppState: CastSectionFeature {
     typealias AllCast = Flick.AllCast
-    typealias CastSectionContainerType = CastSectionContainer<Self>
-
-    struct CastSectionFeatureNavigation: Common.FeatureNavigation {
-        typealias Routing = AppRouter.CastSectionRouting
-        typealias EntryPoint = CastSectionEntryPoint<AppState>
-
-        let routing: AppRouter.CastSectionRouting
-
-        init(routing: AppRouter.CastSectionRouting) {
-            self.routing = routing
-        }
-    }
-
-    var castSectionBindableFlow: BindableSource<CastSectionTarget, CastSectionFlow> {
-        BindableSource(
-            reducers: Dictionary(
-                uniqueKeysWithValues: castSectionFlow.map { ($0.key, $0.value) }
-            )
-        )
-    }
-
-    var castSectionNavigation: CastSectionFeatureNavigation {
-        CastSectionFeatureNavigation(routing: AppRouter.shared.castSectionRouting)
-    }
 }
 
 extension NetworkConnectivity.NetworkConnectivityForm: CastSection.NetworkConnectivityForm {}
