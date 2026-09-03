@@ -132,6 +132,8 @@ struct AppState: AppReducer {
     var myFavoritesFlow = MyFavoritesFlow()
     
     // MARK: - FeatureStates
+    
     var reviewsFeatureState = ReviewsFeatureState<AppState, ReviewsRouting>()
     var reviewDetailsFeatureState = ReviewDetailsFeatureState<AppState, ReviewDetailsRouting>()
+    var castFeatureState = CastFeatureState<AppState, CastRouting>()
 }

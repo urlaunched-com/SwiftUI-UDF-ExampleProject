@@ -11,22 +11,22 @@ import Models
 import Common
 import SwiftUI
 
-public struct ReviewDetailsContainer<F: ReviewDetailsFeature>: BindableContainer {
-    public typealias ContainerComponent = ReviewDetailsComponent<F.ReviewDetailsFeatureRouting>
+struct ReviewDetailsContainer<F: ReviewDetailsFeature>: BindableContainer {
+    typealias ContainerComponent = ReviewDetailsComponent<F.ReviewDetailsFeatureRouting>
     
-    public let id: Review.ID
+    let id: Review.ID
 
-    public func scope(for state: F) -> Scope {
+    func scope(for state: F) -> Scope {
         state.allReviews
         state.reviewDetailsFeatureState.reviewDetailsFlow[id]
         state.reviewDetailsFeatureState.reviewDetailsForm[id]
     }
     
-    public init(id: Review.ID) {
+    init(id: Review.ID) {
         self.id = id
     }
 
-    public func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
+    func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
         .init(
             id: id,
             reviewByID: reviewById(_:),
@@ -35,7 +35,7 @@ public struct ReviewDetailsContainer<F: ReviewDetailsFeature>: BindableContainer
         )
     }
 
-    public func onContainerDidLoad(store: EnvironmentStore<F>) {
+    func onContainerDidLoad(store: EnvironmentStore<F>) {
         store.dispatch(Actions.LoadReviewDetails(id: ReviewDetailsFlow.id, reviewID: id).binded(to: self))
     }
 }

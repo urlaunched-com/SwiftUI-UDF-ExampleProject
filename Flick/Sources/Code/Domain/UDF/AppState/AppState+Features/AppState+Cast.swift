@@ -9,18 +9,4 @@
 import Cast
 import Common
 
-extension AppState: CastFeature {
-
-    struct CastFeatureNavigation: Common.FeatureNavigation {
-        typealias EntryPoint = CastEntryPoint<AppState>
-        let routing: AppRouter.CastRouting
-        
-        init(routing: AppRouter.CastRouting) {
-            self.routing = routing
-        }
-    }
-    
-    var castNavigation: CastFeatureNavigation {
-        CastFeatureNavigation(routing: AppRouter.shared.castRouting)
-    }
-}
+extension AppState: CastFeature { }

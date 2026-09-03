@@ -12,11 +12,11 @@ import Common
 import SwiftUI
 
 struct ReviewsContainer<F: ReviewsFeature>: BindableContainer {
-    public typealias ContainerComponent = ReviewsComponent<F.ReviewsRouting>
+    typealias ContainerComponent = ReviewsComponent<F.ReviewsRouting>
 
-    public let id: ReviewsTarget
+    let id: ReviewsTarget
 
-    public func scope(for state: F) -> Scope {
+    func scope(for state: F) -> Scope {
         state.reviewsFeatureState.reviewsForm[id]
         state.reviewsFeatureState.reviewsFlow[id]
     }
@@ -25,7 +25,7 @@ struct ReviewsContainer<F: ReviewsFeature>: BindableContainer {
         self.id = id
     }
 
-    public func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
+    func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
         .init(
             reviews: form.reviews,
             reviewById: store.state.allReviews.by(id:),
@@ -34,7 +34,7 @@ struct ReviewsContainer<F: ReviewsFeature>: BindableContainer {
         )
     }
 
-    public func onContainerDidLoad(store: EnvironmentStore<F>) {
+    func onContainerDidLoad(store: EnvironmentStore<F>) {
         let reviews: [Review.ID]
         switch id {
         case let .movie(movieID):

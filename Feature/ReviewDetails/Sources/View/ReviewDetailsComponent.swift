@@ -14,15 +14,15 @@ import Models
 import CustomViews
 import Common
 
-public struct ReviewDetailsComponent<R: Routing>: Component where R.Route == ReviewDetailsRoute {
-    public struct Props {
+struct ReviewDetailsComponent<R: Routing>: Component where R.Route == ReviewDetailsRoute {
+    struct Props {
         var id: Review.ID
         var reviewByID: (Review.ID) -> Review
         var isRedacted: Bool
         var dialog: Binding<DialogStatus>
         var router: Router<R>
         
-        public init(
+        init(
             id: Review.ID,
             reviewByID: @escaping (Review.ID) -> Review,
             isRedacted: Bool,
@@ -37,13 +37,13 @@ public struct ReviewDetailsComponent<R: Routing>: Component where R.Route == Rev
         }
     }
     
-    public init(props: Props) {
+    init(props: Props) {
         self.props = props
     }
 
-    public var props: Props
+    var props: Props
 
-    public var body: some View {
+    var body: some View {
         ScrollView {
             let review = props.reviewByID(props.id)
             VStack(alignment: .leading, spacing: 16) {

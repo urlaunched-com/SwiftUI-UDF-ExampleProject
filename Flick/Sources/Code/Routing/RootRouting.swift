@@ -31,10 +31,10 @@ struct RootRouting: Routing {
                 .navigationDestination(for: HomeSectionRouting.self)
                 .navigationDestination(for: SectionDetailsRouting.self)
                 .navigationDestination(for: ItemDetailsRouting.self)
-                .navigationDestination(for: AppRouter.ReviewsRouting.self)
+                .navigationDestination(for: ReviewsRouting.self)
                 .navigationDestination(for: ReviewsSectionRouting.self)
                 .navigationDestination(for: RecommendationsSectionRouting.self)
-                .navigationDestination(for: AppRouter.ReviewsRouting.self)
+                .navigationDestination(for: ReviewsRouting.self)
                 .navigationDestination(for: AppRouter.CastSectionRouting.self)
         case .search:
             SearchEntryPoint<AppState>.make(with: .init())

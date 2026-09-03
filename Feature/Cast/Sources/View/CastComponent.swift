@@ -14,18 +14,18 @@ import Models
 import Common
 import CustomViews
 
-public struct CastComponent<R: Routing>: Component where R.Route == CastRoute {
-    public struct Props {
+struct CastComponent<R: Routing<CastRoute>>: Component {
+    struct Props {
         var cast: [Models.Cast.ID]
         var castById: (Models.Cast.ID) -> Models.Cast
         var dialogStatus: Binding<DialogStatus>
         var router: Router<R>
 
-        public init(
+        init(
             cast: [Models.Cast.ID],
             castById: @escaping (Models.Cast.ID) -> Models.Cast,
             dialogStatus: Binding<DialogStatus>,
-            router: Router<R>
+            router: Router<R> = .init()
         ) {
             self.cast = cast
             self.castById = castById
@@ -34,19 +34,19 @@ public struct CastComponent<R: Routing>: Component where R.Route == CastRoute {
         }
     }
 
-    public var props: Props
+    var props: Props
 
-    private let columns: [GridItem] = [
+    let columns: [GridItem] = [
         GridItem(.flexible(), spacing: 16, alignment: .top),
         GridItem(.flexible(), spacing: 16, alignment: .top),
         GridItem(.flexible(), alignment: .top),
     ]
 
-    public init(props: Props) {
+    init(props: Props) {
         self.props = props
     }
 
-    public var body: some View {
+    var body: some View {
         GeometryReader { geometry in
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 0) {

@@ -10,25 +10,24 @@ import UDF
 import Models
 import Common
 
-public struct CastContainer<F: CastFeature>: Container {
-    public typealias ContainerComponent = CastComponent<F.CastFeatureNavigation.Routing>
+struct CastContainer<F: CastFeature>: Container {
+    typealias ContainerComponent = CastComponent<F.CastFeatureRouting>
 
-    public let cast: [Models.Cast.ID]
+    let cast: [Models.Cast.ID]
 
-    public init(cast: [Models.Cast.ID]) {
+    init(cast: [Models.Cast.ID]) {
         self.cast = cast
     }
 
-    public func scope(for state: F) -> Scope {
-        state.castForm
+    func scope(for state: F) -> Scope {
+        state.castFeatureState.castForm
     }
 
-    public func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
+    func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
         .init(
             cast: cast,
             castById: store.state.allCast.by(id:),
-            dialogStatus: store.$state.castForm.dialog,
-            router: .init(routing: store.state.castNavigation.routing)
+            dialogStatus: store.$state.castFeatureState.castForm.dialog
         )
     }
 }

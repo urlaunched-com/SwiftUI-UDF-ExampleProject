@@ -79,7 +79,7 @@ struct AppRouter {
     }
 
     static func cast(ids: [Cast.ID]) -> some View {
-        CastEntryPoint<AppState>.make(with: .init(cast: ids))
+        CastFeatureState<AppState, CastRouting>.entryPoint(input: ids)
     }
 
     static func castSection(id: CastSectionTarget) -> some View {

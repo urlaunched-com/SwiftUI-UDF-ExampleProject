@@ -14,15 +14,15 @@ import Models
 import CustomViews
 import Common
 
-public struct ReviewsComponent<R: Routing<ReviewsRoute>>: Component {
-    public struct Props {
+struct ReviewsComponent<R: Routing<ReviewsRoute>>: Component {
+    struct Props {
         var reviews: [Review.ID]
         var reviewById: (Review.ID) -> Review
         var loadMoreAction: Command
         var dialog: Binding<DialogStatus>
         var router: Router<R> = .init()
         
-        public init(
+        init(
             reviews: [Review.ID],
             reviewById: @escaping (Review.ID) -> Review,
             loadMoreAction: @escaping Command,
@@ -36,15 +36,15 @@ public struct ReviewsComponent<R: Routing<ReviewsRoute>>: Component {
             self.router = router
         }
     }
-    public var props: Props
+    var props: Props
     
-    public init(props: Props) {
+    init(props: Props) {
         self.props = props
     }
 
     @Environment(\.globalRouter) private var globalRouter
 
-    public var body: some View {
+    var body: some View {
         VStack(spacing: 16) {
             List(props.reviews, id: \.self) { id in
                 let review = props.reviewById(id)

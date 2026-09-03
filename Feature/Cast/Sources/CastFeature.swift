@@ -9,13 +9,23 @@
 import UDF
 import Models
 import Common
+import SwiftUI
 
 public protocol CastFeature: AppReducer {
     associatedtype CastAllCast: Storage<Models.Cast>
-    associatedtype CastFeatureNavigation: Common.FeatureNavigation where CastFeatureNavigation.Routing.Route == CastRoute
+    associatedtype CastFeatureRouting: Routing<CastRoute>
 
-    var castForm: CastForm { get }
     var allCast: CastAllCast { get }
     
-    var castNavigation: CastFeatureNavigation { get }
+    var castFeatureState: CastFeatureState<Self, CastFeatureRouting> { get }
+}
+
+public struct CastFeatureState<AppState: CastFeature, FeatureRouting: Routing<CastRoute>>: FeatureState {
+    public var castForm = CastForm()
+    
+    public init() {}
+    
+    public static func entryPoint(input: [Cast.ID]) -> some View {
+        CastContainer<AppState>(cast: input)
+    }
 }
