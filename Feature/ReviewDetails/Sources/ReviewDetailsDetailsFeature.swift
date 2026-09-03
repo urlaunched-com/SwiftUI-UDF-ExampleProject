@@ -7,26 +7,36 @@
 //
 
 import UDF
-import Models
+@preconcurrency import Models
 import Common
+import SwiftUI
 
 public protocol ReviewDetailsFeature: AppReducer {
     associatedtype NetworkConnectivityForm: ReviewDetails.NetworkConnectivityForm
     associatedtype AllReviews: ReviewDetails.AllReviews
-    associatedtype ReviewDetailsContainerType: BindableContainer where ReviewDetailsContainerType.ContainerState == Self, ReviewDetailsContainerType.ID == Review.ID
-    associatedtype ReviewDetailsNavigation: Common.FeatureNavigation where ReviewDetailsNavigation.Routing.Route == ReviewDetailsRoute
+    associatedtype ReviewDetailsFeatureRouting: Routing<ReviewDetailsRoute>
     
     var allReviews: AllReviews { get }
-    var reviewDetailsBindableFlow: BindableSource<Review.ID, ReviewDetailsFlow> { get }
-    var reviewDetailsBindableForm: BindableSource<Review.ID, ReviewDetailsForm> { get }
-    
     var networkConnectivityForm: NetworkConnectivityForm { get }
     
-    var reviewDetailsNavigation: ReviewDetailsNavigation { get }
+    var reviewDetailsFeatureState: ReviewDetailsFeatureState<Self, ReviewDetailsFeatureRouting> { get }
+}
+
+public struct ReviewDetailsFeatureState<AppState: ReviewDetailsFeature, FeatureRouting: Routing<ReviewDetailsRoute>>: FeatureState {
+    @BindableReducer(ReviewDetailsForm.self, bindedTo: ReviewDetailsContainer<AppState>.self)
+    var reviewDetailsForm
+    @BindableReducer(ReviewDetailsFlow.self, bindedTo: ReviewDetailsContainer<AppState>.self)
+    var reviewDetailsFlow
+    
+    public init() {}
+    
+    public static func entryPoint(input: Review.ID) -> some View {
+        ReviewDetailsContainer<AppState>(id: input)
+    }
 }
 
 public enum ReviewDetails {
-    public protocol NetworkConnectivityForm: Form {
+    public protocol NetworkConnectivityForm: UDF.Form {
         var satisfied: Bool { get }
     }
     

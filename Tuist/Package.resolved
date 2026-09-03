@@ -113,8 +113,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Maks-Jago/SwiftUI-UDF",
       "state" : {
-        "branch" : "feature/add-storage-abstractions-in-udf-guid_869ehptvm",
-        "revision" : "1c11b1a00dcee673f456106c46c8567c3ad83786"
+        "branch" : "2.0.0",
+        "revision" : "a2c5434f924da63d5bd490979affc00bc69e5411"
       }
     },
     {

@@ -20,9 +20,9 @@ struct ReviewsSectionRouting: Routing {
         case let .imageContainer(path: path, size: size, type: type):
             ImageEntryPoint<AppState>.make(with: .init(size: size, path: path, type: type))
         case let .reviewDetails(reviewID):
-            ReviewDetailsEntryPoint<AppState>.make(with: .init(reviewID: reviewID))
+            AppRouter.reviewDetails(reviewID: reviewID)
         case let .reviews(id):
-            ReviewsFeatureState<AppState>.entryPoint(input: id)
+            AppRouter.reviews(id: id)
         }
     }
 }

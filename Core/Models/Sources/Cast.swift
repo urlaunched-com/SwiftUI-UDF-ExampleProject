@@ -11,7 +11,7 @@ import Foundation
 import SwiftFoundation
 import UDF
 
-public struct Cast: Identifiable, EmptyValue {
+public struct Cast: Identifiable, StorageItem {
     public struct ID: Hashable, Codable {
         public var value: Int
         

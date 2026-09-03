@@ -12,7 +12,7 @@ import SwiftFoundation
 import UDF
 import Common
 
-public struct Movie: Item, EmptyValue {
+public struct Movie: Item, StorageItem {
     public struct ID: Hashable, Codable {
         public var value: Int
         

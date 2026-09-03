@@ -8,10 +8,11 @@
 import UDF
 import SwiftUI
 
-public protocol FeatureState<AppState>: Reducible {
+public protocol FeatureState<AppState, FeatureRouting>: Reducible {
     associatedtype AppState: AppReducer
     associatedtype Destination: View
     associatedtype Input
+    associatedtype FeatureRouting: Routing
     
     static func entryPoint(input: Input) -> Destination
 }

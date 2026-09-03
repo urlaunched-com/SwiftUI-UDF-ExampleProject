@@ -14,7 +14,7 @@ import Models
 import CustomViews
 import Common
 
-public struct ReviewsComponent<R: Routing>: Component where R.Route == ReviewsRoute {
+public struct ReviewsComponent<R: Routing<ReviewsRoute>>: Component {
     public struct Props {
         var reviews: [Review.ID]
         var reviewById: (Review.ID) -> Review

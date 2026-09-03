@@ -10,13 +10,11 @@ import SwiftUI
 import ReviewDetails
 import Image
 
-extension AppRouter {
-    struct ReviewDetailsRouting: Routing {
-        @ViewBuilder func view(for route: ReviewDetailsRoute) -> some View {
-            switch route {
-            case let .imageContainer(path: path, size: size, type: type):
-                AppRouter.image(size: size, path: path, type: type)
-            }
+struct ReviewDetailsRouting: Routing {
+    @ViewBuilder func view(for route: ReviewDetailsRoute) -> some View {
+        switch route {
+        case let .imageContainer(path: path, size: size, type: type):
+            AppRouter.image(size: size, path: path, type: type)
         }
     }
 }

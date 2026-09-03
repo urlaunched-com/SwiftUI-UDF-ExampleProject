@@ -17,15 +17,15 @@ enum Cancellation: Hashable {
 
 public final class ReviewDetailsMiddleware<F: ReviewDetailsFeature>: Middleware<F>, @unchecked Sendable {
 
-    public struct Environment {
-        var loadShowReview: (_ reviewID: Review.ID) async throws -> Review
+    public struct Environment: Sendable {
+        var loadShowReview: @Sendable (_ reviewID: Review.ID) async throws -> Review
     }
 
     public var environment: Environment!
     
     public func scope(for state: F) -> Scope {
         state.networkConnectivityForm
-        state.reviewDetailsBindableFlow
+        state.reviewDetailsFeatureState.reviewDetailsFlow
     }
 
     public override func status(for state: F) -> MiddlewareStatus {
@@ -33,7 +33,7 @@ public final class ReviewDetailsMiddleware<F: ReviewDetailsFeature>: Middleware<
     }
 
     public func observe(state: F) {
-        for (id, flow) in state.reviewDetailsBindableFlow {
+        for (id, flow) in state.reviewDetailsFeatureState.reviewDetailsFlow {
             switch flow {
             case let .loading(reviewID):
                 execute(
@@ -44,7 +44,7 @@ public final class ReviewDetailsMiddleware<F: ReviewDetailsFeature>: Middleware<
                     flowId: ReviewDetailsFlow.id,
                     cancellation: Cancellation.loadShowReview(id),
                     mapAction: {
-                        $0.binded(to: F.ReviewDetailsContainerType.self, by: id)
+                        $0.binded(to: ReviewDetailsContainer<F>.self, by: id)
                     }
                 )
             default:

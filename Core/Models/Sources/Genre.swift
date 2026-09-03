@@ -11,7 +11,7 @@ import API
 import Foundation
 import SwiftFoundation
 
-public struct Genre: Identifiable, EmptyValue {
+public struct Genre: Identifiable, StorageItem {
     public struct ID: Hashable, Codable {
         public var value: Int
         

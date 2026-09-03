@@ -123,11 +123,11 @@ struct AppRouter {
     }
 
     static func reviewDetails(reviewID: Review.ID) -> some View {
-        ReviewDetailsEntryPoint<AppState>.make(with: .init(reviewID: reviewID))
+        ReviewDetailsFeatureState<AppState, ReviewDetailsRouting>.entryPoint(input: reviewID)
     }
 
     static func reviews(id: ReviewsTarget) -> some View {
-        ReviewsFeatureState<AppState>.entryPoint(input: id)
+        ReviewsFeatureState<AppState, ReviewsRouting>.entryPoint(input: id)
     }
 
     static func reviewsSection(id: ReviewsTarget) -> some View {

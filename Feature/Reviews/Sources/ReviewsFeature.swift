@@ -8,7 +8,7 @@
 
 import UDF
 import Common
-import Models
+@preconcurrency import Models
 import SwiftUI
 
 public protocol ReviewsFeature: AppReducer {
@@ -19,9 +19,7 @@ public protocol ReviewsFeature: AppReducer {
     var allReviews: AllReviews { get }
     var networkConnectivityForm: NetworkConnectivityForm { get }
     
-    var routing: ReviewsRouting { get }
-    
-    var reviewsFeatureState: ReviewsFeatureState<Self> { get }
+    var reviewsFeatureState: ReviewsFeatureState<Self, ReviewsRouting> { get }
 }
 
 public enum Reviews {
@@ -35,25 +33,16 @@ public enum Reviews {
     }
 }
 
-public struct ReviewsFeatureState<AppState: ReviewsFeature>: FeatureState {
+public struct ReviewsFeatureState<AppState: ReviewsFeature, FeatureRouting: Routing<ReviewsRoute>>: FeatureState {
     @BindableReducer(ReviewsForm.self, bindedTo: ReviewsContainer<AppState>.self)
-    public var reviewsForm
+    var reviewsForm
     @BindableReducer(ReviewsFlow.self, bindedTo: ReviewsContainer<AppState>.self)
-    public var reviewsFlow
+    var reviewsFlow
     
-    public init() {
-        fatalError("")
-    }
-    
-    public init(appState: AppState.Type) where AppState: ReviewsFeature, Self.AppState == AppState { }
+    public init() {}
     
     public static func entryPoint(input: ReviewsTarget) -> some View {
         ReviewsContainer<AppState>(id: input)
     }
 }
 
-public protocol AppRouting: Routing<ReviewsRoute> {
-    associatedtype ImageView: View
-    
-    func image(path: String?, size: CGSize, type: ImageType) -> ImageView
-}

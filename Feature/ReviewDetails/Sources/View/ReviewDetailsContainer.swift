@@ -12,14 +12,14 @@ import Common
 import SwiftUI
 
 public struct ReviewDetailsContainer<F: ReviewDetailsFeature>: BindableContainer {
-    public typealias ContainerComponent = ReviewDetailsComponent<F.ReviewDetailsNavigation.Routing>
+    public typealias ContainerComponent = ReviewDetailsComponent<F.ReviewDetailsFeatureRouting>
     
     public let id: Review.ID
 
     public func scope(for state: F) -> Scope {
         state.allReviews
-        state.reviewDetailsBindableFlow[id]
-        state.reviewDetailsBindableForm[id]
+        state.reviewDetailsFeatureState.reviewDetailsFlow[id]
+        state.reviewDetailsFeatureState.reviewDetailsForm[id]
     }
     
     public init(id: Review.ID) {
@@ -31,8 +31,7 @@ public struct ReviewDetailsContainer<F: ReviewDetailsFeature>: BindableContainer
             id: id,
             reviewByID: reviewById(_:),
             isRedacted: isRedacted,
-            dialog: dialog,
-            router: Router(routing: store.state.reviewDetailsNavigation.routing)
+            dialog: dialog
         )
     }
 
@@ -45,11 +44,11 @@ public struct ReviewDetailsContainer<F: ReviewDetailsFeature>: BindableContainer
 
 private extension ReviewDetailsContainer {
     var flow: ReviewDetailsFlow {
-        store.state.reviewDetailsBindableFlow[id] ?? .init()
+        store.state.reviewDetailsFeatureState.reviewDetailsFlow[id] ?? .init()
     }
 
     var form: ReviewDetailsForm {
-        store.state.reviewDetailsBindableForm[id] ?? .init()
+        store.state.reviewDetailsFeatureState.reviewDetailsForm[id] ?? .init()
     }
     
     var dialog: Binding<DialogStatus> {
