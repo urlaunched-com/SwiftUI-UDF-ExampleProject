@@ -21,10 +21,10 @@ public enum HomeFlow: IdentifiableFlow, HomeFeatureTypes.HomeFlow {
 
     public mutating func reduce(_ action: some Action) {
         switch action {
-        case is Actions.LoadHomeSection<MovieSection>:
+        case let action as Actions.LoadHomeSection where action.sectionId.base is MovieSection:
             self = .loading
 
-        case is Actions.LoadHomeSection<ShowSection>:
+        case let action as Actions.LoadHomeSection where action.sectionId.base is ShowSection:
             self = .loading
 
         case is Actions.DidLoadItems<Movie>:

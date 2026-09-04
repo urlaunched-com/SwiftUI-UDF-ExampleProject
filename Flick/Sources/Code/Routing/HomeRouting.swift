@@ -28,13 +28,9 @@ struct HomeRouting: Routing {
                 with: .init(section: section, items: items)
             )
         case let .movieSection(section, items):
-            HomeSectionEntryPoint<AppState, MovieSection, HomeSectionRouting>.make(
-                with: .init(section: section, items: items)
-            )
+            AppRouter.homeSection(section: section, items: items)
         case let .showSection(section, items):
-            HomeSectionEntryPoint<AppState, ShowSection, HomeSectionRouting>.make(
-                with: .init(section: section, items: items)
-            )
+            AppRouter.homeSection(section: section, items: items)
         }
     }
 }

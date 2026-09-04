@@ -25,6 +25,7 @@ import Recommendations
 import RecommendationsSection
 import SectionDetails
 import ItemDetails
+import HomeSection
 
 struct AppState: AppReducer {
     // MARK: Storages
@@ -126,4 +127,5 @@ struct AppState: AppReducer {
     var castFeatureState = CastFeatureState<AppState, CastRouting>()
     var castSectionFeatureState = CastSectionFeatureState<AppState, CastSectionRouting>()
     var homeFeatureState = HomeFeatureState<AppState, HomeRouting>()
+    var homeSectionFeatureState = HomeSectionFeatureState<AppState, HomeSectionRouting>()
 }

@@ -87,7 +87,8 @@ struct AppRouter {
     }
 
     static func homeSection<S: Models.Section>(section: S, items: [any Item]) -> some View {
-        HomeSectionEntryPoint<AppState, S, HomeSectionRouting>.make(with: .init(section: section, items: items))
+        let input = HomeSectionFeatureState<AppState, HomeSectionRouting>.Input(section: section, items: items)
+        return HomeSectionFeatureState<AppState, HomeSectionRouting>.entryPoint(input: input)
     }
 
     static func mainHomeSection<S: Models.Section>(section: S, items: [any Item]) -> some View {

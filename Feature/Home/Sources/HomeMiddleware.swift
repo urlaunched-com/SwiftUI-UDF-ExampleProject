@@ -25,21 +25,27 @@ public final class HomeMiddleware<F: HomeFeature>: Middleware<F>, @unchecked Sen
 
     public func reduce(_ action: some Action, for _: F) {
         switch action {
-        case let action as Actions.LoadHomeSection<MovieSection>:
-            execute(flowId: HomeFlow.id, cancellation: HomeCancellation.loadMovies(action.sectionId)) { [unowned self] taskId in
-                let data = try await environment.loadMovies(action.sectionId.urlValue)
+        case let action as Actions.LoadHomeSection where action.sectionId.base is MovieSection:
+            guard let section = action.sectionId.base as? MovieSection else {
+                return
+            }
+            execute(flowId: HomeFlow.id, cancellation: HomeCancellation.loadMovies(section)) { [unowned self] taskId in
+                let data = try await environment.loadMovies(section.urlValue)
                 return ActionGroup {
                     Actions.DidLoadItems(items: data, id: taskId)
-                    Actions.DidLoadNestedItems(parentId: action.sectionId, items: data.map(\.id), id: taskId)
+                    Actions.DidLoadNestedItems(parentId: section, items: data.map(\.id), id: taskId)
                 }
             }
 
-        case let action as Actions.LoadHomeSection<ShowSection>:
-            execute(flowId: HomeFlow.id, cancellation: HomeCancellation.loadShows(action.sectionId)) { [unowned self] taskId in
-                let data = try await environment.loadShows(action.sectionId.urlValue)
+        case let action as Actions.LoadHomeSection where action.sectionId.base is ShowSection:
+            guard let section = action.sectionId.base as? ShowSection else {
+                return
+            }
+            execute(flowId: HomeFlow.id, cancellation: HomeCancellation.loadShows(section)) { [unowned self] taskId in
+                let data = try await environment.loadShows(section.urlValue)
                 return ActionGroup {
                     Actions.DidLoadItems(items: data, id: taskId)
-                    Actions.DidLoadNestedItems(parentId: action.sectionId, items: data.map(\.id), id: taskId)
+                    Actions.DidLoadNestedItems(parentId: section, items: data.map(\.id), id: taskId)
                 }
             }
 
