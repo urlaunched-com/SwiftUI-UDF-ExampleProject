@@ -18,7 +18,7 @@ struct ReviewsSectionRouting: Routing {
     @ViewBuilder func view(for route: ReviewsSectionRoute) -> some View {
         switch route {
         case let .imageContainer(path: path, size: size, type: type):
-            ImageEntryPoint<AppState>.make(with: .init(size: size, path: path, type: type))
+            AppRouter.image(size: size, path: path)
         case let .reviewDetails(reviewID):
             AppRouter.reviewDetails(reviewID: reviewID)
         case let .reviews(id):

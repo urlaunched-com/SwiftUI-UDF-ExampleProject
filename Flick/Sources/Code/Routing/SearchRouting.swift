@@ -16,7 +16,7 @@ struct SearchRouting: Routing {
     @ViewBuilder func view(for route: SearchRoute) -> some View {
         switch route {
         case let .imageContainer(path: path, size: size):
-            ImageEntryPoint<AppState>.make(with: .init(size: size, path: path))
+            AppRouter.image(size: size, path: path)
         }
     }
 }

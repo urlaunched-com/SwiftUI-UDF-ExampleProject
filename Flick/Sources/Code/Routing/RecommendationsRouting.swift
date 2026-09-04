@@ -11,7 +11,6 @@ import UDF
 import Models
 import Common
 import Recommendations
-import Image
 import ItemDetails
 
 struct RecommendationsRouting: Routing {
@@ -24,7 +23,7 @@ struct RecommendationsRouting: Routing {
                 ItemDetailsEntryPoint<AppState, ItemDetailsRouting>.make(with: .init(id: .show(show.id)))
             }
         case .imageContainer(path: let path, size: let size):
-            ImageEntryPoint<AppState>.make(with: .init(size: size, path: path))
+            AppRouter.image(size: size, path: path)
         }
     }
 }

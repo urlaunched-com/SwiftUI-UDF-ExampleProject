@@ -16,7 +16,7 @@ public final class ImageConfigsMiddleware<F: ImageFeature>: Middleware<F>, @unch
 
     public func scope(for state: F) -> Scope {
         state.networkConnectivityForm
-        state.imageConfigsFlow
+        state.imageFeatureState.imageConfigsFlow
     }
 
     public override func status(for state: F) -> MiddlewareStatus {
@@ -24,7 +24,7 @@ public final class ImageConfigsMiddleware<F: ImageFeature>: Middleware<F>, @unch
     }
 
     public func observe(state: F) {
-        switch state.imageConfigsFlow {
+        switch state.imageFeatureState.imageConfigsFlow {
         case .loading:
             execute(
                 flowId: ImageConfigsFlow.id,
@@ -33,7 +33,7 @@ public final class ImageConfigsMiddleware<F: ImageFeature>: Middleware<F>, @unch
                 let imageConfigs = try await self.environment.loadImageConfigs()
                 return ActionGroup {
                     Actions.DidLoadItem(item: imageConfigs, id: taskId)
-                    if state.imageConfigsForm.configs != imageConfigs {
+                    if state.imageFeatureState.imageConfigsForm.configs != imageConfigs {
                         Actions.Message(message: "New configs for images", id: taskId)
                     }
                 }

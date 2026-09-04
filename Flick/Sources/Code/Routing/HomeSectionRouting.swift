@@ -32,7 +32,7 @@ struct HomeSectionRouting: Routing {
                 SectionDetailsEntryPoint<AppState, ShowSection, SectionDetailsRouting>.make(with: .init(section: showSection))
             }
         case let .imageContainer(path, size, type):
-            ImageEntryPoint<AppState>.make(with: .init(size: size, path: path, type: type))
+            AppRouter.image(size: size, path: path, type: type)
         }
     }
 }

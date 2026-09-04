@@ -101,14 +101,8 @@ struct AppRouter {
         type: ImageType = .poster,
         isLoaderPresented: Bool = true
     ) -> some View {
-        ImageEntryPoint<AppState>.make(
-            with: .init(
-                size: size,
-                path: path,
-                type: type,
-                isLoaderPresented: isLoaderPresented
-            )
-        )
+        let input = ImageFeatureState<AppState, ImageRouting>.Input(size: size, path: path, type: type, isLoaderPresented: isLoaderPresented)
+        return ImageFeatureState<AppState, ImageRouting>.entryPoint(input: input)
     }
 
     static func itemDetails(id: ItemDetailsTarget) -> some View {

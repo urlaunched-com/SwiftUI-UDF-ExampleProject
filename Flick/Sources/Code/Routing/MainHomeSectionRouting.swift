@@ -32,14 +32,7 @@ struct MainHomeSectionRouting: Routing {
                 SectionDetailsEntryPoint<AppState, ShowSection, SectionDetailsRouting>.make(with: .init(section: showSection))
             }
         case let .imageContainer(path, size, type, isLoaderPresented):
-            ImageEntryPoint<AppState>.make(
-                with: .init(
-                    size: size,
-                    path: path,
-                    type: type,
-                    isLoaderPresented: isLoaderPresented
-                )
-            )
+            AppRouter.image(size: size, path: path, type: type, isLoaderPresented: isLoaderPresented)
         }
     }
 }

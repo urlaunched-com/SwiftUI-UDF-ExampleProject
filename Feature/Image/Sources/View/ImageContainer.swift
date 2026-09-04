@@ -10,15 +10,15 @@ import SwiftUI
 import UDF
 import Common
 
-public struct ImageContainer<F: ImageFeature>: Container {
-    public typealias ContainerComponent = ImageComponent
+struct ImageContainer<F: ImageFeature>: Container {
+    typealias ContainerComponent = ImageComponent
 
     public var size: CGSize
     public var path: String?
     public var type: ImageType = .poster
     public var isLoaderPresented: Bool = true
 
-    public init(
+    init(
         size: CGSize,
         path: String?,
         type: ImageType = .poster,
@@ -30,11 +30,11 @@ public struct ImageContainer<F: ImageFeature>: Container {
         self.isLoaderPresented = isLoaderPresented
     }
 
-    public func scope(for state: F) -> Scope {
-        state.imageConfigsForm
+    func scope(for state: F) -> Scope {
+        state.imageFeatureState.imageConfigsForm
     }
 
-    public func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
+    func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
         .init(
             size: size,
             url: url(for: path, with: size, store.state),
@@ -49,7 +49,7 @@ private extension ImageContainer {
             return nil
         }
 
-        let imageConfigs = state.imageConfigsForm.configs
+        let imageConfigs = state.imageFeatureState.imageConfigsForm.configs
         let baseUrlPath = imageConfigs.secureBaseUrl
         let sizeUrlPath = imageConfigs.sizeUrlComponent(for: size, in: sizes(for: state))
 
@@ -61,7 +61,7 @@ private extension ImageContainer {
     }
 
     func sizes(for state: F) -> [Int] {
-        let configs = state.imageConfigsForm.configs
+        let configs = state.imageFeatureState.imageConfigsForm.configs
 
         switch type {
         case .backdrop:

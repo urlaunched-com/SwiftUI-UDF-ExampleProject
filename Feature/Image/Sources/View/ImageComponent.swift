@@ -12,8 +12,8 @@ import UDF
 import SwiftUI_Kit
 import DesignSystem
 
-public struct ImageComponent: Component {
-    public struct Props {
+struct ImageComponent: Component {
+    struct Props {
         var size: CGSize
         var url: URL?
         var isLoaderPresented: Bool
@@ -25,13 +25,13 @@ public struct ImageComponent: Component {
         }
     }
 
-    public var props: Props
+    var props: Props
 
-    public init(props: Props) {
+    init(props: Props) {
         self.props = props
     }
 
-    public var body: some View {
+    var body: some View {
         WebImage(url: props.url)
             .resizable()
             .renderingMode(.original)

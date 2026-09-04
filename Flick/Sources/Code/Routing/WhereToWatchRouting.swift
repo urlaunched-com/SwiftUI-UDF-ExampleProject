@@ -16,7 +16,7 @@ struct WhereToWatchRouting: Routing {
     @ViewBuilder func view(for route: WhereToWatchRouter) -> some View {
         switch route {
         case let .imageContainer(path: path, size: size, type: type):
-            ImageEntryPoint<AppState>.make(with: .init(size: size, path: path, type: type))
+            AppRouter.image(size: size, path: path, type: type)
         }
     }
 }

@@ -49,7 +49,7 @@ struct ItemDetailsRouting: Routing {
         case let .whereToWatch(item):
             WhereToWatchEntryPoint<AppState>.make(with: .init(item: item))
         case let .imageContainer(path: path, size: size, type: type):
-            ImageEntryPoint<AppState>.make(with: .init(size: size, path: path, type: type))
+            AppRouter.image(size: size, path: path, type: type)
         }
     }
 }

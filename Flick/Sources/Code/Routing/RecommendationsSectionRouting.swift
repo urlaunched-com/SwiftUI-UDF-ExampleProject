@@ -12,7 +12,6 @@ import Models
 import Common
 import Recommendations
 import RecommendationsSection
-import Image
 import ItemDetails
 
 struct RecommendationsSectionRouting: Routing {
@@ -31,7 +30,7 @@ struct RecommendationsSectionRouting: Routing {
                 RecommendationsEntryPoint<AppState>.make(with: .init(id: .show(show.id)))
             }
         case .imageContainer(path: let path, size: let size):
-            ImageEntryPoint<AppState>.make(with: .init(size: size, path: path, type: .poster))
+            AppRouter.image(size: size, path: path)
         }
     }
 }
