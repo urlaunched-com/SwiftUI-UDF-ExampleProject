@@ -25,7 +25,7 @@ struct RootRouting: Routing {
         case .signIn:
             SignInEntryPoint<AppState>.make(with: .init())
         case .home:
-            HomeEntryPoint<AppState, HomeRouting>.make(with: .init())
+            AppRouter.home()
                 .navigationDestination(for: HomeRouting.self)
                 .navigationDestination(for: MainHomeSectionRouting.self)
                 .navigationDestination(for: HomeSectionRouting.self)

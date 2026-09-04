@@ -13,8 +13,8 @@ import Models
 import Common
 import CustomViews
 
-public struct HomeComponent<R: Routing>: Component where R.Route == HomeRoute {
-    public struct Props {
+struct HomeComponent<R: Routing<HomeRoute>>: Component {
+    struct Props {
         var contentType: Binding<ContentType>
         var movieSections: [MovieSection]
         var showSections: [ShowSection]
@@ -25,7 +25,7 @@ public struct HomeComponent<R: Routing>: Component where R.Route == HomeRoute {
         var dialogStatus: Binding<DialogStatus>
         var router: Router<R>
 
-        public init(
+        init(
             contentType: Binding<ContentType>,
             movieSections: [MovieSection],
             showSections: [ShowSection],
@@ -34,7 +34,7 @@ public struct HomeComponent<R: Routing>: Component where R.Route == HomeRoute {
             isMoviesRedacted: @escaping (MovieSection) -> Bool,
             isShowsRedacted: @escaping (ShowSection) -> Bool,
             dialogStatus: Binding<DialogStatus>,
-            router: Router<R>
+            router: Router<R> = .init()
         ) {
             self.contentType = contentType
             self.movieSections = movieSections
@@ -48,13 +48,13 @@ public struct HomeComponent<R: Routing>: Component where R.Route == HomeRoute {
         }
     }
 
-    public var props: Props
+    var props: Props
 
-    public init(props: Props) {
+    init(props: Props) {
         self.props = props
     }
 
-    public var body: some View {
+    var body: some View {
         ScrollView {
             VStack(spacing: 8) {
                 ContentToggle(contentType: props.contentType)

@@ -125,4 +125,5 @@ struct AppState: AppReducer {
     var reviewDetailsFeatureState = ReviewDetailsFeatureState<AppState, ReviewDetailsRouting>()
     var castFeatureState = CastFeatureState<AppState, CastRouting>()
     var castSectionFeatureState = CastSectionFeatureState<AppState, CastSectionRouting>()
+    var homeFeatureState = HomeFeatureState<AppState, HomeRouting>()
 }

@@ -59,7 +59,7 @@ struct AppRouter {
     }
 
     static func home() -> some View {
-        HomeEntryPoint<AppState, HomeRouting>.make(with: .init())
+        HomeFeatureState<AppState, HomeRouting>.entryPoint()
     }
 
     static func search() -> some View {

@@ -11,25 +11,25 @@ import Models
 import SwiftUI
 import UDF
 
-public struct HomeContainer<F: HomeFeature, R: Routing>: Container where R.Route == HomeRoute {
-    public typealias ContainerComponent = HomeComponent<R>
+struct HomeContainer<F: HomeFeature>: Container {
+    typealias ContainerComponent = HomeComponent<F.HomeFeatureRouting>
 
-    public init() {}
+    init() {}
 
-    public func scope(for state: F) -> Scope {
-        state.homeForm
-        state.homeFlow
+    func scope(for state: F) -> Scope {
+        state.homeFeatureState.homeForm
+        state.homeFeatureState.homeFlow
         state.allMovies
         state.allShows
     }
 
-    public func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
+    func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
         .init(
             contentType: Binding(
-                get: { store.state.homeForm.contentType },
+                get: { store.state.homeFeatureState.homeForm.contentType },
                 set: {
                     store.dispatch(
-                        Actions.UpdateFormField(keyPath: \F.HomeForm.contentType, value: $0)
+                        Actions.UpdateFormField(keyPath: \HomeForm.contentType, value: $0)
                             .with(animation: .spring(blendDuration: 0.2)),
                         priority: .userInteractive
                     )
@@ -41,8 +41,7 @@ public struct HomeContainer<F: HomeFeature, R: Routing>: Container where R.Route
             showsForSection: { isShowsRedacted(section: $0) ? Show.fakeItems(count: 3) : showsForSection($0, store: store) },
             isMoviesRedacted: { isMoviesRedacted(section: $0) },
             isShowsRedacted: { isShowsRedacted(section: $0) },
-            dialogStatus: store.$state.homeForm.dialog,
-            router: .init(routing: R())
+            dialogStatus: store.$state.homeFeatureState.homeForm.dialog
         )
     }
 }
@@ -69,10 +68,10 @@ private extension HomeContainer {
     }
 
     func isMoviesRedacted(section: MovieSection) -> Bool {
-        store.state.homeFlow.isLoading && moviesForSection(section, store: store).isEmpty
+        store.state.homeFeatureState.homeFlow.isLoading && moviesForSection(section, store: store).isEmpty
     }
 
     func isShowsRedacted(section: ShowSection) -> Bool {
-        store.state.homeFlow.isLoading && showsForSection(section, store: store).isEmpty
+        store.state.homeFeatureState.homeFlow.isLoading && showsForSection(section, store: store).isEmpty
     }
 }
