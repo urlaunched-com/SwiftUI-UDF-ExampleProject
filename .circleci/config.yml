@@ -1,0 +1,115 @@
+# CircleCI configuration file
+version: 2.1
+
+references:
+  container_config: &container_config
+    macos:
+      xcode: "26.5"
+    resource_class: m4pro.medium
+
+jobs:
+  validate_mr:
+    <<: *container_config
+    environment:
+      FL_OUTPUT_DIR: output
+      TUIST_XDG_CACHE_HOME: /Users/distiller/.cache/tuist
+      TUIST_XDG_STATE_HOME: /Users/distiller/.local/state/tuist
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restore Cached Tuist Archive
+          keys:
+            - v1-homebrew-tuist-archive-{{ checksum ".tuist_version" }}
+            - v1-homebrew-tuist-archive-
+      - run:
+          name: Unpack Tuist Archive
+          command: |
+            if [ -f /tmp/tuist-cache.tar.gz ]; then
+              sudo tar -xzf /tmp/tuist-cache.tar.gz -C /
+            fi
+      - restore_cache:
+          name: Restore Cached SwiftPM Packages
+          keys:
+            - v1-spm-tuist-cache-{{ checksum ".tuist_version" }}-{{ checksum "Tuist/Package.resolved" }}
+            - v1-spm-tuist-cache-{{ checksum ".tuist_version" }}-
+      - run:
+          name: Install Tuist
+          command: |
+            TUIST_VERSION="$(cat .tuist_version)"
+            export PATH="/opt/homebrew/bin:$PATH"
+            TUIST_FORMULA="tuist@${TUIST_VERSION}"
+            TUIST_CELLAR="$(brew --cellar 2>/dev/null || true)/${TUIST_FORMULA}/${TUIST_VERSION}"
+
+            if [ -x "$TUIST_CELLAR/bin/tuist" ] && [ "$("$TUIST_CELLAR/bin/tuist" version)" = "$TUIST_VERSION" ]; then
+              echo "Reusing Tuist ${TUIST_VERSION}"
+            else
+              echo "Install Tuist ${TUIST_VERSION} using Homebrew formula"
+              HOMEBREW_NO_AUTO_UPDATE=1 brew tap tuist/tuist
+              HOMEBREW_NO_AUTO_UPDATE=1 brew install --formula "$TUIST_FORMULA"
+            fi
+
+            brew link --overwrite --force "$TUIST_FORMULA"
+            tar -czf /tmp/tuist-cache.tar.gz -C / "${TUIST_CELLAR#/}"
+      - run:
+          name: Setup Tuist Cache
+          command: |
+            export PATH="/opt/homebrew/bin:$PATH"
+            tuist setup cache
+      - run:
+          name: Install Tuist Dependencies
+          command: |
+            export PATH="/opt/homebrew/bin:$PATH"
+            tuist install
+      - run:
+          name: Warm External Tuist Cache
+          command: |
+            export PATH="/opt/homebrew/bin:$PATH"
+            tuist cache warm --cache-profile only-external
+      - run:
+          name: Generate Tuist Workspace
+          command: |
+            export PATH="/opt/homebrew/bin:$PATH"
+            tuist generate --cache-profile only-external --no-open
+      - save_cache:
+          name: Cache Tuist Archive
+          key: v1-homebrew-tuist-archive-{{ checksum ".tuist_version" }}
+          paths:
+            - /tmp/tuist-cache.tar.gz
+      - save_cache:
+          name: Cache SwiftPM Packages
+          paths:
+            - Tuist/.build
+          key: v1-spm-tuist-cache-{{ checksum ".tuist_version" }}-{{ checksum "Tuist/Package.resolved" }}
+      - run:
+          name: Run Tests
+          command: |
+            export PATH="/opt/homebrew/bin:$PATH"
+            tuist test \
+              --binary-cache \
+              --selective-testing \
+              --device="iPhone 17 Pro" \
+              --os="26.5" \
+              --skip-ui-tests \
+              -- \
+              -skipPackagePluginValidation \
+              -skipMacroValidation
+      - store_artifacts:
+          path: /Users/distiller/.local/state/tuist/sessions
+          destination: tuist-sessions
+
+workflows:
+  merge_request_workflow:
+    jobs:
+      - validate_mr
+    when:
+      or:
+        - matches:
+            pattern: /^feature\/.*/
+            value: << pipeline.git.branch >>
+        - matches:
+            pattern: /^chore\/.*/
+            value: << pipeline.git.branch >>
+        - matches:
+            pattern: /^fix\/.*/
+            value: << pipeline.git.branch >>
+        - equal: [ main, << pipeline.git.branch >> ]

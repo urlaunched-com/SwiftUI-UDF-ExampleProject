@@ -1,0 +1,100 @@
+//
+//  FlickApp.swift
+//  Flick
+//
+//  Created by Max Kuznetsov on 02.11.2022.
+//
+
+import API
+import SwiftUI
+import UDF
+import ReviewDetails
+import Reviews
+import ReviewsSection
+import Search
+import MyFavorites
+import Image
+import Home
+import Recommendations
+import RecommendationsSection
+import CastSection
+import NetworkConnectivity
+import Root
+import SectionDetails
+import ItemDetails
+import Onboarding
+import SignIn
+import Settings
+import TabBar
+
+private let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJidW5kbGVfaWRzIjpbImNvbS51cmxhdW5jaGVkLmZsaWNrIl19.HjROptJlsO915Ju0fw7VtO-FhHZlZSdDRALOrFQOvPU"
+var globalStore: EnvironmentStore<AppState>!
+
+@main
+struct FlickApp: App {
+    init() {
+        globalStore = EnvironmentStore(
+            initial: AppState(),
+            logger: .consoleDebug
+        )
+        
+        checkAPIKey()
+        originalSubscribe()
+        configureAppearances()
+    }
+
+    var body: some Scene {
+        WindowGroup {
+            RootContainer<AppState, RootRouting>()
+        }
+    }
+}
+
+// MARK: - Store subscriptions
+
+private extension FlickApp {
+    func originalSubscribe() {
+        globalStore.subscribe { _ in
+            HomeMiddleware.self
+            GenresMiddleware.self
+            NetworkConnectivityMiddleware<AppState>.self
+            ImageConfigsMiddleware.self
+            SectionDetailsMiddleware.self
+            ItemDetailsMiddleware.self
+            CastSectionMiddleware<AppState>.self
+            RecommendationsMiddleware.self
+            RecommendationsSectionMiddleware.self
+            ReviewsMiddleware.self
+            ReviewsSectionMiddleware.self
+            SearchMiddleware.self
+            MyFavoritesMiddleware.self
+            ReviewDetailsMiddleware.self
+        }
+    }
+}
+
+extension FlickApp {
+    func configureAppearances() {
+        let backImage = UIImage(systemName: "chevron.left")?.withTintColor(UIColor(.flMainPink), renderingMode: .alwaysOriginal)
+        let navigationBarAppearance = UINavigationBarAppearance()
+        let buttonAppearance = UIBarButtonItemAppearance()
+        buttonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor(.flMainPink)]
+        navigationBarAppearance.backgroundColor = UIColor(Color.flMain)
+        navigationBarAppearance.shadowColor = .clear
+        navigationBarAppearance.buttonAppearance = buttonAppearance
+        navigationBarAppearance.setBackIndicatorImage(backImage, transitionMaskImage: backImage)
+        navigationBarAppearance.titleTextAttributes = [.foregroundColor: UIColor(.red)]
+        UINavigationBar.appearance().standardAppearance = navigationBarAppearance
+        UINavigationBar.appearance().compactAppearance = navigationBarAppearance
+        UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
+    }
+}
+
+private extension FlickApp {
+    func checkAPIKey() {
+        guard kTMDBApiKey.isNotEmpty else {
+            fatalError("API key was not found in BaseAPI.swift")
+        }
+        self.configureAppearances()
+    }
+}
