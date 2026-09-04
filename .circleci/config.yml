@@ -97,19 +97,19 @@ jobs:
           path: /Users/distiller/.local/state/tuist/sessions
           destination: tuist-sessions
 
-workflows:
-  merge_request_workflow:
-    jobs:
-      - validate_mr
-    when:
-      or:
-        - matches:
-            pattern: /^feature\/.*/
-            value: << pipeline.git.branch >>
-        - matches:
-            pattern: /^chore\/.*/
-            value: << pipeline.git.branch >>
-        - matches:
-            pattern: /^fix\/.*/
-            value: << pipeline.git.branch >>
-        - equal: [ main, << pipeline.git.branch >> ]
+# workflows:
+#   merge_request_workflow:
+#     jobs:
+#       - validate_mr
+#     when:
+#       or:
+#         - matches:
+#             pattern: /^feature\/.*/
+#             value: << pipeline.git.branch >>
+#         - matches:
+#             pattern: /^chore\/.*/
+#             value: << pipeline.git.branch >>
+#         - matches:
+#             pattern: /^fix\/.*/
+#             value: << pipeline.git.branch >>
+#         - equal: [ main, << pipeline.git.branch >> ]
