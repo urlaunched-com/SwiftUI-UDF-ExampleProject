@@ -14,8 +14,8 @@ import Models
 import Common
 import CustomViews
 
-public struct MyFavoritesComponent<R: Routing>: Component where R.Route == MyFavoritesRoute {
-    public struct Props {
+struct MyFavoritesComponent<R: Routing>: Component where R.Route == MyFavoritesRoute {
+    struct Props {
         var contentType: Binding<ContentType>
         var items: [any Item]
         var genreById: (Genre.ID) -> Genre?
@@ -24,14 +24,14 @@ public struct MyFavoritesComponent<R: Routing>: Component where R.Route == MyFav
         var dialog: Binding<DialogStatus>
         var router: Router<R>
 
-        public init(
+        init(
             contentType: Binding<ContentType>,
             items: [any Item],
             genreById: @escaping (Genre.ID) -> Genre?,
             loadMoreAction: @escaping Command,
             isRedacted: Bool,
             dialog: Binding<DialogStatus>,
-            router: Router<R>
+            router: Router<R> = .init()
         ) {
             self.contentType = contentType
             self.items = items
@@ -43,13 +43,13 @@ public struct MyFavoritesComponent<R: Routing>: Component where R.Route == MyFav
         }
     }
 
-    public var props: Props
+    var props: Props
 
-    public init(props: Props) {
+    init(props: Props) {
         self.props = props
     }
 
-    public var body: some View {
+    var body: some View {
         SelectiveItemsList(
             items: props.items,
             genreById: props.genreById,

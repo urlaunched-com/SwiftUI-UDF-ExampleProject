@@ -41,7 +41,7 @@ struct RootRouting: Routing {
         case .randomizer:
             Text("Randomizer")
         case .favorites:
-            MyFavoritesEntryPoint<AppState>.make(with: .init())
+            AppRouter.myFavorites()
         case .profile:
             SettingsEntryPoint<AppState>.make(with: .init())
         case .tabBar:

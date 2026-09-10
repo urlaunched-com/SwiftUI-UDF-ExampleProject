@@ -8,14 +8,15 @@
 
 import UDF
 import Models
+import SwiftUI
 import Common
 
 public protocol MyFavoritesFeature: AppReducer {
+    associatedtype MyFavoritesRouting: Routing<MyFavoritesRoute>
     associatedtype MyFavoritesNetworkConnectivityForm: MyFavorites.NetworkConnectivityForm
     associatedtype MyFavoritesAllMovies: Storage<Movie>
     associatedtype MyFavoritesAllShows: Storage<Show>
     associatedtype MyFavoritesAllGenres: Storage<Genre>
-    associatedtype MyFavoritesNavigation: Common.FeatureNavigation where MyFavoritesNavigation.Routing.Route == MyFavoritesRoute
 
     var myFavoritesForm: MyFavoritesForm { get }
     var myFavoritesFlow: MyFavoritesFlow { get }
@@ -23,11 +24,23 @@ public protocol MyFavoritesFeature: AppReducer {
     var allMovies: MyFavoritesAllMovies { get }
     var allShows: MyFavoritesAllShows { get }
     var allGenres: MyFavoritesAllGenres { get }
-    var myFavoritesNavigation: MyFavoritesNavigation { get }
+    var myFavoritesState: MyFavoritesState<Self, MyFavoritesRouting> { get }
+}
+
+
+public struct MyFavoritesState<AppState: MyFavoritesFeature, FeatureRouting: Routing<MyFavoritesRoute>>: FeatureState {
+    var myFavoritesForm = MyFavoritesForm()
+    var myFavoritesFlow = MyFavoritesFlow()
+    
+    public init() {}
+    
+    public static func entryPoint(input: Void) -> some View {
+        MyFavoritesContainer<AppState>()
+    }
 }
 
 public enum MyFavorites {
-    public protocol NetworkConnectivityForm: Form {
+    public protocol NetworkConnectivityForm: UDF.Form {
         var satisfied: Bool { get }
     }
 }

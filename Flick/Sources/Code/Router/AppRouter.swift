@@ -67,7 +67,7 @@ struct AppRouter {
     }
 
     static func myFavorites() -> some View {
-        MyFavoritesEntryPoint<AppState>.make(with: .init())
+        MyFavoritesState<AppState, MyFavoritesRouting>.entryPoint(input: ())
     }
 
     static func settings() -> some View {

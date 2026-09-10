@@ -11,17 +11,17 @@ import UDF
 import Models
 import Common
 
-public struct MyFavoritesContainer<F: MyFavoritesFeature>: Container {
-    public typealias ContainerComponent = MyFavoritesComponent<F.MyFavoritesNavigation.Routing>
+struct MyFavoritesContainer<F: MyFavoritesFeature>: Container {
+    typealias ContainerComponent = MyFavoritesComponent<F.MyFavoritesRouting>
 
-    public init() {}
+    init() {}
 
-    public func scope(for state: F) -> Scope {
+    func scope(for state: F) -> Scope {
         state.myFavoritesForm
         state.myFavoritesFlow
     }
 
-    public func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
+    func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
         .init(
             contentType: Binding(
                 get: { store.state.myFavoritesForm.contentType },
@@ -31,14 +31,12 @@ public struct MyFavoritesContainer<F: MyFavoritesFeature>: Container {
             genreById: { store.state.allGenres.by(id: $0) },
             loadMoreAction: loadNewPageIfNeeded,
             isRedacted: isRedacted,
-            dialog: store.$state.myFavoritesForm.dialog,
-            router: .init(routing: store.state.myFavoritesNavigation.routing)
+            dialog: store.$state.myFavoritesForm.dialog
         )
     }
 
-    public func onContainerDidLoad(store: EnvironmentStore<F>) {
+    func onContainerDidLoad(store: EnvironmentStore<F>) {
         store.dispatch(Actions.LoadPage(id: MyFavoritesFlow.loadMoviesId))
-        print("onContainerDidLoad(store: EnvironmentStore<F>)")
     }
 }
 

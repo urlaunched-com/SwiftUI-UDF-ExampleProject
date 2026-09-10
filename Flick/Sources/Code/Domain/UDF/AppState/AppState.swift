@@ -129,4 +129,5 @@ struct AppState: AppReducer {
     var homeFeatureState = HomeFeatureState<AppState, HomeRouting>()
     var homeSectionFeatureState = HomeSectionFeatureState<AppState, HomeSectionRouting>()
     var imageFeatureState = ImageFeatureState<AppState, ImageRouting>()
+    var myFavoritesState = MyFavoritesState<AppState, MyFavoritesRouting>()
 }
