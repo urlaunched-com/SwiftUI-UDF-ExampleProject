@@ -10,21 +10,21 @@ import UDF
 import Models
 import Common
 
-public struct ReviewsSectionContainer<F: ReviewsSectionFeature>: BindableContainer {
-    public typealias ContainerComponent = ReviewsSectionComponent<F.ReviewsSectionRouting>
-    public let id: ReviewsTarget
+struct ReviewsSectionContainer<F: ReviewsSectionFeature>: BindableContainer {
+    typealias ContainerComponent = ReviewsSectionComponent<F.ReviewsSectionRouting>
+    let id: ReviewsTarget
     
-    public init(id: ReviewsTarget) {
+    init(id: ReviewsTarget) {
         self.id = id
     }
 
-    public func scope(for state: F) -> Scope {
+    func scope(for state: F) -> Scope {
         state.allReviews
         state.reviewsSectionFeatureState.reviewsSectionForm[id]
         state.reviewsSectionFeatureState.reviewsSectionFlow[id]
     }
 
-    public func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
+    func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
         .init(
             id: id,
             reviews: isRedacted ? Review.fakeItems().ids : reviews,
@@ -34,7 +34,7 @@ public struct ReviewsSectionContainer<F: ReviewsSectionFeature>: BindableContain
         )
     }
 
-    public func onContainerDidLoad(store: EnvironmentStore<F>) {
+    func onContainerDidLoad(store: EnvironmentStore<F>) {
         store.dispatch(Actions.LoadPage(id: ReviewsSectionFlow.id).binded(to: self))
     }
 }

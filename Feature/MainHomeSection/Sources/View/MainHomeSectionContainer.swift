@@ -9,13 +9,13 @@
 import UDF
 import Models
 
-public struct MainHomeSectionContainer<F: MainHomeSectionFeature>: Container {
-    public typealias ContainerComponent = MainHomeSectionComponent<F.MainHomeSectionFeatureRouting>
+struct MainHomeSectionContainer<F: MainHomeSectionFeature>: Container {
+    typealias ContainerComponent = MainHomeSectionComponent<F.MainHomeSectionFeatureRouting>
 
-    public let section: any Section
-    public let items: [any Item]
+    let section: any Section
+    let items: [any Item]
 
-    public init(
+    init(
         section: any Section,
         items: [any Item]
     ) {
@@ -23,12 +23,12 @@ public struct MainHomeSectionContainer<F: MainHomeSectionFeature>: Container {
         self.items = items
     }
 
-    public func scope(for state: F) -> Scope {
+    func scope(for state: F) -> Scope {
         state.allShows
         state.allMovies
     }
 
-    public func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
+    func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
         .init(
             section: section,
             items: items,
@@ -37,7 +37,7 @@ public struct MainHomeSectionContainer<F: MainHomeSectionFeature>: Container {
         )
     }
 
-    public func onContainerDidLoad(store: EnvironmentStore<F>) {
+    func onContainerDidLoad(store: EnvironmentStore<F>) {
         store.dispatch(Actions.LoadHomeSection(sectionId: section.id))
     }
 }

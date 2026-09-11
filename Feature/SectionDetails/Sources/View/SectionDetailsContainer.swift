@@ -11,20 +11,20 @@ import Models
 import Common
 import SwiftUI
 
-public struct SectionDetailsContainer<F: SectionDetailsFeature>: Container {
-    public typealias ContainerComponent = SectionDetailsComponent<F.SectionDetailsFeatureRouting>
-    public let section: any Models.Section
+struct SectionDetailsContainer<F: SectionDetailsFeature>: Container {
+    typealias ContainerComponent = SectionDetailsComponent<F.SectionDetailsFeatureRouting>
+    let section: any Models.Section
 
-    public func scope(for state: F) -> Scope {
+    func scope(for state: F) -> Scope {
         state.sectionDetailsFeatureState.sectionDetailsForm
         state.sectionDetailsFeatureState.sectionDetailsFlow
     }
     
-    public init(section: any Models.Section) {
+    init(section: any Models.Section) {
         self.section = section
     }
 
-    public func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
+    func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
         .init(
             title: section.title,
             items: items,
@@ -34,7 +34,7 @@ public struct SectionDetailsContainer<F: SectionDetailsFeature>: Container {
         )
     }
 
-    public func onContainerDidLoad(store: EnvironmentStore<F>) {
+    func onContainerDidLoad(store: EnvironmentStore<F>) {
         store.dispatch(
             ActionGroup {
                 if let movieSection = section as? MovieSection {

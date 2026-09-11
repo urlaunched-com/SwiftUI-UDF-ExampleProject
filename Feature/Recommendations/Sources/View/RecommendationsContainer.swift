@@ -10,21 +10,21 @@ import UDF
 import Models
 import SwiftUI
 
-public struct RecommendationsContainer<F: RecommendationsFeature>: BindableContainer {
-    public typealias ContainerComponent = RecommendationsComponent<F.RecommendationsRouting>
+struct RecommendationsContainer<F: RecommendationsFeature>: BindableContainer {
+    typealias ContainerComponent = RecommendationsComponent<F.RecommendationsRouting>
 
-    public let id: RecomendationTarget
+    let id: RecomendationTarget
 
-    public func scope(for state: F) -> Scope {
+    func scope(for state: F) -> Scope {
         state.recommendationsFeatureState.recommendationsFlow[id]
         state.recommendationsFeatureState.recommendationsForm[id]
     }
     
-    public init(id: RecomendationTarget) {
+    init(id: RecomendationTarget) {
         self.id = id
     }
 
-    public func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
+    func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
         .init(
             title: "",
             items: items,
@@ -35,7 +35,7 @@ public struct RecommendationsContainer<F: RecommendationsFeature>: BindableConta
         )
     }
 
-    public func onContainerDidLoad(store: EnvironmentStore<F>) {
+    func onContainerDidLoad(store: EnvironmentStore<F>) {
         store.dispatch(
             ActionGroup {
                 switch id {

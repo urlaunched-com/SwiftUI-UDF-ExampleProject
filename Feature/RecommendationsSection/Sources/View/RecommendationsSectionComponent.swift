@@ -14,15 +14,15 @@ import Models
 import CustomViews
 import Common
 
-public struct RecommendationsSectionComponent<R: Routing>: Component where R.Route == RecommendationsSectionRoute {
-    public struct Props {
+struct RecommendationsSectionComponent<R: Routing>: Component where R.Route == RecommendationsSectionRoute {
+    struct Props {
         var item: any Item
         var items: [any Item]
         var isRedacted: Bool
         var genreById: (Genre.ID) -> Genre?
         var router: Router<R> = .init()
         
-        public init(
+        init(
             item: any Item,
             items: [any Item],
             isRedacted: Bool,
@@ -37,15 +37,15 @@ public struct RecommendationsSectionComponent<R: Routing>: Component where R.Rou
         }
     }
 
-    public var props: Props
+    var props: Props
     
     @Environment(\.globalRouter) private var globalRouter
 
-    public init(props: Props) {
+    init(props: Props) {
         self.props = props
     }
     
-    public var body: some View {
+    var body: some View {
         if !props.items.isEmpty {
             VStack(alignment: .leading, spacing: 24) {
                 SectionHeaderView(

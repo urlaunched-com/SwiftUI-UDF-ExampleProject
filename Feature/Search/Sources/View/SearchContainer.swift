@@ -10,16 +10,16 @@ import SwiftUI
 import UDF
 import Common
 
-public struct SearchContainer<F: SearchFeature>: Container {
-    public typealias ContainerComponent = SearchComponent<F.SearchRouting>
+struct SearchContainer<F: SearchFeature>: Container {
+    typealias ContainerComponent = SearchComponent<F.SearchRouting>
 
-    public func scope(for state: F) -> Scope {
+    func scope(for state: F) -> Scope {
         state.searchFeatureState.searchForm
     }
     
-    public init() {}
+    init() {}
 
-    public func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
+    func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
         .init(
             searchText: store.$state.searchFeatureState.searchForm.searchText.didSet { _, _ in
                 store.dispatch(Actions.LoadPage(id: SearchFlow.id))
@@ -32,7 +32,7 @@ public struct SearchContainer<F: SearchFeature>: Container {
         )
     }
 
-    public func onContainerDidLoad(store: EnvironmentStore<F>) {
+    func onContainerDidLoad(store: EnvironmentStore<F>) {
         store.dispatch(Actions.LoadPage(id: SearchFlow.id))
     }
 }

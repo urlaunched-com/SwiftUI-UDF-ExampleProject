@@ -14,14 +14,14 @@ import Models
 import CustomViews
 import Common
 
-public struct CastSectionComponent<R: Routing<CastSectionRoute>>: Component {
-    public struct Props {
+struct CastSectionComponent<R: Routing<CastSectionRoute>>: Component {
+    struct Props {
         var cast: [Cast.ID]
         var castById: (Cast.ID) -> Cast
         var isRedacted: Bool
         var router: Router<R> = .init()
         
-        public init(
+        init(
             cast: [Cast.ID],
             castById: @escaping (Cast.ID) -> Cast,
             isRedacted: Bool,
@@ -34,16 +34,16 @@ public struct CastSectionComponent<R: Routing<CastSectionRoute>>: Component {
         }
     }
 
-    public var props: Props
+    var props: Props
     
-    public init(props: Props) {
+    init(props: Props) {
         self.props = props
     }
 
     @Environment(\.width) private var componentWidth
     @Environment(\.globalRouter) private var globalRouter
 
-    public var body: some View {
+    var body: some View {
         if props.cast.isNotEmpty {
             VStack(alignment: .leading, spacing: 21) {
                 SectionHeaderView(

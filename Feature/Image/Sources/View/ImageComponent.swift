@@ -18,7 +18,7 @@ struct ImageComponent: Component {
         var url: URL?
         var isLoaderPresented: Bool
 
-        public init(size: CGSize, url: URL? = nil, isLoaderPresented: Bool) {
+        init(size: CGSize, url: URL? = nil, isLoaderPresented: Bool) {
             self.size = size
             self.url = url
             self.isLoaderPresented = isLoaderPresented

@@ -10,21 +10,21 @@ import UDF
 import Models
 import Common
 
-public struct RecommendationsSectionContainer<F: RecommendationsSectionFeature>: BindableContainer {
-    public typealias ContainerComponent = RecommendationsSectionComponent<F.RecommendationsSectionRouting>
+struct RecommendationsSectionContainer<F: RecommendationsSectionFeature>: BindableContainer {
+    typealias ContainerComponent = RecommendationsSectionComponent<F.RecommendationsSectionRouting>
 
-    public let id: RecomendationTarget
+    let id: RecomendationTarget
 
-    public init(id: RecomendationTarget) {
+    init(id: RecomendationTarget) {
         self.id = id
     }
     
-    public func scope(for state: F) -> Scope {
+    func scope(for state: F) -> Scope {
         state.recommendationsSectionFeatureState.recommendationsSectionFlow[id]
         state.recommendationsSectionFeatureState.recommendationsSectionForm[id]
     }
 
-    public func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
+    func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
         .init(
             item: item,
             items: items,
@@ -34,7 +34,7 @@ public struct RecommendationsSectionContainer<F: RecommendationsSectionFeature>:
         )
     }
 
-    public func onContainerDidLoad(store: EnvironmentStore<F>) {
+    func onContainerDidLoad(store: EnvironmentStore<F>) {
         store.dispatch(Actions.LoadPage(id: RecommendationsSectionFlow.id).binded(to: self))
     }
 }

@@ -11,21 +11,21 @@ import Models
 import Common
 import SwiftUI
 
-public struct ItemDetailsContainer<F: ItemDetailsFeature>: BindableContainer {
-    public typealias ContainerComponent = ItemDetailsComponent<F.ItemDetailsFeatureRouting>
+struct ItemDetailsContainer<F: ItemDetailsFeature>: BindableContainer {
+    typealias ContainerComponent = ItemDetailsComponent<F.ItemDetailsFeatureRouting>
 
-    public let id: ItemDetailsTarget
+    let id: ItemDetailsTarget
     
-    public init(id: ItemDetailsTarget) {
+    init(id: ItemDetailsTarget) {
         self.id = id
     }
 
-    public func scope(for state: F) -> Scope {
+    func scope(for state: F) -> Scope {
         state.itemDetailsFeatureState.itemDetailsForm[id]
         state.itemDetailsFeatureState.itemDetailsFlow[id]
     }
 
-    public func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
+    func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
         .init(
             item: item,
             genreById: store.state.allGenres.by(id:),
@@ -34,7 +34,7 @@ public struct ItemDetailsContainer<F: ItemDetailsFeature>: BindableContainer {
         )
     }
 
-    public func onContainerDidLoad(store: EnvironmentStore<F>) {
+    func onContainerDidLoad(store: EnvironmentStore<F>) {
         store.dispatch(
             ActionGroup {
                 Actions.LoadItemDetails(item: id)

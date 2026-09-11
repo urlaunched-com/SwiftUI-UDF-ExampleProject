@@ -15,14 +15,14 @@ import Models
 import Common
 import CustomViews
 
-public struct ItemDetailsComponent<R: Routing>: Component where R.Route == ItemDetailsRoute {
-    public struct Props {
+struct ItemDetailsComponent<R: Routing>: Component where R.Route == ItemDetailsRoute {
+    struct Props {
         var item: any Item
         var genreById: (Genre.ID) -> Genre?
         var dialog: Binding<DialogStatus>
         var router: Router<R> = .init()
         
-        public init(
+        init(
             item: any Item,
             genreById: @escaping (Genre.ID) -> Genre?,
             dialog: Binding<DialogStatus>,
@@ -35,16 +35,16 @@ public struct ItemDetailsComponent<R: Routing>: Component where R.Route == ItemD
         }
     }
 
-    public var props: Props
+    var props: Props
     @State private var imageScale: CGFloat = 1
     
-    public init(props: Props) {
+    init(props: Props) {
         self.props = props
     }
 
     @Environment(\.globalRouter) private var globalRouter
 
-    public var body: some View {
+    var body: some View {
         GeometryReader { geometry in
             ScrollView {
                 ZStack(alignment: .top) {

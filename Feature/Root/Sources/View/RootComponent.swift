@@ -9,8 +9,8 @@ import Common
 import SwiftUI
 import UDF
 
-public struct RootComponent<R: Routing>: Component where R.Route == RootRoute {
-    public struct Props {
+struct RootComponent<R: Routing>: Component where R.Route == RootRoute {
+    struct Props {
         var isNeedToPresentOnboarding: Bool
         var selectedTab: Binding<TabBarItem>
         var homeTabPath: Binding<NavigationPath>
@@ -20,7 +20,7 @@ public struct RootComponent<R: Routing>: Component where R.Route == RootRoute {
         var profileTabPath: Binding<NavigationPath>
         var router: Router<R>
 
-        public init(
+        init(
             isNeedToPresentOnboarding: Bool,
             selectedTab: Binding<TabBarItem>,
             homeTabPath: Binding<NavigationPath>,
@@ -41,15 +41,15 @@ public struct RootComponent<R: Routing>: Component where R.Route == RootRoute {
         }
     }
 
-    public var props: Props
+    var props: Props
 
     @State private var isSignInPresented = false
 
-    public init(props: Props) {
+    init(props: Props) {
         self.props = props 
     }
 
-    public var body: some View {
+    var body: some View {
         if props.isNeedToPresentOnboarding {
             props.router.view(for: .onboarding)
         } else {

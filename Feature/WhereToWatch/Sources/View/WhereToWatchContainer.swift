@@ -11,20 +11,20 @@ import UDF
 import Models
 import Common
 
-public struct WhereToWatchContainer<F: WhereToWatchFeature>: Container {
-    public typealias ContainerComponent = WhereToWatchComponent<F.WhereToWatchRouting>
+struct WhereToWatchContainer<F: WhereToWatchFeature>: Container {
+    typealias ContainerComponent = WhereToWatchComponent<F.WhereToWatchRouting>
 
-    public let item: any Item
+    let item: any Item
     
-    public init(item: any Item) {
+    init(item: any Item) {
         self.item = item
     }
 
-    public func scope(for state: F) -> Scope {
+    func scope(for state: F) -> Scope {
         state.homeFlow // hardcoded placeholder
     }
 
-    public func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
+    func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
         .init(
             item: item,
             countries: {

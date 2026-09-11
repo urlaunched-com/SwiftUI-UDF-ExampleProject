@@ -12,8 +12,8 @@ import SwiftUI
 import UDF
 import Common
 
-public struct SignInComponent<R: Routing>: Component where R.Route == SignInRoute {
-    public struct Props {
+struct SignInComponent<R: Routing>: Component where R.Route == SignInRoute {
+    struct Props {
         var username: Binding<String>
         var password: Binding<String>
         var signInAction: Command
@@ -21,7 +21,7 @@ public struct SignInComponent<R: Routing>: Component where R.Route == SignInRout
         var dialogStatus: Binding<DialogStatus>
         var router: Router<R> = .init()
         
-        public init(
+        init(
             username: Binding<String>,
             password: Binding<String>,
             signInAction: @escaping Command,
@@ -38,16 +38,16 @@ public struct SignInComponent<R: Routing>: Component where R.Route == SignInRout
         }
     }
 
-    public var props: Props
+    var props: Props
 
     @FocusState private var focusedField: Field?
     @Environment(\.globalRouter) private var globalRouter
     
-    public init(props: Props) {
+    init(props: Props) {
         self.props = props
     }
 
-    public var body: some View {
+    var body: some View {
         AuthView(title: Localization.authSignUpTitle()) {
             VStack {
                 AuthTextField(

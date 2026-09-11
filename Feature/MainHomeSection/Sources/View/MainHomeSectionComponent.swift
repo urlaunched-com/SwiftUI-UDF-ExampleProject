@@ -13,14 +13,14 @@ import Models
 import Common
 import CustomViews
 
-public struct MainHomeSectionComponent<R: Routing>: Component where R.Route == MainHomeSectionRoute {
-    public struct Props {
+struct MainHomeSectionComponent<R: Routing>: Component where R.Route == MainHomeSectionRoute {
+    struct Props {
         var section: any Models.Section
         var items: [any Item]
         var genreById: (Genre.ID) -> Genre?
         var router: Router<R>
 
-        public init(
+        init(
             section: any Models.Section,
             items: [any Item],
             genreById: @escaping (Genre.ID) -> Genre?,
@@ -33,15 +33,15 @@ public struct MainHomeSectionComponent<R: Routing>: Component where R.Route == M
         }
     }
 
-    public var props: Props
+    var props: Props
 
-    public init(props: Props) {
+    init(props: Props) {
         self.props = props
     }
 
     @Environment(\.globalRouter) private var globalRouter
 
-    public var body: some View {
+    var body: some View {
         VStack(spacing: 10) {
             SectionHeaderView(
                 title: props.section.title,

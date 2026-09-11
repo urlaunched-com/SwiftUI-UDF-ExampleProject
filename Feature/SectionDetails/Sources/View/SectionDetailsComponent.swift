@@ -14,8 +14,8 @@ import Models
 import Common
 import CustomViews
 
-public struct SectionDetailsComponent<R: Routing>: Component where R.Route == SectionDetailsRoute {
-    public struct Props {
+struct SectionDetailsComponent<R: Routing>: Component where R.Route == SectionDetailsRoute {
+    struct Props {
         var title: String
         var items: [any Item]
         var genreById: (Genre.ID) -> Genre?
@@ -23,7 +23,7 @@ public struct SectionDetailsComponent<R: Routing>: Component where R.Route == Se
         var dialog: Binding<DialogStatus>
         var router: Router<R> = .init()
         
-        public init(
+        init(
             title: String,
             items: [any Item],
             genreById: @escaping (Genre.ID) -> Genre?,
@@ -40,15 +40,15 @@ public struct SectionDetailsComponent<R: Routing>: Component where R.Route == Se
         }
     }
 
-    public var props: Props
+    var props: Props
     
-    public init(props: Props) {
+    init(props: Props) {
         self.props = props
     }
 
     @Environment(\.globalRouter) private var globalRouter
 
-    public var body: some View {
+    var body: some View {
         GeometryReader { geometry in
             List(props.items.indices, id: \.self) { index in
                 let item = props.items[index]

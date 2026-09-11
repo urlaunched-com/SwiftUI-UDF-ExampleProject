@@ -10,18 +10,18 @@ import SwiftUI
 import UDF
 import Common
 
-public struct SignInContainer<F: SignInFeature>: Container {
-    public typealias ContainerComponent = SignInComponent<F.SignInRouting>
+struct SignInContainer<F: SignInFeature>: Container {
+    typealias ContainerComponent = SignInComponent<F.SignInRouting>
     @Environment(\.dismiss) var dismiss
 
-    public func scope(for state: F) -> Scope {
+    func scope(for state: F) -> Scope {
         state.signInFeatureState.signInForm
         state.signInFeatureState.signInFlow
     }
     
-    public init() {}
+    init() {}
 
-    public func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
+    func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
         return .init(
             username: store.$state.signInFeatureState.signInForm.username,
             password: store.$state.signInFeatureState.signInForm.password,

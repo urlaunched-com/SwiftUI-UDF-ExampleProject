@@ -15,8 +15,8 @@ import Models
 import CustomViews
 import Common
 
-public struct SearchComponent<R: Routing>: Component where R.Route == SearchRoute {
-    public struct Props {
+struct SearchComponent<R: Routing>: Component where R.Route == SearchRoute {
+    struct Props {
         var searchText: Binding<String>
         var itemIds: [SearchItem.ID]
         var searchItemById: (SearchItem.ID) -> SearchItem
@@ -24,7 +24,7 @@ public struct SearchComponent<R: Routing>: Component where R.Route == SearchRout
         var loadMoreAction: Command
         var router: Router<R>
         
-        public init(
+        init(
             searchText: Binding<String>,
             itemIds: [SearchItem.ID],
             searchItemById: @escaping (SearchItem.ID) -> SearchItem,
@@ -41,16 +41,16 @@ public struct SearchComponent<R: Routing>: Component where R.Route == SearchRout
         }
     }
 
-    public var props: Props
+    var props: Props
     
-    public init(props: Props) {
+    init(props: Props) {
         self.props = props
         self.focusedField = focusedField
     }
 
     @FocusState private var focusedField: Field?
 
-    public var body: some View {
+    var body: some View {
         VStack(spacing: 16) {
             searchTextField
                 .padding(.horizontal)

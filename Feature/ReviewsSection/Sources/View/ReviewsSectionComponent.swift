@@ -14,15 +14,15 @@ import Models
 import CustomViews
 import Common
 
-public struct ReviewsSectionComponent<R: Routing>: Component where R.Route == ReviewsSectionRoute {
-    public struct Props {
+struct ReviewsSectionComponent<R: Routing>: Component where R.Route == ReviewsSectionRoute {
+    struct Props {
         var id: ReviewsTarget
         var reviews: [Review.ID]
         var reviewById: (Review.ID) -> Review
         var isRedacted: Bool
         var router: Router<R> = .init()
         
-        public init(
+        init(
             id: ReviewsTarget,
             reviews: [Review.ID],
             reviewById: @escaping (Review.ID) -> Review,
@@ -37,15 +37,15 @@ public struct ReviewsSectionComponent<R: Routing>: Component where R.Route == Re
         }
     }
 
-    public var props: Props
+    var props: Props
     
-    public init(props: Props) {
+    init(props: Props) {
         self.props = props
     }
 
     @Environment(\.globalRouter) private var globalRouter
 
-    public var body: some View {
+    var body: some View {
         if let id = props.reviews.first {
             VStack(alignment: .leading, spacing: 24) {
                 SectionHeaderView(

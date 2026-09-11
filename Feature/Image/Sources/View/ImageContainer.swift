@@ -13,10 +13,10 @@ import Common
 struct ImageContainer<F: ImageFeature>: Container {
     typealias ContainerComponent = ImageComponent
 
-    public var size: CGSize
-    public var path: String?
-    public var type: ImageType = .poster
-    public var isLoaderPresented: Bool = true
+    var size: CGSize
+    var path: String?
+    var type: ImageType = .poster
+    var isLoaderPresented: Bool = true
 
     init(
         size: CGSize,

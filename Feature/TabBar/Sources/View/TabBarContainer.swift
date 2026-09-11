@@ -8,16 +8,16 @@
 
 import UDF
 
-public struct TabBarContainer<F: TabBarFeature>: Container {
-    public typealias ContainerComponent = TabBarComponent
+struct TabBarContainer<F: TabBarFeature>: Container {
+    typealias ContainerComponent = TabBarComponent
 
-    public init() {}
+    init() {}
 
-    public func scope(for state: F) -> Scope {
+    func scope(for state: F) -> Scope {
         state.tabBarFeatureState.tabBarForm
     }
 
-    public func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
+    func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
         .init(
             selectedTab: store.$state.tabBarFeatureState.tabBarForm.selectedTab,
             isHidden: store.$state.tabBarFeatureState.tabBarForm.isTabBarHidden

@@ -6,7 +6,6 @@
 //
 
 import Common
-import ItemDetails
 import Models
 import SwiftUI
 
@@ -14,13 +13,7 @@ import SwiftUI
 struct ItemDetailsApp: App {
     var body: some Scene {
         WindowGroup {
-            ItemDetailsComponent<MockRouter>(
-                props: .init(
-                    item: Movie.fakeItem(),
-                    genreById: { _ in .fakeItem() },
-                    dialog: .constant(.dismissed)
-                )
-            )
+            EmptyView()
         }
     }
 }

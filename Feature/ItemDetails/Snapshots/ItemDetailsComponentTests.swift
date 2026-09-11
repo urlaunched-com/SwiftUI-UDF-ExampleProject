@@ -20,7 +20,7 @@ final class ItemDetailsComponentTests: BaseSnapshotTestCase {
 
     func test_ItemDetails_movie_state() {
         snapshot(
-            component: ItemDetailsComponent<MockRouter>(
+            component: ItemDetailsComponent<MockRouter<ItemDetailsRoute>>(
                 props: .init(
                     item: Movie.fakeItem(),
                     genreById: { _ in .fakeItem() },
@@ -32,7 +32,7 @@ final class ItemDetailsComponentTests: BaseSnapshotTestCase {
 
     func test_ItemDetails_show_state() {
         snapshot(
-            component: ItemDetailsComponent<MockRouter>(
+            component: ItemDetailsComponent<MockRouter<ItemDetailsRoute>>(
                 props: .init(
                     item: Show.fakeItem(),
                     genreById: { _ in .fakeItem() },

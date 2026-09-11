@@ -13,14 +13,14 @@ import Models
 import Common
 import FlagKit
 
-public struct WhereToWatchComponent<R: Routing>: Component where R.Route == WhereToWatchRouter {
-    public struct Props {
+struct WhereToWatchComponent<R: Routing>: Component where R.Route == WhereToWatchRouter {
+    struct Props {
         var item: any Item
         var countries: [DropdownItem]
         var providers: [Provider]
         var router: Router<R> = .init()
         
-        public init(
+        init(
             item: any Item,
             countries: [DropdownItem],
             providers: [Provider],
@@ -33,16 +33,16 @@ public struct WhereToWatchComponent<R: Routing>: Component where R.Route == Wher
         }
     }
     
-    public init(props: Props) {
+    init(props: Props) {
         self.props = props
     }
 
-    public var props: Props
+    var props: Props
 
     @State private var isSelecting: Bool = false
     @State private var selectedCountry: DropdownItem?
 
-    public var body: some View {
+    var body: some View {
         ScrollView(showsIndicators: false) {
             VStack {
                 HStack(spacing: 19) {

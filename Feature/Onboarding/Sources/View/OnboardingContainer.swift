@@ -9,16 +9,16 @@
 import SwiftUI
 import UDF
 
-public struct OnboardingContainer<F: OnboardingFeature>: Container {
-    public typealias ContainerComponent = OnboardingComponent
+struct OnboardingContainer<F: OnboardingFeature>: Container {
+    typealias ContainerComponent = OnboardingComponent
     
-    public init() {}
+    init() {}
 
-    public func scope(for state: F) -> Scope {
+    func scope(for state: F) -> Scope {
         .none
     }
 
-    public func map(store _: EnvironmentStore<F>) -> ContainerComponent.Props {
+    func map(store _: EnvironmentStore<F>) -> ContainerComponent.Props {
         .init(
             skipAction: skipOnboarding
         )

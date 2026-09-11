@@ -19,12 +19,12 @@ struct CastSectionContainer<F: CastSectionFeature>: BindableContainer {
         self.id = id
     }
 
-    public func scope(for state: F) -> Scope {
+    func scope(for state: F) -> Scope {
         state.allCast
         state.castSectionFeatureState.castSectionFlow[id]
     }
 
-    public func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
+    func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
         .init(
             cast: cast,
             castById: castById,
@@ -32,7 +32,7 @@ struct CastSectionContainer<F: CastSectionFeature>: BindableContainer {
         )
     }
 
-    public func onContainerDidLoad(store: EnvironmentStore<F>) {
+    func onContainerDidLoad(store: EnvironmentStore<F>) {
         store.dispatch(ActionGroup {
             switch id {
             case let .movie(movieId):

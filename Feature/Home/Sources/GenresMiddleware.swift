@@ -30,6 +30,7 @@ public final class GenresMiddleware<F: HomeFeature>: Middleware<F>, @unchecked S
     }
 
     public func observe(state: F) {
+        print("observe(state: F)")
         if state.homeFeatureState.movieGenresFlow.isLoading {
             execute(flowId: MovieGenresFlow.id, cancellation: HomeGenresCancellation.loadMovieGenres) { [unowned self] taskId in
                 let data = try await self.environment.loadMovieGenres()

@@ -9,17 +9,17 @@ import Common
 import SwiftUI
 import UDF
 
-public struct RootContainer<F: RootFeature>: Container {
-    public typealias ContainerComponent = RootComponent<F.RootFeatureRouting>
+struct RootContainer<F: RootFeature>: Container {
+    typealias ContainerComponent = RootComponent<F.RootFeatureRouting>
 
-    public func scope(for state: F) -> Scope {
+    func scope(for state: F) -> Scope {
         state.rootForm
         state.tabBarForm
     }
     
-    public init() {}
+    init() {}
 
-    public func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
+    func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
         .init(
             isNeedToPresentOnboarding: store.state.rootForm.isNeedToPresentOnboarding,
             selectedTab: store.$state.tabBarForm.selectedTab,
