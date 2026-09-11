@@ -21,9 +21,9 @@ struct RootRouting: Routing {
     @ViewBuilder func view(for route: RootRoute) -> some View {
         switch route {
         case .onboarding:
-            OnboardingEntryPoint<AppState>.make(with: .init())
+            AppRouter.onboarding()
         case .signIn:
-            SignInEntryPoint<AppState>.make(with: .init())
+            SignInFeatureState<AppState, SignInRouting>.entryPoint()
         case .home:
             AppRouter.home()
                 .navigationDestination(for: HomeRouting.self)
@@ -36,16 +36,17 @@ struct RootRouting: Routing {
                 .navigationDestination(for: RecommendationsSectionRouting.self)
                 .navigationDestination(for: ReviewsRouting.self)
                 .navigationDestination(for: CastSectionRouting.self)
+                .navigationDestination(for: RecommendationsRouting.self)
         case .search:
-            SearchEntryPoint<AppState>.make(with: .init())
+            SearchFeatureState<AppState, SearchRouting>.entryPoint()
         case .randomizer:
             Text("Randomizer")
         case .favorites:
             AppRouter.myFavorites()
         case .profile:
-            SettingsEntryPoint<AppState>.make(with: .init())
+            AppRouter.settings()
         case .tabBar:
-            TabBarEntryPoint<AppState>.make(with: .init())
+            AppRouter.tabBar()
         }
     }
 }

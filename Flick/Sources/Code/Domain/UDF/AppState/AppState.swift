@@ -7,7 +7,7 @@
 
 import Foundation
 import UDF
-
+import Common
 import SignIn
 import ReviewDetails
 import Reviews
@@ -26,108 +26,72 @@ import RecommendationsSection
 import SectionDetails
 import ItemDetails
 import HomeSection
+import MainHomeSection
+import Onboarding
+import Settings
+import WhereToWatch
 
 struct AppState: AppReducer {
     // MARK: Storages
-    
     var allMovies = AllMovies()
     var allShows = AllShows()
     var allGenres = AllGenres()
     var allSearchItems = AllSearchItems()
     var allCast = AllCast()
     var allReviews = AllReviews()
-
-    // MARK: Root
-
-    var rootForm = RootForm()
-
-    // MARK: Tab Bar
-
-    var tabBarForm = TabBar.TabBarForm()
-
-    // MARK: Home
-
-    var homeForm = HomeForm()
-    var homeFlow = HomeFlow()
-
-    // MARK: Sign In
-
-    var signInForm = SignInForm()
-    var signInFlow = SignInFlow()
-
-    // MARK: Movie Genres
-
-    var movieGenresFlow = MovieGenresFlow()
-
-    // MARK: Show Genres
-
-    var showGenresFlow = ShowGenresFlow()
-
-    // MARK: Search
-
-    var searchForm = SearchForm()
-    var searchFlow = SearchFlow()
-
-    // MARK: Network Connectivity
-
-    var networkConnectivityForm = NetworkConnectivity.NetworkConnectivityForm()
-
-    // MARK: Image Configs
-
-    var imageConfigsFlow = ImageConfigsFlow()
-    var imageConfigsForm = ImageConfigsForm()
-
-    // MARK: Section Details
-
-    var sectionDetailsForm = SectionDetailsForm()
-    var sectionDetailsFlow = SectionDetailsFlow()
-
-    // MARK: Item Details
-    
-    @BindableReducer(ItemDetailsForm.self, bindedTo: ItemDetailsContainer<Self, ItemDetailsRouting>.self)
-    var itemDetailForm
-    
-    @BindableReducer(ItemDetailsFlow.self, bindedTo: ItemDetailsContainer<Self, ItemDetailsRouting>.self)
-    var itemDetailFlow
-
-    // MARK: Cast
-
-    var castForm = CastForm()
-
-    // MARK: Recommendations
-
-    @BindableReducer(RecommendationsForm.self, bindedTo: RecommendationsContainer<Self>.self)
-    var recommendationsForm
-    @BindableReducer(RecommendationsFlow.self, bindedTo: RecommendationsContainer<Self>.self)
-    var recommendationsFlow
-    
-    // MARK: Recomendations Section
-    
-    @BindableReducer(RecommendationsSectionForm.self, bindedTo: RecommendationsSectionContainer<Self, RecommendationsSectionRouting>.self)
-    var recomendationsSectionForm
-    @BindableReducer(RecommendationsSectionFlow.self, bindedTo: RecommendationsSectionContainer<Self, RecommendationsSectionRouting>.self)
-    var recomendationsSectionFlow
-    
-    // MARK: - Review Section
-    
-    @BindableReducer(ReviewsSectionForm.self, bindedTo: ReviewsSectionContainer<Self>.self)
-    var reviewsSectionForm
-    @BindableReducer(ReviewsSectionFlow.self, bindedTo: ReviewsSectionContainer<Self>.self)
-    var reviewsSectionFlow
-
-    // MARK: My Favorites
-
-    var myFavoritesForm = MyFavoritesForm()
-    var myFavoritesFlow = MyFavoritesFlow()
     
     // MARK: - FeatureStates
-    
     var reviewsFeatureState = ReviewsFeatureState<AppState, ReviewsRouting>()
     var reviewDetailsFeatureState = ReviewDetailsFeatureState<AppState, ReviewDetailsRouting>()
     var castFeatureState = CastFeatureState<AppState, CastRouting>()
     var castSectionFeatureState = CastSectionFeatureState<AppState, CastSectionRouting>()
     var homeFeatureState = HomeFeatureState<AppState, HomeRouting>()
     var homeSectionFeatureState = HomeSectionFeatureState<AppState, HomeSectionRouting>()
-    var imageFeatureState = ImageFeatureState<AppState, ImageRouting>()
-    var myFavoritesState = MyFavoritesState<AppState, MyFavoritesRouting>()
+    var imageFeatureState = ImageFeatureState<AppState>()
+    var myFavoritesFeatureState = MyFavoritesFeatureState<AppState, MyFavoritesRouting>()
+    var itemDetailsFeatureState = ItemDetailsFeatureState<AppState, ItemDetailsRouting>()
+    var mainHomeSectionFeatureState = MainHomeSectionFeatureState<AppState, MainHomeSectionRouting>()
+    var networkConnectivityFeatureState = NetworkConnectivityFeatureState<AppState>()
+    var onboardingFeatureState = OnboardingFeatureState<AppState>()
+    var recommendationsFeatureState = RecommendationsFeatureState<AppState, RecommendationsRouting>()
+    var recommendationsSectionFeatureState = RecommendationsSectionFeatureState<AppState, RecommendationsSectionRouting>()
+    var reviewsSectionFeatureState = ReviewsSectionFeatureState<AppState, ReviewsSectionRouting>()
+    var rootFeatureState = RootFeatureState<AppState, RootRouting>()
+    var searchFeatureState = SearchFeatureState<AppState, SearchRouting>()
+    var sectionDetailsFeatureState = SectionDetailsFeatureState<AppState, SectionDetailsRouting>()
+    var settingsFeatureState = SettingsFeatureState<AppState>()
+    var signInFeatureState = SignInFeatureState<AppState, SignInRouting>()
+    var tabBarFeatureState = TabBarFeatureState<AppState>()
+    var whereToWatchFeatureState = WhereToWatchFeatureState<AppState, WhereToWatchRouting>()
+}
+
+//MARK: - Access to feature state form/flow, act like bridge to external module
+extension AppState {
+    var homeForm: Home.HomeForm {
+        homeFeatureState.homeForm
+    }
+    
+    var homeFlow: Home.HomeFlow {
+        homeFeatureState.homeFlow
+    }
+    
+    var rootForm: Root.RootForm {
+        rootFeatureState.rootForm
+    }
+    
+    var tabBarForm: TabBar.TabBarForm {
+        tabBarFeatureState.tabBarForm
+    }
+    
+    var movieGenresFlow: MovieGenresFlow {
+        homeFeatureState.movieGenresFlow
+    }
+    
+    var showGenresFlow: ShowGenresFlow {
+        homeFeatureState.showGenresFlow
+    }
+    
+    var networkConnectivityForm: NetworkConnectivity.NetworkConnectivityForm {
+        networkConnectivityFeatureState.networkConnectivityForm
+    }
 }

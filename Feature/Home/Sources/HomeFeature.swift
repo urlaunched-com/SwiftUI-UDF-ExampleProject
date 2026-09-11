@@ -12,15 +12,11 @@ import Common
 import SwiftUI
 
 public protocol HomeFeature: AppReducer {
-    associatedtype MovieGenresFlow: HomeFeatureTypes.MovieGenresFlow
-    associatedtype ShowGenresFlow: HomeFeatureTypes.ShowGenresFlow
     associatedtype NetworkConnectivityForm: HomeFeatureTypes.NetworkConnectivityForm
     associatedtype AllMovies: HomeFeatureTypes.AllMovies
     associatedtype AllShows: HomeFeatureTypes.AllShows
     associatedtype HomeFeatureRouting: Routing<HomeRoute>
 
-    var movieGenresFlow: MovieGenresFlow { get }
-    var showGenresFlow: ShowGenresFlow { get }
     var networkConnectivityForm: NetworkConnectivityForm { get }
     var allMovies: AllMovies { get }
     var allShows: AllShows { get }
@@ -31,6 +27,8 @@ public protocol HomeFeature: AppReducer {
 public struct HomeFeatureState<AppState: HomeFeature, FeatureRouting: Routing<HomeRoute>>: FeatureState {
     public var homeForm = HomeForm()
     public var homeFlow = HomeFlow()
+    public var movieGenresFlow = MovieGenresFlow()
+    public var showGenresFlow = ShowGenresFlow()
     
     public init() {}
     

@@ -11,24 +11,24 @@ import UDF
 import Common
 
 public struct SignInContainer<F: SignInFeature>: Container {
-    public typealias ContainerComponent = SignInComponent<F.SignInNavigation.Routing>
+    public typealias ContainerComponent = SignInComponent<F.SignInRouting>
     @Environment(\.dismiss) var dismiss
 
     public func scope(for state: F) -> Scope {
-        state.signInForm
-        state.signInFlow
+        state.signInFeatureState.signInForm
+        state.signInFeatureState.signInFlow
     }
     
     public init() {}
 
     public func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
         return .init(
-            username: store.$state.signInForm.username,
-            password: store.$state.signInForm.password,
+            username: store.$state.signInFeatureState.signInForm.username,
+            password: store.$state.signInFeatureState.signInForm.password,
             signInAction: { dismiss() },
-            isLoaderPresented: .init { store.state.signInFlow != .none },
-            dialogStatus: store.$state.signInForm.dialog,
-            router: .init(routing: store.state.signInNavigation.routing)
+            isLoaderPresented: .init { store.state.signInFeatureState.signInFlow != .none },
+            dialogStatus: store.$state.signInFeatureState.signInForm.dialog,
+            router: .init(routing: F.SignInRouting())
         )
     }
 }

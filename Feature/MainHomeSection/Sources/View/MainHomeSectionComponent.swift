@@ -13,15 +13,15 @@ import Models
 import Common
 import CustomViews
 
-public struct MainHomeSectionComponent<S: Models.Section, R: Routing>: Component where R.Route == MainHomeSectionRoute {
+public struct MainHomeSectionComponent<R: Routing>: Component where R.Route == MainHomeSectionRoute {
     public struct Props {
-        var section: S
+        var section: any Models.Section
         var items: [any Item]
         var genreById: (Genre.ID) -> Genre?
         var router: Router<R>
 
         public init(
-            section: S,
+            section: any Models.Section,
             items: [any Item],
             genreById: @escaping (Genre.ID) -> Genre?,
             router: Router<R>

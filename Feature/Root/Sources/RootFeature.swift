@@ -12,9 +12,21 @@ import UDF
 
 public protocol RootFeature: AppReducer {
     associatedtype TabBarForm: RootType.TabBarForm
+    associatedtype RootFeatureRouting: Routing<RootRoute>
 
+    var rootFeatureState: RootFeatureState<Self, RootFeatureRouting> { get }
     var rootForm: RootForm { get }
     var tabBarForm: TabBarForm { get }
+}
+
+public struct RootFeatureState<AppState: RootFeature, FeatureRouting: Routing<RootRoute>>: FeatureState {
+    public var rootForm = RootForm()
+    
+    public init() {}
+    
+    public static func entryPoint(input: Void = ()) -> some View {
+        RootContainer<AppState>()
+    }
 }
 
 public enum RootType {

@@ -8,15 +8,33 @@
 
 import UDF
 import Common
+import SwiftUI
+@preconcurrency import Models
 
 public protocol WhereToWatchFeature: AppReducer {
     associatedtype HomeFlow: WhereToWatch.HomeFlow
-    associatedtype WhereToWatchNavigation: Common.FeatureNavigation where WhereToWatchNavigation.Routing.Route == WhereToWatchRouter
+    associatedtype WhereToWatchRouting: Routing<WhereToWatchRouter>
     
+    var whereToWatchFeatureState: WhereToWatchFeatureState<Self, WhereToWatchRouting> { get }
     var homeFlow: HomeFlow { get }
-    var whereToWatchNavigation: WhereToWatchNavigation { get }
+}
+
+public struct WhereToWatchFeatureState<AppState: WhereToWatchFeature, FeatureRouting: Routing<WhereToWatchRouter>>: FeatureState {
+    public struct Input {
+        public let item: any Item
+        
+        public init(item: any Item) {
+            self.item = item
+        }
+    }
+    
+    public init() {}
+    
+    public static func entryPoint(input: Input) -> some View {
+        WhereToWatchContainer<AppState>(item: input.item)
+    }
 }
 
 public enum WhereToWatch {
-    public protocol HomeFlow: Form { }
+    public protocol HomeFlow: UDF.Form { }
 }

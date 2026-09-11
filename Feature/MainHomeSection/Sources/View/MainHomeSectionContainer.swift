@@ -9,14 +9,14 @@
 import UDF
 import Models
 
-public struct MainHomeSectionContainer<F: MainHomeSectionFeature, S: Section, R: Routing>: Container where R.Route == MainHomeSectionRoute {
-    public typealias ContainerComponent = MainHomeSectionComponent<S, R>
+public struct MainHomeSectionContainer<F: MainHomeSectionFeature>: Container {
+    public typealias ContainerComponent = MainHomeSectionComponent<F.MainHomeSectionFeatureRouting>
 
-    public let section: S
+    public let section: any Section
     public let items: [any Item]
 
     public init(
-        section: S,
+        section: any Section,
         items: [any Item]
     ) {
         self.section = section
@@ -33,7 +33,7 @@ public struct MainHomeSectionContainer<F: MainHomeSectionFeature, S: Section, R:
             section: section,
             items: items,
             genreById: store.state.allGenres.by(id:),
-            router: .init(routing: R())
+            router: .init(routing: F.MainHomeSectionFeatureRouting())
         )
     }
 

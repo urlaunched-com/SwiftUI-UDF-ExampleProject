@@ -7,17 +7,6 @@
 //
 
 import SignIn
-import Common
 
-extension AppState: SignInFeature {
-    struct SignInFeatureNavigation: Common.FeatureNavigation {
-        typealias Routing = SignInRouting
-        typealias EntryPoint = SignInEntryPoint<AppState>
+extension AppState: SignInFeature {}
 
-        let routing: SignInRouting
-    }
-
-    var signInNavigation: SignInFeatureNavigation {
-        .init(routing: AppRouter.shared.signInRouting)
-    }
-}

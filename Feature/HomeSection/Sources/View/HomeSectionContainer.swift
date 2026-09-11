@@ -10,8 +10,8 @@ import SwiftUI
 import UDF
 import Models
 
-struct HomeSectionContainer<F: HomeSectionFeature, R: Routing>: Container where R.Route == HomeSectionRoute {
-    typealias ContainerComponent = HomeSectionComponent<R>
+struct HomeSectionContainer<F: HomeSectionFeature>: Container {
+    typealias ContainerComponent = HomeSectionComponent<F.HomeSectionFeatureRouting>
 
     let section: any Models.Section
     let items: [any Item]
@@ -34,7 +34,7 @@ struct HomeSectionContainer<F: HomeSectionFeature, R: Routing>: Container where 
             section: section,
             items: items,
             genreById: store.state.allGenres.by(id:),
-            router: .init(routing: R())
+            router: .init(routing: F.HomeSectionFeatureRouting())
         )
     }
 

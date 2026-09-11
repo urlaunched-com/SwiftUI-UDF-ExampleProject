@@ -17,21 +17,21 @@ struct MyFavoritesContainer<F: MyFavoritesFeature>: Container {
     init() {}
 
     func scope(for state: F) -> Scope {
-        state.myFavoritesForm
-        state.myFavoritesFlow
+        state.myFavoritesFeatureState.myFavoritesForm
+        state.myFavoritesFeatureState.myFavoritesFlow
     }
 
     func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
         .init(
             contentType: Binding(
-                get: { store.state.myFavoritesForm.contentType },
+                get: { store.state.myFavoritesFeatureState.myFavoritesForm.contentType },
                 set: { setContentType($0) }
             ),
             items: items,
             genreById: { store.state.allGenres.by(id: $0) },
             loadMoreAction: loadNewPageIfNeeded,
             isRedacted: isRedacted,
-            dialog: store.$state.myFavoritesForm.dialog
+            dialog: store.$state.myFavoritesFeatureState.myFavoritesForm.dialog
         )
     }
 
@@ -42,7 +42,7 @@ struct MyFavoritesContainer<F: MyFavoritesFeature>: Container {
 
 private extension MyFavoritesContainer {
     var items: [any Item] {
-        if store.state.myFavoritesForm.contentType == .movie {
+        if store.state.myFavoritesFeatureState.myFavoritesForm.contentType == .movie {
             return isRedacted ? Movie.fakeItems(count: 3) : movies
         } else {
             return isRedacted ? Show.fakeItems(count: 3) : shows
@@ -50,18 +50,18 @@ private extension MyFavoritesContainer {
     }
 
     var movies: [Movie] {
-        store.state.myFavoritesForm.movies.map { store.state.allMovies.by(id: $0) }
+        store.state.myFavoritesFeatureState.myFavoritesForm.movies.map { store.state.allMovies.by(id: $0) }
     }
 
     var shows: [Show] {
-        store.state.myFavoritesForm.shows.map { store.state.allShows.by(id: $0) }
+        store.state.myFavoritesFeatureState.myFavoritesForm.shows.map { store.state.allShows.by(id: $0) }
     }
 
     var isRedacted: Bool {
-        if case .loadMovies = store.state.myFavoritesFlow, movies.isEmpty {
+        if case .loadMovies = store.state.myFavoritesFeatureState.myFavoritesFlow, movies.isEmpty {
             return true
         }
-        if case .loadShows = store.state.myFavoritesFlow, shows.isEmpty {
+        if case .loadShows = store.state.myFavoritesFeatureState.myFavoritesFlow, shows.isEmpty {
             return true
         }
         return false
@@ -83,12 +83,12 @@ private extension MyFavoritesContainer {
     }
 
     func loadNewPageIfNeeded() {
-        store.state.myFavoritesForm.contentType == .movie ? loadMoreMovies() : loadMoreShows()
+        store.state.myFavoritesFeatureState.myFavoritesForm.contentType == .movie ? loadMoreMovies() : loadMoreShows()
     }
 
     func loadMoreMovies() {
-        guard case let .number(currentPage) = store.state.myFavoritesForm.moviesPage,
-              case .none = store.state.myFavoritesFlow else {
+        guard case let .number(currentPage) = store.state.myFavoritesFeatureState.myFavoritesForm.moviesPage,
+              case .none = store.state.myFavoritesFeatureState.myFavoritesFlow else {
             return
         }
         store.dispatch(
@@ -100,8 +100,8 @@ private extension MyFavoritesContainer {
     }
 
     func loadMoreShows() {
-        guard case let .number(currentPage) = store.state.myFavoritesForm.showsPage,
-              case .none = store.state.myFavoritesFlow else {
+        guard case let .number(currentPage) = store.state.myFavoritesFeatureState.myFavoritesForm.showsPage,
+              case .none = store.state.myFavoritesFeatureState.myFavoritesFlow else {
             return
         }
         store.dispatch(

@@ -21,15 +21,15 @@ struct HomeSectionRouting: Routing {
         case let .itemDetails(item):
             buildView(
                 item: item,
-                movieView: { ItemDetailsEntryPoint<AppState, ItemDetailsRouting>.make(with: .init(id: .movie($0.id))) },
-                showView: { ItemDetailsEntryPoint<AppState, ItemDetailsRouting>.make(with: .init(id: .show($0.id))) }
+                movieView: { AppRouter.itemDetails(id: .movie($0.id)) },
+                showView: { AppRouter.itemDetails(id: .show($0.id)) }
             )
 
         case let .sectionDetails(section):
             if let movieSection = section as? MovieSection {
-                SectionDetailsEntryPoint<AppState, MovieSection, SectionDetailsRouting>.make(with: .init(section: movieSection))
+                SectionDetailsFeatureState<AppState, SectionDetailsRouting>.entryPoint(input: .movie(movieSection))
             } else if let showSection = section as? ShowSection {
-                SectionDetailsEntryPoint<AppState, ShowSection, SectionDetailsRouting>.make(with: .init(section: showSection))
+                SectionDetailsFeatureState<AppState, SectionDetailsRouting>.entryPoint(input: .show(showSection))
             }
         case let .imageContainer(path, size, type):
             AppRouter.image(size: size, path: path, type: type)

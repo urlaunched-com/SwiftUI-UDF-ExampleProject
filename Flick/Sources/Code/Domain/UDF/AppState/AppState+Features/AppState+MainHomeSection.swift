@@ -10,4 +10,5 @@ import MainHomeSection
 
 extension AppState: MainHomeSectionFeature {
     typealias AllGenres = Flick.AllGenres
+    typealias MainHomeSectionFeatureRouting = MainHomeSectionRouting
 }

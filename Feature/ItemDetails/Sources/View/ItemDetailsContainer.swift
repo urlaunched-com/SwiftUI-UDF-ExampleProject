@@ -11,8 +11,8 @@ import Models
 import Common
 import SwiftUI
 
-public struct ItemDetailsContainer<F: ItemDetailsFeature, R: Routing>: BindableContainer where R.Route == ItemDetailsRoute {
-    public typealias ContainerComponent = ItemDetailsComponent<R>
+public struct ItemDetailsContainer<F: ItemDetailsFeature>: BindableContainer {
+    public typealias ContainerComponent = ItemDetailsComponent<F.ItemDetailsFeatureRouting>
 
     public let id: ItemDetailsTarget
     
@@ -21,8 +21,8 @@ public struct ItemDetailsContainer<F: ItemDetailsFeature, R: Routing>: BindableC
     }
 
     public func scope(for state: F) -> Scope {
-        state.itemDetailsBindableForm[id]
-        state.itemDetailsBindableFlow[id]
+        state.itemDetailsFeatureState.itemDetailsForm[id]
+        state.itemDetailsFeatureState.itemDetailsFlow[id]
     }
 
     public func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
@@ -30,7 +30,7 @@ public struct ItemDetailsContainer<F: ItemDetailsFeature, R: Routing>: BindableC
             item: item,
             genreById: store.state.allGenres.by(id:),
             dialog: dialog,
-            router: .init(routing: R())
+            router: .init(routing: F.ItemDetailsFeatureRouting())
         )
     }
 
@@ -45,11 +45,11 @@ public struct ItemDetailsContainer<F: ItemDetailsFeature, R: Routing>: BindableC
 
 private extension ItemDetailsContainer {
     var form: ItemDetailsForm {
-        store.state.itemDetailsBindableForm[id] ?? .init()
+        store.state.itemDetailsFeatureState.itemDetailsForm[id] ?? .init()
     }
     
     var flow: ItemDetailsFlow {
-        store.state.itemDetailsBindableFlow[id] ?? .init()
+        store.state.itemDetailsFeatureState.itemDetailsFlow[id] ?? .init()
     }
     
     var item: any Item {

@@ -10,7 +10,7 @@ import SwiftUI
 import TabBar
 
 extension AppState: RootFeature {
-    typealias TabBarForm = TabBar.TabBarForm
+    typealias RootFeatureRouting = RootRouting
 }
 
 extension TabBar.TabBarForm: @retroactive RootType.TabBarForm {

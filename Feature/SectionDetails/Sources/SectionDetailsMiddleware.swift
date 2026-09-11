@@ -26,7 +26,7 @@ public final class SectionDetailsMiddleware<F: SectionDetailsFeature>: Middlewar
 
     public func scope(for state: F) -> Scope {
         state.networkConnectivityForm
-        state.sectionDetailsFlow
+        state.sectionDetailsFeatureState.sectionDetailsFlow
     }
 
     public override func status(for state: F) -> MiddlewareStatus {
@@ -34,11 +34,11 @@ public final class SectionDetailsMiddleware<F: SectionDetailsFeature>: Middlewar
     }
 
     public func observe(state: F) {
-        switch state.sectionDetailsFlow {
+        switch state.sectionDetailsFeatureState.sectionDetailsFlow {
         case let .loadMovies(page):
             execute(
                 effect: LoadMoviesEffect(
-                    sectionId: state.sectionDetailsForm.movieSectionId,
+                    sectionId: state.sectionDetailsFeatureState.sectionDetailsForm.movieSectionId,
                     page: page,
                     environment: environment
                 ),
@@ -49,7 +49,7 @@ public final class SectionDetailsMiddleware<F: SectionDetailsFeature>: Middlewar
         case let .loadShows(page):
             execute(
                 effect: LoadShowsEffect(
-                    sectionId: state.sectionDetailsForm.showSectionId,
+                    sectionId: state.sectionDetailsFeatureState.sectionDetailsForm.showSectionId,
                     page: page,
                     environment: environment
                 ),

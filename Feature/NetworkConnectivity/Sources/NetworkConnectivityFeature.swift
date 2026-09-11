@@ -6,7 +6,20 @@
 //
 
 import UDF
+import SwiftUI
+import Common
 
 public protocol NetworkConnectivityFeature: AppReducer {
-    var networkConnectivityForm: NetworkConnectivityForm { get }
+    var networkConnectivityFeatureState: NetworkConnectivityFeatureState<Self> { get }
+}
+
+public struct NetworkConnectivityFeatureState<AppState: NetworkConnectivityFeature>: FeatureState {
+    public typealias FeatureRouting = EmptyRouter
+    public var networkConnectivityForm = NetworkConnectivityForm()
+    
+    public init() {}
+    
+    public static func entryPoint(input: Void = ()) -> some View {
+        EmptyView()
+    }
 }

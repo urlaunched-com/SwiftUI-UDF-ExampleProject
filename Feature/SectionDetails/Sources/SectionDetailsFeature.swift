@@ -7,7 +7,9 @@
 //
 
 import UDF
-import Models
+@preconcurrency import Models
+import SwiftUI
+import Common
 
 public protocol SectionDetailsFeature: AppReducer {
     associatedtype NetworkConnectivityForm: SectionDetails.NetworkConnectivityForm
@@ -15,10 +17,10 @@ public protocol SectionDetailsFeature: AppReducer {
     associatedtype AllShows: SectionDetails.AllShows
     associatedtype HomeForm: SectionDetails.HomeForm
     associatedtype AllGenres: Storage<Genre>
+    associatedtype SectionDetailsFeatureRouting: Routing<SectionDetailsRoute>
     
     var homeForm: HomeForm { get }
-    var sectionDetailsFlow: SectionDetailsFlow { get }
-    var sectionDetailsForm: SectionDetailsForm { get }
+    var sectionDetailsFeatureState: SectionDetailsFeatureState<Self, SectionDetailsFeatureRouting> { get }
     var networkConnectivityForm: NetworkConnectivityForm { get }
     
     var allGenres: AllGenres { get }
@@ -26,8 +28,33 @@ public protocol SectionDetailsFeature: AppReducer {
     var allShows: AllShows { get }
 }
 
+public struct SectionDetailsFeatureState<AppState: SectionDetailsFeature, FeatureRouting: Routing<SectionDetailsRoute>>: FeatureState {
+    var sectionDetailsForm = SectionDetailsForm()
+    var sectionDetailsFlow = SectionDetailsFlow()
+    
+    public enum Input {
+        case movie(MovieSection)
+        case show(ShowSection)
+        
+        public init(section: MovieSection) { self = .movie(section) }
+        public init(section: ShowSection) { self = .show(section) }
+    }
+    
+    public init() {}
+    
+    @ViewBuilder
+    public static func entryPoint(input: Input) -> some View {
+        switch input {
+        case let .movie(section):
+            SectionDetailsContainer<AppState>(section: section)
+        case let .show(section):
+            SectionDetailsContainer<AppState>(section: section)
+        }
+    }
+}
+
 public enum SectionDetails {
-    public protocol NetworkConnectivityForm: Form {
+    public protocol NetworkConnectivityForm: UDF.Form {
         var satisfied: Bool { get }
     }
     
@@ -39,7 +66,7 @@ public enum SectionDetails {
         var showsBySectionId: [ShowSection.ID: OrderedSet<Show.ID>] { get }
     }
     
-    public protocol HomeForm: Form {
+    public protocol HomeForm: UDF.Form {
         var dialog: DialogStatus { get set }
     }
 }

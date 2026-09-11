@@ -28,7 +28,7 @@ public enum ItemDetailsRoute: Hashable {
             hasher.combine(item)
         case let .whereToWatch(item):
             hasher.combine(item)
-        case let .imageContainer(path: path, size: size, type: type):
+        case let .imageContainer(path: path, size: _, type: _):
             hasher.combine(path)
         }
     }

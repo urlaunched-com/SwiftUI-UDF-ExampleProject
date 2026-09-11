@@ -25,7 +25,7 @@ public final class ItemDetailsMiddleware<F: ItemDetailsFeature>: Middleware<F>, 
 
     public func scope(for state: F) -> Scope {
         state.networkConnectivityForm
-        state.itemDetailsBindableFlow
+        state.itemDetailsFeatureState.itemDetailsFlow
     }
 
     public override func status(for state: F) -> MiddlewareStatus {
@@ -33,14 +33,14 @@ public final class ItemDetailsMiddleware<F: ItemDetailsFeature>: Middleware<F>, 
     }
 
     public func observe(state: F) {
-        for (id, flow) in state.itemDetailsBindableFlow {
+        for (id, flow) in state.itemDetailsFeatureState.itemDetailsFlow {
             switch (id, flow) {
             case let (.movie(movieID), .load):
                 execute(
                     flowId: ItemDetailsFlow.id,
                     cancellation: Cancellation.load(id),
                     mapAction: {
-                        $0.binded(to: F.ItemDetailsContainerType.self, by: id)
+                        $0.binded(to: ItemDetailsContainer<F>.self, by: id)
                     }
                 ) { [unowned self] taskId in
                     let movie = try await self.environment.loadMovieDetails(movieID.value)
@@ -52,7 +52,7 @@ public final class ItemDetailsMiddleware<F: ItemDetailsFeature>: Middleware<F>, 
                     flowId: ItemDetailsFlow.id,
                     cancellation: Cancellation.load(id),
                     mapAction: {
-                        $0.binded(to: F.ItemDetailsContainerType.self, by: id)
+                        $0.binded(to: ItemDetailsContainer<F>.self, by: id)
                     }
                 ) { [unowned self] taskId in
                     let show = try await self.environment.loadShowDetails(showID.value)

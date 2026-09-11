@@ -21,7 +21,7 @@ public final class MyFavoritesMiddleware<F: MyFavoritesFeature>: Middleware<F>, 
 
     public func scope(for state: F) -> Scope {
         state.networkConnectivityForm
-        state.myFavoritesFlow
+        state.myFavoritesFeatureState.myFavoritesFlow
     }
 
     public override func status(for state: F) -> MiddlewareStatus {
@@ -29,7 +29,7 @@ public final class MyFavoritesMiddleware<F: MyFavoritesFeature>: Middleware<F>, 
     }
 
     public func observe(state: F) {
-        switch state.myFavoritesFlow {
+        switch state.myFavoritesFeatureState.myFavoritesFlow {
         case let .loadMovies(page):
             execute(
                 flowId: MyFavoritesFlow.loadMoviesId,

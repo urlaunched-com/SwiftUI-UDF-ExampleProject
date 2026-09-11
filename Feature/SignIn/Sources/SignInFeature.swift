@@ -8,11 +8,21 @@
 
 import UDF
 import Common
+import SwiftUI
 
 public protocol SignInFeature: AppReducer {
-    associatedtype SignInNavigation: Common.FeatureNavigation where SignInNavigation.Routing.Route == SignInRoute
+    associatedtype SignInRouting: Routing<SignInRoute>
 
-    var signInForm: SignInForm { get }
-    var signInFlow: SignInFlow { get }
-    var signInNavigation: SignInNavigation { get }
+    var signInFeatureState: SignInFeatureState<Self, SignInRouting> { get }
+}
+
+public struct SignInFeatureState<AppState: SignInFeature, FeatureRouting: Routing<SignInRoute>>: FeatureState {
+    var signInForm = SignInForm()
+    var signInFlow = SignInFlow()
+    
+    public init() {}
+    
+    public static func entryPoint(input: Void = ()) -> some View {
+        SignInContainer<AppState>()
+    }
 }

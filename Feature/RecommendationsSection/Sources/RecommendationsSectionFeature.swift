@@ -6,17 +6,17 @@
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 import UDF
-import Models
+@preconcurrency import Models
 import Common
+import SwiftUI
+
 public protocol RecommendationsSectionFeature: AppReducer {
     associatedtype NetworkConnectivityForm: RecommendationsSection.NetworkConnectivityForm
-    associatedtype RecomendationsSectionContainerType: BindableContainer where RecomendationsSectionContainerType.ContainerState == Self, RecomendationsSectionContainerType.ID == RecomendationTarget
     associatedtype AllGenres: RecommendationsSection.AllGenres
     associatedtype AllMovies: RecommendationsSection.AllMovies
     associatedtype AllShows: RecommendationsSection.AllShows
-    
-    var recommendationsSectionBindableForm: BindableSource<RecomendationTarget, RecommendationsSectionForm> { get }
-    var recommendationsSectionBindableFlow: BindableSource<RecomendationTarget, RecommendationsSectionFlow> { get }
+    associatedtype RecommendationsSectionRouting: Routing<RecommendationsSectionRoute>
+    var recommendationsSectionFeatureState: RecommendationsSectionFeatureState<Self, RecommendationsSectionRouting> { get }
     var networkConnectivityForm: NetworkConnectivityForm { get }
     
     var allGenres: AllGenres { get }
@@ -24,8 +24,21 @@ public protocol RecommendationsSectionFeature: AppReducer {
     var allShows: AllShows { get }
 }
 
+public struct RecommendationsSectionFeatureState<AppState: RecommendationsSectionFeature, FeatureRouting: Routing<RecommendationsSectionRoute>>: FeatureState {
+    @BindableReducer(RecommendationsSectionForm.self, bindedTo: RecommendationsSectionContainer<AppState>.self)
+    var recommendationsSectionForm
+    @BindableReducer(RecommendationsSectionFlow.self, bindedTo: RecommendationsSectionContainer<AppState>.self)
+    var recommendationsSectionFlow
+    
+    public init() {}
+    
+    public static func entryPoint(input: RecomendationTarget) -> some View {
+        RecommendationsSectionContainer<AppState>(id: input)
+    }
+}
+
 public enum RecommendationsSection {
-    public protocol NetworkConnectivityForm: Form {
+    public protocol NetworkConnectivityForm: UDF.Form {
         var satisfied: Bool { get }
     }
     

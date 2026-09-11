@@ -11,13 +11,13 @@ import Models
 import SwiftUI
 
 public struct RecommendationsContainer<F: RecommendationsFeature>: BindableContainer {
-    public typealias ContainerComponent = RecommendationsComponent<F.RecommendationsNavigation.Routing>
+    public typealias ContainerComponent = RecommendationsComponent<F.RecommendationsRouting>
 
     public let id: RecomendationTarget
 
     public func scope(for state: F) -> Scope {
-        state.recommendationsBindableFlow[id]
-        state.recommendationsBindableForm[id]
+        state.recommendationsFeatureState.recommendationsFlow[id]
+        state.recommendationsFeatureState.recommendationsForm[id]
     }
     
     public init(id: RecomendationTarget) {
@@ -31,7 +31,7 @@ public struct RecommendationsContainer<F: RecommendationsFeature>: BindableConta
             genreById: store.state.allGenres.by(id:),
             loadMoreAction: loadNewPageIfNeeded,
             dialog: dialog,
-            router: .init(routing: store.state.recommendationsNavigation.routing)
+            router: .init(routing: F.RecommendationsRouting())
         )
     }
 
@@ -60,11 +60,11 @@ public struct RecommendationsContainer<F: RecommendationsFeature>: BindableConta
 
 private extension RecommendationsContainer {
     var form: RecommendationsForm {
-        store.state.recommendationsBindableForm[id] ?? .init()
+        store.state.recommendationsFeatureState.recommendationsForm[id] ?? .init()
     }
 
     var flow: RecommendationsFlow {
-        store.state.recommendationsBindableFlow[id] ?? .init()
+        store.state.recommendationsFeatureState.recommendationsFlow[id] ?? .init()
     }
     
     var dialog: Binding<DialogStatus> {

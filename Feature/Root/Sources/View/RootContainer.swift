@@ -9,8 +9,8 @@ import Common
 import SwiftUI
 import UDF
 
-public struct RootContainer<F: RootFeature, R: Routing>: Container where R.Route == RootRoute {
-    public typealias ContainerComponent = RootComponent<R>
+public struct RootContainer<F: RootFeature>: Container {
+    public typealias ContainerComponent = RootComponent<F.RootFeatureRouting>
 
     public func scope(for state: F) -> Scope {
         state.rootForm
@@ -43,7 +43,7 @@ public struct RootContainer<F: RootFeature, R: Routing>: Container where R.Route
                 get: { store.state.tabBarForm.profileNavigationPath },
                 set: { store.dispatch(Actions.UpdateFormField(keyPath: \F.TabBarForm.profileNavigationPath, value: $0)) }
             ),
-            router: .init(routing: R())
+            router: .init(routing: F.RootFeatureRouting())
         )
     }
 }

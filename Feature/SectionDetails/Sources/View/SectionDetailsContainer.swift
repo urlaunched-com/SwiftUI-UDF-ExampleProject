@@ -11,16 +11,16 @@ import Models
 import Common
 import SwiftUI
 
-public struct SectionDetailsContainer<F: SectionDetailsFeature, S: Models.Section, R: Routing>: Container where R.Route == SectionDetailsRoute {
-    public typealias ContainerComponent = SectionDetailsComponent<R>
-    public let section: S
+public struct SectionDetailsContainer<F: SectionDetailsFeature>: Container {
+    public typealias ContainerComponent = SectionDetailsComponent<F.SectionDetailsFeatureRouting>
+    public let section: any Models.Section
 
     public func scope(for state: F) -> Scope {
-        state.sectionDetailsForm
-        state.sectionDetailsFlow
+        state.sectionDetailsFeatureState.sectionDetailsForm
+        state.sectionDetailsFeatureState.sectionDetailsFlow
     }
     
-    public init(section: S) {
+    public init(section: any Models.Section) {
         self.section = section
     }
 
@@ -30,19 +30,19 @@ public struct SectionDetailsContainer<F: SectionDetailsFeature, S: Models.Sectio
             items: items,
             genreById: store.state.allGenres.by(id:),
             loadMoreAction: loadNewPageIfNeeded,
-            dialog: dialog,
-            router: .init(routing: R())
+            dialog: dialog
         )
     }
 
     public func onContainerDidLoad(store: EnvironmentStore<F>) {
         store.dispatch(
             ActionGroup {
-                Actions.SectionOpened(sectionId: section.id)
                 if let movieSection = section as? MovieSection {
+                    Actions.SectionOpened(sectionId: movieSection.id)
                     Actions.SetPaginationItems(items: store.state.allMovies.moviesBySectionId[movieSection.id]?.elements ?? [], id: SectionDetailsFlow.loadMoviesId)
                     Actions.LoadPage(id: SectionDetailsFlow.loadMoviesId)
                 } else if let showSection = section as? ShowSection {
+                    Actions.SectionOpened(sectionId: showSection.id)
                     Actions.SetPaginationItems(items: store.state.allShows.showsBySectionId[showSection.id]?.elements ?? [], id: SectionDetailsFlow.loadShowsId)
                     Actions.LoadPage(id: SectionDetailsFlow.loadShowsId)
                 }
@@ -59,9 +59,9 @@ private extension SectionDetailsContainer {
 
     var items: [any Item] {
         if isMovieSection {
-            return store.state.sectionDetailsForm.movies.map { store.state.allMovies.by(id: $0) }
+            return store.state.sectionDetailsFeatureState.sectionDetailsForm.movies.map { store.state.allMovies.by(id: $0) }
         } else if isShowSection {
-            return store.state.sectionDetailsForm.shows.map { store.state.allShows.by(id: $0) }
+            return store.state.sectionDetailsFeatureState.sectionDetailsForm.shows.map { store.state.allShows.by(id: $0) }
         }
         return []
     }
@@ -77,8 +77,8 @@ private extension SectionDetailsContainer {
 
     func loadNewPageIfNeeded() {
         if isMovieSection {
-            guard case let .number(currentPage) = store.state.sectionDetailsForm.moviesPage,
-                  case .none = store.state.sectionDetailsFlow else { return }
+            guard case let .number(currentPage) = store.state.sectionDetailsFeatureState.sectionDetailsForm.moviesPage,
+                  case .none = store.state.sectionDetailsFeatureState.sectionDetailsFlow else { return }
 
             store.dispatch(
                 Actions.LoadPage(
@@ -87,8 +87,8 @@ private extension SectionDetailsContainer {
                 )
             )
         } else if isShowSection {
-            guard case let .number(currentPage) = store.state.sectionDetailsForm.showsPage,
-                  case .none = store.state.sectionDetailsFlow else { return }
+            guard case let .number(currentPage) = store.state.sectionDetailsFeatureState.sectionDetailsForm.showsPage,
+                  case .none = store.state.sectionDetailsFeatureState.sectionDetailsFlow else { return }
 
             store.dispatch(
                 Actions.LoadPage(

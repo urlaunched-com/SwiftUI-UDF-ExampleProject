@@ -38,6 +38,6 @@ public struct HomeSectionFeatureState<AppState: HomeSectionFeature, FeatureRouti
     public init() {}
     
     public static func entryPoint(input: Input) -> some View {
-        HomeSectionContainer<AppState, FeatureRouting>(section: input.section, items: input.items)
+        HomeSectionContainer<AppState>(section: input.section, items: input.items)
     }
 }

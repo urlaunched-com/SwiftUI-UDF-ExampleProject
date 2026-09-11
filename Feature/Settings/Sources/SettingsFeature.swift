@@ -7,9 +7,21 @@
 //
 
 import UDF
+import SwiftUI
+import Common
 
 public protocol SettingsFeature: AppReducer {
     associatedtype HomeForm: Reducible
 
+    var settingsFeatureState: SettingsFeatureState<Self> { get }
     var homeForm: HomeForm { get }
+}
+
+public struct SettingsFeatureState<AppState: SettingsFeature>: FeatureState {
+    public typealias FeatureRouting = EmptyRouter
+    public init() {}
+    
+    public static func entryPoint(input: Void = ()) -> some View {
+        SettingsContainer<AppState>()
+    }
 }

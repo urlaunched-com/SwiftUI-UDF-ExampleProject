@@ -14,13 +14,13 @@ public struct TabBarContainer<F: TabBarFeature>: Container {
     public init() {}
 
     public func scope(for state: F) -> Scope {
-        state.tabBarForm
+        state.tabBarFeatureState.tabBarForm
     }
 
     public func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
         .init(
-            selectedTab: store.$state.tabBarForm.selectedTab,
-            isHidden: store.$state.tabBarForm.isTabBarHidden
+            selectedTab: store.$state.tabBarFeatureState.tabBarForm.selectedTab,
+            isHidden: store.$state.tabBarFeatureState.tabBarForm.isTabBarHidden
         )
     }
 }

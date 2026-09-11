@@ -8,20 +8,8 @@
 
 import Search
 import NetworkConnectivity
-import Common
 
 extension AppState: SearchFeature {
     typealias AllSearchItems = Flick.AllSearchItems
-
-    struct SearchFeatureNavigation: Common.FeatureNavigation {
-        typealias Routing = SearchRouting
-        typealias EntryPoint = SearchEntryPoint<AppState>
-
-        let routing: SearchRouting
-    }
-
-    var searchNavigation: SearchFeatureNavigation {
-        .init(routing: AppRouter.shared.searchRouting)
-    }
 }
 extension NetworkConnectivity.NetworkConnectivityForm: Search.NetworkConnectivityForm {}

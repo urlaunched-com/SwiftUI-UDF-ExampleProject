@@ -10,8 +10,8 @@ import UDF
 import Models
 import Common
 
-public struct RecommendationsSectionContainer<F: RecommendationsSectionFeature, R: Routing>: BindableContainer where R.Route == RecommendationsSectionRoute {
-    public typealias ContainerComponent = RecommendationsSectionComponent<R>
+public struct RecommendationsSectionContainer<F: RecommendationsSectionFeature>: BindableContainer {
+    public typealias ContainerComponent = RecommendationsSectionComponent<F.RecommendationsSectionRouting>
 
     public let id: RecomendationTarget
 
@@ -20,8 +20,8 @@ public struct RecommendationsSectionContainer<F: RecommendationsSectionFeature, 
     }
     
     public func scope(for state: F) -> Scope {
-        state.recommendationsSectionBindableFlow[id]
-        state.recommendationsSectionBindableForm[id]
+        state.recommendationsSectionFeatureState.recommendationsSectionFlow[id]
+        state.recommendationsSectionFeatureState.recommendationsSectionForm[id]
     }
 
     public func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
@@ -30,7 +30,7 @@ public struct RecommendationsSectionContainer<F: RecommendationsSectionFeature, 
             items: items,
             isRedacted: isRedacted,
             genreById: store.state.allGenres.by(id:),
-            router: .init(routing: R()),
+            router: .init(routing: F.RecommendationsSectionRouting()),
         )
     }
 
@@ -75,11 +75,11 @@ private extension RecommendationsSectionContainer {
     }
     
     var flow: RecommendationsSectionFlow {
-        store.state.recommendationsSectionBindableFlow[id] ?? .init()
+        store.state.recommendationsSectionFeatureState.recommendationsSectionFlow[id] ?? .init()
     }
     
     var form: RecommendationsSectionForm {
-        store.state.recommendationsSectionBindableForm[id] ?? .init()
+        store.state.recommendationsSectionFeatureState.recommendationsSectionForm[id] ?? .init()
     }
 
     var isRedacted: Bool {

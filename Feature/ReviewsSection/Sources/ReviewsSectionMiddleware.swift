@@ -25,8 +25,8 @@ public final class ReviewsSectionMiddleware<F: ReviewsSectionFeature>: Middlewar
 
     public func scope(for state: F) -> Scope {
         state.networkConnectivityForm
-        state.reviewsSectionBindableForm
-        state.reviewsSectionBindableFlow
+        state.reviewsSectionFeatureState.reviewsSectionForm
+        state.reviewsSectionFeatureState.reviewsSectionFlow
     }
 
     public override func status(for state: F) -> MiddlewareStatus {
@@ -34,7 +34,7 @@ public final class ReviewsSectionMiddleware<F: ReviewsSectionFeature>: Middlewar
     }
 
     public func observe(state: F) {
-        for (id, flow) in state.reviewsSectionBindableFlow {
+        for (id, flow) in state.reviewsSectionFeatureState.reviewsSectionFlow {
             switch (id, flow) {
             case let (.show(showID), .loadReviews(page)):
                 execute(
@@ -46,7 +46,7 @@ public final class ReviewsSectionMiddleware<F: ReviewsSectionFeature>: Middlewar
                     flowId: ReviewsSectionFlow.id,
                     cancellation: Cancellation.loadShowReviews(showID),
                     mapAction: {
-                        $0.binded(to: F.ReviewsSectionContainerType.self, by: id)
+                        $0.binded(to: ReviewsSectionContainer<F>.self, by: id)
                     }
                 )
             case let (.movie(movieID), .loadReviews(page)):
@@ -59,7 +59,7 @@ public final class ReviewsSectionMiddleware<F: ReviewsSectionFeature>: Middlewar
                     flowId: ReviewsSectionFlow.id,
                     cancellation: Cancellation.loadMovieReviews(movieID),
                     mapAction: {
-                        $0.binded(to: F.ReviewsSectionContainerType.self, by: id)
+                        $0.binded(to: ReviewsSectionContainer<F>.self, by: id)
                     }
                 )
             default:

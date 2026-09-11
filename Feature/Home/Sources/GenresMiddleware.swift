@@ -21,8 +21,8 @@ public final class GenresMiddleware<F: HomeFeature>: Middleware<F>, @unchecked S
 
     public func scope(for state: F) -> Scope {
         state.networkConnectivityForm
-        state.movieGenresFlow
-        state.showGenresFlow
+        state.homeFeatureState.movieGenresFlow
+        state.homeFeatureState.showGenresFlow
     }
 
     public override func status(for state: F) -> MiddlewareStatus {
@@ -30,14 +30,14 @@ public final class GenresMiddleware<F: HomeFeature>: Middleware<F>, @unchecked S
     }
 
     public func observe(state: F) {
-        if state.movieGenresFlow.isLoading {
+        if state.homeFeatureState.movieGenresFlow.isLoading {
             execute(flowId: MovieGenresFlow.id, cancellation: HomeGenresCancellation.loadMovieGenres) { [unowned self] taskId in
                 let data = try await self.environment.loadMovieGenres()
                 return Actions.DidLoadItems(items: data, id: taskId)
             }
         }
 
-        if state.showGenresFlow.isLoading {
+        if state.homeFeatureState.showGenresFlow.isLoading {
             execute(flowId: ShowGenresFlow.id, cancellation: HomeGenresCancellation.loadShowGenres) { [unowned self] taskId in
                 let data = try await self.environment.loadShowGenres()
                 return Actions.DidLoadItems(items: data, id: taskId)

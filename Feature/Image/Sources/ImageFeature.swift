@@ -12,14 +12,15 @@ import SwiftUI
 
 public protocol ImageFeature: AppReducer {
     associatedtype NetworkConnectivityForm: Image.NetworkConnectivityForm
-    associatedtype FeatureRouting: Routing<Void>
 
     var networkConnectivityForm: NetworkConnectivityForm { get }
     
-    var imageFeatureState: ImageFeatureState<Self, FeatureRouting> { get }
+    var imageFeatureState: ImageFeatureState<Self> { get }
 }
 
-public struct ImageFeatureState<AppState: ImageFeature, FeatureRouting: Routing<Void>>: FeatureState {
+public struct ImageFeatureState<AppState: ImageFeature>: FeatureState {
+    public typealias FeatureRouting = EmptyRouter
+    
     var imageConfigsForm = ImageConfigsForm()
     var imageConfigsFlow = ImageConfigsFlow()
     

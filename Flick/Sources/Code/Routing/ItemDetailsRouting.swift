@@ -35,19 +35,27 @@ struct ItemDetailsRouting: Routing {
         case let .reviews(item):
             buildView(
                 item: item,
-                movieView: { ReviewsSectionEntryPoint<AppState>.make(with: .init(id: .movie($0.id))) },
-                showView: { ReviewsSectionEntryPoint<AppState>.make(with: .init(id: .show($0.id))) }
+                movieView: {
+                    AppRouter.reviewsSection(id: .movie($0.id))
+                },
+                showView: {
+                    AppRouter.reviewsSection(id: .show($0.id))
+                }
             )
 
         case let .recommendations(item):
             buildView(
                 item: item,
-                movieView: { RecommendationsSectionEntryPoint<AppState, RecommendationsSectionRouting>.make(with: .init(id: .movie($0.id))) },
-                showView: { RecommendationsSectionEntryPoint<AppState, RecommendationsSectionRouting>.make(with: .init(id: .show($0.id))) }
+                movieView: {
+                    AppRouter.recommendationsSection(id: .movie($0.id))
+                },
+                showView: {
+                    AppRouter.recommendationsSection(id: .show($0.id))
+                }
             )
 
         case let .whereToWatch(item):
-            WhereToWatchEntryPoint<AppState>.make(with: .init(item: item))
+            AppRouter.whereToWatch(item: item)
         case let .imageContainer(path: path, size: size, type: type):
             AppRouter.image(size: size, path: path, type: type)
         }

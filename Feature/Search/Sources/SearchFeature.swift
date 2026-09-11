@@ -8,22 +8,32 @@
 import UDF
 import Common
 import Models
+import SwiftUI
 
 public protocol SearchFeature: AppReducer {
     associatedtype SearchNetworkConnectivityForm: Search.NetworkConnectivityForm
     associatedtype SearchAllSearchItems: Storage<SearchItem>
-    associatedtype SearchNavigation: Common.FeatureNavigation where SearchNavigation.Routing.Route == SearchRoute
+    associatedtype SearchRouting: Routing<SearchRoute>
     
-    var searchForm: SearchForm { get }
-    var searchFlow: SearchFlow { get }
+    var searchFeatureState: SearchFeatureState<Self, SearchRouting> { get }
     var networkConnectivityForm: SearchNetworkConnectivityForm { get }
     
     var allSearchItems: SearchAllSearchItems { get }
-    var searchNavigation: SearchNavigation { get }
+}
+
+public struct SearchFeatureState<AppState: SearchFeature, FeatureRouting: Routing<SearchRoute>>: FeatureState {
+    var searchForm = SearchForm()
+    var searchFlow = SearchFlow()
+    
+    public init() {}
+    
+    public static func entryPoint(input: Void = ()) -> some View {
+        SearchContainer<AppState>()
+    }
 }
 
 public enum Search {
-    public protocol NetworkConnectivityForm: Form {
+    public protocol NetworkConnectivityForm: UDF.Form {
         var satisfied: Bool { get }
     }
 }

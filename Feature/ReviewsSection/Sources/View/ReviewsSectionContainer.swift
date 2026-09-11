@@ -11,7 +11,7 @@ import Models
 import Common
 
 public struct ReviewsSectionContainer<F: ReviewsSectionFeature>: BindableContainer {
-    public typealias ContainerComponent = ReviewsSectionComponent<F.ReviewsSectionNavigation.Routing>
+    public typealias ContainerComponent = ReviewsSectionComponent<F.ReviewsSectionRouting>
     public let id: ReviewsTarget
     
     public init(id: ReviewsTarget) {
@@ -20,8 +20,8 @@ public struct ReviewsSectionContainer<F: ReviewsSectionFeature>: BindableContain
 
     public func scope(for state: F) -> Scope {
         state.allReviews
-        state.reviewsSectionBindableForm[id]
-        state.reviewsSectionBindableFlow[id]
+        state.reviewsSectionFeatureState.reviewsSectionForm[id]
+        state.reviewsSectionFeatureState.reviewsSectionFlow[id]
     }
 
     public func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
@@ -30,7 +30,7 @@ public struct ReviewsSectionContainer<F: ReviewsSectionFeature>: BindableContain
             reviews: isRedacted ? Review.fakeItems().ids : reviews,
             reviewById: reviewById,
             isRedacted: isRedacted,
-            router: .init(routing: store.state.reviewsSectionNavigation.routing)
+            router: .init(routing: F.ReviewsSectionRouting())
         )
     }
 
@@ -43,11 +43,11 @@ public struct ReviewsSectionContainer<F: ReviewsSectionFeature>: BindableContain
 
 private extension ReviewsSectionContainer {
     var flow: ReviewsSectionFlow {
-        store.state.reviewsSectionBindableFlow[id] ?? .init()
+        store.state.reviewsSectionFeatureState.reviewsSectionFlow[id] ?? .init()
     }
 
     var form: ReviewsSectionForm {
-        store.state.reviewsSectionBindableForm[id] ?? .init()
+        store.state.reviewsSectionFeatureState.reviewsSectionForm[id] ?? .init()
     }
 
     var reviews: [Review.ID] {

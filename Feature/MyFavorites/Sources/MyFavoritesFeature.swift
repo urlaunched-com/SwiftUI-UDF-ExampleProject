@@ -7,7 +7,7 @@
 //
 
 import UDF
-import Models
+@preconcurrency import Models
 import SwiftUI
 import Common
 
@@ -18,17 +18,15 @@ public protocol MyFavoritesFeature: AppReducer {
     associatedtype MyFavoritesAllShows: Storage<Show>
     associatedtype MyFavoritesAllGenres: Storage<Genre>
 
-    var myFavoritesForm: MyFavoritesForm { get }
-    var myFavoritesFlow: MyFavoritesFlow { get }
+    var myFavoritesFeatureState: MyFavoritesFeatureState<Self, MyFavoritesRouting> { get }
     var networkConnectivityForm: MyFavoritesNetworkConnectivityForm { get }
     var allMovies: MyFavoritesAllMovies { get }
     var allShows: MyFavoritesAllShows { get }
     var allGenres: MyFavoritesAllGenres { get }
-    var myFavoritesState: MyFavoritesState<Self, MyFavoritesRouting> { get }
 }
 
 
-public struct MyFavoritesState<AppState: MyFavoritesFeature, FeatureRouting: Routing<MyFavoritesRoute>>: FeatureState {
+public struct MyFavoritesFeatureState<AppState: MyFavoritesFeature, FeatureRouting: Routing<MyFavoritesRoute>>: FeatureState {
     var myFavoritesForm = MyFavoritesForm()
     var myFavoritesFlow = MyFavoritesFlow()
     

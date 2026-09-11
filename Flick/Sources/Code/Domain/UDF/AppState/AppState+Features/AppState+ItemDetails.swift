@@ -11,23 +11,7 @@ import Common
 import NetworkConnectivity
 
 extension AppState: ItemDetailsFeature {
-    typealias ItemDetailsContainerType = ItemDetailsContainer<Self, ItemDetailsRouting>
-    
-    var itemDetailsBindableFlow: BindableSource<ItemDetailsTarget, ItemDetailsFlow> {
-        BindableSource(
-            reducers: Dictionary(
-                uniqueKeysWithValues: itemDetailFlow.map { ($0.key, $0.value) }
-            )
-        )
-    }
-    
-    var itemDetailsBindableForm: BindableSource<ItemDetailsTarget, ItemDetailsForm> {
-        BindableSource(
-            reducers: Dictionary(
-                uniqueKeysWithValues: itemDetailForm.map { ($0.key, $0.value) }
-            )
-        )
-    }
+    typealias ItemDetailsFeatureRouting = ItemDetailsRouting
 }
 
 extension NetworkConnectivity.NetworkConnectivityForm: ItemDetails.NetworkConnectivityForm {}

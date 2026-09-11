@@ -20,7 +20,7 @@ public final class SearchMiddleware<F: SearchFeature>: Middleware<F>, @unchecked
 
     public func scope(for state: F) -> Scope {
         state.networkConnectivityForm
-        state.searchFlow
+        state.searchFeatureState.searchFlow
     }
 
     public override func status(for state: F) -> MiddlewareStatus {
@@ -28,11 +28,10 @@ public final class SearchMiddleware<F: SearchFeature>: Middleware<F>, @unchecked
     }
 
     public func observe(state: F) {
-        switch state.searchFlow {
+        switch state.searchFeatureState.searchFlow {
         case let .loadItems(page):
             execute(flowId: SearchFlow.id, cancellation: Cancellation.loadItems) { [unowned self] taskId in
-                print("execute task insside SearchMiddleware")
-                let items = try await self.environment.loadItems(state.searchForm.searchText, page)
+                let items = try await self.environment.loadItems(state.searchFeatureState.searchForm.searchText, page)
                 return Actions.DidLoadItems(items: items, id: taskId)
             }
 

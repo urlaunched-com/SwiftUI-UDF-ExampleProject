@@ -24,7 +24,7 @@ public final class RecommendationsMiddleware<F: RecommendationsFeature>: Middlew
 
     public func scope(for state: F) -> Scope {
         state.networkConnectivityForm
-        state.recommendationsBindableFlow
+        state.recommendationsFeatureState.recommendationsFlow
     }
 
     public override func status(for state: F) -> MiddlewareStatus {
@@ -32,7 +32,7 @@ public final class RecommendationsMiddleware<F: RecommendationsFeature>: Middlew
     }
 
     public func observe(state: F) {
-        for (id, flow) in state.recommendationsBindableFlow {
+        for (id, flow) in state.recommendationsFeatureState.recommendationsFlow {
             switch (id, flow) {
             case let (.movie(movieID), .load(page)):
                 execute(
@@ -44,7 +44,7 @@ public final class RecommendationsMiddleware<F: RecommendationsFeature>: Middlew
                     flowId: RecommendationsFlow.id,
                     cancellation: Cancellation.load(id),
                     mapAction: {
-                        $0.binded(to: F.RecomendationsContainerType.self, by: id)
+                        $0.binded(to: RecommendationsContainer<F>.self, by: id)
                     }
                 )
             case let (.show(showID), .load(page)):
@@ -57,7 +57,7 @@ public final class RecommendationsMiddleware<F: RecommendationsFeature>: Middlew
                     flowId: RecommendationsFlow.id,
                     cancellation: Cancellation.load(id),
                     mapAction: {
-                        $0.binded(to: F.RecomendationsContainerType.self, by: id)
+                        $0.binded(to: RecommendationsContainer<F>.self, by: id)
                     }
                 )
             default:

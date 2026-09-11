@@ -9,8 +9,6 @@
 import Onboarding
 import Root
 
-extension AppState: OnboardingFeature {
-    typealias RootForm = Root.RootForm
-}
+extension AppState: OnboardingFeature {}
 
 extension Root.RootForm: Onboarding.RootForm {}

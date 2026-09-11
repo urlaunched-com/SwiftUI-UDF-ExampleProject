@@ -9,7 +9,6 @@
 import Image
 import NetworkConnectivity
 
-extension AppState: ImageFeature {
-}
+extension AppState: ImageFeature {}
 
 extension NetworkConnectivity.NetworkConnectivityForm: Image.NetworkConnectivityForm {}

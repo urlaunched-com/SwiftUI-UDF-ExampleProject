@@ -28,10 +28,10 @@ public final class NetworkConnectivityMiddleware<F: NetworkConnectivityFeature>:
             }
 
             if networkStatusAction.satisfied {
-                if !state.networkConnectivityForm.satisfied {
+                if !state.networkConnectivityFeatureState.networkConnectivityForm.satisfied {
                     return true
                 }
-            } else if state.networkConnectivityForm.satisfied {
+            } else if state.networkConnectivityFeatureState.networkConnectivityForm.satisfied {
                 return true
             }
 

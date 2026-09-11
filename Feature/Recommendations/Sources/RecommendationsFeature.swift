@@ -8,28 +8,39 @@
 
 import UDF
 import Common
-import Models
+@preconcurrency import Models
+import SwiftUI
 
 public protocol RecommendationsFeature: AppReducer {
     associatedtype NetworkConnectivityForm: Recommendations.NetworkConnectivityForm
-    associatedtype RecomendationsContainerType: BindableContainer where RecomendationsContainerType.ContainerState == Self, RecomendationsContainerType.ID == RecomendationTarget
+    associatedtype RecommendationsRouting: Routing<RecommendationsRoute>
     associatedtype AllGenres: Recommendations.AllGenres
     associatedtype AllMovies: Recommendations.AllMovies
     associatedtype AllShows: Recommendations.AllShows
-    associatedtype RecommendationsNavigation: Common.FeatureNavigation where RecommendationsNavigation.Routing.Route == RecommendationsRoute
     
-    var recommendationsBindableForm: BindableSource<RecomendationTarget, RecommendationsForm> { get }
-    var recommendationsBindableFlow: BindableSource<RecomendationTarget, RecommendationsFlow> { get }
+    var recommendationsFeatureState: RecommendationsFeatureState<Self, RecommendationsRouting> { get }
     var networkConnectivityForm: NetworkConnectivityForm { get }
     
     var allGenres: AllGenres { get }
     var allMovies: AllMovies { get }
     var allShows: AllShows { get }
-    var recommendationsNavigation: RecommendationsNavigation { get }
+}
+
+public struct RecommendationsFeatureState<AppState: RecommendationsFeature, FeatureRouting: Routing<RecommendationsRoute>>: FeatureState {
+    @BindableReducer(RecommendationsForm.self, bindedTo: RecommendationsContainer<AppState>.self)
+    var recommendationsForm
+    @BindableReducer(RecommendationsFlow.self, bindedTo: RecommendationsContainer<AppState>.self)
+    var recommendationsFlow
+    
+    public init() {}
+    
+    public static func entryPoint(input: RecomendationTarget) -> some View {
+        RecommendationsContainer<AppState>(id: input)
+    }
 }
 
 public enum Recommendations {
-    public protocol NetworkConnectivityForm: Form {
+    public protocol NetworkConnectivityForm: UDF.Form {
         var satisfied: Bool { get }
     }
     

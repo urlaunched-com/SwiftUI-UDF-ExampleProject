@@ -12,7 +12,7 @@ import Models
 import Common
 
 public struct WhereToWatchContainer<F: WhereToWatchFeature>: Container {
-    public typealias ContainerComponent = WhereToWatchComponent<F.WhereToWatchNavigation.Routing>
+    public typealias ContainerComponent = WhereToWatchComponent<F.WhereToWatchRouting>
 
     public let item: any Item
     
@@ -42,7 +42,7 @@ public struct WhereToWatchContainer<F: WhereToWatchFeature>: Container {
                 }
             }(),
             providers: Provider.fakeItems(count: 3),
-            router: .init(routing: store.state.whereToWatchNavigation.routing)
+            router: .init(routing: F.WhereToWatchRouting())
         )
     }
 }

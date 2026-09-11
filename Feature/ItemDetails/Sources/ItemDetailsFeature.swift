@@ -7,17 +7,17 @@
 //
 import UDF
 import Common
-import Models
+@preconcurrency import Models
+import SwiftUI
 
 public protocol ItemDetailsFeature: AppReducer {
-    associatedtype ItemDetailsContainerType: BindableContainer where ItemDetailsContainerType.ID == ItemDetailsTarget
     associatedtype AllMovies: Storage<Movie>
     associatedtype AllShows: Storage<Show>
     associatedtype AllGenres: Storage<Genre>
     associatedtype NetworkConnectivityForm: ItemDetails.NetworkConnectivityForm
+    associatedtype ItemDetailsFeatureRouting: Routing<ItemDetailsRoute>
 
-    var itemDetailsBindableFlow: BindableSource<ItemDetailsTarget, ItemDetailsFlow> { get }
-    var itemDetailsBindableForm: BindableSource<ItemDetailsTarget, ItemDetailsForm> { get }
+    var itemDetailsFeatureState: ItemDetailsFeatureState<Self, ItemDetailsFeatureRouting> { get }
     var networkConnectivityForm: NetworkConnectivityForm { get }
     
     var allMovies: AllMovies { get }
@@ -25,8 +25,21 @@ public protocol ItemDetailsFeature: AppReducer {
     var allGenres: AllGenres { get }
 }
 
+public struct ItemDetailsFeatureState<AppState: ItemDetailsFeature, FeatureRouting: Routing<ItemDetailsRoute>>: FeatureState {
+    @BindableReducer(ItemDetailsForm.self, bindedTo: ItemDetailsContainer<AppState>.self)
+    var itemDetailsForm
+    @BindableReducer(ItemDetailsFlow.self, bindedTo: ItemDetailsContainer<AppState>.self)
+    var itemDetailsFlow
+    
+    public init() {}
+    
+    public static func entryPoint(input: ItemDetailsTarget) -> some View {
+        ItemDetailsContainer<AppState>(id: input)
+    }
+}
+
 public enum ItemDetails {
-    public protocol NetworkConnectivityForm: Form {
+    public protocol NetworkConnectivityForm: UDF.Form {
         var satisfied: Bool { get }
     }
 }

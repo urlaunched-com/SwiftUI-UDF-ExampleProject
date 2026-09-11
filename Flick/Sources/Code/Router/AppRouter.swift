@@ -47,15 +47,15 @@ struct AppRouter {
     static var shared = Self()
     
     static func root() -> some View {
-        RootEntryPoint<AppState, RootRouting>.make(with: .init())
+        RootFeatureState<AppState, RootRouting>.entryPoint()
     }
 
     static func onboarding() -> some View {
-        OnboardingEntryPoint<AppState>.make(with: .init())
+        OnboardingFeatureState<AppState>.entryPoint()
     }
 
     static func signIn() -> some View {
-        SignInEntryPoint<AppState>.make(with: .init())
+        SignInFeatureState<AppState, SignInRouting>.entryPoint()
     }
 
     static func home() -> some View {
@@ -63,19 +63,19 @@ struct AppRouter {
     }
 
     static func search() -> some View {
-        SearchEntryPoint<AppState>.make(with: .init())
+        SearchFeatureState<AppState, SearchRouting>.entryPoint()
     }
 
     static func myFavorites() -> some View {
-        MyFavoritesState<AppState, MyFavoritesRouting>.entryPoint(input: ())
+        MyFavoritesFeatureState<AppState, MyFavoritesRouting>.entryPoint(input: ())
     }
 
     static func settings() -> some View {
-        SettingsEntryPoint<AppState>.make(with: .init())
+        SettingsFeatureState<AppState>.entryPoint()
     }
 
     static func tabBar() -> some View {
-        TabBarEntryPoint<AppState>.make(with: .init())
+        TabBarFeatureState<AppState>.entryPoint()
     }
 
     static func cast(ids: [Cast.ID]) -> some View {
@@ -91,8 +91,13 @@ struct AppRouter {
         return HomeSectionFeatureState<AppState, HomeSectionRouting>.entryPoint(input: input)
     }
 
+    @ViewBuilder
     static func mainHomeSection<S: Models.Section>(section: S, items: [any Item]) -> some View {
-        MainHomeSectionEntryPoint<AppState, S, MainHomeSectionRouting>.make(with: .init(section: section, items: items))
+        if let movieSection = section as? MovieSection {
+            MainHomeSectionFeatureState<AppState, MainHomeSectionRouting>.entryPoint(input: .movie(section: movieSection, items: items))
+        } else if let showSection = section as? ShowSection {
+            MainHomeSectionFeatureState<AppState, MainHomeSectionRouting>.entryPoint(input: .show(section: showSection, items: items))
+        }
     }
 
     static func image(
@@ -101,20 +106,20 @@ struct AppRouter {
         type: ImageType = .poster,
         isLoaderPresented: Bool = true
     ) -> some View {
-        let input = ImageFeatureState<AppState, ImageRouting>.Input(size: size, path: path, type: type, isLoaderPresented: isLoaderPresented)
-        return ImageFeatureState<AppState, ImageRouting>.entryPoint(input: input)
+        let input = ImageFeatureState<AppState>.Input(size: size, path: path, type: type, isLoaderPresented: isLoaderPresented)
+        return ImageFeatureState<AppState>.entryPoint(input: input)
     }
 
     static func itemDetails(id: ItemDetailsTarget) -> some View {
-        ItemDetailsEntryPoint<AppState, ItemDetailsRouting>.make(with: .init(id: id))
+        ItemDetailsFeatureState<AppState, ItemDetailsRouting>.entryPoint(input: id)
     }
 
     static func recommendations(id: RecomendationTarget) -> some View {
-        RecommendationsEntryPoint<AppState>.make(with: .init(id: id))
+        RecommendationsFeatureState<AppState, RecommendationsRouting>.entryPoint(input: id)
     }
 
     static func recommendationsSection(id: RecomendationTarget) -> some View {
-        RecommendationsSectionEntryPoint<AppState, RecommendationsSectionRouting>.make(with: .init(id: id))
+        RecommendationsSectionFeatureState<AppState, RecommendationsSectionRouting>.entryPoint(input: id)
     }
 
     static func reviewDetails(reviewID: Review.ID) -> some View {
@@ -126,14 +131,19 @@ struct AppRouter {
     }
 
     static func reviewsSection(id: ReviewsTarget) -> some View {
-        ReviewsSectionEntryPoint<AppState>.make(with: .init(id: id))
+        ReviewsSectionFeatureState<AppState, ReviewsSectionRouting>.entryPoint(input: id)
     }
 
-    static func sectionDetails<S: Models.Section>(section: S) -> some View {
-        SectionDetailsEntryPoint<AppState, S, SectionDetailsRouting>.make(with: .init(section: section))
+    @ViewBuilder
+    static func sectionDetails(section: any Models.Section) -> some View {
+        if let movieSection = section as? MovieSection {
+            SectionDetailsFeatureState<AppState, SectionDetailsRouting>.entryPoint(input: .movie(movieSection))
+        } else if let showSection = section as? ShowSection {
+            SectionDetailsFeatureState<AppState, SectionDetailsRouting>.entryPoint(input: .show(showSection))
+        }
     }
 
     static func whereToWatch(item: any Item) -> some View {
-        WhereToWatchEntryPoint<AppState>.make(with: .init(item: item))
+        WhereToWatchFeatureState<AppState, WhereToWatchRouting>.entryPoint(input: .init(item: item))
     }
 }

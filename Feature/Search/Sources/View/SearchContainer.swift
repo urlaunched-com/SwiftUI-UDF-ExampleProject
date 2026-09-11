@@ -11,24 +11,24 @@ import UDF
 import Common
 
 public struct SearchContainer<F: SearchFeature>: Container {
-    public typealias ContainerComponent = SearchComponent<F.SearchNavigation.Routing>
+    public typealias ContainerComponent = SearchComponent<F.SearchRouting>
 
     public func scope(for state: F) -> Scope {
-        state.searchForm
+        state.searchFeatureState.searchForm
     }
     
     public init() {}
 
     public func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
         .init(
-            searchText: store.$state.searchForm.searchText.didSet { _, _ in
+            searchText: store.$state.searchFeatureState.searchForm.searchText.didSet { _, _ in
                 store.dispatch(Actions.LoadPage(id: SearchFlow.id))
             },
-            itemIds: store.state.searchForm.items,
+            itemIds: store.state.searchFeatureState.searchForm.items,
             searchItemById: store.state.allSearchItems.by(id:),
             genreById: { _ in .testItem() },
             loadMoreAction: loadNewPageIfNeeded,
-            router: .init(routing: store.state.searchNavigation.routing)
+            router: .init(routing: F.SearchRouting())
         )
     }
 
@@ -41,8 +41,8 @@ public struct SearchContainer<F: SearchFeature>: Container {
 
 private extension SearchContainer {
     func loadNewPageIfNeeded() {
-        guard case let .number(currentPage) = store.state.searchForm.page,
-              case .none = store.state.searchFlow else { return }
+        guard case let .number(currentPage) = store.state.searchFeatureState.searchForm.page,
+              case .none = store.state.searchFeatureState.searchFlow else { return }
 
         store.dispatch(
             Actions.LoadPage(

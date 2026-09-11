@@ -15,3 +15,11 @@ public struct MockRouter<Route: Hashable>: Routing {
         return EmptyView()
     }
 }
+
+public struct EmptyRouter: Routing {
+    public init() {}
+    
+    public func view(for route: Never) -> some View {
+        EmptyView()
+    }
+}

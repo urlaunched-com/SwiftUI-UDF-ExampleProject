@@ -12,7 +12,9 @@ import NetworkConnectivity
 import UDF
 import Models
 
-extension AppState: SectionDetailsFeature {}
+extension AppState: SectionDetailsFeature {
+    typealias SectionDetailsFeatureRouting = SectionDetailsRouting
+}
 
 extension NetworkConnectivity.NetworkConnectivityForm: SectionDetails.NetworkConnectivityForm {}
 extension HomeForm: SectionDetails.HomeForm {}

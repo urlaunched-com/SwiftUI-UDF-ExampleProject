@@ -7,38 +7,8 @@
 //
 
 import ReviewsSection
-import Common
 import Models
 import NetworkConnectivity
 
-extension AppState: ReviewsSectionFeature {
-    typealias ReviewsSectionContainerType = ReviewsSectionContainer<Self>
-
-    struct ReviewsSectionFeatureNavigation: Common.FeatureNavigation {
-        typealias Routing = ReviewsSectionRouting
-        typealias EntryPoint = ReviewsSectionEntryPoint<AppState>
-
-        let routing: ReviewsSectionRouting
-    }
-    
-    var reviewsSectionBindableForm: BindableSource<ReviewsTarget, ReviewsSectionForm> {
-        BindableSource(
-            reducers: Dictionary(
-                uniqueKeysWithValues: reviewsSectionForm.map { ($0.key, $0.value) }
-            )
-        )
-    }
-    
-    var reviewsSectionBindableFlow: BindableSource<ReviewsTarget, ReviewsSectionFlow> {
-        BindableSource(
-            reducers: Dictionary(
-                uniqueKeysWithValues: reviewsSectionFlow.map { ($0.key, $0.value) }
-            )
-        )
-    }
-
-    var reviewsSectionNavigation: ReviewsSectionFeatureNavigation {
-        .init(routing: AppRouter.shared.reviewsSectionRouting)
-    }
-}
+extension AppState: ReviewsSectionFeature {}
 extension NetworkConnectivity.NetworkConnectivityForm: ReviewsSection.NetworkConnectivityForm {}
