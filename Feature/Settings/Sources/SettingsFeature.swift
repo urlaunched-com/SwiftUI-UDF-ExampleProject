@@ -18,7 +18,7 @@ public protocol SettingsFeature: AppReducer {
 }
 
 public struct SettingsFeatureState<AppState: SettingsFeature>: FeatureState {
-    public typealias FeatureRouting = EmptyRouter
+    public typealias FeatureRouting = EmptyRouting
     public init() {}
     
     public static func entryPoint(input: Void = ()) -> some View {

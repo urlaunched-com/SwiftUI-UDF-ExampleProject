@@ -12,6 +12,7 @@ import Models
 import SwiftUI
 import SwiftUISnapshotTestCase
 import XCTest
+import UDF
 
 final class HomeComponentTests: BaseSnapshotTestCase {
     override func setUp() {
@@ -31,7 +32,7 @@ final class HomeComponentTests: BaseSnapshotTestCase {
                     isMoviesRedacted: { _ in false },
                     isShowsRedacted: { _ in false },
                     dialogStatus: .constant(.dismissed),
-                    router: .init(routing: MockRouter<HomeRoute>())
+                    router: .init(routing: MockedRouting<HomeRoute>())
                 )
             )
         )
@@ -49,7 +50,7 @@ final class HomeComponentTests: BaseSnapshotTestCase {
                     isMoviesRedacted: { _ in false },
                     isShowsRedacted: { _ in false },
                     dialogStatus: .constant(.dismissed),
-                    router: .init(routing: MockRouter<HomeRoute>())
+                    router: .init(routing: MockedRouting<HomeRoute>())
                 )
             )
         )

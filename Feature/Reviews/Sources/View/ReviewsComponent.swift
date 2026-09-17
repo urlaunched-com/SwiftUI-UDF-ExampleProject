@@ -87,7 +87,7 @@ struct ReviewsComponent<R: Routing<ReviewsRoute>>: Component {
             reviewById: { _ in .fakeItem() },
             loadMoreAction: {},
             dialog: .constant(.dismissed),
-            router: .init(routing: MockRouter<ReviewsRoute>())
+            router: .init(routing: MockedRouting<ReviewsRoute>())
         )
     )
 }

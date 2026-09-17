@@ -148,7 +148,7 @@ private extension SignInComponent {
             signInAction: {},
             isLoaderPresented: .constant(false),
             dialogStatus: .constant(.dismissed),
-            router: .init(routing: MockRouter<SignInRoute>())
+            router: .init(routing: MockedRouting<SignInRoute>())
         )
     )
 }

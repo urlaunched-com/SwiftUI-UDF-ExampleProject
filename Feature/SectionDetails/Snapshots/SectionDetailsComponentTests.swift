@@ -11,6 +11,7 @@ import Models
 import SwiftUI
 import SwiftUISnapshotTestCase
 import XCTest
+import UDF
 
 final class SectionDetailsComponentTests: BaseSnapshotTestCase {
     override func setUp() {
@@ -27,7 +28,7 @@ final class SectionDetailsComponentTests: BaseSnapshotTestCase {
                     genreById: { _ in .fakeItem() },
                     loadMoreAction: {},
                     dialog: .constant(.dismissed),
-                    router: .init(routing: MockRouter<SectionDetailsRoute>())
+                    router: .init(routing: MockedRouting<SectionDetailsRoute>())
                 )
             )
         )
@@ -42,7 +43,7 @@ final class SectionDetailsComponentTests: BaseSnapshotTestCase {
                     genreById: { _ in .fakeItem() },
                     loadMoreAction: {},
                     dialog: .constant(.dismissed),
-                    router: .init(routing: MockRouter<SectionDetailsRoute>())
+                    router: .init(routing: MockedRouting<SectionDetailsRoute>())
                 )
             )
         )
@@ -57,7 +58,7 @@ final class SectionDetailsComponentTests: BaseSnapshotTestCase {
                     genreById: { _ in .fakeItem() },
                     loadMoreAction: {},
                     dialog: .constant(.dismissed),
-                    router: .init(routing: MockRouter<SectionDetailsRoute>())
+                    router: .init(routing: MockedRouting<SectionDetailsRoute>())
                 )
             )
         )

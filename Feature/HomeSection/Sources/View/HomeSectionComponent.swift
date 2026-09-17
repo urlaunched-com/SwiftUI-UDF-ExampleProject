@@ -85,7 +85,7 @@ struct HomeSectionComponent<R: Routing>: Component where R.Route == HomeSectionR
             section: MovieSection.nowPlaying,
             items: [],
             genreById: { _ in .fakeItem() },
-            router: .init(routing: MockRouter<HomeSectionRoute>())
+            router: .init(routing: MockedRouting<HomeSectionRoute>())
         )
     )
 }

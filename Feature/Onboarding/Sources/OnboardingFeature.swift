@@ -8,7 +8,6 @@
 
 import UDF
 import SwiftUI
-import Common
 
 public protocol OnboardingFeature: AppReducer {
     associatedtype RootForm: Onboarding.RootForm
@@ -18,7 +17,7 @@ public protocol OnboardingFeature: AppReducer {
 }
 
 public struct OnboardingFeatureState<AppState: OnboardingFeature>: FeatureState {
-    public typealias FeatureRouting = EmptyRouter
+    public typealias FeatureRouting = EmptyRouting
     public init() {}
     
     public static func entryPoint(input: Void = ()) -> some View {

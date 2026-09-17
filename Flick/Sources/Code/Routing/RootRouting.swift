@@ -34,7 +34,6 @@ struct RootRouting: Routing {
                 .navigationDestination(for: ReviewsRouting.self)
                 .navigationDestination(for: ReviewsSectionRouting.self)
                 .navigationDestination(for: RecommendationsSectionRouting.self)
-                .navigationDestination(for: ReviewsRouting.self)
                 .navigationDestination(for: CastSectionRouting.self)
                 .navigationDestination(for: RecommendationsRouting.self)
         case .search:

@@ -15,7 +15,7 @@ public protocol TabBarFeature: AppReducer {
 }
 
 public struct TabBarFeatureState<AppState: TabBarFeature>: FeatureState {
-    public typealias FeatureRouting = EmptyRouter
+    public typealias FeatureRouting = EmptyRouting
     public var tabBarForm = TabBarForm()
     
     public init() {}

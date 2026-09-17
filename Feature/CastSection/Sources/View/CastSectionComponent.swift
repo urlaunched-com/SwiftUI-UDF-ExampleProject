@@ -98,7 +98,7 @@ struct CastSectionComponent<R: Routing<CastSectionRoute>>: Component {
             cast: [],
             castById: { _ in .fakeItem() },
             isRedacted: false,
-            router: .init(routing: MockRouter())
+            router: .init(routing: MockedRouting())
         )
     )
 }

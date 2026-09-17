@@ -19,7 +19,7 @@ public protocol ImageFeature: AppReducer {
 }
 
 public struct ImageFeatureState<AppState: ImageFeature>: FeatureState {
-    public typealias FeatureRouting = EmptyRouter
+    public typealias FeatureRouting = EmptyRouting
     
     var imageConfigsForm = ImageConfigsForm()
     var imageConfigsFlow = ImageConfigsFlow()

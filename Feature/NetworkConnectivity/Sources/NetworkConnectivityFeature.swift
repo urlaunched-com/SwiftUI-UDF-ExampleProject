@@ -14,7 +14,7 @@ public protocol NetworkConnectivityFeature: AppReducer {
 }
 
 public struct NetworkConnectivityFeatureState<AppState: NetworkConnectivityFeature>: FeatureState {
-    public typealias FeatureRouting = EmptyRouter
+    public typealias FeatureRouting = EmptyRouting
     public var networkConnectivityForm = NetworkConnectivityForm()
     
     public init() {}

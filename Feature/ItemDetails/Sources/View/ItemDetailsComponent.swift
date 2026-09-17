@@ -279,7 +279,7 @@ private extension ItemDetailsComponent {
 // MARK: - Preview
 
 #Preview {
-    ItemDetailsComponent<MockRouter>(
+    ItemDetailsComponent<MockedRouting>(
         props: .init(
             item: Movie.fakeItem(),
             genreById: { _ in .fakeItem() },

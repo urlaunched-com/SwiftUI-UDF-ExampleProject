@@ -32,7 +32,7 @@ final class SearchComponentTests: BaseSnapshotTestCase {
                 searchItemById: { _ in .fakeItem() },
                 genreById: { _ in .testItem() },
                 loadMoreAction: {},
-                router: .init(routing: MockRouter<SearchRoute>())
+                router: .init(routing: MockedRouting<SearchRoute>())
             ))
         )
     }
@@ -45,7 +45,7 @@ final class SearchComponentTests: BaseSnapshotTestCase {
                 searchItemById: { _ in .fakeItem() },
                 genreById: { _ in .testItem() },
                 loadMoreAction: {},
-                router: .init(routing: MockRouter<SearchRoute>())
+                router: .init(routing: MockedRouting<SearchRoute>())
             ))
         )
     }
@@ -60,7 +60,7 @@ final class SearchComponentTests: BaseSnapshotTestCase {
                 },
                 genreById: { _ in .testItem() },
                 loadMoreAction: {},
-                router: .init(routing: MockRouter<SearchRoute>())
+                router: .init(routing: MockedRouting<SearchRoute>())
             ))
         )
     }
@@ -74,7 +74,7 @@ final class SearchComponentTests: BaseSnapshotTestCase {
                 searchItemById: { _ in item },
                 genreById: { _ in .testItem() },
                 loadMoreAction: {},
-                router: .init(routing: MockRouter<SearchRoute>())
+                router: .init(routing: MockedRouting<SearchRoute>())
             ))
         )
     }

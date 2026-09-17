@@ -82,7 +82,7 @@ struct ReviewDetailsComponent<R: Routing>: Component where R.Route == ReviewDeta
             reviewByID: { _ in Review.fakeItem() },
             isRedacted: false,
             dialog: .constant(.dismissed),
-            router: .init(routing: MockRouter())
+            router: .init(routing: MockedRouting())
         )
     )
 }

@@ -12,6 +12,7 @@ import SwiftUI
 import SwiftUISnapshotTestCase
 import XCTest
 @testable import CastSection
+import UDF
 
 final class CastSectionComponentTests: BaseSnapshotTestCase {
     override func setUp() {
@@ -26,7 +27,7 @@ final class CastSectionComponentTests: BaseSnapshotTestCase {
                     cast: [],
                     castById: { _ in .fakeItem() },
                     isRedacted: false,
-                    router: .init(routing: MockRouter())
+                    router: .init(routing: MockedRouting())
                 )
             )
         )
@@ -40,7 +41,7 @@ final class CastSectionComponentTests: BaseSnapshotTestCase {
                     cast: cast.ids,
                     castById: { id in cast.first(where: { $0.id == id }) ?? .fakeItem() },
                     isRedacted: false,
-                    router: .init(routing: MockRouter())
+                    router: .init(routing: MockedRouting())
                 )
             )
         )
@@ -53,7 +54,7 @@ final class CastSectionComponentTests: BaseSnapshotTestCase {
                     cast: Cast.testItems(count: 6).ids,
                     castById: { _ in .fakeItem() },
                     isRedacted: true,
-                    router: .init(routing: MockRouter())
+                    router: .init(routing: MockedRouting())
                 )
             )
         )

@@ -92,7 +92,7 @@ struct MyFavoritesComponent<R: Routing>: Component where R.Route == MyFavoritesR
             loadMoreAction: {},
             isRedacted: true,
             dialog: .constant(.dismissed),
-            router: .init(routing: MockRouter<MyFavoritesRoute>())
+            router: .init(routing: MockedRouting<MyFavoritesRoute>())
         )
     )
 }

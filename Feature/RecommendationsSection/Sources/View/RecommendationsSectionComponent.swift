@@ -94,7 +94,7 @@ struct RecommendationsSectionComponent<R: Routing>: Component where R.Route == R
             items: [],
             isRedacted: false,
             genreById: { _ in .fakeItem() },
-            router: .init(routing: MockRouter())
+            router: .init(routing: MockedRouting())
         )
     )
 }

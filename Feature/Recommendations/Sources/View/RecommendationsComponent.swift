@@ -99,7 +99,7 @@ struct RecommendationsComponent<R: Routing>: Component where R.Route == Recommen
             genreById: { _ in .fakeItem() },
             loadMoreAction: {},
             dialog: .constant(.dismissed),
-            router: .init(routing: MockRouter())
+            router: .init(routing: MockedRouting())
         )
     )
 }

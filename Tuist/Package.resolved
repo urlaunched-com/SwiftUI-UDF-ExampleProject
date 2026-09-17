@@ -109,15 +109,6 @@
       }
     },
     {
-      "identity" : "swiftui-udf",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Maks-Jago/SwiftUI-UDF",
-      "state" : {
-        "branch" : "2.0.0",
-        "revision" : "a2c5434f924da63d5bd490979affc00bc69e5411"
-      }
-    },
-    {
       "identity" : "swiftuikit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Maks-Jago/SwiftUIKit",

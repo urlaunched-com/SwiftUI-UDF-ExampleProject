@@ -11,6 +11,7 @@ import Models
 import SwiftUI
 import SwiftUISnapshotTestCase
 import XCTest
+import UDF
 
 final class RecommendationsSectionComponentTests: BaseSnapshotTestCase {
     override func setUp() {
@@ -26,7 +27,7 @@ final class RecommendationsSectionComponentTests: BaseSnapshotTestCase {
                     items: [],
                     isRedacted: false,
                     genreById: { _ in .fakeItem() },
-                    router: .init(routing: MockRouter<RecommendationsSectionRoute>())
+                    router: .init(routing: MockedRouting<RecommendationsSectionRoute>())
                 )
             )
         )
@@ -40,7 +41,7 @@ final class RecommendationsSectionComponentTests: BaseSnapshotTestCase {
                     items: Movie.testItems(count: 10),
                     isRedacted: false,
                     genreById: { _ in .fakeItem() },
-                    router: .init(routing: MockRouter<RecommendationsSectionRoute>())
+                    router: .init(routing: MockedRouting<RecommendationsSectionRoute>())
                 )
             )
         )
@@ -54,7 +55,7 @@ final class RecommendationsSectionComponentTests: BaseSnapshotTestCase {
                     items: Show.testItems(count: 10),
                     isRedacted: true,
                     genreById: { _ in .fakeItem() },
-                    router: .init(routing: MockRouter<RecommendationsSectionRoute>())
+                    router: .init(routing: MockedRouting<RecommendationsSectionRoute>())
                 )
             )
         )

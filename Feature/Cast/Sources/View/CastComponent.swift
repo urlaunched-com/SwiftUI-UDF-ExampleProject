@@ -87,7 +87,7 @@ struct CastComponent<R: Routing<CastRoute>>: Component {
             cast: [],
             castById: { _ in .fakeItem() },
             dialogStatus: .constant(.dismissed),
-            router: .init(routing: MockRouter<CastRoute>())
+            router: .init(routing: MockedRouting<CastRoute>())
         )
     )
 }

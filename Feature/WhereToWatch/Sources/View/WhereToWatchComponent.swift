@@ -151,7 +151,7 @@ private extension WhereToWatchComponent {
                 }
             }(),
             providers: Provider.fakeItems(count: 3),
-            router: .init(routing: MockRouter<WhereToWatchRouter>())
+            router: .init(routing: MockedRouting<WhereToWatchRouter>())
         )
     )
 }

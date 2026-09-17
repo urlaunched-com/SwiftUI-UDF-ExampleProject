@@ -99,7 +99,7 @@ struct SectionDetailsComponent<R: Routing>: Component where R.Route == SectionDe
             genreById: { _ in .fakeItem() },
             loadMoreAction: {},
             dialog: .constant(.dismissed),
-            router: .init(routing: MockRouter())
+            router: .init(routing: MockedRouting())
         )
     )
 }

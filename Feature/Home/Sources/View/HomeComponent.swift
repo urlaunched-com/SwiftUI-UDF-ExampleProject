@@ -137,7 +137,7 @@ extension HomeComponent {
             isMoviesRedacted: { _ in false },
             isShowsRedacted: { _ in false },
             dialogStatus: .constant(.dismissed),
-            router: .init(routing: MockRouter<HomeRoute>())
+            router: .init(routing: MockedRouting<HomeRoute>())
         )
     )
 }

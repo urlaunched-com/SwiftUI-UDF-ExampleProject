@@ -16,7 +16,7 @@ import XCTest
 
 @MainActor
 final class SignInComponentTests: BaseSnapshotTestCase {
-    private var initialComponent: SignInComponent<MockRouter<SignInRoute>>!
+    private var initialComponent: SignInComponent<MockedRouting<SignInRoute>>!
     
     override func setUp() {
         super.setUp()
