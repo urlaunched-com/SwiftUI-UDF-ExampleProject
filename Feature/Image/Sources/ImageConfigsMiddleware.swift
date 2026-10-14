@@ -11,19 +11,19 @@ import Foundation
 import UDF
 import Models
 
-public final class ImageConfigsMiddleware<F: ImageFeature>: Middleware<F>, @unchecked Sendable {
-    public var environment: Environment!
+final class ImageConfigsMiddleware<F: ImageFeature>: Middleware<F>, @unchecked Sendable {
+    var environment: Environment!
 
-    public func scope(for state: F) -> Scope {
+    func scope(for state: F) -> Scope {
         state.networkConnectivityForm
         state.imageFeatureState.imageConfigsFlow
     }
 
-    public override func status(for state: F) -> MiddlewareStatus {
+    override func status(for state: F) -> MiddlewareStatus {
         state.networkConnectivityForm.satisfied ? .active : .suspend
     }
 
-    public func observe(state: F) {
+    func observe(state: F) {
         switch state.imageFeatureState.imageConfigsFlow {
         case .loading:
             execute(
@@ -44,16 +44,16 @@ public final class ImageConfigsMiddleware<F: ImageFeature>: Middleware<F>, @unch
         }
     }
 
-    public struct Environment {
+    struct Environment {
         var loadImageConfigs: () async throws -> ImageConfigs
     }
 
-    public enum Cancellation: Hashable {
+    enum Cancellation: Hashable {
         case loadImageConfigs
     }
 }
 
-public extension ImageConfigsMiddleware {
+extension ImageConfigsMiddleware {
     static func buildLiveEnvironment(for _: some Store<F>) -> Environment {
         Environment(
             loadImageConfigs: {

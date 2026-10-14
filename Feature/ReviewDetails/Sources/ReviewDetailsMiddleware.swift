@@ -15,24 +15,24 @@ enum Cancellation: Hashable {
     case loadShowReview(Review.ID)
 }
 
-public final class ReviewDetailsMiddleware<F: ReviewDetailsFeature>: Middleware<F>, @unchecked Sendable {
+final class ReviewDetailsMiddleware<F: ReviewDetailsFeature>: Middleware<F>, @unchecked Sendable {
 
-    public struct Environment: Sendable {
+    struct Environment: Sendable {
         var loadShowReview: @Sendable (_ reviewID: Review.ID) async throws -> Review
     }
 
-    public var environment: Environment!
+    var environment: Environment!
     
-    public func scope(for state: F) -> Scope {
+    func scope(for state: F) -> Scope {
         state.networkConnectivityForm
         state.reviewDetailsFeatureState.reviewDetailsFlow
     }
 
-    public override func status(for state: F) -> MiddlewareStatus {
+    override func status(for state: F) -> MiddlewareStatus {
         state.networkConnectivityForm.satisfied ? .active : .suspend
     }
 
-    public func observe(state: F) {
+    func observe(state: F) {
         for (id, flow) in state.reviewDetailsFeatureState.reviewDetailsFlow {
             switch flow {
             case let .loading(reviewID):
@@ -56,7 +56,7 @@ public final class ReviewDetailsMiddleware<F: ReviewDetailsFeature>: Middleware<
 
 // MARK: - Environment build methods
 
-public extension ReviewDetailsMiddleware {
+extension ReviewDetailsMiddleware {
     static func buildLiveEnvironment(for _: some Store<F>) -> Environment {
         .init(
             loadShowReview: { reviewID in

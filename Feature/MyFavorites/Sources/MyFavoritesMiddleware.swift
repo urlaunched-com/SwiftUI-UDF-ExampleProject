@@ -11,24 +11,24 @@ import Foundation
 import UDF
 @preconcurrency import Models
 
-public enum MyFavoritesCancellation: Hashable, CaseIterable {
+enum MyFavoritesCancellation: Hashable, CaseIterable {
     case loadMovies
     case loadShows
 }
 
-public final class MyFavoritesMiddleware<F: MyFavoritesFeature>: Middleware<F>, @unchecked Sendable {
-    public var environment: Environment!
+final class MyFavoritesMiddleware<F: MyFavoritesFeature>: Middleware<F>, @unchecked Sendable {
+    var environment: Environment!
 
-    public func scope(for state: F) -> Scope {
+    func scope(for state: F) -> Scope {
         state.networkConnectivityForm
         state.myFavoritesFeatureState.myFavoritesFlow
     }
 
-    public override func status(for state: F) -> MiddlewareStatus {
+    override func status(for state: F) -> MiddlewareStatus {
         state.networkConnectivityForm.satisfied ? .active : .suspend
     }
 
-    public func observe(state: F) {
+    func observe(state: F) {
         switch state.myFavoritesFeatureState.myFavoritesFlow {
         case let .loadMovies(page):
             execute(
@@ -53,13 +53,13 @@ public final class MyFavoritesMiddleware<F: MyFavoritesFeature>: Middleware<F>, 
         }
     }
 
-    public struct Environment {
+    struct Environment {
         var loadMovies: (_ page: Int) async throws -> [Movie]
         var loadShows: (_ page: Int) async throws -> [Show]
     }
 }
 
-public extension MyFavoritesMiddleware {
+extension MyFavoritesMiddleware {
     static func buildLiveEnvironment(for _: some Store<F>) -> Environment {
         Environment(
             loadMovies: { page in

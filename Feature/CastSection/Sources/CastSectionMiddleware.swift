@@ -10,29 +10,29 @@ import API
 import UDF
 @preconcurrency import Models
 
-public enum CastSectionCancellation: Hashable {
+enum CastSectionCancellation: Hashable {
     case loadMovieCast(Movie.ID)
     case loadShowCast(Show.ID)
 }
 
-public final class CastSectionMiddleware<F: CastSectionFeature>: Middleware<F>, @unchecked Sendable {
-    public struct Environment: @unchecked Sendable {
+final class CastSectionMiddleware<F: CastSectionFeature>: Middleware<F>, @unchecked Sendable {
+    struct Environment: @unchecked Sendable {
         var loadMovieCast: (_ movieId: Int) async throws -> [Cast]
         var loadShowCast: (_ showId: Int) async throws -> [Cast]
     }
 
-    public var environment: Environment!
+    var environment: Environment!
 
-    public func scope(for state: F) -> Scope {
+    func scope(for state: F) -> Scope {
         state.networkConnectivityForm
         state.castSectionFeatureState.castSectionFlow
     }
 
-    public override func status(for state: F) -> MiddlewareStatus {
+    override func status(for state: F) -> MiddlewareStatus {
         state.networkConnectivityForm.satisfied ? .active : .suspend
     }
 
-    public func observe(state: F) {
+    func observe(state: F) {
         for (id, flow) in state.castSectionFeatureState.castSectionFlow {
             switch (id, flow) {
             case let (.movie(movieId), .loadMovieCast(targetId)) where movieId == targetId:
@@ -72,7 +72,7 @@ public final class CastSectionMiddleware<F: CastSectionFeature>: Middleware<F>, 
     }
 }
 
-public extension CastSectionMiddleware {
+extension CastSectionMiddleware {
     static func buildLiveEnvironment(for _: some Store<F>) -> Environment {
         .init(
             loadMovieCast: { movieId in

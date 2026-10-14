@@ -12,14 +12,14 @@ import Network
 import UDF
 import Models
 
-public final class NetworkConnectivityMiddleware<F: NetworkConnectivityFeature>: Middleware<F>, @unchecked Sendable {
-    public var environment: Void!
+final class NetworkConnectivityMiddleware<F: NetworkConnectivityFeature>: Middleware<F>, @unchecked Sendable {
+    var environment: Void!
 
-    public enum Cancellation {
+    enum Cancellation {
         case networkMonitoring
     }
 
-    public required init(store: some Store<F>, queue: DispatchQueue) {
+    required init(store: some Store<F>, queue: DispatchQueue) {
         super.init(store: store, queue: queue)
 
         run(NetworkMonitoringEffect(queue: queue), cancellation: Cancellation.networkMonitoring) { state, output in
@@ -40,14 +40,14 @@ public final class NetworkConnectivityMiddleware<F: NetworkConnectivityFeature>:
     }
 }
 
-public struct NetworkMonitoringEffect: Effectable {
-    public let queue: DispatchQueue
+struct NetworkMonitoringEffect: Effectable {
+    let queue: DispatchQueue
 
-    public init(queue: DispatchQueue) {
+    init(queue: DispatchQueue) {
         self.queue = queue
     }
 
-    public var upstream: AnyPublisher<any Action, Never> {
+    var upstream: AnyPublisher<any Action, Never> {
         NWPathMonitor()
             .publisher(queue: queue)
             .map { status in

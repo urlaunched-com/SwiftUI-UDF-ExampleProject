@@ -14,24 +14,24 @@ enum Cancellation: Hashable {
     case load(RecomendationTarget)
 }
 
-public final class RecommendationsMiddleware<F: RecommendationsFeature>: Middleware<F>, @unchecked Sendable {
-    public struct Environment {
+final class RecommendationsMiddleware<F: RecommendationsFeature>: Middleware<F>, @unchecked Sendable {
+    struct Environment {
         var loadMovies: (_ movieId: Int, _ page: Int) async throws -> [Movie]
         var loadShows: (_ showId: Int, _ page: Int) async throws -> [Show]
     }
 
-    public var environment: Environment!
+    var environment: Environment!
 
-    public func scope(for state: F) -> Scope {
+    func scope(for state: F) -> Scope {
         state.networkConnectivityForm
         state.recommendationsFeatureState.recommendationsFlow
     }
 
-    public override func status(for state: F) -> MiddlewareStatus {
+    override func status(for state: F) -> MiddlewareStatus {
         state.networkConnectivityForm.satisfied ? .active : .suspend
     }
 
-    public func observe(state: F) {
+    func observe(state: F) {
         for (id, flow) in state.recommendationsFeatureState.recommendationsFlow {
             switch (id, flow) {
             case let (.movie(movieID), .load(page)):
@@ -69,7 +69,7 @@ public final class RecommendationsMiddleware<F: RecommendationsFeature>: Middlew
 
 // MARK: - Environment build methods
 
-public extension RecommendationsMiddleware {
+extension RecommendationsMiddleware {
     static func buildLiveEnvironment(for _: some Store<F>) -> Environment {
         .init(
             loadMovies: { movieId, page in

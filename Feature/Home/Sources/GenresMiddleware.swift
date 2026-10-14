@@ -11,25 +11,25 @@ import Foundation
 import UDF
 import Models
 
-public enum HomeGenresCancellation: Hashable {
+enum HomeGenresCancellation: Hashable {
     case loadMovieGenres
     case loadShowGenres
 }
 
-public final class GenresMiddleware<F: HomeFeature>: Middleware<F>, @unchecked Sendable {
-    public var environment: Environment!
+final class GenresMiddleware<F: HomeFeature>: Middleware<F>, @unchecked Sendable {
+    var environment: Environment!
 
-    public func scope(for state: F) -> Scope {
+    func scope(for state: F) -> Scope {
         state.networkConnectivityForm
         state.homeFeatureState.movieGenresFlow
         state.homeFeatureState.showGenresFlow
     }
 
-    public override func status(for state: F) -> MiddlewareStatus {
+    override func status(for state: F) -> MiddlewareStatus {
         state.networkConnectivityForm.satisfied ? .active : .suspend
     }
 
-    public func observe(state: F) {
+    func observe(state: F) {
         print("observe(state: F)")
         if state.homeFeatureState.movieGenresFlow.isLoading {
             execute(flowId: MovieGenresFlow.id, cancellation: HomeGenresCancellation.loadMovieGenres) { [unowned self] taskId in
@@ -46,13 +46,13 @@ public final class GenresMiddleware<F: HomeFeature>: Middleware<F>, @unchecked S
         }
     }
 
-    public struct Environment {
+    struct Environment {
         var loadMovieGenres: () async throws -> [Genre]
         var loadShowGenres: () async throws -> [Genre]
     }
 }
 
-public extension GenresMiddleware {
+extension GenresMiddleware {
     static func buildLiveEnvironment(for _: some Store<F>) -> Environment {
         Environment(
             loadMovieGenres: {

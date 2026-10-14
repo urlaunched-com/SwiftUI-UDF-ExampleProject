@@ -15,19 +15,19 @@ enum Cancellation: Hashable {
     case loadItems
 }
 
-public final class SearchMiddleware<F: SearchFeature>: Middleware<F>, @unchecked Sendable {
-    public var environment: Environment!
+final class SearchMiddleware<F: SearchFeature>: Middleware<F>, @unchecked Sendable {
+    var environment: Environment!
 
-    public func scope(for state: F) -> Scope {
+    func scope(for state: F) -> Scope {
         state.networkConnectivityForm
         state.searchFeatureState.searchFlow
     }
 
-    public override func status(for state: F) -> MiddlewareStatus {
+    override func status(for state: F) -> MiddlewareStatus {
         state.networkConnectivityForm.satisfied ? .active : .suspend
     }
 
-    public func observe(state: F) {
+    func observe(state: F) {
         switch state.searchFeatureState.searchFlow {
         case let .loadItems(page):
             execute(flowId: SearchFlow.id, cancellation: Cancellation.loadItems) { [unowned self] taskId in
@@ -40,14 +40,14 @@ public final class SearchMiddleware<F: SearchFeature>: Middleware<F>, @unchecked
         }
     }
 
-    public struct Environment {
+    struct Environment {
         var loadItems: (_ query: String, _ page: Int) async throws -> [SearchItem]
     }
 }
 
 // MARK: - Environment buid methods
 
-public extension SearchMiddleware {
+extension SearchMiddleware {
     static func buildLiveEnvironment(for _: some Store<F>) -> Environment {
         Environment(
             loadItems: { query, page in

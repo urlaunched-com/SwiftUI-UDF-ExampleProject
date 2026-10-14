@@ -16,24 +16,24 @@ enum Cancellation: Hashable, CaseIterable {
     case loadShows
 }
 
-public final class SectionDetailsMiddleware<F: SectionDetailsFeature>: Middleware<F>, @unchecked Sendable {
-    public struct Environment {
+final class SectionDetailsMiddleware<F: SectionDetailsFeature>: Middleware<F>, @unchecked Sendable {
+    struct Environment {
         var loadMovies: (_ section: String, _ page: Int) async throws -> [Movie]
         var loadShows: (_ section: String, _ page: Int) async throws -> [Show]
     }
 
-    public var environment: Environment!
+    var environment: Environment!
 
-    public func scope(for state: F) -> Scope {
+    func scope(for state: F) -> Scope {
         state.networkConnectivityForm
         state.sectionDetailsFeatureState.sectionDetailsFlow
     }
 
-    public override func status(for state: F) -> MiddlewareStatus {
+    override func status(for state: F) -> MiddlewareStatus {
         state.networkConnectivityForm.satisfied ? .active : .suspend
     }
 
-    public func observe(state: F) {
+    func observe(state: F) {
         switch state.sectionDetailsFeatureState.sectionDetailsFlow {
         case let .loadMovies(page):
             execute(
@@ -65,7 +65,7 @@ public final class SectionDetailsMiddleware<F: SectionDetailsFeature>: Middlewar
 
 // MARK: - Environment buid methods
 
-public extension SectionDetailsMiddleware {
+extension SectionDetailsMiddleware {
     static func buildLiveEnvironment(for _: some Store<F>) -> Environment {
         Environment(
             loadMovies: { section, page in

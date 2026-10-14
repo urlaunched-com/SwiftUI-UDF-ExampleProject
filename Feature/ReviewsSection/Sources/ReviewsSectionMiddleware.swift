@@ -15,25 +15,25 @@ enum Cancellation: Hashable {
     case loadMovieReviews(Movie.ID)
 }
 
-public final class ReviewsSectionMiddleware<F: ReviewsSectionFeature>: Middleware<F>, @unchecked Sendable {
-    public struct Environment: @unchecked Sendable {
+final class ReviewsSectionMiddleware<F: ReviewsSectionFeature>: Middleware<F>, @unchecked Sendable {
+    struct Environment: @unchecked Sendable {
         var loadShowReviews: (_ showID: Int, _ page: Int) async throws -> [Review]
         var loadMovieReviews: (_ movieID: Int, _ page: Int) async throws -> [Review]
     }
 
-    public var environment: Environment!
+    var environment: Environment!
 
-    public func scope(for state: F) -> Scope {
+    func scope(for state: F) -> Scope {
         state.networkConnectivityForm
         state.reviewsSectionFeatureState.reviewsSectionForm
         state.reviewsSectionFeatureState.reviewsSectionFlow
     }
 
-    public override func status(for state: F) -> MiddlewareStatus {
+    override func status(for state: F) -> MiddlewareStatus {
         state.networkConnectivityForm.satisfied ? .active : .suspend
     }
 
-    public func observe(state: F) {
+    func observe(state: F) {
         for (id, flow) in state.reviewsSectionFeatureState.reviewsSectionFlow {
             switch (id, flow) {
             case let (.show(showID), .loadReviews(page)):
@@ -70,7 +70,7 @@ public final class ReviewsSectionMiddleware<F: ReviewsSectionFeature>: Middlewar
 }
 
 // MARK: - Environment build methods
-public extension ReviewsSectionMiddleware {
+extension ReviewsSectionMiddleware {
     static func buildLiveEnvironment(for _: some Store<F>) -> Environment {
         .init(
             loadShowReviews: { showID, page in

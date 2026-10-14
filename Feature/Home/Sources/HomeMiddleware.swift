@@ -11,19 +11,19 @@ import Foundation
 import UDF
 import Models
 
-public enum HomeCancellation: Hashable {
+enum HomeCancellation: Hashable {
     case loadMovies(MovieSection)
     case loadShows(ShowSection)
 }
 
-public final class HomeMiddleware<F: HomeFeature>: Middleware<F>, @unchecked Sendable {
-    public var environment: Environment!
+final class HomeMiddleware<F: HomeFeature>: Middleware<F>, @unchecked Sendable {
+    var environment: Environment!
 
-    public override func status(for state: F) -> MiddlewareStatus {
+    override func status(for state: F) -> MiddlewareStatus {
         state.networkConnectivityForm.satisfied ? .active : .suspend
     }
 
-    public func reduce(_ action: some Action, for _: F) {
+    func reduce(_ action: some Action, for _: F) {
         switch action {
         case let action as Actions.LoadHomeSection where action.sectionId.base is MovieSection:
             guard let section = action.sectionId.base as? MovieSection else {
@@ -54,13 +54,13 @@ public final class HomeMiddleware<F: HomeFeature>: Middleware<F>, @unchecked Sen
         }
     }
 
-    public struct Environment {
+    struct Environment {
         var loadMovies: (_ section: String) async throws -> [Movie]
         var loadShows: (_ section: String) async throws -> [Show]
     }
 }
 
-public extension HomeMiddleware {
+extension HomeMiddleware {
     static func buildLiveEnvironment(for _: some Store<F>) -> Environment {
         Environment(
             loadMovies: {
