@@ -220,14 +220,14 @@ public extension Show {
 // MARK: - Mergeable
 
 extension Show: Mergeable {
-    public func merging(_ newValue: Show) -> Show {
-        filled(from: newValue) { filledValue, oldValue in
-            filledValue.genreIds = newValue.genreIds.isEmpty ? oldValue.genreIds : newValue.genreIds
-            filledValue.episodeRunTime = newValue.episodeRunTime.isEmpty ? oldValue.episodeRunTime : newValue.episodeRunTime
-            filledValue.status = newValue.status.isEmpty ? oldValue.status : newValue.status
-            filledValue.networks = newValue.networks.isEmpty ? oldValue.networks : newValue.networks
-            filledValue.type = newValue.type.isEmpty ? oldValue.type : newValue.type
-        }
+    public static func merging(new newValue: Show, old oldValue: Show) -> Show {
+        var merged = newValue
+        merged.genreIds = newValue.genreIds.isEmpty ? oldValue.genreIds : newValue.genreIds
+        merged.episodeRunTime = newValue.episodeRunTime.isEmpty ? oldValue.episodeRunTime : newValue.episodeRunTime
+        merged.status = newValue.status.isEmpty ? oldValue.status : newValue.status
+        merged.networks = newValue.networks.isEmpty ? oldValue.networks : newValue.networks
+        merged.type = newValue.type.isEmpty ? oldValue.type : newValue.type
+        return merged
     }
 }
 

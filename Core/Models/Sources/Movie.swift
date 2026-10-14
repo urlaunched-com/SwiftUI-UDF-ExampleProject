@@ -227,13 +227,13 @@ public extension Movie {
 // MARK: - Mergeable
 
 extension Movie: Mergeable {
-    public func merging(_ newValue: Movie) -> Movie {
-        filled(from: newValue) { filledValue, oldValue in
-            filledValue.genreIds = newValue.genreIds.isEmpty ? oldValue.genreIds : newValue.genreIds
-            filledValue.budget = newValue.budget == 0 ? oldValue.budget : newValue.budget
-            filledValue.status = newValue.status.isEmpty ? oldValue.status : newValue.status
-            filledValue.runtime = newValue.runtime == nil ? oldValue.runtime : newValue.runtime
-            filledValue.revenue = newValue.revenue == 0 ? oldValue.revenue : newValue.revenue
-        }
+    public static func merging(new newValue: Movie, old oldValue: Movie) -> Movie {
+        var merged = newValue
+        merged.genreIds = newValue.genreIds.isEmpty ? oldValue.genreIds : newValue.genreIds
+        merged.budget = newValue.budget == 0 ? oldValue.budget : newValue.budget
+        merged.status = newValue.status.isEmpty ? oldValue.status : newValue.status
+        merged.runtime = newValue.runtime ?? oldValue.runtime
+        merged.revenue = newValue.revenue == 0 ? oldValue.revenue : newValue.revenue
+        return merged
     }
 }

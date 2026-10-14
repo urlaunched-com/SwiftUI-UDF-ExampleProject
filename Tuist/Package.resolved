@@ -1,4 +1,5 @@
 {
+  "originHash" : "cd4feb5d0b685e518ba869f409beeb2436ac27f00cc277a96298ea5e0ee56d3f",
   "pins" : [
     {
       "identity" : "flagkit",
@@ -12,7 +13,7 @@
     {
       "identity" : "r.swift",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/mac-cain13/R.swift.git",
+      "location" : "https://github.com/mac-cain13/R.swift",
       "state" : {
         "revision" : "a9abc6b0afe0fc4a5a71e1d7d2872143dff2d2f1",
         "version" : "7.8.0"
@@ -30,7 +31,7 @@
     {
       "identity" : "sdwebimage",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/SDWebImage/SDWebImage.git",
+      "location" : "https://github.com/SDWebImage/SDWebImage",
       "state" : {
         "revision" : "2de3a496eaf6df9a1312862adcfd54acd73c39c0",
         "version" : "5.21.7"
@@ -59,8 +60,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-collections",
       "state" : {
-        "revision" : "a0cb0954ecb21e4e31b0070e6ed5674e8556685a",
-        "version" : "1.6.0"
+        "revision" : "35a1edcb8ebd2bfe251d587f0b69e62af28f508c",
+        "version" : "1.7.3"
       }
     },
     {
@@ -106,6 +107,15 @@
       "state" : {
         "revision" : "1de718e676750e85ff0485d301e64593e6dc3921",
         "version" : "1.7.2"
+      }
+    },
+    {
+      "identity" : "swiftui-udf",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Maks-Jago/SwiftUI-UDF",
+      "state" : {
+        "revision" : "a9a004de2cdff234e8db1d1f225671ec2502da23",
+        "version" : "2.0.0-alpha.4"
       }
     },
     {

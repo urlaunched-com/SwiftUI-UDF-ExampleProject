@@ -27,6 +27,10 @@ public struct RootFeatureState<AppState: RootFeature, FeatureRouting: Routing<Ro
     public static func entryPoint(input: Void = ()) -> some View {
         RootContainer<AppState>()
     }
+    
+    
+    @MiddlewareBuilder<AppState>
+    public static func registerMiddlewares(in store: any Store<AppState>) -> [MiddlewareWrapper<AppState>] { }
 }
 
 public enum RootType {

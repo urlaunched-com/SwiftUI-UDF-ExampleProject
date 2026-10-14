@@ -24,4 +24,8 @@ public struct SettingsFeatureState<AppState: SettingsFeature>: FeatureState {
     public static func entryPoint(input: Void = ()) -> some View {
         SettingsContainer<AppState>()
     }
+    
+    
+    @MiddlewareBuilder<AppState>
+    public static func registerMiddlewares(in store: any Store<AppState>) -> [MiddlewareWrapper<AppState>] { }
 }

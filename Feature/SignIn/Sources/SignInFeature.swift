@@ -25,4 +25,8 @@ public struct SignInFeatureState<AppState: SignInFeature, FeatureRouting: Routin
     public static func entryPoint(input: Void = ()) -> some View {
         SignInContainer<AppState>()
     }
+    
+    
+    @MiddlewareBuilder<AppState>
+    public static func registerMiddlewares(in store: any Store<AppState>) -> [MiddlewareWrapper<AppState>] { }
 }
