@@ -35,6 +35,11 @@ public struct RecommendationsSectionFeatureState<AppState: RecommendationsSectio
     public static func entryPoint(input: RecomendationTarget) -> some View {
         RecommendationsSectionContainer<AppState>(id: input)
     }
+
+    @MiddlewareBuilder<AppState>
+    public static func registerMiddlewares(in store: any Store<AppState>) -> [MiddlewareWrapper<AppState>] {
+        RecommendationsSectionMiddleware<AppState>.self
+    }
 }
 
 public enum RecommendationsSection {

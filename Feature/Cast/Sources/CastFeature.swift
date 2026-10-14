@@ -28,4 +28,7 @@ public struct CastFeatureState<AppState: CastFeature, FeatureRouting: Routing<Ca
     public static func entryPoint(input: [Cast.ID]) -> some View {
         CastContainer<AppState>(cast: input)
     }
+
+    @MiddlewareBuilder<AppState>
+    public static func registerMiddlewares(in store: any Store<AppState>) -> [MiddlewareWrapper<AppState>] { }
 }

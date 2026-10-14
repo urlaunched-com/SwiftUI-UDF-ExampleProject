@@ -33,6 +33,11 @@ public struct ReviewDetailsFeatureState<AppState: ReviewDetailsFeature, FeatureR
     public static func entryPoint(input: Review.ID) -> some View {
         ReviewDetailsContainer<AppState>(id: input)
     }
+
+    @MiddlewareBuilder<AppState>
+    public static func registerMiddlewares(in store: any Store<AppState>) -> [MiddlewareWrapper<AppState>] {
+        ReviewDetailsMiddleware<AppState>.self
+    }
 }
 
 public enum ReviewDetails {

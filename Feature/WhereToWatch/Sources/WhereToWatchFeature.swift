@@ -33,6 +33,9 @@ public struct WhereToWatchFeatureState<AppState: WhereToWatchFeature, FeatureRou
     public static func entryPoint(input: Input) -> some View {
         WhereToWatchContainer<AppState>(item: input.item)
     }
+    
+    @MiddlewareBuilder<AppState>
+    public static func registerMiddlewares(in store: any Store<AppState>) -> [MiddlewareWrapper<AppState>] { }
 }
 
 public enum WhereToWatch {

@@ -36,6 +36,11 @@ public struct ItemDetailsFeatureState<AppState: ItemDetailsFeature, FeatureRouti
     public static func entryPoint(input: ItemDetailsTarget) -> some View {
         ItemDetailsContainer<AppState>(id: input)
     }
+
+    @MiddlewareBuilder<AppState>
+    public static func registerMiddlewares(in store: any Store<AppState>) -> [MiddlewareWrapper<AppState>] {
+        ItemDetailsMiddleware<AppState>.self
+    }
 }
 
 public enum ItemDetails {

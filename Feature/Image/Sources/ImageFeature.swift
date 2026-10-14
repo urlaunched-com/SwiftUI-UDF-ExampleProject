@@ -43,6 +43,11 @@ public struct ImageFeatureState<AppState: ImageFeature>: FeatureState {
     public static func entryPoint(input: Input) -> some View {
         ImageContainer<AppState>(size: input.size, path: input.path, type: input.type, isLoaderPresented: input.isLoaderPresented)
     }
+
+    @MiddlewareBuilder<AppState>
+    public static func registerMiddlewares(in store: any Store<AppState>) -> [MiddlewareWrapper<AppState>] {
+        ImageConfigsMiddleware<AppState>.self
+    }
 }
 
 public enum Image {

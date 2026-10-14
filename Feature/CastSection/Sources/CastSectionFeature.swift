@@ -30,6 +30,11 @@ public struct CastSectionFeatureState<AppState: CastSectionFeature, FeatureRouti
     public static func entryPoint(input: CastSectionTarget) -> some View {
         CastSectionContainer<AppState>(id: input)
     }
+
+    @MiddlewareBuilder<AppState>
+    public static func registerMiddlewares(in store: any Store<AppState>) -> [MiddlewareWrapper<AppState>] {
+        CastSectionMiddleware<AppState>.self
+    }
 }
 
 public enum CastSection {

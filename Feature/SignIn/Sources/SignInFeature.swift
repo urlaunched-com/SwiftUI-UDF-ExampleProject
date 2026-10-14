@@ -26,7 +26,6 @@ public struct SignInFeatureState<AppState: SignInFeature, FeatureRouting: Routin
         SignInContainer<AppState>()
     }
     
-    
     @MiddlewareBuilder<AppState>
     public static func registerMiddlewares(in store: any Store<AppState>) -> [MiddlewareWrapper<AppState>] { }
 }

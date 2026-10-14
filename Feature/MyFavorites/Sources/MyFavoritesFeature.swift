@@ -35,6 +35,11 @@ public struct MyFavoritesFeatureState<AppState: MyFavoritesFeature, FeatureRouti
     public static func entryPoint(input: Void) -> some View {
         MyFavoritesContainer<AppState>()
     }
+
+    @MiddlewareBuilder<AppState>
+    public static func registerMiddlewares(in store: any Store<AppState>) -> [MiddlewareWrapper<AppState>] {
+        MyFavoritesMiddleware<AppState>.self
+    }
 }
 
 public enum MyFavorites {

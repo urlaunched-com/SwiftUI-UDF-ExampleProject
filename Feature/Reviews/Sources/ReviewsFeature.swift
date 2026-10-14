@@ -44,5 +44,10 @@ public struct ReviewsFeatureState<AppState: ReviewsFeature, FeatureRouting: Rout
     public static func entryPoint(input: ReviewsTarget) -> some View {
         ReviewsContainer<AppState>(id: input)
     }
+
+    @MiddlewareBuilder<AppState>
+    public static func registerMiddlewares(in store: any Store<AppState>) -> [MiddlewareWrapper<AppState>] {
+        ReviewsMiddleware<AppState>.self
+    }
 }
 

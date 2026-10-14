@@ -24,7 +24,6 @@ public struct TabBarFeatureState<AppState: TabBarFeature>: FeatureState {
         TabBarContainer<AppState>()
     }
     
-    
     @MiddlewareBuilder<AppState>
     public static func registerMiddlewares(in store: any Store<AppState>) -> [MiddlewareWrapper<AppState>] { }
 }

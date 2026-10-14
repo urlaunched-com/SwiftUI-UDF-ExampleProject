@@ -51,6 +51,11 @@ public struct SectionDetailsFeatureState<AppState: SectionDetailsFeature, Featur
             SectionDetailsContainer<AppState>(section: section)
         }
     }
+
+    @MiddlewareBuilder<AppState>
+    public static func registerMiddlewares(in store: any Store<AppState>) -> [MiddlewareWrapper<AppState>] {
+        SectionDetailsMiddleware<AppState>.self
+    }
 }
 
 public enum SectionDetails {

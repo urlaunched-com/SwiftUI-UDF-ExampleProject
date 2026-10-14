@@ -35,6 +35,12 @@ public struct HomeFeatureState<AppState: HomeFeature, FeatureRouting: Routing<Ho
     public static func entryPoint(input: Void = ()) -> some View {
         HomeContainer<AppState>()
     }
+
+    @MiddlewareBuilder<AppState>
+    public static func registerMiddlewares(in store: any Store<AppState>) -> [MiddlewareWrapper<AppState>] {
+        HomeMiddleware<AppState>.self
+        GenresMiddleware<AppState>.self
+    }
 }
 
 public enum HomeFeatureTypes {

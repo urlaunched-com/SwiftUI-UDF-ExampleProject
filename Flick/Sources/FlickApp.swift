@@ -39,36 +39,12 @@ struct FlickApp: App {
         )
         
         checkAPIKey()
-        originalSubscribe()
         configureAppearances()
     }
 
     var body: some Scene {
         WindowGroup {
             RootFeatureState<AppState, RootRouting>.entryPoint()
-        }
-    }
-}
-
-// MARK: - Store subscriptions
-
-private extension FlickApp {
-    func originalSubscribe() {
-        globalStore.subscribe { _ in
-            HomeMiddleware.self
-            GenresMiddleware.self
-            NetworkConnectivityMiddleware<AppState>.self
-            ImageConfigsMiddleware.self
-            SectionDetailsMiddleware.self
-            ItemDetailsMiddleware.self
-            CastSectionMiddleware<AppState>.self
-            RecommendationsMiddleware.self
-            RecommendationsSectionMiddleware.self
-            ReviewsMiddleware.self
-            ReviewsSectionMiddleware.self
-            SearchMiddleware.self
-            MyFavoritesMiddleware.self
-            ReviewDetailsMiddleware.self
         }
     }
 }

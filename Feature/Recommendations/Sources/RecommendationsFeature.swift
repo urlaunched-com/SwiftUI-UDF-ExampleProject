@@ -37,6 +37,11 @@ public struct RecommendationsFeatureState<AppState: RecommendationsFeature, Feat
     public static func entryPoint(input: RecomendationTarget) -> some View {
         RecommendationsContainer<AppState>(id: input)
     }
+
+    @MiddlewareBuilder<AppState>
+    public static func registerMiddlewares(in store: any Store<AppState>) -> [MiddlewareWrapper<AppState>] {
+        RecommendationsMiddleware<AppState>.self
+    }
 }
 
 public enum Recommendations {

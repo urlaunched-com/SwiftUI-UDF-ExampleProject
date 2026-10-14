@@ -40,4 +40,7 @@ public struct HomeSectionFeatureState<AppState: HomeSectionFeature, FeatureRouti
     public static func entryPoint(input: Input) -> some View {
         HomeSectionContainer<AppState>(section: input.section, items: input.items)
     }
+
+    @MiddlewareBuilder<AppState>
+    public static func registerMiddlewares(in store: any Store<AppState>) -> [MiddlewareWrapper<AppState>] { }
 }

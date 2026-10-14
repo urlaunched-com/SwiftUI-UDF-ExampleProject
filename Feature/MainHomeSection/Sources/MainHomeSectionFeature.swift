@@ -48,4 +48,7 @@ public struct MainHomeSectionFeatureState<AppState: MainHomeSectionFeature, Feat
             MainHomeSectionContainer<AppState>(section: section, items: items)
         }
     }
+
+    @MiddlewareBuilder<AppState>
+    public static func registerMiddlewares(in store: any Store<AppState>) -> [MiddlewareWrapper<AppState>] { }
 }

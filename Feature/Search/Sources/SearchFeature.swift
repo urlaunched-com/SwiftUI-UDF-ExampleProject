@@ -30,6 +30,11 @@ public struct SearchFeatureState<AppState: SearchFeature, FeatureRouting: Routin
     public static func entryPoint(input: Void = ()) -> some View {
         SearchContainer<AppState>()
     }
+
+    @MiddlewareBuilder<AppState>
+    public static func registerMiddlewares(in store: any Store<AppState>) -> [MiddlewareWrapper<AppState>] {
+        SearchMiddleware<AppState>.self
+    }
 }
 
 public enum Search {

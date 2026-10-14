@@ -22,4 +22,9 @@ public struct NetworkConnectivityFeatureState<AppState: NetworkConnectivityFeatu
     public static func entryPoint(input: Void = ()) -> some View {
         EmptyView()
     }
+    
+    @MiddlewareBuilder<AppState>
+    public static func registerMiddlewares(in store: any Store<AppState>) -> [MiddlewareWrapper<AppState>] {
+        NetworkConnectivityMiddleware.self
+    }
 }
