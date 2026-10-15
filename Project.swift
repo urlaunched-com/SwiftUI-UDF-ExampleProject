@@ -83,12 +83,11 @@ let project = Project.app(
 func makeAllCoreModules() -> [Module] {
     return [
         makeCommanModule(),
-        makeModelsModule(),
         makeAPIModule(),
         makeDesignSystemModule(),
         makeLocalizationModule(),
         makeCustomViewsModule(),
-    ]
+    ] + makeModelsModules()
 }
 
 func makeUIModules() -> [Module] {
@@ -118,7 +117,14 @@ func makeUIModules() -> [Module] {
     ]
 }
 
-func makeModelsModule() -> Module {
+func makeModelsModules() -> [Module] {
+    [
+        makeGeneralModelsModule(),
+        makeImageModels(),
+    ]
+}
+
+func makeGeneralModelsModule() -> Module {
     Module(
         name: "Models",
         moduleType: .core,
@@ -131,6 +137,19 @@ func makeModelsModule() -> Module {
             .target(name: "API"),
             .target(name: "Localizations"),
             .external(name: "RswiftLibrary"),
+        ],
+        frameworkResources: []
+    )
+}
+
+func makeImageModels() -> Module {
+    Module(
+        name: "ImageModels",
+        moduleType: .core,
+        path: "ImageModels",
+        frameworkDependancies: [
+            .external(name: "SwiftFoundation"),
+            .target(name: "API"),
         ],
         frameworkResources: []
     )
@@ -360,7 +379,7 @@ func makeImageFeature() -> Module {
             .external(name: "UDF"),
             .external(name: "SDWebImageSwiftUI"),
             .external(name: "SwiftUI-Kit"),
-            .target(name: "Models"),
+            .target(name: "ImageModels"),
             .target(name: "DesignSystem"),
             .target(name: "Common"),
         ],

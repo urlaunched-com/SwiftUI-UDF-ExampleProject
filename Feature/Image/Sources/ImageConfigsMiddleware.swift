@@ -8,7 +8,7 @@
 
 import Foundation
 import UDF
-import Models
+@preconcurrency import ImageModels
 
 final class ImageConfigsMiddleware<F: ImageFeature>: Middleware<F>, @unchecked Sendable {
     var environment: ImageEnvironment!

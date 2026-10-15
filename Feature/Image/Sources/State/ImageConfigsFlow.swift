@@ -7,7 +7,7 @@
 //
 
 import UDF
-import Models
+import ImageModels
 
 public enum ImageConfigsFlow: IdentifiableFlow {
     case none

@@ -8,7 +8,7 @@
 
 import Foundation
 import UDF
-@preconcurrency import Models
+@preconcurrency import ImageModels
 
 public struct ImageConfigsForm: Form {
     public var configs: ImageConfigs = .basic

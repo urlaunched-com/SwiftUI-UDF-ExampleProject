@@ -6,7 +6,7 @@
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 
-import Models
+@preconcurrency import ImageModels
 
 public protocol ImageEnvironmentProviding {
     static var imageEnvironment: ImageEnvironment { get }
