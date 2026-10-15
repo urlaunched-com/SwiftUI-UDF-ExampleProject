@@ -17,7 +17,6 @@ let package = Package(
         .package(path: "../../Core/Localizations"),
         .package(path: "../../Core/Models"),
         .package(url: "https://github.com/Maks-Jago/SwiftUI-UDF", branch: "2.0.0"),
-        .package(url: "https://github.com/Maks-Jago/SwiftUIKit", from: "0.6.5"),
     ],
     targets: [
         .target(
@@ -28,7 +27,6 @@ let package = Package(
                 .product(name: "DesignSystem", package: "DesignSystem"),
                 .product(name: "Localizations", package: "Localizations"),
                 .product(name: "Models", package: "Models"),
-                .product(name: "SwiftUI-Kit", package: "SwiftUIKit"),
                 .product(name: "UDF", package: "SwiftUI-UDF"),
             ],
             path: "Sources"
