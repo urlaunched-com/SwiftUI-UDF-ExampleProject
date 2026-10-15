@@ -12,6 +12,7 @@ import NetworkConnectivity
 
 extension AppState: CastSectionFeature {
     typealias AllCast = Flick.AllCast
+    typealias CastSectionEnvironment = AppEnvironments
 }
 
 extension NetworkConnectivity.NetworkConnectivityForm: CastSection.NetworkConnectivityForm {}

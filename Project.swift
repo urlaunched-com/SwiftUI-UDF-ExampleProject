@@ -360,7 +360,6 @@ func makeImageFeature() -> Module {
             .external(name: "UDF"),
             .external(name: "SDWebImageSwiftUI"),
             .external(name: "SwiftUI-Kit"),
-            .target(name: "API"),
             .target(name: "Models"),
             .target(name: "DesignSystem"),
             .target(name: "Common"),
@@ -451,7 +450,6 @@ func makeMyFavoritesFeature() -> Module {
         path: "MyFavorites",
         frameworkDependancies: [
             .external(name: "UDF"),
-            .target(name: "API"),
             .target(name: "Models"),
             .target(name: "DesignSystem"),
             .target(name: "Localizations"),
@@ -475,7 +473,6 @@ func makeItemDetailsFeature() -> Module {
         frameworkDependancies: [
             .external(name: "UDF"),
             .external(name: "SwiftUI-Kit"),
-            .target(name: "API"),
             .target(name: "Common"),
             .target(name: "Models"),
             .target(name: "DesignSystem"),
@@ -502,7 +499,6 @@ func makeHomeFeature() -> Module {
         path: "Home",
         frameworkDependancies: [
             .external(name: "UDF"),
-            .target(name: "API"),
             .target(name: "Common"),
             .target(name: "Models"),
             .target(name: "Localizations"),
@@ -592,7 +588,6 @@ func makeCastSectionFeature() -> Module {
             .target(name: "DesignSystem"),
             .target(name: "CustomViews"),
             .target(name: "Localizations"),
-            .target(name: "API"),
         ],
         frameworkResources: [],
         snapshotDependencies: snapshotCommonModelsUDFDependencies,

@@ -15,6 +15,7 @@ public protocol CastSectionFeature: AppReducer {
     associatedtype CastSectionNetworkConnectivityForm: CastSection.NetworkConnectivityForm
     associatedtype CastSectionAllCast: CastSection.AllCast
     associatedtype CastSectionRouting: Routing<CastSectionRoute>
+    associatedtype CastSectionEnvironment: CastSectionEnvironmentProviding
    
     var networkConnectivityForm: CastSectionNetworkConnectivityForm { get }
     var allCast: CastSectionAllCast { get }

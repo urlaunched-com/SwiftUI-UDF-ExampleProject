@@ -6,7 +6,6 @@
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 
-import API
 import UDF
 @preconcurrency import Models
 
@@ -16,12 +15,7 @@ enum CastSectionCancellation: Hashable {
 }
 
 final class CastSectionMiddleware<F: CastSectionFeature>: Middleware<F>, @unchecked Sendable {
-    struct Environment: @unchecked Sendable {
-        var loadMovieCast: (_ movieId: Int) async throws -> [Cast]
-        var loadShowCast: (_ showId: Int) async throws -> [Cast]
-    }
-
-    var environment: Environment!
+    var environment: CastSectionEnvironment!
 
     func scope(for state: F) -> Scope {
         state.networkConnectivityForm
@@ -43,7 +37,7 @@ final class CastSectionMiddleware<F: CastSectionFeature>: Middleware<F>, @unchec
                         $0.binded(to: CastSectionContainer<F>.self, by: id)
                     }
                 ) { [unowned self] taskId in
-                    let cast = try await self.environment.loadMovieCast(movieId.value)
+                    let cast = try await self.environment.loadMovieCast(movieId)
                     return ActionGroup {
                         Actions.DidLoadItems(items: cast, id: taskId)
                         Actions.DidLoadNestedItems(parentId: movieId, items: cast.ids)
@@ -58,7 +52,7 @@ final class CastSectionMiddleware<F: CastSectionFeature>: Middleware<F>, @unchec
                         $0.binded(to: CastSectionContainer<F>.self, by: id)
                     }
                 ) { [unowned self] taskId in
-                    let cast = try await self.environment.loadShowCast(showId.value)
+                    let cast = try await self.environment.loadShowCast(showId)
                     return ActionGroup {
                         Actions.DidLoadItems(items: cast, id: taskId)
                         Actions.DidLoadNestedItems(parentId: showId, items: cast.ids)
@@ -72,19 +66,14 @@ final class CastSectionMiddleware<F: CastSectionFeature>: Middleware<F>, @unchec
     }
 }
 
+// MARK: - Environment build methods
+
 extension CastSectionMiddleware {
-    static func buildLiveEnvironment(for _: some Store<F>) -> Environment {
-        .init(
-            loadMovieCast: { movieId in
-                try await ItemDetailsAPIClient.loadMovieCast(movieId: movieId).map(\.asCast)
-            },
-            loadShowCast: { showId in
-                try await ItemDetailsAPIClient.loadShowCast(showId: showId).map(\.asCast)
-            }
-        )
+    static func buildLiveEnvironment(for _: some Store<F>) -> CastSectionEnvironment {
+        F.CastSectionEnvironment.castSectionEnvironment
     }
 
-    static func buildTestEnvironment(for _: some Store) -> Environment {
+    static func buildTestEnvironment(for _: some Store) -> CastSectionEnvironment {
         .init(
             loadMovieCast: { _ in Cast.testItems(count: 3) },
             loadShowCast: { _ in Cast.testItems(count: 3) }
