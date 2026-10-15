@@ -6,7 +6,6 @@
 //  Copyright © 2023 urlaunched.com. All rights reserved.
 //
 
-import API
 import SwiftFoundation
 import UDF
 
@@ -86,18 +85,5 @@ public extension Review {
 
     static func testItemIds(count: Int) -> [Self.ID] {
         (0 ..< count).map { ID(value: "\($0)") }
-    }
-}
-
-// MARK: - asReview
-
-public extension ReviewRemote {
-    var asReview: Review {
-        .init(
-            id: .init(value: id),
-            author: author,
-            authorDetails: authorDetails.asAuthor,
-            content: content
-        )
     }
 }

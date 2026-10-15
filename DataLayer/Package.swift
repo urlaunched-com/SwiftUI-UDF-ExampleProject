@@ -12,6 +12,7 @@ let package = Package(
     ],
     dependencies: [
         .package(path: "../Core/API"),
+        .package(path: "../Core/Common"),
         .package(path: "../Core/Models"),
         .package(path: "../Feature/Home"),
         .package(path: "../Feature/Image"),
@@ -25,6 +26,7 @@ let package = Package(
             name: "DataLayer",
             dependencies: [
                 .product(name: "API", package: "API"),
+                .product(name: "Common", package: "Common"),
                 .product(name: "Home", package: "Home"),
                 .product(name: "Image", package: "Image"),
                 .product(name: "ItemDetails", package: "ItemDetails"),

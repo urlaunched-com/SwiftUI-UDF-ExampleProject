@@ -3,7 +3,7 @@
 //  Flick
 //
 //  Created by Maksym Horobets on 15.10.2026.
-//  Copyright © 2026 urlaunched. All rights reserved.
+//  © 2026 You are launched
 //
 
 import API
@@ -13,16 +13,16 @@ import Reviews
 public extension ReviewsEnvironment {
     static var live: Self {
         .init(
-            loadShowReviews: { showID, page in
+            loadShowReviews: { showId, page in
                 try await ItemDetailsAPIClient.loadShowReviews(
-                    showId: showID,
+                    showId: showId.value,
                     page: page
                 )
                 .map(\.asReview)
             },
-            loadMovieReviews: { movieID, page in
+            loadMovieReviews: { movieId, page in
                 try await ItemDetailsAPIClient.loadMovieReviews(
-                    movieId: movieID,
+                    movieId: movieId.value,
                     page: page
                 )
                 .map(\.asReview)
@@ -44,16 +44,16 @@ public extension ReviewDetailsEnvironment {
 public extension ReviewsSectionEnvironment {
     static var live: Self {
         .init(
-            loadShowReviews: { showID, page in
+            loadShowReviews: { showId, page in
                 try await ItemDetailsAPIClient.loadShowReviews(
-                    showId: showID,
+                    showId: showId.value,
                     page: page
                 )
                 .map(\.asReview)
             },
-            loadMovieReviews: { movieID, page in
+            loadMovieReviews: { movieId, page in
                 try await ItemDetailsAPIClient.loadMovieReviews(
-                    movieId: movieID,
+                    movieId: movieId.value,
                     page: page
                 )
                 .map(\.asReview)

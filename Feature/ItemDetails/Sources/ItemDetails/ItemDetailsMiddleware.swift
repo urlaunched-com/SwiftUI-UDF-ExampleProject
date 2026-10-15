@@ -10,12 +10,12 @@ import UDF
 import Models
 
 public struct ItemDetailsEnvironment {
-    public var loadMovieDetails: (_ movieId: Int) async throws -> Movie
-    public var loadShowDetails: (_ showId: Int) async throws -> Show
+    public var loadMovieDetails: (_ movieId: Movie.ID) async throws -> Movie
+    public var loadShowDetails: (_ showId: Show.ID) async throws -> Show
 
     public init(
-        loadMovieDetails: @escaping (_ movieId: Int) async throws -> Movie,
-        loadShowDetails: @escaping (_ showId: Int) async throws -> Show
+        loadMovieDetails: @escaping (_ movieId: Movie.ID) async throws -> Movie,
+        loadShowDetails: @escaping (_ showId: Show.ID) async throws -> Show
     ) {
         self.loadMovieDetails = loadMovieDetails
         self.loadShowDetails = loadShowDetails
@@ -50,7 +50,7 @@ final class ItemDetailsMiddleware<F: ItemDetailsFeature>: Middleware<F>, @unchec
                         $0.binded(to: ItemDetailsContainer<F>.self, by: id)
                     }
                 ) { [unowned self] taskId in
-                    let movie = try await self.environment.loadMovieDetails(movieID.value)
+                    let movie = try await self.environment.loadMovieDetails(movieID)
                     return Actions.DidLoadItem(item: movie, id: taskId)
                 }
 
@@ -62,7 +62,7 @@ final class ItemDetailsMiddleware<F: ItemDetailsFeature>: Middleware<F>, @unchec
                         $0.binded(to: ItemDetailsContainer<F>.self, by: id)
                     }
                 ) { [unowned self] taskId in
-                    let show = try await self.environment.loadShowDetails(showID.value)
+                    let show = try await self.environment.loadShowDetails(showID)
                     return Actions.DidLoadItem(item: show, id: taskId)
                 }
             default:

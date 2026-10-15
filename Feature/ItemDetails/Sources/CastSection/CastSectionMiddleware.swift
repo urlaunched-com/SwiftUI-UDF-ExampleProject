@@ -10,12 +10,12 @@ import UDF
 @preconcurrency import Models
 
 public struct CastSectionEnvironment: @unchecked Sendable {
-    public var loadMovieCast: (_ movieId: Int) async throws -> [Cast]
-    public var loadShowCast: (_ showId: Int) async throws -> [Cast]
+    public var loadMovieCast: (_ movieId: Movie.ID) async throws -> [Cast]
+    public var loadShowCast: (_ showId: Show.ID) async throws -> [Cast]
 
     public init(
-        loadMovieCast: @escaping (_ movieId: Int) async throws -> [Cast],
-        loadShowCast: @escaping (_ showId: Int) async throws -> [Cast]
+        loadMovieCast: @escaping (_ movieId: Movie.ID) async throws -> [Cast],
+        loadShowCast: @escaping (_ showId: Show.ID) async throws -> [Cast]
     ) {
         self.loadMovieCast = loadMovieCast
         self.loadShowCast = loadShowCast
@@ -52,7 +52,7 @@ final class CastSectionMiddleware<F: ItemDetailsFeature>: Middleware<F>, @unchec
                         $0.binded(to: CastSectionContainer<F>.self, by: id)
                     }
                 ) { [unowned self] taskId in
-                    let cast = try await self.environment.loadMovieCast(movieId.value)
+                    let cast = try await self.environment.loadMovieCast(movieId)
                     return ActionGroup {
                         Actions.DidLoadItems(items: cast, id: taskId)
                         Actions.DidLoadNestedItems(parentId: movieId, items: cast)
@@ -67,7 +67,7 @@ final class CastSectionMiddleware<F: ItemDetailsFeature>: Middleware<F>, @unchec
                         $0.binded(to: CastSectionContainer<F>.self, by: id)
                     }
                 ) { [unowned self] taskId in
-                    let cast = try await self.environment.loadShowCast(showId.value)
+                    let cast = try await self.environment.loadShowCast(showId)
                     return ActionGroup {
                         Actions.DidLoadItems(items: cast, id: taskId)
                         Actions.DidLoadNestedItems(parentId: showId, items: cast)

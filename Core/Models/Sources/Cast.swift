@@ -6,7 +6,6 @@
 //  Copyright © 2023 urlaunched.com. All rights reserved.
 //
 
-import API
 import Foundation
 import SwiftFoundation
 import UDF
@@ -87,18 +86,5 @@ public extension Cast {
 
     static func testItemIds(count: Int) -> [Self.ID] {
         (0 ..< count).map { ID(value: $0) }
-    }
-}
-
-// MARK: - asCast
-
-public extension CastRemote {
-    var asCast: Cast {
-        .init(
-            id: .init(value: id),
-            name: name,
-            character: character,
-            profilePath: profilePath
-        )
     }
 }

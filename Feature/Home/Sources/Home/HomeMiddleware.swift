@@ -11,12 +11,12 @@ import UDF
 import Models
 
 public struct HomeEnvironment {
-    public var loadMovies: (_ section: String) async throws -> [Movie]
-    public var loadShows: (_ section: String) async throws -> [Show]
+    public var loadMovies: (_ section: MovieSection.ID) async throws -> [Movie]
+    public var loadShows: (_ section: ShowSection.ID) async throws -> [Show]
 
     public init(
-        loadMovies: @escaping (_ section: String) async throws -> [Movie],
-        loadShows: @escaping (_ section: String) async throws -> [Show]
+        loadMovies: @escaping (_ section: MovieSection.ID) async throws -> [Movie],
+        loadShows: @escaping (_ section: ShowSection.ID) async throws -> [Show]
     ) {
         self.loadMovies = loadMovies
         self.loadShows = loadShows
@@ -43,7 +43,7 @@ final class HomeMiddleware<F: HomeFeature>: Middleware<F>, @unchecked Sendable {
                 return
             }
             execute(flowId: HomeFlow.id, cancellation: HomeCancellation.loadMovies(section)) { [unowned self] taskId in
-                let data = try await environment.loadMovies(section.urlValue)
+                let data = try await environment.loadMovies(section)
                 return ActionGroup {
                     Actions.DidLoadItems(items: data, id: taskId)
                     Actions.DidLoadNestedItems(parentId: section, items: data, id: taskId)
@@ -55,7 +55,7 @@ final class HomeMiddleware<F: HomeFeature>: Middleware<F>, @unchecked Sendable {
                 return
             }
             execute(flowId: HomeFlow.id, cancellation: HomeCancellation.loadShows(section)) { [unowned self] taskId in
-                let data = try await environment.loadShows(section.urlValue)
+                let data = try await environment.loadShows(section)
                 return ActionGroup {
                     Actions.DidLoadItems(items: data, id: taskId)
                     Actions.DidLoadNestedItems(parentId: section, items: data, id: taskId)

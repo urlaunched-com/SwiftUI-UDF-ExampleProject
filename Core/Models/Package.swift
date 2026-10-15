@@ -11,7 +11,6 @@ let package = Package(
         .library(name: "Models", targets: ["Models"]),
     ],
     dependencies: [
-        .package(path: "../API"),
         .package(path: "../Common"),
         .package(path: "../DesignSystem"),
         .package(path: "../Localizations"),
@@ -22,7 +21,6 @@ let package = Package(
         .target(
             name: "Models",
             dependencies: [
-                .product(name: "API", package: "API"),
                 .product(name: "Common", package: "Common"),
                 .product(name: "DesignSystem", package: "DesignSystem"),
                 .product(name: "Localizations", package: "Localizations"),

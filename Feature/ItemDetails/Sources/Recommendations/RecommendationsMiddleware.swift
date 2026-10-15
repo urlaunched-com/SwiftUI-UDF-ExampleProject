@@ -10,12 +10,12 @@ import UDF
 @preconcurrency import Models
 
 public struct RecommendationsEnvironment {
-    public var loadMovies: (_ movieId: Int, _ page: Int) async throws -> [Movie]
-    public var loadShows: (_ showId: Int, _ page: Int) async throws -> [Show]
+    public var loadMovies: (_ movieId: Movie.ID, _ page: Int) async throws -> [Movie]
+    public var loadShows: (_ showId: Show.ID, _ page: Int) async throws -> [Show]
 
     public init(
-        loadMovies: @escaping (_ movieId: Int, _ page: Int) async throws -> [Movie],
-        loadShows: @escaping (_ showId: Int, _ page: Int) async throws -> [Show]
+        loadMovies: @escaping (_ movieId: Movie.ID, _ page: Int) async throws -> [Movie],
+        loadShows: @escaping (_ showId: Show.ID, _ page: Int) async throws -> [Show]
     ) {
         self.loadMovies = loadMovies
         self.loadShows = loadShows
@@ -103,7 +103,7 @@ private extension RecommendationsMiddleware {
             guard let movieId else {
                 throw CancellationError()
             }
-            let movies = try await environment.loadMovies(movieId.value, page)
+            let movies = try await environment.loadMovies(movieId, page)
             return ActionGroup {
                 Actions.DidLoadItems(items: movies, id: flowId)
                 Actions.DidLoadNestedItems(parentId: movieId, items: movies)
@@ -120,7 +120,7 @@ private extension RecommendationsMiddleware {
             guard let showId else {
                 throw CancellationError()
             }
-            let shows = try await environment.loadShows(showId.value, page)
+            let shows = try await environment.loadShows(showId, page)
             return ActionGroup {
                 Actions.DidLoadItems(items: shows, id: flowId)
                 Actions.DidLoadNestedItems(parentId: showId, items: shows)

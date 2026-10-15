@@ -7,7 +7,6 @@
 //
 
 import UDF
-import API
 import Foundation
 import SwiftFoundation
 
@@ -73,16 +72,5 @@ public extension Genre {
 
     static func testItemIds(count: Int) -> [Self.ID] {
         (0 ..< count).map { ID(value: $0) }
-    }
-}
-
-// MARK: - asGenre
-
-public extension GenreRemote {
-    var asGenre: Genre {
-        .init(
-            id: .init(value: id),
-            name: name
-        )
     }
 }

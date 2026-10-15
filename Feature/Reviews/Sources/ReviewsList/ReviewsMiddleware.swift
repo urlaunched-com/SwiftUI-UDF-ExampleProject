@@ -10,12 +10,12 @@ import UDF
 @preconcurrency import Models
 
 public struct ReviewsEnvironment: @unchecked Sendable {
-    public var loadShowReviews: (_ showID: Int, _ page: Int) async throws -> [Review]
-    public var loadMovieReviews: (_ movieID: Int, _ page: Int) async throws -> [Review]
+    public var loadShowReviews: (_ showId: Show.ID, _ page: Int) async throws -> [Review]
+    public var loadMovieReviews: (_ movieId: Movie.ID, _ page: Int) async throws -> [Review]
 
     public init(
-        loadShowReviews: @escaping (_ showID: Int, _ page: Int) async throws -> [Review],
-        loadMovieReviews: @escaping (_ movieID: Int, _ page: Int) async throws -> [Review]
+        loadShowReviews: @escaping (_ showId: Show.ID, _ page: Int) async throws -> [Review],
+        loadMovieReviews: @escaping (_ movieId: Movie.ID, _ page: Int) async throws -> [Review]
     ) {
         self.loadShowReviews = loadShowReviews
         self.loadMovieReviews = loadMovieReviews
@@ -103,7 +103,7 @@ private extension ReviewsMiddleware {
             guard let showId else {
                 throw CancellationError()
             }
-            let reviews = try await environment.loadShowReviews(showId.value, page)
+            let reviews = try await environment.loadShowReviews(showId, page)
             return ActionGroup {
                 Actions.DidLoadItems(items: reviews, id: flowId)
                 Actions.DidLoadNestedItems(parentId: showId, items: reviews)
@@ -120,7 +120,7 @@ private extension ReviewsMiddleware {
             guard let movieId else {
                 throw CancellationError()
             }
-            let reviews = try await environment.loadMovieReviews(movieId.value, page)
+            let reviews = try await environment.loadMovieReviews(movieId, page)
             return ActionGroup {
                 Actions.DidLoadItems(items: reviews, id: flowId)
                 Actions.DidLoadNestedItems(parentId: movieId, items: reviews)

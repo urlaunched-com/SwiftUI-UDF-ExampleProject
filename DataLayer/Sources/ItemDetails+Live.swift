@@ -3,7 +3,7 @@
 //  Flick
 //
 //  Created by Maksym Horobets on 15.10.2026.
-//  Copyright © 2026 urlaunched. All rights reserved.
+//  © 2026 You are launched
 //
 
 import API
@@ -14,10 +14,10 @@ public extension ItemDetailsEnvironment {
     static var live: Self {
         .init(
             loadMovieDetails: { movieId in
-                try await ItemDetailsAPIClient.loadMovie(movieId: movieId).asMovie
+                try await ItemDetailsAPIClient.loadMovie(movieId: movieId.value).asMovie
             },
             loadShowDetails: { showId in
-                try await ItemDetailsAPIClient.loadShow(showId: showId).asShow
+                try await ItemDetailsAPIClient.loadShow(showId: showId.value).asShow
             }
         )
     }
@@ -28,14 +28,14 @@ public extension RecommendationsEnvironment {
         .init(
             loadMovies: { movieId, page in
                 try await ItemDetailsAPIClient.loadMovieRecommendations(
-                    movieId: movieId,
+                    movieId: movieId.value,
                     page: page
                 )
                 .map(\.asMovie)
             },
-            loadShows: { showsId, page in
+            loadShows: { showId, page in
                 try await ItemDetailsAPIClient.loadShowRecommendations(
-                    showId: showsId,
+                    showId: showId.value,
                     page: page
                 ).map(\.asShow)
             }
@@ -48,14 +48,14 @@ public extension RecommendationsSectionEnvironment {
         .init(
             loadMovies: { movieId, page in
                 try await ItemDetailsAPIClient.loadMovieRecommendations(
-                    movieId: movieId,
+                    movieId: movieId.value,
                     page: page
                 )
                 .map(\.asMovie)
             },
-            loadShows: { showsId, page in
+            loadShows: { showId, page in
                 try await ItemDetailsAPIClient.loadShowRecommendations(
-                    showId: showsId,
+                    showId: showId.value,
                     page: page
                 ).map(\.asShow)
             }
@@ -67,10 +67,10 @@ public extension CastSectionEnvironment {
     static var live: Self {
         .init(
             loadMovieCast: { movieId in
-                try await ItemDetailsAPIClient.loadMovieCast(movieId: movieId).map(\.asCast)
+                try await ItemDetailsAPIClient.loadMovieCast(movieId: movieId.value).map(\.asCast)
             },
             loadShowCast: { showId in
-                try await ItemDetailsAPIClient.loadShowCast(showId: showId).map(\.asCast)
+                try await ItemDetailsAPIClient.loadShowCast(showId: showId.value).map(\.asCast)
             }
         )
     }

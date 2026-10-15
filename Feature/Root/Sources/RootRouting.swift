@@ -3,7 +3,7 @@
 //  Flick
 //
 //  Created by Maksym Horobets on 15.10.2026.
-//  Copyright © 2026 urlaunched. All rights reserved.
+//  © 2026 You are launched
 //
 
 import SwiftUI

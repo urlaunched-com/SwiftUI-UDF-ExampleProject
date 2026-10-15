@@ -1,5 +1,5 @@
 {
-  "organization": "urlaunched",
+  "organization": "You are launched",
   "default-configuration": "Release",
   "configurations": [
     { "name": "Debug", "file": "xcconfigs/Flick-Project.xcconfig" },

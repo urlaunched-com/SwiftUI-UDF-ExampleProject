@@ -6,7 +6,6 @@
 //  Copyright © 2023 urlaunched.com. All rights reserved.
 //
 
-import API
 import Foundation
 import SwiftFoundation
 
@@ -72,16 +71,5 @@ public extension Network {
 
     static func testItemIds(count: Int) -> [Self.ID] {
         (0 ..< count).map { ID(value: $0) }
-    }
-}
-
-// MARK: - asNetwork
-
-public extension NetworkRemote {
-    var asNetwork: Network {
-        .init(
-            id: .init(value: id),
-            name: name
-        )
     }
 }

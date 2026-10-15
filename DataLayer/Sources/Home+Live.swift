@@ -3,7 +3,7 @@
 //  Flick
 //
 //  Created by Maksym Horobets on 15.10.2026.
-//  Copyright © 2026 urlaunched. All rights reserved.
+//  © 2026 You are launched
 //
 
 import API
@@ -14,11 +14,11 @@ public extension HomeEnvironment {
     static var live: Self {
         .init(
             loadMovies: {
-                let movies = try await HomeAPIClient.loadMovies(section: $0)
+                let movies = try await HomeAPIClient.loadMovies(section: $0.urlValue)
                 return movies.map(\.asMovie)
             },
             loadShows: {
-                let shows = try await HomeAPIClient.loadShows(section: $0)
+                let shows = try await HomeAPIClient.loadShows(section: $0.urlValue)
                 return shows.map(\.asShow)
             }
         )
@@ -44,11 +44,11 @@ public extension SectionDetailsEnvironment {
     static var live: Self {
         .init(
             loadMovies: { section, page in
-                let movies = try await HomeAPIClient.loadMovies(section: section, page: page)
+                let movies = try await HomeAPIClient.loadMovies(section: section.urlValue, page: page)
                 return movies.map(\.asMovie)
             },
             loadShows: { section, page in
-                let shows = try await HomeAPIClient.loadShows(section: section, page: page)
+                let shows = try await HomeAPIClient.loadShows(section: section.urlValue, page: page)
                 return shows.map(\.asShow)
             }
         )

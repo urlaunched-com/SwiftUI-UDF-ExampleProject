@@ -11,12 +11,12 @@ import UDF
 @preconcurrency import Models
 
 public struct SectionDetailsEnvironment {
-    public var loadMovies: (_ section: String, _ page: Int) async throws -> [Movie]
-    public var loadShows: (_ section: String, _ page: Int) async throws -> [Show]
+    public var loadMovies: (_ section: MovieSection.ID, _ page: Int) async throws -> [Movie]
+    public var loadShows: (_ section: ShowSection.ID, _ page: Int) async throws -> [Show]
 
     public init(
-        loadMovies: @escaping (_ section: String, _ page: Int) async throws -> [Movie],
-        loadShows: @escaping (_ section: String, _ page: Int) async throws -> [Show]
+        loadMovies: @escaping (_ section: MovieSection.ID, _ page: Int) async throws -> [Movie],
+        loadShows: @escaping (_ section: ShowSection.ID, _ page: Int) async throws -> [Show]
     ) {
         self.loadMovies = loadMovies
         self.loadShows = loadShows
@@ -99,7 +99,7 @@ private extension SectionDetailsMiddleware {
             guard let section = sectionId else {
                 throw CancellationError()
             }
-            let data = try await environment.loadMovies(section.urlValue, page)
+            let data = try await environment.loadMovies(section, page)
             return ActionGroup {
                 Actions.DidLoadItems(items: data, id: flowId)
                 Actions.DidLoadNestedItems(parentId: section, items: data, id: flowId)
@@ -116,7 +116,7 @@ private extension SectionDetailsMiddleware {
             guard let section = sectionId else {
                 throw CancellationError()
             }
-            let data = try await environment.loadShows(section.urlValue, page)
+            let data = try await environment.loadShows(section, page)
             return ActionGroup {
                 Actions.DidLoadItems(items: data, id: flowId)
                 Actions.DidLoadNestedItems(parentId: section, items: data, id: flowId)
