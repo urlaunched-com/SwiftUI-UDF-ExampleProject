@@ -1,0 +1,666 @@
+{
+  "organization": "urlaunched",
+  "default-configuration": "Release",
+  "configurations": [
+    { "name": "Debug", "file": "xcconfigs/Flick-Project.xcconfig" },
+    { "name": "Release", "file": "xcconfigs/Flick-Project.xcconfig" },
+  ],
+  "localizations": {
+    "development": "en",
+    "supported": [
+      "Base",
+    ],
+  },
+  "packages": [
+    {
+      "kind": "remote",
+      "repository": "https://github.com/Maks-Jago/SwiftUI-UDF",
+      "version": {
+        "branch": "2.0.0",
+      },
+    }, {
+      "kind": "remote",
+      "repository": "https://github.com/Maks-Jago/swiftui-snapshot-test-case",
+      "version": {
+        "up-to-next-major-version": "1.6.2",
+      },
+    }, {
+      "kind": "remote",
+      "repository": "https://github.com/madebybowtie/FlagKit",
+      "version": {
+        "up-to-next-major-version": "2.0.0",
+      },
+    }, {
+      "kind": "remote",
+      "repository": "https://github.com/urlaunched-com/UDFMacros",
+      "version": {
+        "up-to-next-major-version": "0.3.0",
+      },
+    },
+  ],
+  "files": [
+    { "kind": "folder", "path": "Flick", "target-membership": [ "Flick" ] },
+    {
+      "kind": "group",
+      "name": "Modules",
+      "children": [
+        {
+          "kind": "group",
+          "path": "Core",
+          "children": [
+            { "path": "API" },
+            { "path": "Common" },
+            { "path": "CustomViews" },
+            { "path": "DesignSystem" },
+            { "path": "Localizations" },
+            { "path": "Models" },
+          ],
+        }, {
+          "kind": "group",
+          "path": "Feature",
+          "children": [
+            { "path": "Auth" },
+            { "path": "Home" },
+            { "path": "Image" },
+            { "path": "ItemDetails" },
+            { "path": "MyFavorites" },
+            { "path": "NetworkConnectivity" },
+            { "path": "Onboarding" },
+            { "path": "Reviews" },
+            { "path": "Root" },
+            { "path": "Search" },
+            { "path": "Settings" },
+          ],
+        },
+        { "path": "DataLayer" },
+      ],
+    },
+    { "path": "Info.plist" },
+    { "kind": "folder", "path": "SnapshotTestsHostApp", "target-membership": [ "SnapshotTestsHostApp" ] },
+    {
+      "kind": "group",
+      "name": "Snapshots",
+      "children": [
+        { "kind": "folder", "path": "SnapshotTest", "target-membership": [ "AuthSnapshotTests", "HomeSnapshotTests", "ImageSnapshotTests", "ItemDetailsSnapshotTests", "MyFavoritesSnapshotTests", "OnboardingSnapshotTests", "ReviewsSnapshotTests", "RootSnapshotTests", "SearchSnapshotTests", "SettingsSnapshotTests" ] },
+        {
+          "kind": "group",
+          "name": "Auth",
+          "children": [
+            { "kind": "folder", "path": "Feature/Auth/Snapshots", "target-membership": [ "AuthSnapshotTests" ] },
+          ],
+        }, {
+          "kind": "group",
+          "name": "Home",
+          "children": [
+            { "kind": "folder", "path": "Feature/Home/Snapshots", "target-membership": [ "HomeSnapshotTests" ] },
+          ],
+        }, {
+          "kind": "group",
+          "name": "Image",
+          "children": [
+            { "kind": "folder", "path": "Feature/Image/Snapshots", "target-membership": [ "ImageSnapshotTests" ] },
+          ],
+        }, {
+          "kind": "group",
+          "name": "ItemDetails",
+          "children": [
+            { "kind": "folder", "path": "Feature/ItemDetails/Snapshots", "target-membership": [ "ItemDetailsSnapshotTests" ] },
+          ],
+        }, {
+          "kind": "group",
+          "name": "MyFavorites",
+          "children": [
+            { "kind": "folder", "path": "Feature/MyFavorites/Snapshots", "target-membership": [ "MyFavoritesSnapshotTests" ] },
+          ],
+        }, {
+          "kind": "group",
+          "name": "Onboarding",
+          "children": [
+            { "kind": "folder", "path": "Feature/Onboarding/Snapshots", "target-membership": [ "OnboardingSnapshotTests" ] },
+          ],
+        }, {
+          "kind": "group",
+          "name": "Reviews",
+          "children": [
+            { "kind": "folder", "path": "Feature/Reviews/Snapshots", "target-membership": [ "ReviewsSnapshotTests" ] },
+          ],
+        }, {
+          "kind": "group",
+          "name": "Root",
+          "children": [
+            { "kind": "folder", "path": "Feature/Root/Snapshots", "target-membership": [ "RootSnapshotTests" ] },
+          ],
+        }, {
+          "kind": "group",
+          "name": "Search",
+          "children": [
+            { "kind": "folder", "path": "Feature/Search/Snapshots", "target-membership": [ "SearchSnapshotTests" ] },
+          ],
+        }, {
+          "kind": "group",
+          "name": "Settings",
+          "children": [
+            { "kind": "folder", "path": "Feature/Settings/Snapshots", "target-membership": [ "SettingsSnapshotTests" ] },
+          ],
+        },
+      ],
+    }, {
+      "kind": "group",
+      "name": "xcconfigs",
+      "children": [
+        { "path": "xcconfigs/Flick-Project.xcconfig" },
+        { "path": "xcconfigs/Flick.xcconfig" },
+        { "path": "xcconfigs/SnapshotTests.xcconfig" },
+      ],
+    }, {
+      "kind": "group",
+      "name": "Products",
+      "children": [
+        { "path": "<PRODUCTS>/Flick.app", "id": "EA60FED804941BE5E01F3CCC", "type": "wrapper.application", "index": false },
+        { "path": "<PRODUCTS>/SnapshotTestsHostApp.app", "id": "6B2C36EE270B49DEB0F99D1F", "type": "wrapper.application", "index": false },
+        { "path": "<PRODUCTS>/AuthSnapshotTests.xctest", "id": "A5F63264BB346FF8AF34064A", "type": "wrapper.cfbundle", "index": false },
+        { "path": "<PRODUCTS>/HomeSnapshotTests.xctest", "id": "650B36DF7E54EB28DB1F1A28", "type": "wrapper.cfbundle", "index": false },
+        { "path": "<PRODUCTS>/ImageSnapshotTests.xctest", "id": "7EBC645896B8CB18215F5303", "type": "wrapper.cfbundle", "index": false },
+        { "path": "<PRODUCTS>/ItemDetailsSnapshotTests.xctest", "id": "082301A6E4A71FCED8C85713", "type": "wrapper.cfbundle", "index": false },
+        { "path": "<PRODUCTS>/MyFavoritesSnapshotTests.xctest", "id": "701D8EA8676FE9AE1A72C082", "type": "wrapper.cfbundle", "index": false },
+        { "path": "<PRODUCTS>/OnboardingSnapshotTests.xctest", "id": "7E79A10BAFDD397682B57B68", "type": "wrapper.cfbundle", "index": false },
+        { "path": "<PRODUCTS>/ReviewsSnapshotTests.xctest", "id": "E10011D5182D1700EEAB52E8", "type": "wrapper.cfbundle", "index": false },
+        { "path": "<PRODUCTS>/RootSnapshotTests.xctest", "id": "B58385D84D44E9641C28EA44", "type": "wrapper.cfbundle", "index": false },
+        { "path": "<PRODUCTS>/SearchSnapshotTests.xctest", "id": "284488DE383FD729F7D91E07", "type": "wrapper.cfbundle", "index": false },
+        { "path": "<PRODUCTS>/SettingsSnapshotTests.xctest", "id": "43B9657BC06BDBF7BC146485", "type": "wrapper.cfbundle", "index": false },
+      ],
+    },
+  ],
+  "targets": [
+    {
+      "name": "Flick",
+      "id": "700DE720BBB1800CC6855FB0",
+      "product": "Products/Flick.app",
+      "product-type": "application",
+      "specialized-configurations": [
+        { "name": "Debug", "file": "xcconfigs/Flick.xcconfig" },
+        { "name": "Release", "file": "xcconfigs/Flick.xcconfig" },
+      ],
+      "build-phases": [
+        "compile-sources",
+        "frameworks",
+        "resources",
+      ],
+      "package-product-members": [
+        {
+          "product-name": "API",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "product-name": "Auth",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "product-name": "Common",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "product-name": "DataLayer",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "product-name": "Home",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "product-name": "Image",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "product-name": "ItemDetails",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "product-name": "Models",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "product-name": "MyFavorites",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "product-name": "NetworkConnectivity",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "product-name": "Onboarding",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "product-name": "Reviews",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "product-name": "Root",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "product-name": "Search",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "product-name": "Settings",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "package": "SwiftUI-UDF",
+          "product-name": "UDF",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "package": "UDFMacros",
+          "product-name": "UDFMacros",
+          "build-phase": { "build-phase": "frameworks" },
+        },
+      ],
+      "build-settings": {
+        "INFOPLIST_FILE": "Info.plist",
+        "PRODUCT_BUNDLE_IDENTIFIER": "com.urlaunched.flick",
+      },
+    }, {
+      "name": "SnapshotTestsHostApp",
+      "id": "9F775B8C741F8BD11BF47D76",
+      "product": "Products/SnapshotTestsHostApp.app",
+      "product-type": "application",
+      "build-phases": [
+        "compile-sources",
+        "frameworks",
+        "resources",
+      ],
+      "build-settings": {
+        "CODE_SIGN_STYLE": "Automatic",
+        "DEVELOPMENT_TEAM": "XK5AEQZHJU",
+        "GENERATE_INFOPLIST_FILE": "YES",
+        "INFOPLIST_KEY_UILaunchScreen_Generation": "YES",
+        "IPHONEOS_DEPLOYMENT_TARGET": "17.0",
+        "PRODUCT_BUNDLE_IDENTIFIER": "com.urlaunched.SnapshotTestsHostApp",
+        "PRODUCT_NAME": "$(TARGET_NAME)",
+        "SDKROOT": "iphoneos",
+        "SUPPORTED_PLATFORMS": "iphoneos iphonesimulator",
+        "SWIFT_VERSION": "5.0",
+        "TARGETED_DEVICE_FAMILY": "1",
+      },
+    }, {
+      "name": "AuthSnapshotTests",
+      "id": "B2D903BF42C69360E94128F1",
+      "product": "Products/AuthSnapshotTests.xctest",
+      "product-type": "bundle.unit-test",
+      "specialized-configurations": [
+        { "name": "Debug", "file": "xcconfigs/SnapshotTests.xcconfig" },
+        { "name": "Release", "file": "xcconfigs/SnapshotTests.xcconfig" },
+      ],
+      "dependencies": [
+        "SnapshotTestsHostApp",
+      ],
+      "build-phases": [
+        "compile-sources",
+        "frameworks",
+        "resources",
+      ],
+      "package-product-members": [
+        {
+          "product-name": "Auth",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "product-name": "Common",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "package": "SwiftUI-UDF",
+          "product-name": "UDF",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "package": "swiftui-snapshot-test-case",
+          "product-name": "SwiftUISnapshotTestCase",
+          "build-phase": { "build-phase": "frameworks" },
+        },
+      ],
+      "build-settings": {
+        "PRODUCT_BUNDLE_IDENTIFIER": "com.urlaunched.AuthSnapshotTests",
+        "TEST_HOST": "$(BUILT_PRODUCTS_DIR)/SnapshotTestsHostApp.app/SnapshotTestsHostApp",
+      },
+    }, {
+      "name": "HomeSnapshotTests",
+      "id": "D3ACCA16DB93805D7A88CB5C",
+      "product": "Products/HomeSnapshotTests.xctest",
+      "product-type": "bundle.unit-test",
+      "specialized-configurations": [
+        { "name": "Debug", "file": "xcconfigs/SnapshotTests.xcconfig" },
+        { "name": "Release", "file": "xcconfigs/SnapshotTests.xcconfig" },
+      ],
+      "dependencies": [
+        "SnapshotTestsHostApp",
+      ],
+      "build-phases": [
+        "compile-sources",
+        "frameworks",
+        "resources",
+      ],
+      "package-product-members": [
+        {
+          "product-name": "Common",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "product-name": "Home",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "product-name": "Models",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "package": "SwiftUI-UDF",
+          "product-name": "UDF",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "package": "swiftui-snapshot-test-case",
+          "product-name": "SwiftUISnapshotTestCase",
+          "build-phase": { "build-phase": "frameworks" },
+        },
+      ],
+      "build-settings": {
+        "PRODUCT_BUNDLE_IDENTIFIER": "com.urlaunched.HomeSnapshotTests",
+        "TEST_HOST": "$(BUILT_PRODUCTS_DIR)/SnapshotTestsHostApp.app/SnapshotTestsHostApp",
+      },
+    }, {
+      "name": "ImageSnapshotTests",
+      "id": "5463D88E68943EA9B52A9E17",
+      "product": "Products/ImageSnapshotTests.xctest",
+      "product-type": "bundle.unit-test",
+      "specialized-configurations": [
+        { "name": "Debug", "file": "xcconfigs/SnapshotTests.xcconfig" },
+        { "name": "Release", "file": "xcconfigs/SnapshotTests.xcconfig" },
+      ],
+      "dependencies": [
+        "SnapshotTestsHostApp",
+      ],
+      "build-phases": [
+        "compile-sources",
+        "frameworks",
+        "resources",
+      ],
+      "package-product-members": [
+        {
+          "product-name": "Image",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "package": "SwiftUI-UDF",
+          "product-name": "UDF",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "package": "swiftui-snapshot-test-case",
+          "product-name": "SwiftUISnapshotTestCase",
+          "build-phase": { "build-phase": "frameworks" },
+        },
+      ],
+      "build-settings": {
+        "PRODUCT_BUNDLE_IDENTIFIER": "com.urlaunched.ImageSnapshotTests",
+        "TEST_HOST": "$(BUILT_PRODUCTS_DIR)/SnapshotTestsHostApp.app/SnapshotTestsHostApp",
+      },
+    }, {
+      "name": "ItemDetailsSnapshotTests",
+      "id": "3053F8827390B6F8679E11D9",
+      "product": "Products/ItemDetailsSnapshotTests.xctest",
+      "product-type": "bundle.unit-test",
+      "specialized-configurations": [
+        { "name": "Debug", "file": "xcconfigs/SnapshotTests.xcconfig" },
+        { "name": "Release", "file": "xcconfigs/SnapshotTests.xcconfig" },
+      ],
+      "dependencies": [
+        "SnapshotTestsHostApp",
+      ],
+      "build-phases": [
+        "compile-sources",
+        "frameworks",
+        "resources",
+      ],
+      "package-product-members": [
+        {
+          "product-name": "Common",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "product-name": "ItemDetails",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "product-name": "Models",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "package": "FlagKit",
+          "product-name": "FlagKit",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "package": "SwiftUI-UDF",
+          "product-name": "UDF",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "package": "swiftui-snapshot-test-case",
+          "product-name": "SwiftUISnapshotTestCase",
+          "build-phase": { "build-phase": "frameworks" },
+        },
+      ],
+      "build-settings": {
+        "PRODUCT_BUNDLE_IDENTIFIER": "com.urlaunched.ItemDetailsSnapshotTests",
+        "TEST_HOST": "$(BUILT_PRODUCTS_DIR)/SnapshotTestsHostApp.app/SnapshotTestsHostApp",
+      },
+    }, {
+      "name": "MyFavoritesSnapshotTests",
+      "id": "EE115AC0D53B9EE14F1C0EA4",
+      "product": "Products/MyFavoritesSnapshotTests.xctest",
+      "product-type": "bundle.unit-test",
+      "specialized-configurations": [
+        { "name": "Debug", "file": "xcconfigs/SnapshotTests.xcconfig" },
+        { "name": "Release", "file": "xcconfigs/SnapshotTests.xcconfig" },
+      ],
+      "dependencies": [
+        "SnapshotTestsHostApp",
+      ],
+      "build-phases": [
+        "compile-sources",
+        "frameworks",
+        "resources",
+      ],
+      "package-product-members": [
+        {
+          "product-name": "Common",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "product-name": "Models",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "product-name": "MyFavorites",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "package": "SwiftUI-UDF",
+          "product-name": "UDF",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "package": "swiftui-snapshot-test-case",
+          "product-name": "SwiftUISnapshotTestCase",
+          "build-phase": { "build-phase": "frameworks" },
+        },
+      ],
+      "build-settings": {
+        "PRODUCT_BUNDLE_IDENTIFIER": "com.urlaunched.MyFavoritesSnapshotTests",
+        "TEST_HOST": "$(BUILT_PRODUCTS_DIR)/SnapshotTestsHostApp.app/SnapshotTestsHostApp",
+      },
+    }, {
+      "name": "OnboardingSnapshotTests",
+      "id": "4AB387072B022D0F086BBCDF",
+      "product": "Products/OnboardingSnapshotTests.xctest",
+      "product-type": "bundle.unit-test",
+      "specialized-configurations": [
+        { "name": "Debug", "file": "xcconfigs/SnapshotTests.xcconfig" },
+        { "name": "Release", "file": "xcconfigs/SnapshotTests.xcconfig" },
+      ],
+      "dependencies": [
+        "SnapshotTestsHostApp",
+      ],
+      "build-phases": [
+        "compile-sources",
+        "frameworks",
+        "resources",
+      ],
+      "package-product-members": [
+        {
+          "product-name": "Onboarding",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "package": "SwiftUI-UDF",
+          "product-name": "UDF",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "package": "swiftui-snapshot-test-case",
+          "product-name": "SwiftUISnapshotTestCase",
+          "build-phase": { "build-phase": "frameworks" },
+        },
+      ],
+      "build-settings": {
+        "PRODUCT_BUNDLE_IDENTIFIER": "com.urlaunched.OnboardingSnapshotTests",
+        "TEST_HOST": "$(BUILT_PRODUCTS_DIR)/SnapshotTestsHostApp.app/SnapshotTestsHostApp",
+      },
+    }, {
+      "name": "ReviewsSnapshotTests",
+      "id": "E437A092D8F2B1C98453A432",
+      "product": "Products/ReviewsSnapshotTests.xctest",
+      "product-type": "bundle.unit-test",
+      "specialized-configurations": [
+        { "name": "Debug", "file": "xcconfigs/SnapshotTests.xcconfig" },
+        { "name": "Release", "file": "xcconfigs/SnapshotTests.xcconfig" },
+      ],
+      "dependencies": [
+        "SnapshotTestsHostApp",
+      ],
+      "build-phases": [
+        "compile-sources",
+        "frameworks",
+        "resources",
+      ],
+      "package-product-members": [
+        {
+          "product-name": "Common",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "product-name": "Models",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "product-name": "Reviews",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "package": "SwiftUI-UDF",
+          "product-name": "UDF",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "package": "swiftui-snapshot-test-case",
+          "product-name": "SwiftUISnapshotTestCase",
+          "build-phase": { "build-phase": "frameworks" },
+        },
+      ],
+      "build-settings": {
+        "PRODUCT_BUNDLE_IDENTIFIER": "com.urlaunched.ReviewsSnapshotTests",
+        "TEST_HOST": "$(BUILT_PRODUCTS_DIR)/SnapshotTestsHostApp.app/SnapshotTestsHostApp",
+      },
+    }, {
+      "name": "RootSnapshotTests",
+      "id": "F3CA3B147B5DFE1A41A95F37",
+      "product": "Products/RootSnapshotTests.xctest",
+      "product-type": "bundle.unit-test",
+      "specialized-configurations": [
+        { "name": "Debug", "file": "xcconfigs/SnapshotTests.xcconfig" },
+        { "name": "Release", "file": "xcconfigs/SnapshotTests.xcconfig" },
+      ],
+      "dependencies": [
+        "SnapshotTestsHostApp",
+      ],
+      "build-phases": [
+        "compile-sources",
+        "frameworks",
+        "resources",
+      ],
+      "package-product-members": [
+        {
+          "product-name": "Common",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "product-name": "Root",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "package": "SwiftUI-UDF",
+          "product-name": "UDF",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "package": "swiftui-snapshot-test-case",
+          "product-name": "SwiftUISnapshotTestCase",
+          "build-phase": { "build-phase": "frameworks" },
+        },
+      ],
+      "build-settings": {
+        "PRODUCT_BUNDLE_IDENTIFIER": "com.urlaunched.RootSnapshotTests",
+        "TEST_HOST": "$(BUILT_PRODUCTS_DIR)/SnapshotTestsHostApp.app/SnapshotTestsHostApp",
+      },
+    }, {
+      "name": "SearchSnapshotTests",
+      "id": "52CC62A9A482FC2E6E10DE36",
+      "product": "Products/SearchSnapshotTests.xctest",
+      "product-type": "bundle.unit-test",
+      "specialized-configurations": [
+        { "name": "Debug", "file": "xcconfigs/SnapshotTests.xcconfig" },
+        { "name": "Release", "file": "xcconfigs/SnapshotTests.xcconfig" },
+      ],
+      "dependencies": [
+        "SnapshotTestsHostApp",
+      ],
+      "build-phases": [
+        "compile-sources",
+        "frameworks",
+        "resources",
+      ],
+      "package-product-members": [
+        {
+          "product-name": "Common",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "product-name": "Models",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "product-name": "Search",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "package": "SwiftUI-UDF",
+          "product-name": "UDF",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "package": "swiftui-snapshot-test-case",
+          "product-name": "SwiftUISnapshotTestCase",
+          "build-phase": { "build-phase": "frameworks" },
+        },
+      ],
+      "build-settings": {
+        "PRODUCT_BUNDLE_IDENTIFIER": "com.urlaunched.SearchSnapshotTests",
+        "TEST_HOST": "$(BUILT_PRODUCTS_DIR)/SnapshotTestsHostApp.app/SnapshotTestsHostApp",
+      },
+    }, {
+      "name": "SettingsSnapshotTests",
+      "id": "51A4F63EC1F557D41B5D4352",
+      "product": "Products/SettingsSnapshotTests.xctest",
+      "product-type": "bundle.unit-test",
+      "specialized-configurations": [
+        { "name": "Debug", "file": "xcconfigs/SnapshotTests.xcconfig" },
+        { "name": "Release", "file": "xcconfigs/SnapshotTests.xcconfig" },
+      ],
+      "dependencies": [
+        "SnapshotTestsHostApp",
+      ],
+      "build-phases": [
+        "compile-sources",
+        "frameworks",
+        "resources",
+      ],
+      "package-product-members": [
+        {
+          "product-name": "Settings",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "package": "SwiftUI-UDF",
+          "product-name": "UDF",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "package": "swiftui-snapshot-test-case",
+          "product-name": "SwiftUISnapshotTestCase",
+          "build-phase": { "build-phase": "frameworks" },
+        },
+      ],
+      "build-settings": {
+        "PRODUCT_BUNDLE_IDENTIFIER": "com.urlaunched.SettingsSnapshotTests",
+        "TEST_HOST": "$(BUILT_PRODUCTS_DIR)/SnapshotTestsHostApp.app/SnapshotTestsHostApp",
+      },
+    },
+  ],
+  "last-upgrade": "26.0",
+  "last-swift-update": "26.0",
+}
