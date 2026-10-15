@@ -11,5 +11,6 @@ import NetworkConnectivity
 
 extension AppState: SearchFeature {
     typealias AllSearchItems = Flick.AllSearchItems
+    typealias SearchEnvironment = AppEnvironments
 }
 extension NetworkConnectivity.NetworkConnectivityForm: Search.NetworkConnectivityForm {}

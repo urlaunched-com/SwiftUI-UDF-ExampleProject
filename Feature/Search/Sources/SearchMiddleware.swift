@@ -6,7 +6,6 @@
 //  Copyright © 2023 urlaunched.com. All rights reserved.
 //
 
-import API
 import Foundation
 import UDF
 @preconcurrency import Models
@@ -16,7 +15,7 @@ enum Cancellation: Hashable {
 }
 
 final class SearchMiddleware<F: SearchFeature>: Middleware<F>, @unchecked Sendable {
-    var environment: Environment!
+    var environment: SearchEnvironment!
 
     func scope(for state: F) -> Scope {
         state.networkConnectivityForm
@@ -39,26 +38,17 @@ final class SearchMiddleware<F: SearchFeature>: Middleware<F>, @unchecked Sendab
             break
         }
     }
-
-    struct Environment {
-        var loadItems: (_ query: String, _ page: Int) async throws -> [SearchItem]
-    }
 }
 
-// MARK: - Environment buid methods
+// MARK: - Environment build methods
 
 extension SearchMiddleware {
-    static func buildLiveEnvironment(for _: some Store<F>) -> Environment {
-        Environment(
-            loadItems: { query, page in
-                try await SearchAPIClient.loadSearchItems(query: query, page: page)
-                    .map(\.asSearchItem)
-            }
-        )
+    static func buildLiveEnvironment(for _: some Store<F>) -> SearchEnvironment {
+        F.SearchEnvironment.searchEnvironment
     }
 
-    static func buildTestEnvironment(for _: some Store) -> Environment {
-        Environment(
+    static func buildTestEnvironment(for _: some Store) -> SearchEnvironment {
+        SearchEnvironment(
             loadItems: { _, _ in SearchItem.fakeItems() }
         )
     }

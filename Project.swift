@@ -384,7 +384,6 @@ func makeSectionDetails() -> Module {
         frameworkDependancies: [
             .external(name: "UDF"),
             .external(name: "SwiftUI-Kit"),
-            .target(name: "API"),
             .target(name: "Common"),
             .target(name: "Models"),
             .target(name: "DesignSystem"),
@@ -409,7 +408,6 @@ func makeSearchFeature() -> Module {
         frameworkDependancies: [
             .external(name: "UDF"),
             .external(name: "SwiftFoundation"),
-            .target(name: "API"),
             .target(name: "Common"),
             .target(name: "Models"),
             .target(name: "CustomViews"),

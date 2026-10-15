@@ -2,7 +2,7 @@
 //  SearchFeature.swift
 //  Flick
 //
-//  Created by Bogdan Petkanych on 21.07.2026.
+//  Created by Bogdan Petkanych on 15.10.2026.
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 import UDF
@@ -14,6 +14,7 @@ public protocol SearchFeature: AppReducer {
     associatedtype SearchNetworkConnectivityForm: Search.NetworkConnectivityForm
     associatedtype SearchAllSearchItems: Storage<SearchItem>
     associatedtype SearchRouting: Routing<SearchRoute>
+    associatedtype SearchEnvironment: SearchEnvironmentProviding
     
     var searchFeatureState: SearchFeatureState<Self, SearchRouting> { get }
     var networkConnectivityForm: SearchNetworkConnectivityForm { get }
