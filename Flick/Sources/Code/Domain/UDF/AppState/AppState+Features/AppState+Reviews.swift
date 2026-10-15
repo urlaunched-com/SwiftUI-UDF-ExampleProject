@@ -6,13 +6,11 @@
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 
-import Common
-import Models
 import NetworkConnectivity
 import Reviews
 
 extension AppState: ReviewsFeature {
-    typealias ReviewsRouting = Flick.ReviewsRouting
+    typealias AllReviews = Flick.AllReviews
 }
 
 extension NetworkConnectivity.NetworkConnectivityForm: Reviews.NetworkConnectivityForm {}

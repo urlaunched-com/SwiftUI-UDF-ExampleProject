@@ -11,6 +11,7 @@ import Common
 import Models
 import SwiftUI
 import SwiftUISnapshotTestCase
+import UDF
 import XCTest
 
 final class HomeComponentTests: BaseSnapshotTestCase {
@@ -31,7 +32,7 @@ final class HomeComponentTests: BaseSnapshotTestCase {
                     isMoviesRedacted: { _ in false },
                     isShowsRedacted: { _ in false },
                     dialogStatus: .constant(.dismissed),
-                    router: .init(routing: MockRouter<HomeRoute>())
+                    router: .init(routing: MockedRouting<HomeScreenRoute>())
                 )
             )
         )
@@ -49,7 +50,7 @@ final class HomeComponentTests: BaseSnapshotTestCase {
                     isMoviesRedacted: { _ in false },
                     isShowsRedacted: { _ in false },
                     dialogStatus: .constant(.dismissed),
-                    router: .init(routing: MockRouter<HomeRoute>())
+                    router: .init(routing: MockedRouting<HomeScreenRoute>())
                 )
             )
         )

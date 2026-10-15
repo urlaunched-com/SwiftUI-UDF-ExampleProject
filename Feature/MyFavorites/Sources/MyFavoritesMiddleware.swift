@@ -6,17 +6,30 @@
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 
-import API
 import Foundation
 import UDF
 @preconcurrency import Models
+
+public struct MyFavoritesEnvironment {
+    public var loadMovies: (_ page: Int) async throws -> [Movie]
+    public var loadShows: (_ page: Int) async throws -> [Show]
+
+    public init(
+        loadMovies: @escaping (_ page: Int) async throws -> [Movie],
+        loadShows: @escaping (_ page: Int) async throws -> [Show]
+    ) {
+        self.loadMovies = loadMovies
+        self.loadShows = loadShows
+    }
+}
 
 public enum MyFavoritesCancellation: Hashable, CaseIterable {
     case loadMovies
     case loadShows
 }
 
-public final class MyFavoritesMiddleware<F: MyFavoritesFeature>: Middleware<F>, @unchecked Sendable {
+final class MyFavoritesMiddleware<F: MyFavoritesFeature>: Middleware<F>, @unchecked Sendable {
+    public typealias Environment = MyFavoritesEnvironment
     public var environment: Environment!
 
     public func scope(for state: F) -> Scope {
@@ -52,31 +65,11 @@ public final class MyFavoritesMiddleware<F: MyFavoritesFeature>: Middleware<F>, 
             break
         }
     }
-
-    public struct Environment {
-        var loadMovies: (_ page: Int) async throws -> [Movie]
-        var loadShows: (_ page: Int) async throws -> [Show]
-    }
 }
 
-public extension MyFavoritesMiddleware {
+extension MyFavoritesMiddleware {
     static func buildLiveEnvironment(for _: some Store<F>) -> Environment {
-        Environment(
-            loadMovies: { page in
-                let movies = try await HomeAPIClient.loadMovies(
-                    section: MovieSection.nowPlaying.urlValue,
-                    page: page
-                )
-                return movies.map(\.asMovie)
-            },
-            loadShows: { page in
-                let shows = try await HomeAPIClient.loadShows(
-                    section: ShowSection.popular.urlValue,
-                    page: page
-                )
-                return shows.map(\.asShow)
-            }
-        )
+        F.Environments.myFavorites
     }
 
     static func buildTestEnvironment(for _: some Store) -> Environment {

@@ -10,32 +10,26 @@ import Common
 import SwiftUI
 import UDF
 
+/// What the app shell needs from the app that hosts it.
 public protocol RootFeature: AppReducer {
-    associatedtype TabBarForm: RootType.TabBarForm
-    associatedtype RootFeatureRouting: Routing<RootRoute>
+    associatedtype RootRouting: Routing<RootRoute>
 
-    var rootFeatureState: RootFeatureState<Self, RootFeatureRouting> { get }
-    var rootForm: RootForm { get }
-    var tabBarForm: TabBarForm { get }
+    var rootFeatureState: RootFeatureState<Self, RootRouting> { get }
 }
 
+/// The state of the app shell: onboarding presentation, the selected tab and every tab's navigation stack.
+///
+/// The shell shows the flows the app puts in its tabs, so every tab's content is an external route.
 public struct RootFeatureState<AppState: RootFeature, FeatureRouting: Routing<RootRoute>>: FeatureState {
     public var rootForm = RootForm()
-    
+    public var tabBarForm = TabBarForm()
+
     public init() {}
-    
+
     public static func entryPoint(input: Void = ()) -> some View {
         RootContainer<AppState>()
     }
-}
 
-public enum RootType {
-    public protocol TabBarForm: UDF.Form {
-        var selectedTab: TabBarItem { get set }
-        var homeNavigationPath: NavigationPath { get set }
-        var searchNavigationPath: NavigationPath { get set }
-        var randomizerNavigationPath: NavigationPath { get set }
-        var favoritesNavigationPath: NavigationPath { get set }
-        var profileNavigationPath: NavigationPath { get set }
+    public static func registerMiddlewares(in store: any Store<AppState>) -> [MiddlewareWrapper<AppState>] {
     }
 }

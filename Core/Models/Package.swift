@@ -1,0 +1,36 @@
+// swift-tools-version: 6.2
+
+import PackageDescription
+
+let package = Package(
+    name: "Models",
+    platforms: [
+        .iOS(.v17),
+    ],
+    products: [
+        .library(name: "Models", targets: ["Models"]),
+    ],
+    dependencies: [
+        .package(path: "../API"),
+        .package(path: "../Common"),
+        .package(path: "../DesignSystem"),
+        .package(path: "../Localizations"),
+        .package(url: "https://github.com/Maks-Jago/SwiftFoundation", from: "0.4.1"),
+        .package(url: "https://github.com/Maks-Jago/SwiftUI-UDF", branch: "2.0.0"),
+    ],
+    targets: [
+        .target(
+            name: "Models",
+            dependencies: [
+                .product(name: "API", package: "API"),
+                .product(name: "Common", package: "Common"),
+                .product(name: "DesignSystem", package: "DesignSystem"),
+                .product(name: "Localizations", package: "Localizations"),
+                .product(name: "SwiftFoundation", package: "SwiftFoundation"),
+                .product(name: "UDF", package: "SwiftUI-UDF"),
+            ],
+            path: "Sources"
+        ),
+    ],
+    swiftLanguageModes: [.v5]
+)

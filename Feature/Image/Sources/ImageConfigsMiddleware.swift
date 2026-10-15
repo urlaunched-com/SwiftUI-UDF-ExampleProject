@@ -6,12 +6,22 @@
 //  Copyright © 2023 urlaunched.com. All rights reserved.
 //
 
-import API
 import Foundation
 import UDF
 import Models
 
-public final class ImageConfigsMiddleware<F: ImageFeature>: Middleware<F>, @unchecked Sendable {
+public struct ImageConfigsEnvironment {
+    public var loadImageConfigs: () async throws -> ImageConfigs
+
+    public init(
+        loadImageConfigs: @escaping () async throws -> ImageConfigs
+    ) {
+        self.loadImageConfigs = loadImageConfigs
+    }
+}
+
+final class ImageConfigsMiddleware<F: ImageFeature>: Middleware<F>, @unchecked Sendable {
+    public typealias Environment = ImageConfigsEnvironment
     public var environment: Environment!
 
     public func scope(for state: F) -> Scope {
@@ -44,22 +54,14 @@ public final class ImageConfigsMiddleware<F: ImageFeature>: Middleware<F>, @unch
         }
     }
 
-    public struct Environment {
-        var loadImageConfigs: () async throws -> ImageConfigs
-    }
-
     public enum Cancellation: Hashable {
         case loadImageConfigs
     }
 }
 
-public extension ImageConfigsMiddleware {
+extension ImageConfigsMiddleware {
     static func buildLiveEnvironment(for _: some Store<F>) -> Environment {
-        Environment(
-            loadImageConfigs: {
-                try await ImageConfigsAPIClient.loadConfigs().asImageConfigs
-            }
-        )
+        F.Environments.imageConfigs
     }
 
     static func buildTestEnvironment(for _: some Store) -> Environment {

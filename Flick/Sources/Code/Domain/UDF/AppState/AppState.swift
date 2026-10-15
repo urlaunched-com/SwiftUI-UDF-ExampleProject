@@ -8,30 +8,22 @@
 import Foundation
 import UDF
 import Common
-import SignIn
-import ReviewDetails
-import Reviews
-import ReviewsSection
-import Search
-import MyFavorites
-import Cast
-import CastSection
-import Image
+import DataLayer
+import Auth
 import Home
-import NetworkConnectivity
-import Root
-import TabBar
-import Recommendations
-import RecommendationsSection
-import SectionDetails
+import Image
 import ItemDetails
-import HomeSection
-import MainHomeSection
+import MyFavorites
+import NetworkConnectivity
 import Onboarding
+import Reviews
+import Root
+import Search
 import Settings
-import WhereToWatch
 
 struct AppState: AppReducer {
+    typealias Environments = FlickEnvironments
+
     // MARK: Storages
     var allMovies = AllMovies()
     var allShows = AllShows()
@@ -39,58 +31,31 @@ struct AppState: AppReducer {
     var allSearchItems = AllSearchItems()
     var allCast = AllCast()
     var allReviews = AllReviews()
-    
+
     // MARK: - FeatureStates
-    var reviewsFeatureState = ReviewsFeatureState<AppState, ReviewsRouting>()
-    var reviewDetailsFeatureState = ReviewDetailsFeatureState<AppState, ReviewDetailsRouting>()
-    var castFeatureState = CastFeatureState<AppState, CastRouting>()
-    var castSectionFeatureState = CastSectionFeatureState<AppState, CastSectionRouting>()
-    var homeFeatureState = HomeFeatureState<AppState, HomeRouting>()
-    var homeSectionFeatureState = HomeSectionFeatureState<AppState, HomeSectionRouting>()
-    var imageFeatureState = ImageFeatureState<AppState>()
-    var myFavoritesFeatureState = MyFavoritesFeatureState<AppState, MyFavoritesRouting>()
-    var itemDetailsFeatureState = ItemDetailsFeatureState<AppState, ItemDetailsRouting>()
-    var mainHomeSectionFeatureState = MainHomeSectionFeatureState<AppState, MainHomeSectionRouting>()
-    var networkConnectivityFeatureState = NetworkConnectivityFeatureState<AppState>()
-    var onboardingFeatureState = OnboardingFeatureState<AppState>()
-    var recommendationsFeatureState = RecommendationsFeatureState<AppState, RecommendationsRouting>()
-    var recommendationsSectionFeatureState = RecommendationsSectionFeatureState<AppState, RecommendationsSectionRouting>()
-    var reviewsSectionFeatureState = ReviewsSectionFeatureState<AppState, ReviewsSectionRouting>()
     var rootFeatureState = RootFeatureState<AppState, RootRouting>()
-    var searchFeatureState = SearchFeatureState<AppState, SearchRouting>()
-    var sectionDetailsFeatureState = SectionDetailsFeatureState<AppState, SectionDetailsRouting>()
-    var settingsFeatureState = SettingsFeatureState<AppState>()
+    var onboardingFeatureState = OnboardingFeatureState<AppState>()
     var signInFeatureState = SignInFeatureState<AppState, SignInRouting>()
-    var tabBarFeatureState = TabBarFeatureState<AppState>()
-    var whereToWatchFeatureState = WhereToWatchFeatureState<AppState, WhereToWatchRouting>()
+    var homeFeatureState = HomeFeatureState<AppState, HomeRouting>()
+    var itemDetailsFeatureState = ItemDetailsFeatureState<AppState, ItemDetailsRouting>()
+    var reviewsFeatureState = ReviewsFeatureState<AppState, ReviewsRouting>()
+    var searchFeatureState = SearchFeatureState<AppState, SearchRouting>()
+    var myFavoritesFeatureState = MyFavoritesFeatureState<AppState, MyFavoritesRouting>()
+    var settingsFeatureState = SettingsFeatureState<AppState>()
+    var imageFeatureState = ImageFeatureState<AppState>()
+    var networkConnectivityFeatureState = NetworkConnectivityFeatureState<AppState>()
 }
 
-//MARK: - Access to feature state form/flow, act like bridge to external module
+// MARK: - Bridges to state that one feature owns and another one requires
 extension AppState {
     var homeForm: Home.HomeForm {
         homeFeatureState.homeForm
     }
-    
-    var homeFlow: Home.HomeFlow {
-        homeFeatureState.homeFlow
-    }
-    
+
     var rootForm: Root.RootForm {
         rootFeatureState.rootForm
     }
-    
-    var tabBarForm: TabBar.TabBarForm {
-        tabBarFeatureState.tabBarForm
-    }
-    
-    var movieGenresFlow: MovieGenresFlow {
-        homeFeatureState.movieGenresFlow
-    }
-    
-    var showGenresFlow: ShowGenresFlow {
-        homeFeatureState.showGenresFlow
-    }
-    
+
     var networkConnectivityForm: NetworkConnectivity.NetworkConnectivityForm {
         networkConnectivityFeatureState.networkConnectivityForm
     }

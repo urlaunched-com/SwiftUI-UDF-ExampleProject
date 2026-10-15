@@ -8,25 +8,18 @@
 
 import SwiftUI
 import UDF
-import Common
-import Models
 import Home
-import HomeSection
-import MainHomeSection
+import ItemDetails
 
 struct HomeRouting: Routing {
-    typealias Route = HomeRoute
-
-    @ViewBuilder func view(for route: Route) -> some View {
+    @ViewBuilder func view(for route: HomeRoute) -> some View {
         switch route {
-        case let .mainMovieSection(section, items):
-            AppRouter.mainHomeSection(section: section, items: items)
-        case let .mainShowSection(section, items):
-            AppRouter.mainHomeSection(section: section, items: items)
-        case let .movieSection(section, items):
-            AppRouter.homeSection(section: section, items: items)
-        case let .showSection(section, items):
-            AppRouter.homeSection(section: section, items: items)
+        case let .itemDetails(item):
+            if let target = ItemDetailsTarget(item: item) {
+                AppRouter.itemDetails(id: target)
+            }
+        case let .imageContainer(path, size, type, isLoaderPresented):
+            AppRouter.image(size: size, path: path, type: type, isLoaderPresented: isLoaderPresented)
         }
     }
 }

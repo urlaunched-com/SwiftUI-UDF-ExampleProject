@@ -18,11 +18,14 @@ public protocol OnboardingFeature: AppReducer {
 }
 
 public struct OnboardingFeatureState<AppState: OnboardingFeature>: FeatureState {
-    public typealias FeatureRouting = EmptyRouter
+    public typealias FeatureRouting = EmptyRouting
     public init() {}
     
     public static func entryPoint(input: Void = ()) -> some View {
         OnboardingContainer<AppState>()
+    }
+
+    public static func registerMiddlewares(in store: any Store<AppState>) -> [MiddlewareWrapper<AppState>] {
     }
 }
 

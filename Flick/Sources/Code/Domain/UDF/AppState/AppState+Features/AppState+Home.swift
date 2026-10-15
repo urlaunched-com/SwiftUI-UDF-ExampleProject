@@ -10,13 +10,10 @@ import Home
 import NetworkConnectivity
 
 extension AppState: HomeFeature {
-    typealias HomeForm = Home.HomeForm
-    typealias HomeFlow = Home.HomeFlow
-    typealias MovieGenresFlow = Home.MovieGenresFlow
-    typealias ShowGenresFlow = Home.ShowGenresFlow
     typealias NetworkConnectivityForm = NetworkConnectivity.NetworkConnectivityForm
     typealias AllMovies = Flick.AllMovies
     typealias AllShows = Flick.AllShows
+    typealias AllGenres = Flick.AllGenres
 }
 
 extension NetworkConnectivity.NetworkConnectivityForm: HomeFeatureTypes.NetworkConnectivityForm {}

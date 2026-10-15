@@ -11,6 +11,7 @@ import Common
 import SwiftUI
 
 public protocol ImageFeature: AppReducer {
+    associatedtype Environments: ImageEnvironmentProviding
     associatedtype NetworkConnectivityForm: Image.NetworkConnectivityForm
 
     var networkConnectivityForm: NetworkConnectivityForm { get }
@@ -18,8 +19,14 @@ public protocol ImageFeature: AppReducer {
     var imageFeatureState: ImageFeatureState<Self> { get }
 }
 
+/// The live environments the Image flow's middleware needs. The host supplies them, so the flow
+/// never depends on the API layer that builds them.
+public protocol ImageEnvironmentProviding {
+    static var imageConfigs: ImageConfigsEnvironment { get }
+}
+
 public struct ImageFeatureState<AppState: ImageFeature>: FeatureState {
-    public typealias FeatureRouting = EmptyRouter
+    public typealias FeatureRouting = EmptyRouting
     
     var imageConfigsForm = ImageConfigsForm()
     var imageConfigsFlow = ImageConfigsFlow()
@@ -42,6 +49,10 @@ public struct ImageFeatureState<AppState: ImageFeature>: FeatureState {
     
     public static func entryPoint(input: Input) -> some View {
         ImageContainer<AppState>(size: input.size, path: input.path, type: input.type, isLoaderPresented: input.isLoaderPresented)
+    }
+
+    public static func registerMiddlewares(in store: any Store<AppState>) -> [MiddlewareWrapper<AppState>] {
+        ImageConfigsMiddleware<AppState>.self
     }
 }
 

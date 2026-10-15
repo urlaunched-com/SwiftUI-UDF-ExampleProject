@@ -14,12 +14,16 @@ public protocol NetworkConnectivityFeature: AppReducer {
 }
 
 public struct NetworkConnectivityFeatureState<AppState: NetworkConnectivityFeature>: FeatureState {
-    public typealias FeatureRouting = EmptyRouter
+    public typealias FeatureRouting = EmptyRouting
     public var networkConnectivityForm = NetworkConnectivityForm()
     
     public init() {}
     
     public static func entryPoint(input: Void = ()) -> some View {
         EmptyView()
+    }
+
+    public static func registerMiddlewares(in store: any Store<AppState>) -> [MiddlewareWrapper<AppState>] {
+        NetworkConnectivityMiddleware<AppState>.self
     }
 }

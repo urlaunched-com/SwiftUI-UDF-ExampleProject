@@ -1,0 +1,2154 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0783FE6EF5F570BD7D1E10F2 = {
+			isa = PBXBuildFile;
+			productRef = F61446D3D14433912343303D;
+		};
+		07EA0863F2A69DBAF098141C = {
+			isa = PBXBuildFile;
+			productRef = E75B0D4A216F6D7ECDCDCECC;
+		};
+		0CDE1B1AA6258B6FA420C302 = {
+			isa = PBXBuildFile;
+			productRef = 23D7C316E0679C30DBA375FB;
+		};
+		0D3C14D5FB6972E1C5211A83 = {
+			isa = PBXBuildFile;
+			productRef = F26A0FCB0D0B98D583D450E9;
+		};
+		0DBBE766487E780EA7BE2687 = {
+			isa = PBXBuildFile;
+			productRef = AC7E71D4B43F9057FD934D2C;
+		};
+		0E6567937B0C25ABEEA1920E = {
+			isa = PBXBuildFile;
+			productRef = 9E4B49D7C6E43DA03D2334E2;
+		};
+		10D10496066932697A612E33 = {
+			isa = PBXBuildFile;
+			productRef = 86E617FA4696397CF2F6931C;
+		};
+		19A8E4D428127FD06602D1D8 = {
+			isa = PBXBuildFile;
+			productRef = 8CAAB890E685E6D2BC2944F4;
+		};
+		206BCE8D90854954CF02AD3A = {
+			isa = PBXBuildFile;
+			productRef = 9710049879556CC2B626456D;
+		};
+		21DB5ECB804DBEA4090FE9F6 = {
+			isa = PBXBuildFile;
+			productRef = A380A128476D28B6075597DC;
+		};
+		3C5B5943123E24B50EE0FAFE = {
+			isa = PBXBuildFile;
+			productRef = 75466CD49F50302B7BD2EA0F;
+		};
+		3D959BCDE01FD823CAD0094F = {
+			isa = PBXBuildFile;
+			productRef = 182644C7BDF650C36844DB05;
+		};
+		4421D2F1644894CDC606B956 = {
+			isa = PBXBuildFile;
+			productRef = D95D16A483311E5F28AABD11;
+		};
+		47A6D6C4343B2CD82981C837 = {
+			isa = PBXBuildFile;
+			productRef = CE997BC88CFC92DC0F0A3439;
+		};
+		56E43BB0D07441DF75EA9A0F = {
+			isa = PBXBuildFile;
+			productRef = C9F31C9E7ED0FA3DA3426D87;
+		};
+		58690EBD2707430F61FE3713 = {
+			isa = PBXBuildFile;
+			productRef = FC39704E6BEF6C8AB516839A;
+		};
+		5D76E4E46B0C7AC15A277666 = {
+			isa = PBXBuildFile;
+			productRef = 623619ADEC205AFB244C58F1;
+		};
+		5F5784055DD0646104693950 = {
+			isa = PBXBuildFile;
+			productRef = 4F9E63265C991BED275C6325;
+		};
+		60A95F34F6E75C8E7796C95F = {
+			isa = PBXBuildFile;
+			productRef = 69AE59F8A2520803B22C9111;
+		};
+		6C42CBA06EAF4CD0598503A9 = {
+			isa = PBXBuildFile;
+			productRef = D7088938092E860F486F3B72;
+		};
+		6E6ADC2076B3F8A476AF3CE0 = {
+			isa = PBXBuildFile;
+			productRef = 545850B156EB8941FBD64AD2;
+		};
+		6F709E0CB1B28C2B3BE77583 = {
+			isa = PBXBuildFile;
+			productRef = 4978E532B6D6EED144038DB0;
+		};
+		6FCB1371A27B2FBD888C1F76 = {
+			isa = PBXBuildFile;
+			productRef = 468FB834B17DD3A6DE184230;
+		};
+		718CE281D7DAFE9EB7EF7D51 = {
+			isa = PBXBuildFile;
+			productRef = B2AF3EB26DBCFB55AB59F747;
+		};
+		71B9EDBAFBBF74DEA9B2A182 = {
+			isa = PBXBuildFile;
+			productRef = CBA7CB0191DA32083688CB1E;
+		};
+		72D17F90C02C34F6146F8E54 = {
+			isa = PBXBuildFile;
+			productRef = 826F54CDA47010814F96DB3E;
+		};
+		756E9455188024D796FDDDC2 = {
+			isa = PBXBuildFile;
+			productRef = C8860C78908F83F33FF7C396;
+		};
+		8529435A0C2217C7B68598E7 = {
+			isa = PBXBuildFile;
+			productRef = 4F7F9C6FFCE42BCB621D1419;
+		};
+		86DFF8A23373A206ED35D120 = {
+			isa = PBXBuildFile;
+			productRef = 3DCC0B6FA8CAFCE79A67F512;
+		};
+		8740B3EBA01D7958FB66012A = {
+			isa = PBXBuildFile;
+			productRef = C65203379DCC082EA5B07C4B;
+		};
+		8AF1FFE276A9EB53A477634E = {
+			isa = PBXBuildFile;
+			productRef = 3972842960712AFE758433AF;
+		};
+		8B2C31BDD0B5B1F28CA8A403 = {
+			isa = PBXBuildFile;
+			productRef = 901A175EBDCD0467D4C108B2;
+		};
+		99E86ED262AE33CD178CDFC8 = {
+			isa = PBXBuildFile;
+			productRef = A1F477BF30E601B31A4DDAE0;
+		};
+		9D12C59398C746FFA045E716 = {
+			isa = PBXBuildFile;
+			productRef = DE08518B1EC8C3A9A7D7FD7D;
+		};
+		9DC647907A71E7096BB42742 = {
+			isa = PBXBuildFile;
+			productRef = 8045ADFED866A152D593DDC3;
+		};
+		A77F90B2DDF7BA5D611C3B99 = {
+			isa = PBXBuildFile;
+			productRef = 7F4F7BCA71BEC46D0DE70F8F;
+		};
+		AAC0576A0303A739EA850379 = {
+			isa = PBXBuildFile;
+			productRef = 2EB0D67A0A9041264052E0F9;
+		};
+		AB1ECEC7625F1BB52E60A746 = {
+			isa = PBXBuildFile;
+			productRef = 2192ADAEFF6459EF95141390;
+		};
+		ACB1584225B9FE34EBFC59F8 = {
+			isa = PBXBuildFile;
+			productRef = 70E76EC236F71B2E22110778;
+		};
+		AED23C1F3935EDEC030EEA72 = {
+			isa = PBXBuildFile;
+			productRef = 3B82B17C4492AACB4B9817B5;
+		};
+		B12F913446C5384549FCEBCC = {
+			isa = PBXBuildFile;
+			productRef = CC29903DE0416FA03383F3B9;
+		};
+		B1452488AA049669E648ED0D = {
+			isa = PBXBuildFile;
+			productRef = D2B76889B823AAD426F64FFA;
+		};
+		B259077D0B643645F3D01800 = {
+			isa = PBXBuildFile;
+			productRef = B207C310D4588105D82FD4BD;
+		};
+		BD2BF3B761D442BE06E4229D = {
+			isa = PBXBuildFile;
+			productRef = A22C3881FB4CE3723ACC7590;
+		};
+		C2F68C6CA53A3FB2C9A5CA9A = {
+			isa = PBXBuildFile;
+			productRef = 702A86063A80235F6E6D4224;
+		};
+		C324083241AC4D8492B8D65E = {
+			isa = PBXBuildFile;
+			productRef = CB3C77F06F46F337B8CE323E;
+		};
+		C341BFC71C076060CACBBAE6 = {
+			isa = PBXBuildFile;
+			productRef = C8A4ACAB5E4151086513B4BA;
+		};
+		D2A30EF53B9679C4117126CD = {
+			isa = PBXBuildFile;
+			productRef = 93C3D1638787807969E5351C;
+		};
+		DD9B43C7A3F9201680C00F37 = {
+			isa = PBXBuildFile;
+			productRef = 1659DF9D0BB1F9F14E9488AF;
+		};
+		E235AB83DC5327638925CD78 = {
+			isa = PBXBuildFile;
+			productRef = A5384DE57A98FB8368854206;
+		};
+		E301BD28C1E03810E692BEC5 = {
+			isa = PBXBuildFile;
+			productRef = 031648EDD7264E82BE989D36;
+		};
+		E7944FE6297CC7FA64B533D4 = {
+			isa = PBXBuildFile;
+			productRef = 9BFCDB7BEB3B347B96A1C321;
+		};
+		E90EA9BDD1DB4DF28E34D58C = {
+			isa = PBXBuildFile;
+			productRef = C672808723441955D4898EE5;
+		};
+		E92C3B1A716332658112AC9E = {
+			isa = PBXBuildFile;
+			productRef = 86149B0AE0CB667A1E6FDF9C;
+		};
+		F1A251701428AD2D574BF38F = {
+			isa = PBXBuildFile;
+			productRef = 4382AC1913A293B0972249C9;
+		};
+		F63FEB045179E053C967697A = {
+			isa = PBXBuildFile;
+			productRef = 016DE932710C213477E48872;
+		};
+		F8133CDBB282CFC7C8F9F2F3 = {
+			isa = PBXBuildFile;
+			productRef = 28880CE8A0BD082CBD2A7BC9;
+		};
+		F97C110F4C94560713FD682A = {
+			isa = PBXBuildFile;
+			productRef = BDB7A3BADCB684143B268402;
+		};
+		FFD8CE7FAAE08AC1008D0791 = {
+			isa = PBXBuildFile;
+			productRef = F5AC752E2CB55E63D1A1725A;
+		};
+		FFF8CCD2C4D91DE3D3FAC818 = {
+			isa = PBXBuildFile;
+			productRef = AA2C75700D7ACFBE7FF8504D;
+		};
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1817BD81BD3904CE596608AB = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 46F86FAA6BBF9AC94A7E4595;
+			proxyType = 1;
+			remoteGlobalIDString = 9F775B8C741F8BD11BF47D76;
+			remoteInfo = SnapshotTestsHostApp;
+		};
+		2404506C2D103ADE8B8CD986 = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 46F86FAA6BBF9AC94A7E4595;
+			proxyType = 1;
+			remoteGlobalIDString = 9F775B8C741F8BD11BF47D76;
+			remoteInfo = SnapshotTestsHostApp;
+		};
+		4182D0A80ECFC5AF8AFF8A99 = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 46F86FAA6BBF9AC94A7E4595;
+			proxyType = 1;
+			remoteGlobalIDString = 9F775B8C741F8BD11BF47D76;
+			remoteInfo = SnapshotTestsHostApp;
+		};
+		6C912294263C5C31525D6D9E = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 46F86FAA6BBF9AC94A7E4595;
+			proxyType = 1;
+			remoteGlobalIDString = 9F775B8C741F8BD11BF47D76;
+			remoteInfo = SnapshotTestsHostApp;
+		};
+		AE60796E1DD69E811BFACC49 = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 46F86FAA6BBF9AC94A7E4595;
+			proxyType = 1;
+			remoteGlobalIDString = 9F775B8C741F8BD11BF47D76;
+			remoteInfo = SnapshotTestsHostApp;
+		};
+		B4E1BEBB3381B6D240BE7074 = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 46F86FAA6BBF9AC94A7E4595;
+			proxyType = 1;
+			remoteGlobalIDString = 9F775B8C741F8BD11BF47D76;
+			remoteInfo = SnapshotTestsHostApp;
+		};
+		B54E4F33B3DC7D15B6DA55F0 = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 46F86FAA6BBF9AC94A7E4595;
+			proxyType = 1;
+			remoteGlobalIDString = 9F775B8C741F8BD11BF47D76;
+			remoteInfo = SnapshotTestsHostApp;
+		};
+		C6057D1EA5B9CED4C4280DFC = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 46F86FAA6BBF9AC94A7E4595;
+			proxyType = 1;
+			remoteGlobalIDString = 9F775B8C741F8BD11BF47D76;
+			remoteInfo = SnapshotTestsHostApp;
+		};
+		ED75D9FF786E183CB2ED1AF4 = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 46F86FAA6BBF9AC94A7E4595;
+			proxyType = 1;
+			remoteGlobalIDString = 9F775B8C741F8BD11BF47D76;
+			remoteInfo = SnapshotTestsHostApp;
+		};
+		F93F12F6385733B9655BB915 = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 46F86FAA6BBF9AC94A7E4595;
+			proxyType = 1;
+			remoteGlobalIDString = 9F775B8C741F8BD11BF47D76;
+			remoteInfo = SnapshotTestsHostApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0434E3C36D190249AE568F97 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper;
+			path = MyFavorites;
+			sourceTree = "<group>";
+		};
+		080419150A100CD75C37E7A2 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper;
+			path = Search;
+			sourceTree = "<group>";
+		};
+		082301A6E4A71FCED8C85713 = {
+			isa = PBXFileReference;
+			explicitFileType = wrapper.cfbundle;
+			includeInIndex = 0;
+			path = ItemDetailsSnapshotTests.xctest;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		10EB8FDD8B7A075A5BF20902 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper;
+			path = API;
+			sourceTree = "<group>";
+		};
+		284488DE383FD729F7D91E07 = {
+			isa = PBXFileReference;
+			explicitFileType = wrapper.cfbundle;
+			includeInIndex = 0;
+			path = SearchSnapshotTests.xctest;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2F9DAFD3857687DA776255C9 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper;
+			path = Root;
+			sourceTree = "<group>";
+		};
+		3114F18F367571504BBCF030 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper;
+			path = Reviews;
+			sourceTree = "<group>";
+		};
+		3DC5FA6BFC1494D49FE8CC33 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper;
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3F4F7B931391ACF0C8842DE1 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper;
+			path = ItemDetails;
+			sourceTree = "<group>";
+		};
+		413B64B8186F6D72D0B932D6 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper;
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		43B9657BC06BDBF7BC146485 = {
+			isa = PBXFileReference;
+			explicitFileType = wrapper.cfbundle;
+			includeInIndex = 0;
+			path = SettingsSnapshotTests.xctest;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5E19E3E60CD12699F601A112 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper;
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		6493F20648288B6FB39236DB = {
+			isa = PBXFileReference;
+			lastKnownFileType = text.xcconfig;
+			path = xcconfigs/SnapshotTests.xcconfig;
+			sourceTree = "<group>";
+		};
+		650B36DF7E54EB28DB1F1A28 = {
+			isa = PBXFileReference;
+			explicitFileType = wrapper.cfbundle;
+			includeInIndex = 0;
+			path = HomeSnapshotTests.xctest;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		6B2C36EE270B49DEB0F99D1F = {
+			isa = PBXFileReference;
+			explicitFileType = wrapper.application;
+			includeInIndex = 0;
+			path = SnapshotTestsHostApp.app;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		701D8EA8676FE9AE1A72C082 = {
+			isa = PBXFileReference;
+			explicitFileType = wrapper.cfbundle;
+			includeInIndex = 0;
+			path = MyFavoritesSnapshotTests.xctest;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7E79A10BAFDD397682B57B68 = {
+			isa = PBXFileReference;
+			explicitFileType = wrapper.cfbundle;
+			includeInIndex = 0;
+			path = OnboardingSnapshotTests.xctest;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7EBC645896B8CB18215F5303 = {
+			isa = PBXFileReference;
+			explicitFileType = wrapper.cfbundle;
+			includeInIndex = 0;
+			path = ImageSnapshotTests.xctest;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		82CA38C73D93C78D2024DA56 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper;
+			path = Localizations;
+			sourceTree = "<group>";
+		};
+		8B3246CB69211004AEBDBF06 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper;
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		985F30880BF8B05589A0F5EF = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper;
+			path = Common;
+			sourceTree = "<group>";
+		};
+		99B602E531A8DB24EB33123B = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper;
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		A4CEF549B0FFAB3E784D5C32 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper;
+			path = Image;
+			sourceTree = "<group>";
+		};
+		A5F63264BB346FF8AF34064A = {
+			isa = PBXFileReference;
+			explicitFileType = wrapper.cfbundle;
+			includeInIndex = 0;
+			path = AuthSnapshotTests.xctest;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B58385D84D44E9641C28EA44 = {
+			isa = PBXFileReference;
+			explicitFileType = wrapper.cfbundle;
+			includeInIndex = 0;
+			path = RootSnapshotTests.xctest;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BDCE2161C620C914321E2EC4 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper;
+			path = Home;
+			sourceTree = "<group>";
+		};
+		C432EAA18CA05B20A522A21E = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper;
+			path = DataLayer;
+			sourceTree = "<group>";
+		};
+		C7D1AFC456735862054DEDF3 = {
+			isa = PBXFileReference;
+			lastKnownFileType = text.xcconfig;
+			path = "xcconfigs/Flick-Project.xcconfig";
+			sourceTree = "<group>";
+		};
+		C8DC823CF5FCB8957014EA97 = {
+			isa = PBXFileReference;
+			lastKnownFileType = text.xcconfig;
+			path = xcconfigs/Flick.xcconfig;
+			sourceTree = "<group>";
+		};
+		D611EE345987BB4EBE8CCC43 = {
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.xml;
+			path = Info.plist;
+			sourceTree = "<group>";
+		};
+		D89D96E54ACC137C195AE872 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper;
+			path = DesignSystem;
+			sourceTree = "<group>";
+		};
+		E10011D5182D1700EEAB52E8 = {
+			isa = PBXFileReference;
+			explicitFileType = wrapper.cfbundle;
+			includeInIndex = 0;
+			path = ReviewsSnapshotTests.xctest;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		EA60FED804941BE5E01F3CCC = {
+			isa = PBXFileReference;
+			explicitFileType = wrapper.application;
+			includeInIndex = 0;
+			path = Flick.app;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FB2B6A584B96F5B7A6C5A0E2 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper;
+			path = NetworkConnectivity;
+			sourceTree = "<group>";
+		};
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		1F6D8A393D681CAE93557635 = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			explicitFileTypes = {};
+			explicitFolders = ();
+			path = Feature/MyFavorites/Snapshots;
+			sourceTree = "<group>";
+			name = MyFavoritesSnapshots;
+		};
+		263020A042B6ED81D1EBA3CA = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			explicitFileTypes = {};
+			explicitFolders = ();
+			path = SnapshotTest;
+			sourceTree = "<group>";
+		};
+		2F34365CAF6F033A38FB1553 = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			explicitFileTypes = {};
+			explicitFolders = ();
+			path = SnapshotTestsHostApp;
+			sourceTree = "<group>";
+		};
+		34C2BA08595E6A1C36772757 = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			explicitFileTypes = {};
+			explicitFolders = ();
+			path = Flick;
+			sourceTree = "<group>";
+		};
+		357756222D0478D90A8AE826 = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			explicitFileTypes = {};
+			explicitFolders = ();
+			path = Feature/Image/Snapshots;
+			sourceTree = "<group>";
+			name = ImageSnapshots;
+		};
+		5908668730769B2EC61E3C3B = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			explicitFileTypes = {};
+			explicitFolders = ();
+			path = Feature/Home/Snapshots;
+			sourceTree = "<group>";
+			name = HomeSnapshots;
+		};
+		6D8C970CEA3A1B280683D8C1 = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			explicitFileTypes = {};
+			explicitFolders = ();
+			path = Feature/Root/Snapshots;
+			sourceTree = "<group>";
+			name = RootSnapshots;
+		};
+		9B37A8F4109E2F56ABD358F2 = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			explicitFileTypes = {};
+			explicitFolders = ();
+			path = Feature/Reviews/Snapshots;
+			sourceTree = "<group>";
+			name = ReviewsSnapshots;
+		};
+		AD391B2929D0AE4BE2E146BE = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			explicitFileTypes = {};
+			explicitFolders = ();
+			path = Feature/Settings/Snapshots;
+			sourceTree = "<group>";
+			name = SettingsSnapshots;
+		};
+		B1F5C08362242CDE350CEBEB = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			explicitFileTypes = {};
+			explicitFolders = ();
+			path = Feature/Search/Snapshots;
+			sourceTree = "<group>";
+			name = SearchSnapshots;
+		};
+		D0A4A452F15468472ADEA8E1 = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			explicitFileTypes = {};
+			explicitFolders = ();
+			path = Feature/Auth/Snapshots;
+			sourceTree = "<group>";
+			name = AuthSnapshots;
+		};
+		EF36DD87D39182D3B7301629 = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			explicitFileTypes = {};
+			explicitFolders = ();
+			path = Feature/ItemDetails/Snapshots;
+			sourceTree = "<group>";
+			name = ItemDetailsSnapshots;
+		};
+		FEB637D9615B201081E2EAA1 = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			explicitFileTypes = {};
+			explicitFolders = ();
+			path = Feature/Onboarding/Snapshots;
+			sourceTree = "<group>";
+			name = OnboardingSnapshots;
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2DB884CB45DEF475D26754F3 = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3950CAE9EBFEADDB860E460A = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A77F90B2DDF7BA5D611C3B99,
+				E92C3B1A716332658112AC9E,
+				E7944FE6297CC7FA64B533D4,
+				0DBBE766487E780EA7BE2687,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		481001EFB2ED3CE332864FDD = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56E43BB0D07441DF75EA9A0F,
+				10D10496066932697A612E33,
+				9DC647907A71E7096BB42742,
+				F63FEB045179E053C967697A,
+				FFD8CE7FAAE08AC1008D0791,
+				86DFF8A23373A206ED35D120,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5E17DE12027B181D99CAEBFD = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BD2BF3B761D442BE06E4229D,
+				B12F913446C5384549FCEBCC,
+				0D3C14D5FB6972E1C5211A83,
+				B259077D0B643645F3D01800,
+				0783FE6EF5F570BD7D1E10F2,
+				F1A251701428AD2D574BF38F,
+				5F5784055DD0646104693950,
+				E90EA9BDD1DB4DF28E34D58C,
+				0E6567937B0C25ABEEA1920E,
+				3D959BCDE01FD823CAD0094F,
+				6FCB1371A27B2FBD888C1F76,
+				F8133CDBB282CFC7C8F9F2F3,
+				60A95F34F6E75C8E7796C95F,
+				C324083241AC4D8492B8D65E,
+				6E6ADC2076B3F8A476AF3CE0,
+				9D12C59398C746FFA045E716,
+				AAC0576A0303A739EA850379,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		787FB7D5C2FC9F1AE44D167E = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB1ECEC7625F1BB52E60A746,
+				6C42CBA06EAF4CD0598503A9,
+				71B9EDBAFBBF74DEA9B2A182,
+				19A8E4D428127FD06602D1D8,
+				D2A30EF53B9679C4117126CD,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		85D6F7F4689B9BD1F78AFC56 = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				47A6D6C4343B2CD82981C837,
+				99E86ED262AE33CD178CDFC8,
+				5D76E4E46B0C7AC15A277666,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C1B05DACD5D0F1C04033965 = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1452488AA049669E648ED0D,
+				58690EBD2707430F61FE3713,
+				C2F68C6CA53A3FB2C9A5CA9A,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E1CFC624EEE9189D2FCEC3B = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				72D17F90C02C34F6146F8E54,
+				718CE281D7DAFE9EB7EF7D51,
+				FFF8CCD2C4D91DE3D3FAC818,
+				8B2C31BDD0B5B1F28CA8A403,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C9C1E1152E5BAE3FEADC110F = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E235AB83DC5327638925CD78,
+				3C5B5943123E24B50EE0FAFE,
+				206BCE8D90854954CF02AD3A,
+				8529435A0C2217C7B68598E7,
+				F97C110F4C94560713FD682A,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E36966E7BE271AF9DC65AF34 = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C341BFC71C076060CACBBAE6,
+				07EA0863F2A69DBAF098141C,
+				6F709E0CB1B28C2B3BE77583,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E5B347811541D48FBEEBC208 = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0CDE1B1AA6258B6FA420C302,
+				DD9B43C7A3F9201680C00F37,
+				ACB1584225B9FE34EBFC59F8,
+				4421D2F1644894CDC606B956,
+				8740B3EBA01D7958FB66012A,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4AA327D2A84F5B0696F8260 = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				756E9455188024D796FDDDC2,
+				21DB5ECB804DBEA4090FE9F6,
+				AED23C1F3935EDEC030EEA72,
+				8AF1FFE276A9EB53A477634E,
+				E301BD28C1E03810E692BEC5,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2AC8BA37DAC32D5437812408 = {
+			isa = PBXGroup;
+			children = (
+				EA60FED804941BE5E01F3CCC,
+				6B2C36EE270B49DEB0F99D1F,
+				A5F63264BB346FF8AF34064A,
+				650B36DF7E54EB28DB1F1A28,
+				7EBC645896B8CB18215F5303,
+				082301A6E4A71FCED8C85713,
+				701D8EA8676FE9AE1A72C082,
+				7E79A10BAFDD397682B57B68,
+				E10011D5182D1700EEAB52E8,
+				B58385D84D44E9641C28EA44,
+				284488DE383FD729F7D91E07,
+				43B9657BC06BDBF7BC146485,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4EAE695AD1F489F78EA3E1C6 = {
+			isa = PBXGroup;
+			children = (
+				34C2BA08595E6A1C36772757,
+				7E6E78CB42E0D356F231C446,
+				D611EE345987BB4EBE8CCC43,
+				2F34365CAF6F033A38FB1553,
+				9C0A600B4F19273B6F1D2680,
+				C6BEF1A9F16CB7CDDB368375,
+				2AC8BA37DAC32D5437812408,
+			);
+			sourceTree = "<group>";
+		};
+		7E6E78CB42E0D356F231C446 = {
+			isa = PBXGroup;
+			children = (
+				FC2BE512D7A67BB563D5E8E5,
+				CDD9203A64FF33EA6D62C8EE,
+				C432EAA18CA05B20A522A21E,
+			);
+			name = Modules;
+			sourceTree = "<group>";
+		};
+		9C0A600B4F19273B6F1D2680 = {
+			isa = PBXGroup;
+			children = (
+				263020A042B6ED81D1EBA3CA,
+				D0A4A452F15468472ADEA8E1,
+				5908668730769B2EC61E3C3B,
+				357756222D0478D90A8AE826,
+				EF36DD87D39182D3B7301629,
+				1F6D8A393D681CAE93557635,
+				FEB637D9615B201081E2EAA1,
+				9B37A8F4109E2F56ABD358F2,
+				6D8C970CEA3A1B280683D8C1,
+				B1F5C08362242CDE350CEBEB,
+				AD391B2929D0AE4BE2E146BE,
+			);
+			name = Snapshots;
+			sourceTree = "<group>";
+		};
+		C6BEF1A9F16CB7CDDB368375 = {
+			isa = PBXGroup;
+			children = (
+				C7D1AFC456735862054DEDF3,
+				C8DC823CF5FCB8957014EA97,
+				6493F20648288B6FB39236DB,
+			);
+			name = xcconfigs;
+			sourceTree = "<group>";
+		};
+		CDD9203A64FF33EA6D62C8EE = {
+			isa = PBXGroup;
+			children = (
+				5E19E3E60CD12699F601A112,
+				BDCE2161C620C914321E2EC4,
+				A4CEF549B0FFAB3E784D5C32,
+				3F4F7B931391ACF0C8842DE1,
+				0434E3C36D190249AE568F97,
+				FB2B6A584B96F5B7A6C5A0E2,
+				99B602E531A8DB24EB33123B,
+				3114F18F367571504BBCF030,
+				2F9DAFD3857687DA776255C9,
+				080419150A100CD75C37E7A2,
+				413B64B8186F6D72D0B932D6,
+			);
+			path = Feature;
+			sourceTree = "<group>";
+		};
+		FC2BE512D7A67BB563D5E8E5 = {
+			isa = PBXGroup;
+			children = (
+				10EB8FDD8B7A075A5BF20902,
+				985F30880BF8B05589A0F5EF,
+				8B3246CB69211004AEBDBF06,
+				D89D96E54ACC137C195AE872,
+				82CA38C73D93C78D2024DA56,
+				3DC5FA6BFC1494D49FE8CC33,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3053F8827390B6F8679E11D9 = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 46D54B2323FF146887372260;
+			buildPhases = (
+				C075C8B57D14159C9B7417AB,
+				481001EFB2ED3CE332864FDD,
+				21D123893270444335AB9D8A,
+			);
+			buildRules = ();
+			dependencies = (
+				F9321AD22CFB66B19FE47160,
+			);
+			fileSystemSynchronizedGroups = (
+				EF36DD87D39182D3B7301629,
+				263020A042B6ED81D1EBA3CA,
+			);
+			name = ItemDetailsSnapshotTests;
+			packageProductDependencies = (
+				C9F31C9E7ED0FA3DA3426D87,
+				86E617FA4696397CF2F6931C,
+				8045ADFED866A152D593DDC3,
+				016DE932710C213477E48872,
+				F5AC752E2CB55E63D1A1725A,
+				3DCC0B6FA8CAFCE79A67F512,
+			);
+			productName = ItemDetailsSnapshotTests;
+			productReference = 082301A6E4A71FCED8C85713;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		4AB387072B022D0F086BBCDF = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27C499DE627D51D657C15476;
+			buildPhases = (
+				A51D8174C514D5B1D44B1B90,
+				8C1B05DACD5D0F1C04033965,
+				44865DBE8DD91A14097CFF8B,
+			);
+			buildRules = ();
+			dependencies = (
+				BB2A34F4665EE8C34B2608E9,
+			);
+			fileSystemSynchronizedGroups = (
+				FEB637D9615B201081E2EAA1,
+				263020A042B6ED81D1EBA3CA,
+			);
+			name = OnboardingSnapshotTests;
+			packageProductDependencies = (
+				D2B76889B823AAD426F64FFA,
+				FC39704E6BEF6C8AB516839A,
+				702A86063A80235F6E6D4224,
+			);
+			productName = OnboardingSnapshotTests;
+			productReference = 7E79A10BAFDD397682B57B68;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		51A4F63EC1F557D41B5D4352 = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7B9BBE250370D553EF202EEC;
+			buildPhases = (
+				59DF5D9D4DE702CD4BD1DC43,
+				E36966E7BE271AF9DC65AF34,
+				3F6D47CE9949181B7CF46885,
+			);
+			buildRules = ();
+			dependencies = (
+				323F02E805321B8D10B1AD58,
+			);
+			fileSystemSynchronizedGroups = (
+				AD391B2929D0AE4BE2E146BE,
+				263020A042B6ED81D1EBA3CA,
+			);
+			name = SettingsSnapshotTests;
+			packageProductDependencies = (
+				C8A4ACAB5E4151086513B4BA,
+				E75B0D4A216F6D7ECDCDCECC,
+				4978E532B6D6EED144038DB0,
+			);
+			productName = SettingsSnapshotTests;
+			productReference = 43B9657BC06BDBF7BC146485;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		52CC62A9A482FC2E6E10DE36 = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 235789A5CE08BCADA6A14080;
+			buildPhases = (
+				F7CD86ADD894527945548FE8,
+				787FB7D5C2FC9F1AE44D167E,
+				E1ED16A28DE55907AD9881E1,
+			);
+			buildRules = ();
+			dependencies = (
+				B17C5915A6999B145BC20FA5,
+			);
+			fileSystemSynchronizedGroups = (
+				B1F5C08362242CDE350CEBEB,
+				263020A042B6ED81D1EBA3CA,
+			);
+			name = SearchSnapshotTests;
+			packageProductDependencies = (
+				2192ADAEFF6459EF95141390,
+				D7088938092E860F486F3B72,
+				CBA7CB0191DA32083688CB1E,
+				8CAAB890E685E6D2BC2944F4,
+				93C3D1638787807969E5351C,
+			);
+			productName = SearchSnapshotTests;
+			productReference = 284488DE383FD729F7D91E07;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		5463D88E68943EA9B52A9E17 = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0841344DAEDA9339FB30ADD0;
+			buildPhases = (
+				C9B8BEDB93C16315AED10742,
+				85D6F7F4689B9BD1F78AFC56,
+				7ADE219ACA29DB24B51EDE4F,
+			);
+			buildRules = ();
+			dependencies = (
+				6E1DD96A17DCF82EF6E7CEFE,
+			);
+			fileSystemSynchronizedGroups = (
+				357756222D0478D90A8AE826,
+				263020A042B6ED81D1EBA3CA,
+			);
+			name = ImageSnapshotTests;
+			packageProductDependencies = (
+				CE997BC88CFC92DC0F0A3439,
+				A1F477BF30E601B31A4DDAE0,
+				623619ADEC205AFB244C58F1,
+			);
+			productName = ImageSnapshotTests;
+			productReference = 7EBC645896B8CB18215F5303;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		700DE720BBB1800CC6855FB0 = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EB03862E65D9C6BAC65407BB;
+			buildPhases = (
+				5D56D7CED65016C8FD60D344,
+				5E17DE12027B181D99CAEBFD,
+				A625719A23369A34FD15690B,
+			);
+			buildRules = ();
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				34C2BA08595E6A1C36772757,
+			);
+			name = Flick;
+			packageProductDependencies = (
+				A22C3881FB4CE3723ACC7590,
+				CC29903DE0416FA03383F3B9,
+				F26A0FCB0D0B98D583D450E9,
+				B207C310D4588105D82FD4BD,
+				F61446D3D14433912343303D,
+				4382AC1913A293B0972249C9,
+				4F9E63265C991BED275C6325,
+				C672808723441955D4898EE5,
+				9E4B49D7C6E43DA03D2334E2,
+				182644C7BDF650C36844DB05,
+				468FB834B17DD3A6DE184230,
+				28880CE8A0BD082CBD2A7BC9,
+				69AE59F8A2520803B22C9111,
+				CB3C77F06F46F337B8CE323E,
+				545850B156EB8941FBD64AD2,
+				DE08518B1EC8C3A9A7D7FD7D,
+				2EB0D67A0A9041264052E0F9,
+			);
+			productName = Flick;
+			productReference = EA60FED804941BE5E01F3CCC;
+			productType = "com.apple.product-type.application";
+		};
+		9F775B8C741F8BD11BF47D76 = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 35D39D6AE0D33032DC231E20;
+			buildPhases = (
+				2C2191649376BC7AD2002585,
+				2DB884CB45DEF475D26754F3,
+				5EFB825D5A28C0F88F980A15,
+			);
+			buildRules = ();
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				2F34365CAF6F033A38FB1553,
+			);
+			name = SnapshotTestsHostApp;
+			packageProductDependencies = (
+			);
+			productName = SnapshotTestsHostApp;
+			productReference = 6B2C36EE270B49DEB0F99D1F;
+			productType = "com.apple.product-type.application";
+		};
+		B2D903BF42C69360E94128F1 = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E9B8954224DD4D453DE7C9C2;
+			buildPhases = (
+				4C9DDC2E76B260C49AFDFB9B,
+				3950CAE9EBFEADDB860E460A,
+				04A87D7A009F9E1801EF29D5,
+			);
+			buildRules = ();
+			dependencies = (
+				57685F2ED0AD964F0140AE09,
+			);
+			fileSystemSynchronizedGroups = (
+				D0A4A452F15468472ADEA8E1,
+				263020A042B6ED81D1EBA3CA,
+			);
+			name = AuthSnapshotTests;
+			packageProductDependencies = (
+				7F4F7BCA71BEC46D0DE70F8F,
+				86149B0AE0CB667A1E6FDF9C,
+				9BFCDB7BEB3B347B96A1C321,
+				AC7E71D4B43F9057FD934D2C,
+			);
+			productName = AuthSnapshotTests;
+			productReference = A5F63264BB346FF8AF34064A;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D3ACCA16DB93805D7A88CB5C = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E1351421C802A2054A1AF2CE;
+			buildPhases = (
+				21C4D63B91997C2386A50147,
+				C9C1E1152E5BAE3FEADC110F,
+				AC7B0C474A147B015DDA7D27,
+			);
+			buildRules = ();
+			dependencies = (
+				06B14915B0F66611577312D8,
+			);
+			fileSystemSynchronizedGroups = (
+				5908668730769B2EC61E3C3B,
+				263020A042B6ED81D1EBA3CA,
+			);
+			name = HomeSnapshotTests;
+			packageProductDependencies = (
+				A5384DE57A98FB8368854206,
+				75466CD49F50302B7BD2EA0F,
+				9710049879556CC2B626456D,
+				4F7F9C6FFCE42BCB621D1419,
+				BDB7A3BADCB684143B268402,
+			);
+			productName = HomeSnapshotTests;
+			productReference = 650B36DF7E54EB28DB1F1A28;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		E437A092D8F2B1C98453A432 = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2D6DDDC64D44A28C6FAD45AB;
+			buildPhases = (
+				28075A64C07D8C1A60A76A09,
+				E5B347811541D48FBEEBC208,
+				D232C15EE432274C6EBB4194,
+			);
+			buildRules = ();
+			dependencies = (
+				E3C89160B459694D5A98356E,
+			);
+			fileSystemSynchronizedGroups = (
+				9B37A8F4109E2F56ABD358F2,
+				263020A042B6ED81D1EBA3CA,
+			);
+			name = ReviewsSnapshotTests;
+			packageProductDependencies = (
+				23D7C316E0679C30DBA375FB,
+				1659DF9D0BB1F9F14E9488AF,
+				70E76EC236F71B2E22110778,
+				D95D16A483311E5F28AABD11,
+				C65203379DCC082EA5B07C4B,
+			);
+			productName = ReviewsSnapshotTests;
+			productReference = E10011D5182D1700EEAB52E8;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		EE115AC0D53B9EE14F1C0EA4 = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27CE3DDA097470B3C7A61103;
+			buildPhases = (
+				8D2FF97335262080ED65081F,
+				F4AA327D2A84F5B0696F8260,
+				529781B83A95D8FB792A5BF9,
+			);
+			buildRules = ();
+			dependencies = (
+				EC5F8AD70914AA80E9DDA944,
+			);
+			fileSystemSynchronizedGroups = (
+				1F6D8A393D681CAE93557635,
+				263020A042B6ED81D1EBA3CA,
+			);
+			name = MyFavoritesSnapshotTests;
+			packageProductDependencies = (
+				C8860C78908F83F33FF7C396,
+				A380A128476D28B6075597DC,
+				3B82B17C4492AACB4B9817B5,
+				3972842960712AFE758433AF,
+				031648EDD7264E82BE989D36,
+			);
+			productName = MyFavoritesSnapshotTests;
+			productReference = 701D8EA8676FE9AE1A72C082;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F3CA3B147B5DFE1A41A95F37 = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 57983D21B511A84D1BF89ADC;
+			buildPhases = (
+				08F6A21361A9BA9CF2498F0A,
+				9E1CFC624EEE9189D2FCEC3B,
+				A18504476C14510927BEE1E0,
+			);
+			buildRules = ();
+			dependencies = (
+				A776536F1593F031E7009CF5,
+			);
+			fileSystemSynchronizedGroups = (
+				6D8C970CEA3A1B280683D8C1,
+				263020A042B6ED81D1EBA3CA,
+			);
+			name = RootSnapshotTests;
+			packageProductDependencies = (
+				826F54CDA47010814F96DB3E,
+				B2AF3EB26DBCFB55AB59F747,
+				AA2C75700D7ACFBE7FF8504D,
+				901A175EBDCD0467D4C108B2,
+			);
+			productName = RootSnapshotTests;
+			productReference = B58385D84D44E9641C28EA44;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		46F86FAA6BBF9AC94A7E4595 = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2600;
+				LastUpgradeCheck = 2600;
+				ORGANIZATIONNAME = urlaunched;
+			};
+			buildConfigurationList = B61A476A5531CC175278BDCF;
+			compatibilityVersion = "Xcode 15.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4EAE695AD1F489F78EA3E1C6;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				7F37AE2497B60C2457FAACD6,
+				6B820E4E4131469D1484E53A,
+				C3FC231352AB1EFE88CD9CEB,
+				6AA0CD5538BD76753770F4B0,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 2AC8BA37DAC32D5437812408;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				700DE720BBB1800CC6855FB0,
+				9F775B8C741F8BD11BF47D76,
+				B2D903BF42C69360E94128F1,
+				D3ACCA16DB93805D7A88CB5C,
+				5463D88E68943EA9B52A9E17,
+				3053F8827390B6F8679E11D9,
+				EE115AC0D53B9EE14F1C0EA4,
+				4AB387072B022D0F086BBCDF,
+				E437A092D8F2B1C98453A432,
+				F3CA3B147B5DFE1A41A95F37,
+				52CC62A9A482FC2E6E10DE36,
+				51A4F63EC1F557D41B5D4352,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		04A87D7A009F9E1801EF29D5 = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		21D123893270444335AB9D8A = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F6D47CE9949181B7CF46885 = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		44865DBE8DD91A14097CFF8B = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		529781B83A95D8FB792A5BF9 = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5EFB825D5A28C0F88F980A15 = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7ADE219ACA29DB24B51EDE4F = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A18504476C14510927BEE1E0 = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A625719A23369A34FD15690B = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AC7B0C474A147B015DDA7D27 = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D232C15EE432274C6EBB4194 = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1ED16A28DE55907AD9881E1 = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		08F6A21361A9BA9CF2498F0A = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		21C4D63B91997C2386A50147 = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		28075A64C07D8C1A60A76A09 = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C2191649376BC7AD2002585 = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4C9DDC2E76B260C49AFDFB9B = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		59DF5D9D4DE702CD4BD1DC43 = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5D56D7CED65016C8FD60D344 = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D2FF97335262080ED65081F = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A51D8174C514D5B1D44B1B90 = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C075C8B57D14159C9B7417AB = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C9B8BEDB93C16315AED10742 = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F7CD86ADD894527945548FE8 = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		06B14915B0F66611577312D8 = {
+			isa = PBXTargetDependency;
+			target = 9F775B8C741F8BD11BF47D76;
+			targetProxy = 2404506C2D103ADE8B8CD986;
+		};
+		323F02E805321B8D10B1AD58 = {
+			isa = PBXTargetDependency;
+			target = 9F775B8C741F8BD11BF47D76;
+			targetProxy = B54E4F33B3DC7D15B6DA55F0;
+		};
+		57685F2ED0AD964F0140AE09 = {
+			isa = PBXTargetDependency;
+			target = 9F775B8C741F8BD11BF47D76;
+			targetProxy = F93F12F6385733B9655BB915;
+		};
+		6E1DD96A17DCF82EF6E7CEFE = {
+			isa = PBXTargetDependency;
+			target = 9F775B8C741F8BD11BF47D76;
+			targetProxy = AE60796E1DD69E811BFACC49;
+		};
+		A776536F1593F031E7009CF5 = {
+			isa = PBXTargetDependency;
+			target = 9F775B8C741F8BD11BF47D76;
+			targetProxy = C6057D1EA5B9CED4C4280DFC;
+		};
+		B17C5915A6999B145BC20FA5 = {
+			isa = PBXTargetDependency;
+			target = 9F775B8C741F8BD11BF47D76;
+			targetProxy = 1817BD81BD3904CE596608AB;
+		};
+		BB2A34F4665EE8C34B2608E9 = {
+			isa = PBXTargetDependency;
+			target = 9F775B8C741F8BD11BF47D76;
+			targetProxy = ED75D9FF786E183CB2ED1AF4;
+		};
+		E3C89160B459694D5A98356E = {
+			isa = PBXTargetDependency;
+			target = 9F775B8C741F8BD11BF47D76;
+			targetProxy = 4182D0A80ECFC5AF8AFF8A99;
+		};
+		EC5F8AD70914AA80E9DDA944 = {
+			isa = PBXTargetDependency;
+			target = 9F775B8C741F8BD11BF47D76;
+			targetProxy = 6C912294263C5C31525D6D9E;
+		};
+		F9321AD22CFB66B19FE47160 = {
+			isa = PBXTargetDependency;
+			target = 9F775B8C741F8BD11BF47D76;
+			targetProxy = B4E1BEBB3381B6D240BE7074;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		048091AA1A1415412401C4C6 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XK5AEQZHJU;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.urlaunched.SnapshotTestsHostApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		08723DE70035A45CE7E33CC1 = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C7D1AFC456735862054DEDF3;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		2E3336B8A6BA44513A46750A = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6493F20648288B6FB39236DB;
+			buildSettings = {
+				PRODUCT_BUNDLE_IDENTIFIER = com.urlaunched.AuthSnapshotTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SnapshotTestsHostApp.app/SnapshotTestsHostApp";
+			};
+			name = Debug;
+		};
+		37A6BBC6BE9AE11CD24F8C0B = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6493F20648288B6FB39236DB;
+			buildSettings = {
+				PRODUCT_BUNDLE_IDENTIFIER = com.urlaunched.MyFavoritesSnapshotTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SnapshotTestsHostApp.app/SnapshotTestsHostApp";
+			};
+			name = Debug;
+		};
+		3D381BC16E7C254A971BA6C8 = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6493F20648288B6FB39236DB;
+			buildSettings = {
+				PRODUCT_BUNDLE_IDENTIFIER = com.urlaunched.OnboardingSnapshotTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SnapshotTestsHostApp.app/SnapshotTestsHostApp";
+			};
+			name = Release;
+		};
+		3F0CAC863562134FF01C3E28 = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6493F20648288B6FB39236DB;
+			buildSettings = {
+				PRODUCT_BUNDLE_IDENTIFIER = com.urlaunched.AuthSnapshotTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SnapshotTestsHostApp.app/SnapshotTestsHostApp";
+			};
+			name = Release;
+		};
+		4E387BD2AD42CC73A6AB2015 = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6493F20648288B6FB39236DB;
+			buildSettings = {
+				PRODUCT_BUNDLE_IDENTIFIER = com.urlaunched.OnboardingSnapshotTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SnapshotTestsHostApp.app/SnapshotTestsHostApp";
+			};
+			name = Debug;
+		};
+		6A7EF451CA417A16DABDAF4F = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6493F20648288B6FB39236DB;
+			buildSettings = {
+				PRODUCT_BUNDLE_IDENTIFIER = com.urlaunched.SearchSnapshotTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SnapshotTestsHostApp.app/SnapshotTestsHostApp";
+			};
+			name = Debug;
+		};
+		7416DC85705662D64398556F = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6493F20648288B6FB39236DB;
+			buildSettings = {
+				PRODUCT_BUNDLE_IDENTIFIER = com.urlaunched.ItemDetailsSnapshotTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SnapshotTestsHostApp.app/SnapshotTestsHostApp";
+			};
+			name = Release;
+		};
+		7D01CC1DFD9D193514F47D92 = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6493F20648288B6FB39236DB;
+			buildSettings = {
+				PRODUCT_BUNDLE_IDENTIFIER = com.urlaunched.RootSnapshotTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SnapshotTestsHostApp.app/SnapshotTestsHostApp";
+			};
+			name = Release;
+		};
+		80DB6ACE13380ADC3D86D6C5 = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C7D1AFC456735862054DEDF3;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		9084597366FD8FF8DDC52A47 = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6493F20648288B6FB39236DB;
+			buildSettings = {
+				PRODUCT_BUNDLE_IDENTIFIER = com.urlaunched.MyFavoritesSnapshotTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SnapshotTestsHostApp.app/SnapshotTestsHostApp";
+			};
+			name = Release;
+		};
+		A34C21D06F40EB6A22888170 = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6493F20648288B6FB39236DB;
+			buildSettings = {
+				PRODUCT_BUNDLE_IDENTIFIER = com.urlaunched.ItemDetailsSnapshotTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SnapshotTestsHostApp.app/SnapshotTestsHostApp";
+			};
+			name = Debug;
+		};
+		B330453F973E65DE6C4F2E5B = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6493F20648288B6FB39236DB;
+			buildSettings = {
+				PRODUCT_BUNDLE_IDENTIFIER = com.urlaunched.ReviewsSnapshotTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SnapshotTestsHostApp.app/SnapshotTestsHostApp";
+			};
+			name = Release;
+		};
+		BB1448C9B1CF3AF70D7F33BB = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C8DC823CF5FCB8957014EA97;
+			buildSettings = {
+				INFOPLIST_FILE = Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.urlaunched.flick;
+			};
+			name = Debug;
+		};
+		BE7F68A5596575A4994B7A5E = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6493F20648288B6FB39236DB;
+			buildSettings = {
+				PRODUCT_BUNDLE_IDENTIFIER = com.urlaunched.SearchSnapshotTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SnapshotTestsHostApp.app/SnapshotTestsHostApp";
+			};
+			name = Release;
+		};
+		C9F40FD94AB875AE4D62D732 = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6493F20648288B6FB39236DB;
+			buildSettings = {
+				PRODUCT_BUNDLE_IDENTIFIER = com.urlaunched.ImageSnapshotTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SnapshotTestsHostApp.app/SnapshotTestsHostApp";
+			};
+			name = Debug;
+		};
+		CD5F90A9017262E2402D8D38 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XK5AEQZHJU;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.urlaunched.SnapshotTestsHostApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		D29399A5F4FC1FCFE7C37945 = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6493F20648288B6FB39236DB;
+			buildSettings = {
+				PRODUCT_BUNDLE_IDENTIFIER = com.urlaunched.SettingsSnapshotTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SnapshotTestsHostApp.app/SnapshotTestsHostApp";
+			};
+			name = Release;
+		};
+		D3FA582D3D4D4B0D527079C4 = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C8DC823CF5FCB8957014EA97;
+			buildSettings = {
+				INFOPLIST_FILE = Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.urlaunched.flick;
+			};
+			name = Release;
+		};
+		E0CEFD00D19E6EA718ECA004 = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6493F20648288B6FB39236DB;
+			buildSettings = {
+				PRODUCT_BUNDLE_IDENTIFIER = com.urlaunched.ImageSnapshotTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SnapshotTestsHostApp.app/SnapshotTestsHostApp";
+			};
+			name = Release;
+		};
+		F245422B029CF4B45CBD6C5D = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6493F20648288B6FB39236DB;
+			buildSettings = {
+				PRODUCT_BUNDLE_IDENTIFIER = com.urlaunched.SettingsSnapshotTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SnapshotTestsHostApp.app/SnapshotTestsHostApp";
+			};
+			name = Debug;
+		};
+		F3221B86BE5065371D775BF5 = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6493F20648288B6FB39236DB;
+			buildSettings = {
+				PRODUCT_BUNDLE_IDENTIFIER = com.urlaunched.RootSnapshotTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SnapshotTestsHostApp.app/SnapshotTestsHostApp";
+			};
+			name = Debug;
+		};
+		F336BAFC85FEB5B96BF15239 = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6493F20648288B6FB39236DB;
+			buildSettings = {
+				PRODUCT_BUNDLE_IDENTIFIER = com.urlaunched.HomeSnapshotTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SnapshotTestsHostApp.app/SnapshotTestsHostApp";
+			};
+			name = Release;
+		};
+		F71D62B2CFF22204F2E5E92E = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6493F20648288B6FB39236DB;
+			buildSettings = {
+				PRODUCT_BUNDLE_IDENTIFIER = com.urlaunched.ReviewsSnapshotTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SnapshotTestsHostApp.app/SnapshotTestsHostApp";
+			};
+			name = Debug;
+		};
+		F7209B8C4E6200DEDAF3B762 = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6493F20648288B6FB39236DB;
+			buildSettings = {
+				PRODUCT_BUNDLE_IDENTIFIER = com.urlaunched.HomeSnapshotTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SnapshotTestsHostApp.app/SnapshotTestsHostApp";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0841344DAEDA9339FB30ADD0 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C9F40FD94AB875AE4D62D732,
+				E0CEFD00D19E6EA718ECA004,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		235789A5CE08BCADA6A14080 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6A7EF451CA417A16DABDAF4F,
+				BE7F68A5596575A4994B7A5E,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27C499DE627D51D657C15476 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4E387BD2AD42CC73A6AB2015,
+				3D381BC16E7C254A971BA6C8,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27CE3DDA097470B3C7A61103 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				37A6BBC6BE9AE11CD24F8C0B,
+				9084597366FD8FF8DDC52A47,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D6DDDC64D44A28C6FAD45AB = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F71D62B2CFF22204F2E5E92E,
+				B330453F973E65DE6C4F2E5B,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		35D39D6AE0D33032DC231E20 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				048091AA1A1415412401C4C6,
+				CD5F90A9017262E2402D8D38,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		46D54B2323FF146887372260 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A34C21D06F40EB6A22888170,
+				7416DC85705662D64398556F,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		57983D21B511A84D1BF89ADC = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F3221B86BE5065371D775BF5,
+				7D01CC1DFD9D193514F47D92,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7B9BBE250370D553EF202EEC = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F245422B029CF4B45CBD6C5D,
+				D29399A5F4FC1FCFE7C37945,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B61A476A5531CC175278BDCF = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				80DB6ACE13380ADC3D86D6C5,
+				08723DE70035A45CE7E33CC1,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E1351421C802A2054A1AF2CE = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F7209B8C4E6200DEDAF3B762,
+				F336BAFC85FEB5B96BF15239,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E9B8954224DD4D453DE7C9C2 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2E3336B8A6BA44513A46750A,
+				3F0CAC863562134FF01C3E28,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EB03862E65D9C6BAC65407BB = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB1448C9B1CF3AF70D7F33BB,
+				D3FA582D3D4D4B0D527079C4,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6AA0CD5538BD76753770F4B0 = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/urlaunched-com/UDFMacros";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.0;
+			};
+		};
+		6B820E4E4131469D1484E53A = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Maks-Jago/swiftui-snapshot-test-case";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.6.2;
+			};
+		};
+		7F37AE2497B60C2457FAACD6 = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Maks-Jago/SwiftUI-UDF";
+			requirement = {
+				kind = branch;
+				branch = 2.0.0;
+			};
+		};
+		C3FC231352AB1EFE88CD9CEB = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/madebybowtie/FlagKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		016DE932710C213477E48872 = {
+			isa = XCSwiftPackageProductDependency;
+			package = C3FC231352AB1EFE88CD9CEB;
+			productName = FlagKit;
+		};
+		031648EDD7264E82BE989D36 = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7F37AE2497B60C2457FAACD6;
+			productName = UDF;
+		};
+		1659DF9D0BB1F9F14E9488AF = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Reviews;
+		};
+		182644C7BDF650C36844DB05 = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NetworkConnectivity;
+		};
+		2192ADAEFF6459EF95141390 = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B820E4E4131469D1484E53A;
+			productName = SwiftUISnapshotTestCase;
+		};
+		23D7C316E0679C30DBA375FB = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B820E4E4131469D1484E53A;
+			productName = SwiftUISnapshotTestCase;
+		};
+		28880CE8A0BD082CBD2A7BC9 = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Reviews;
+		};
+		2EB0D67A0A9041264052E0F9 = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6AA0CD5538BD76753770F4B0;
+			productName = UDFMacros;
+		};
+		3972842960712AFE758433AF = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Models;
+		};
+		3B82B17C4492AACB4B9817B5 = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Common;
+		};
+		3DCC0B6FA8CAFCE79A67F512 = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7F37AE2497B60C2457FAACD6;
+			productName = UDF;
+		};
+		4382AC1913A293B0972249C9 = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Image;
+		};
+		468FB834B17DD3A6DE184230 = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Onboarding;
+		};
+		4978E532B6D6EED144038DB0 = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7F37AE2497B60C2457FAACD6;
+			productName = UDF;
+		};
+		4F7F9C6FFCE42BCB621D1419 = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Models;
+		};
+		4F9E63265C991BED275C6325 = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ItemDetails;
+		};
+		545850B156EB8941FBD64AD2 = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Settings;
+		};
+		623619ADEC205AFB244C58F1 = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7F37AE2497B60C2457FAACD6;
+			productName = UDF;
+		};
+		69AE59F8A2520803B22C9111 = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Root;
+		};
+		702A86063A80235F6E6D4224 = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7F37AE2497B60C2457FAACD6;
+			productName = UDF;
+		};
+		70E76EC236F71B2E22110778 = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Common;
+		};
+		75466CD49F50302B7BD2EA0F = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Home;
+		};
+		7F4F7BCA71BEC46D0DE70F8F = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B820E4E4131469D1484E53A;
+			productName = SwiftUISnapshotTestCase;
+		};
+		8045ADFED866A152D593DDC3 = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Common;
+		};
+		826F54CDA47010814F96DB3E = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B820E4E4131469D1484E53A;
+			productName = SwiftUISnapshotTestCase;
+		};
+		86149B0AE0CB667A1E6FDF9C = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Auth;
+		};
+		86E617FA4696397CF2F6931C = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ItemDetails;
+		};
+		8CAAB890E685E6D2BC2944F4 = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Models;
+		};
+		901A175EBDCD0467D4C108B2 = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7F37AE2497B60C2457FAACD6;
+			productName = UDF;
+		};
+		93C3D1638787807969E5351C = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7F37AE2497B60C2457FAACD6;
+			productName = UDF;
+		};
+		9710049879556CC2B626456D = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Common;
+		};
+		9BFCDB7BEB3B347B96A1C321 = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Common;
+		};
+		9E4B49D7C6E43DA03D2334E2 = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MyFavorites;
+		};
+		A1F477BF30E601B31A4DDAE0 = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Image;
+		};
+		A22C3881FB4CE3723ACC7590 = {
+			isa = XCSwiftPackageProductDependency;
+			productName = API;
+		};
+		A380A128476D28B6075597DC = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MyFavorites;
+		};
+		A5384DE57A98FB8368854206 = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B820E4E4131469D1484E53A;
+			productName = SwiftUISnapshotTestCase;
+		};
+		AA2C75700D7ACFBE7FF8504D = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Common;
+		};
+		AC7E71D4B43F9057FD934D2C = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7F37AE2497B60C2457FAACD6;
+			productName = UDF;
+		};
+		B207C310D4588105D82FD4BD = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DataLayer;
+		};
+		B2AF3EB26DBCFB55AB59F747 = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Root;
+		};
+		BDB7A3BADCB684143B268402 = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7F37AE2497B60C2457FAACD6;
+			productName = UDF;
+		};
+		C65203379DCC082EA5B07C4B = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7F37AE2497B60C2457FAACD6;
+			productName = UDF;
+		};
+		C672808723441955D4898EE5 = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Models;
+		};
+		C8860C78908F83F33FF7C396 = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B820E4E4131469D1484E53A;
+			productName = SwiftUISnapshotTestCase;
+		};
+		C8A4ACAB5E4151086513B4BA = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B820E4E4131469D1484E53A;
+			productName = SwiftUISnapshotTestCase;
+		};
+		C9F31C9E7ED0FA3DA3426D87 = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B820E4E4131469D1484E53A;
+			productName = SwiftUISnapshotTestCase;
+		};
+		CB3C77F06F46F337B8CE323E = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Search;
+		};
+		CBA7CB0191DA32083688CB1E = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Common;
+		};
+		CC29903DE0416FA03383F3B9 = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Auth;
+		};
+		CE997BC88CFC92DC0F0A3439 = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B820E4E4131469D1484E53A;
+			productName = SwiftUISnapshotTestCase;
+		};
+		D2B76889B823AAD426F64FFA = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B820E4E4131469D1484E53A;
+			productName = SwiftUISnapshotTestCase;
+		};
+		D7088938092E860F486F3B72 = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Search;
+		};
+		D95D16A483311E5F28AABD11 = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Models;
+		};
+		DE08518B1EC8C3A9A7D7FD7D = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7F37AE2497B60C2457FAACD6;
+			productName = UDF;
+		};
+		E75B0D4A216F6D7ECDCDCECC = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Settings;
+		};
+		F26A0FCB0D0B98D583D450E9 = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Common;
+		};
+		F5AC752E2CB55E63D1A1725A = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Models;
+		};
+		F61446D3D14433912343303D = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Home;
+		};
+		FC39704E6BEF6C8AB516839A = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Onboarding;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 46F86FAA6BBF9AC94A7E4595;
+}

@@ -1,9 +1,9 @@
 # 🎬 Flick — Movie App Demo
 
 
-**Flick** is a modular Swift demo project built to demonstrate **Unidirectional Data Flow (UDF)** and **Tuist**-driven project generation principles in iOS development.
+**Flick** is a modular Swift demo project built to demonstrate **Unidirectional Data Flow (UDF)** in a multi-module iOS app.
 
-The project showcases a modern approach to scalable architecture, modularization, dependency management, and clean UI design using a fully modular setup powered by **Tuist**.
+The project showcases a modern approach to scalable architecture, modularization, dependency management, and clean UI design: every module is a local **Swift package**, and the Xcode project is only a thin app shell that composes them.
 
 ---
 
@@ -22,35 +22,25 @@ This project integrates with [The Movie Database (TMDB)](https://www.themoviedb.
 
 ### 🔧 To run the app properly, you need to:
 
-1. **Install Tuist** (if not already installed)
+1. **Open the project** — Xcode resolves every Swift package on its own:
 
 	```bash
-	brew install tuist
+	open Flick.xcodeproj
 	```
-	
-2. **Then install project dependencies:**
+
+	The first build asks you to trust the R.swift build plugin used by `Localizations`.
+
+2. **Running Snapshot tests**
 
 	```bash
-	tuist install
-	```
-	
-3. **Generate the Xcode project**
-
-	```bash
-	tuist generate
+	xcodebuild test -project Flick.xcodeproj -scheme Flick -destination "platform=iOS Simulator,name=iPhone 17 Pro,OS=26.5" -skipPackagePluginValidation
 	```
 
-4. **Running Snapshot tests**
-
-	```bash
-	tuist test
-	```
-
-5. **Create a TMDB account** and generate an API key:  
+3. **Create a TMDB account** and generate an API key:  
    [https://www.themoviedb.org/settings/api](https://www.themoviedb.org/settings/api)
 
-6. **Add your API key** in the appropriate configuration file or environment.  
-   For this project, issert you API key in kTMDBApiKey property in [`BaseAPI.swift`](./API/Sources/API/BaseAPI.swift)
+4. **Add your API key** in the appropriate configuration file or environment.  
+   For this project, issert you API key in kTMDBApiKey property in [`BaseAPI.swift`](./Core/API/Sources/API/BaseAPI.swift)
 
    ```swift
    public let kTMDBApiKey = "YOUR_API_KEY_HERE"
@@ -62,14 +52,14 @@ This project integrates with [The Movie Database (TMDB)](https://www.themoviedb.
 
 ## 🗂️ Modules
 
-Modularity is at the heart of Flick. Each feature is encapsulated in its own folder under `Modules/`, while each reusable UI component is further encapsulated in its own Tuist framework under `UI/FrameworkName`. This structure follows a clean separation of UI, logic, and state, ensuring strong isolation between features, improved reusability, **selective testing with Tuist** and scalable architecture across the project.
+Modularity is at the heart of Flick. Every module is a local Swift package with its own `Package.swift`:
 
----
+- **`Core/`** — shared building blocks: `API`, `Models`, `Common`, `DesignSystem`, `CustomViews`, `Localizations`.
+- **`Feature/`** — one package per flow (`Auth`, `Onboarding`, `Root`, `Home`, `ItemDetails`, `Reviews`, `Search`, `MyFavorites`, `Settings`), plus the shared `Image` and `NetworkConnectivity` features. A flow owns all of its screens, state, middleware and internal navigation.
+- **`DataLayer/`** — builds every flow's live environment on top of `API`. Features never import `API`; the data layer knows the features, not the other way around.
+- **`Flick/`** — the app: it mounts each flow's `FeatureState` in `AppState`, supplies `Environments`, and resolves the routes that lead from one flow to another.
 
-## Tuist Dependency Graph
-
-The project structure is visualized through a generated dependency graph:
-![Tuist Dependency Graph](./graph.png)
+Feature modules never depend on each other. Middleware registers itself when its `FeatureState` is mounted, and snapshot tests live next to the module they cover.
 
 ## 🔍 Typical Module Structure
 
@@ -104,9 +94,9 @@ This ensures:
 - Clear separation of concerns (UI, logic, effects)
 - Easy testability
 - Scalable modular design
-- Modular architecture powered by Tuist: enabling independent feature frameworks; explicit dependency management, and reproducible Xcode project generation across the entire codebase
+- Modular architecture built on Swift packages: independent feature modules with explicit dependencies
 
-📦 Example: [`Search`](./Flick/Code/Modules/Search)
+📦 Example: [`Search`](./Feature/Search)
 
 ---
 

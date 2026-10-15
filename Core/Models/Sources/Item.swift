@@ -72,3 +72,8 @@ public extension Item {
 
     var statusText: String { status.isEmpty ? "-" : status }
 }
+
+/// Compares items of any concrete type, so `@AutoHashable` routes can carry `any Item`.
+public func == (lhs: any Item, rhs: any Item) -> Bool {
+    areEqual(lhs, rhs)
+}

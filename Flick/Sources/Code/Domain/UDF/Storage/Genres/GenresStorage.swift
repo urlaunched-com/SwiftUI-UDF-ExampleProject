@@ -8,27 +8,8 @@
 
 import Foundation
 import UDF
+import UDFMacros
 @preconcurrency import Models
 
-struct AllGenres: Storage {
-    var byId: [Genre.ID: Genre] = [:]
-
-    mutating func reduce(_ action: some Action) {
-        switch action {
-        case let action as Actions.DidLoadItems<Genre>:
-            byId.insert(items: action.items)
-
-        case let action as Actions.DidLoadItem<Genre>:
-            byId.insert(item: action.item)
-
-        case let action as Actions.DidUpdateItem<Genre>:
-            byId[action.item.id] = action.item
-
-        case let action as Actions.DeleteItem<Genre>:
-            byId.removeValue(forKey: action.item.id)
-
-        default:
-            break
-        }
-    }
-}
+@Storage(Genre.self)
+struct AllGenres: Storage {}

@@ -6,35 +6,34 @@
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 
-import Models
-import UDF
 import Common
+import UDF
+@preconcurrency import Models
 import SwiftUI
 
+/// What the Home flow needs from the app that hosts it.
 public protocol HomeFeature: AppReducer {
+    associatedtype Environments: HomeEnvironmentProviding
     associatedtype NetworkConnectivityForm: HomeFeatureTypes.NetworkConnectivityForm
     associatedtype AllMovies: HomeFeatureTypes.AllMovies
     associatedtype AllShows: HomeFeatureTypes.AllShows
-    associatedtype HomeFeatureRouting: Routing<HomeRoute>
+    associatedtype AllGenres: Storage<Genre>
+    associatedtype HomeRouting: Routing<HomeRoute>
 
     var networkConnectivityForm: NetworkConnectivityForm { get }
     var allMovies: AllMovies { get }
     var allShows: AllShows { get }
-    
-    var homeFeatureState: HomeFeatureState<Self, HomeFeatureRouting> { get }
+    var allGenres: AllGenres { get }
+
+    var homeFeatureState: HomeFeatureState<Self, HomeRouting> { get }
 }
 
-public struct HomeFeatureState<AppState: HomeFeature, FeatureRouting: Routing<HomeRoute>>: FeatureState {
-    public var homeForm = HomeForm()
-    public var homeFlow = HomeFlow()
-    public var movieGenresFlow = MovieGenresFlow()
-    public var showGenresFlow = ShowGenresFlow()
-    
-    public init() {}
-    
-    public static func entryPoint(input: Void = ()) -> some View {
-        HomeContainer<AppState>()
-    }
+/// The live environments the Home flow's middleware needs. The host supplies them, so the flow
+/// never depends on the API layer that builds them.
+public protocol HomeEnvironmentProviding {
+    static var home: HomeEnvironment { get }
+    static var genres: GenresEnvironment { get }
+    static var sectionDetails: SectionDetailsEnvironment { get }
 }
 
 public enum HomeFeatureTypes {
@@ -65,5 +64,36 @@ public enum HomeFeatureTypes {
 
     public protocol AllShows: Storage<Show> {
         var showsBySectionId: [ShowSection.ID: OrderedSet<Show.ID>] { get }
+    }
+}
+
+/// The state of the whole Home flow: the home page with its sections and the full list of a section.
+///
+/// The flow is entered through the home page. Everything beyond it is reached through the flow's
+/// internal routes, which the app registers with ``destinations`` without knowing what they are.
+public struct HomeFeatureState<AppState: HomeFeature, FeatureRouting: Routing<HomeRoute>>: NavigableFeatureState {
+    public var homeForm = HomeForm()
+    public var homeFlow = HomeFlow()
+    public var movieGenresFlow = MovieGenresFlow()
+    public var showGenresFlow = ShowGenresFlow()
+
+    var sectionDetailsForm = SectionDetailsForm()
+    var sectionDetailsFlow = SectionDetailsFlow()
+
+    public init() {}
+
+    public static func entryPoint(input: Void = ()) -> some View {
+        HomeContainer<AppState>()
+    }
+
+    /// Registers the flow's internal destinations on the navigation stack that hosts it.
+    public static var destinations: some ViewModifier {
+        HomeDestinations<AppState>()
+    }
+
+    public static func registerMiddlewares(in store: any Store<AppState>) -> [MiddlewareWrapper<AppState>] {
+        HomeMiddleware<AppState>.self
+        GenresMiddleware<AppState>.self
+        SectionDetailsMiddleware<AppState>.self
     }
 }

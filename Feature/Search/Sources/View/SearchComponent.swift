@@ -225,7 +225,7 @@ private extension SearchComponent {
             searchItemById: { _ in .fakeItem() },
             genreById: { _ in .testItem() },
             loadMoreAction: {},
-            router: .init(routing: MockRouter())
+            router: .init(routing: MockedRouting())
         )
     )
 }
@@ -238,7 +238,7 @@ private extension SearchComponent {
             searchItemById: { _ in .fakeItem() },
             genreById: { _ in .testItem() },
             loadMoreAction: {},
-            router: .init(routing: MockRouter())
+            router: .init(routing: MockedRouting())
         )
     )
 }

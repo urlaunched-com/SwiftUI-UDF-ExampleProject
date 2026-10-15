@@ -12,6 +12,7 @@ import SwiftUI
 import Common
 
 public protocol MyFavoritesFeature: AppReducer {
+    associatedtype Environments: MyFavoritesEnvironmentProviding
     associatedtype MyFavoritesRouting: Routing<MyFavoritesRoute>
     associatedtype MyFavoritesNetworkConnectivityForm: MyFavorites.NetworkConnectivityForm
     associatedtype MyFavoritesAllMovies: Storage<Movie>
@@ -25,6 +26,12 @@ public protocol MyFavoritesFeature: AppReducer {
     var allGenres: MyFavoritesAllGenres { get }
 }
 
+/// The live environments the MyFavorites flow's middleware needs. The host supplies them, so the flow
+/// never depends on the API layer that builds them.
+public protocol MyFavoritesEnvironmentProviding {
+    static var myFavorites: MyFavoritesEnvironment { get }
+}
+
 
 public struct MyFavoritesFeatureState<AppState: MyFavoritesFeature, FeatureRouting: Routing<MyFavoritesRoute>>: FeatureState {
     var myFavoritesForm = MyFavoritesForm()
@@ -34,6 +41,10 @@ public struct MyFavoritesFeatureState<AppState: MyFavoritesFeature, FeatureRouti
     
     public static func entryPoint(input: Void) -> some View {
         MyFavoritesContainer<AppState>()
+    }
+
+    public static func registerMiddlewares(in store: any Store<AppState>) -> [MiddlewareWrapper<AppState>] {
+        MyFavoritesMiddleware<AppState>.self
     }
 }
 

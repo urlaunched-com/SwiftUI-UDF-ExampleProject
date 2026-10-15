@@ -7,11 +7,13 @@
 //
 
 import ItemDetails
-import Common
 import NetworkConnectivity
 
 extension AppState: ItemDetailsFeature {
-    typealias ItemDetailsFeatureRouting = ItemDetailsRouting
+    typealias AllCast = Flick.AllCast
 }
 
 extension NetworkConnectivity.NetworkConnectivityForm: ItemDetails.NetworkConnectivityForm {}
+extension AllMovies: ItemDetails.AllMovies {}
+extension AllShows: ItemDetails.AllShows {}
+extension AllCast: ItemDetails.AllCast {}

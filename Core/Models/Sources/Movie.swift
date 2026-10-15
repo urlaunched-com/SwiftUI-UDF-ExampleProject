@@ -227,8 +227,8 @@ public extension Movie {
 // MARK: - Mergeable
 
 extension Movie: Mergeable {
-    public func merging(_ newValue: Movie) -> Movie {
-        filled(from: newValue) { filledValue, oldValue in
+    public static func merging(new newValue: Movie, old oldValue: Movie) -> Movie {
+        oldValue.filled(from: newValue) { filledValue, oldValue in
             filledValue.genreIds = newValue.genreIds.isEmpty ? oldValue.genreIds : newValue.genreIds
             filledValue.budget = newValue.budget == 0 ? oldValue.budget : newValue.budget
             filledValue.status = newValue.status.isEmpty ? oldValue.status : newValue.status

@@ -61,10 +61,14 @@ fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
 
-### Projects ###
-*.xcodeproj
-*.xcworkspace
-### Tuist derived files ###
-graph.dot
-Derived/
+### Swift packages ###
+.build/
+.swiftpm/
 .DS_Store
+
+### Local packages resolve through the app workspace ###
+Core/*/Package.resolved
+Feature/*/Package.resolved
+DataLayer/Package.resolved
+SourcePackages/
+output/

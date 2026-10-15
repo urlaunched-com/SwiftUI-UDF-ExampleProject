@@ -220,8 +220,8 @@ public extension Show {
 // MARK: - Mergeable
 
 extension Show: Mergeable {
-    public func merging(_ newValue: Show) -> Show {
-        filled(from: newValue) { filledValue, oldValue in
+    public static func merging(new newValue: Show, old oldValue: Show) -> Show {
+        oldValue.filled(from: newValue) { filledValue, oldValue in
             filledValue.genreIds = newValue.genreIds.isEmpty ? oldValue.genreIds : newValue.genreIds
             filledValue.episodeRunTime = newValue.episodeRunTime.isEmpty ? oldValue.episodeRunTime : newValue.episodeRunTime
             filledValue.status = newValue.status.isEmpty ? oldValue.status : newValue.status

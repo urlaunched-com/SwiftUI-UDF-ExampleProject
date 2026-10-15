@@ -10,6 +10,7 @@
 import Common
 import SwiftUI
 import SwiftUISnapshotTestCase
+import UDF
 import XCTest
 
 final class RootComponentTests: BaseSnapshotTestCase {
@@ -29,7 +30,7 @@ final class RootComponentTests: BaseSnapshotTestCase {
                     randomizerTabPath: .constant(.init()),
                     favoritesTabPath: .constant(.init()),
                     profileTabPath: .constant(.init()),
-                    router: .init(routing: MockRouter<RootRoute>())
+                    router: .init(routing: MockedRouting<RootScreenRoute>())
                 )
             )
         )
@@ -46,7 +47,7 @@ final class RootComponentTests: BaseSnapshotTestCase {
                     randomizerTabPath: .constant(.init()),
                     favoritesTabPath: .constant(.init()),
                     profileTabPath: .constant(.init()),
-                    router: .init(routing: MockRouter<RootRoute>())
+                    router: .init(routing: MockedRouting<RootScreenRoute>())
                 )
             )
         )
@@ -63,7 +64,7 @@ final class RootComponentTests: BaseSnapshotTestCase {
                     randomizerTabPath: .constant(.init()),
                     favoritesTabPath: .constant(.init()),
                     profileTabPath: .constant(.init()),
-                    router: .init(routing: MockRouter<RootRoute>())
+                    router: .init(routing: MockedRouting<RootScreenRoute>())
                 )
             )
         )

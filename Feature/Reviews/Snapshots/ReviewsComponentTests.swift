@@ -31,7 +31,7 @@ final class ReviewsComponentTests: BaseSnapshotTestCase {
                 reviewById: { _ in .empty },
                 loadMoreAction: {},
                 dialog: .constant(.dismissed),
-                router: .init(routing: MockRouter<ReviewsRoute>())
+                router: .init(routing: MockedRouting<ReviewsListRoute>())
             ))
         )
     }
@@ -45,7 +45,7 @@ final class ReviewsComponentTests: BaseSnapshotTestCase {
                 },
                 loadMoreAction: {},
                 dialog: .constant(.dismissed),
-                router: .init(routing: MockRouter<ReviewsRoute>())
+                router: .init(routing: MockedRouting<ReviewsListRoute>())
             ))
         )
     }
@@ -60,7 +60,7 @@ final class ReviewsComponentTests: BaseSnapshotTestCase {
                 },
                 loadMoreAction: {},
                 dialog: .constant(.dismissed),
-                router: .init(routing: MockRouter<ReviewsRoute>())
+                router: .init(routing: MockedRouting<ReviewsListRoute>())
             ))
         )
     }
