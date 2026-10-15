@@ -4,7 +4,7 @@ version: 2.1
 references:
   container_config: &container_config
     macos:
-      xcode: "26.5"
+      xcode: "27.1"
     resource_class: m4pro.medium
 
 jobs:
@@ -37,7 +37,7 @@ jobs:
             xcodebuild test \
               -project Flick.xcodeproj \
               -scheme Flick \
-              -destination "platform=iOS Simulator,name=iPhone 17 Pro,OS=26.5" \
+              -destination "platform=iOS Simulator,name=iPhone 18 Pro,OS=27.0" \
               -clonedSourcePackagesDirPath SourcePackages \
               -resultBundlePath "$FL_OUTPUT_DIR/Flick.xcresult" \
               -skipPackagePluginValidation \

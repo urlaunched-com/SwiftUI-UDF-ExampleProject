@@ -27,7 +27,7 @@ final class ReviewDetailsComponentsTests: BaseSnapshotTestCase {
 
     func test_ReviewDetails_initial_state() {
         snapshot(
-            component: ReviewDetailsComponent(props: ReviewDetailsComponent.Props(
+            for: ReviewDetailsComponent(props: ReviewDetailsComponent.Props(
                 id: review.id,
                 reviewByID: { [self] _ in review },
                 isRedacted: true,
@@ -39,7 +39,7 @@ final class ReviewDetailsComponentsTests: BaseSnapshotTestCase {
     
     func test_ReviewDetails_loaded_state() {
         snapshot(
-            component: ReviewDetailsComponent(props: ReviewDetailsComponent.Props(
+            for: ReviewDetailsComponent(props: ReviewDetailsComponent.Props(
                 id: review.id,
                 reviewByID: { [self] _ in review },
                 isRedacted: false,

@@ -26,7 +26,7 @@ final class ReviewsComponentTests: BaseSnapshotTestCase {
 
     func test_Reviews_empty_state() {
         snapshot(
-            component: ReviewsComponent(props: ReviewsComponent.Props(
+            for: ReviewsComponent(props: ReviewsComponent.Props(
                 reviews: [],
                 reviewById: { _ in .empty },
                 loadMoreAction: {},
@@ -38,7 +38,7 @@ final class ReviewsComponentTests: BaseSnapshotTestCase {
 
     func test_Reviews_loaded_state() {
         snapshot(
-            component: ReviewsComponent(props: ReviewsComponent.Props(
+            for: ReviewsComponent(props: ReviewsComponent.Props(
                 reviews: reviews.map(\.id),
                 reviewById: { [reviews] id in
                     reviews.first(where: { $0.id == id }) ?? .empty
@@ -53,7 +53,7 @@ final class ReviewsComponentTests: BaseSnapshotTestCase {
     func test_Reviews_short_list_state() {
         let reviews = Review.testItems(count: 2)
         snapshot(
-            component: ReviewsComponent(props: ReviewsComponent.Props(
+            for: ReviewsComponent(props: ReviewsComponent.Props(
                 reviews: reviews.map(\.id),
                 reviewById: { [reviews] id in
                     reviews.first(where: { $0.id == id }) ?? .empty

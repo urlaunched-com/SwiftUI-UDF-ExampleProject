@@ -22,7 +22,7 @@ final class HomeComponentTests: BaseSnapshotTestCase {
 
     func test_Home_movie_state() {
         snapshot(
-            component: HomeComponent(
+            for: HomeComponent(
                 props: .init(
                     contentType: .constant(.movie),
                     movieSections: [.popular, .topRated],
@@ -40,7 +40,7 @@ final class HomeComponentTests: BaseSnapshotTestCase {
 
     func test_Home_show_state() {
         snapshot(
-            component: HomeComponent(
+            for: HomeComponent(
                 props: .init(
                     contentType: .constant(.show),
                     movieSections: MovieSection.allCases,

@@ -22,7 +22,7 @@ final class SettingsComponentTests: BaseSnapshotTestCase {
 
     func test_Settings_initial_state() {
         snapshot(
-            component: SettingsComponent(
+            for: SettingsComponent(
                 props: .init(rateThisAppAction: {})
             )
         )
@@ -30,7 +30,7 @@ final class SettingsComponentTests: BaseSnapshotTestCase {
 
     func test_Settings_landscape_state() {
         snapshot(
-            component: SettingsComponent(
+            for: SettingsComponent(
                 props: .init(rateThisAppAction: {})
             )
         )

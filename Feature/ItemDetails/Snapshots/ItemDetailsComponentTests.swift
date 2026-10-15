@@ -21,7 +21,7 @@ final class ItemDetailsComponentTests: BaseSnapshotTestCase {
 
     func test_ItemDetails_movie_state() {
         snapshot(
-            component: ItemDetailsComponent<MockedRouting<ItemDetailsScreenRoute>>(
+            for: ItemDetailsComponent<MockedRouting<ItemDetailsScreenRoute>>(
                 props: .init(
                     item: Movie.fakeItem(),
                     genreById: { _ in .fakeItem() },
@@ -33,7 +33,7 @@ final class ItemDetailsComponentTests: BaseSnapshotTestCase {
 
     func test_ItemDetails_show_state() {
         snapshot(
-            component: ItemDetailsComponent<MockedRouting<ItemDetailsScreenRoute>>(
+            for: ItemDetailsComponent<MockedRouting<ItemDetailsScreenRoute>>(
                 props: .init(
                     item: Show.fakeItem(),
                     genreById: { _ in .fakeItem() },
@@ -45,7 +45,7 @@ final class ItemDetailsComponentTests: BaseSnapshotTestCase {
 
     func test_ItemDetails_movie_without_genres_state() {
         snapshot(
-            component: ItemDetailsComponent<MockedRouting>(
+            for: ItemDetailsComponent<MockedRouting>(
                 props: .init(
                     item: Movie.testItem(genreIds: []),
                     genreById: { _ in .fakeItem() },

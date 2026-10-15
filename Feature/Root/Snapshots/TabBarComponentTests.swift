@@ -20,7 +20,7 @@ final class TabBarComponentTests: BaseSnapshotTestCase {
 
     func test_TabBar_visible_state() {
         snapshot(
-            component: TabBarComponent(
+            for: TabBarComponent(
                 props: .init(
                     selectedTab: .constant(.home),
                     isHidden: .constant(false)
@@ -31,7 +31,7 @@ final class TabBarComponentTests: BaseSnapshotTestCase {
 
     func test_TabBar_hidden_state() {
         snapshot(
-            component: TabBarComponent(
+            for: TabBarComponent(
                 props: .init(
                     selectedTab: .constant(.search),
                     isHidden: .constant(true)
@@ -42,7 +42,7 @@ final class TabBarComponentTests: BaseSnapshotTestCase {
 
     func test_TabBar_randomizer_selected_state() {
         snapshot(
-            component: TabBarComponent(
+            for: TabBarComponent(
                 props: .init(
                     selectedTab: .constant(.randomizer),
                     isHidden: .constant(false)
@@ -53,7 +53,7 @@ final class TabBarComponentTests: BaseSnapshotTestCase {
 
     func test_TabBar_favorites_selected_state() {
         snapshot(
-            component: TabBarComponent(
+            for: TabBarComponent(
                 props: .init(
                     selectedTab: .constant(.favorites),
                     isHidden: .constant(false)
@@ -64,7 +64,7 @@ final class TabBarComponentTests: BaseSnapshotTestCase {
 
     func test_TabBar_profile_selected_state() {
         snapshot(
-            component: TabBarComponent(
+            for: TabBarComponent(
                 props: .init(
                     selectedTab: .constant(.profile),
                     isHidden: .constant(false)

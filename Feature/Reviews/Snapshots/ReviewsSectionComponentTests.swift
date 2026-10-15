@@ -26,7 +26,7 @@ final class ReviewsSectionComponentTests: BaseSnapshotTestCase {
 
     func test_ReviewsSection_initial_state() {
         snapshot(
-            component: ReviewsSectionComponent(props: ReviewsSectionComponent.Props(
+            for: ReviewsSectionComponent(props: ReviewsSectionComponent.Props(
                 id: .movie(.init(value: 1)),
                 reviews: reviews.map(\.id),
                 reviewById: { _ in .testItem() },
@@ -38,7 +38,7 @@ final class ReviewsSectionComponentTests: BaseSnapshotTestCase {
 
     func test_ReviewsSection_loaded_state() {
         snapshot(
-            component: ReviewsSectionComponent(props: ReviewsSectionComponent.Props(
+            for: ReviewsSectionComponent(props: ReviewsSectionComponent.Props(
                 id: .movie(.init(value: 1)),
                 reviews: reviews.map(\.id),
                 reviewById: { [reviews] id in

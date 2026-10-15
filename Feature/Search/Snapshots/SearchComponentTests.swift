@@ -26,7 +26,7 @@ final class SearchComponentTests: BaseSnapshotTestCase {
 
     func test_Search_empty_state() {
         snapshot(
-            component: SearchComponent(props: SearchComponent.Props(
+            for: SearchComponent(props: SearchComponent.Props(
                 searchText: .constant(""),
                 itemIds: [],
                 searchItemById: { _ in .fakeItem() },
@@ -39,7 +39,7 @@ final class SearchComponentTests: BaseSnapshotTestCase {
 
     func test_Search_no_results_state() {
         snapshot(
-            component: SearchComponent(props: SearchComponent.Props(
+            for: SearchComponent(props: SearchComponent.Props(
                 searchText: .constant("g"),
                 itemIds: [],
                 searchItemById: { _ in .fakeItem() },
@@ -52,7 +52,7 @@ final class SearchComponentTests: BaseSnapshotTestCase {
 
     func test_Search_loaded_state() {
         snapshot(
-            component: SearchComponent(props: SearchComponent.Props(
+            for: SearchComponent(props: SearchComponent.Props(
                 searchText: .constant("Search text"),
                 itemIds: items.map(\.id),
                 searchItemById: { [items] id in
@@ -68,7 +68,7 @@ final class SearchComponentTests: BaseSnapshotTestCase {
     func test_Search_single_result_state() {
         let item = SearchItem.testItem()
         snapshot(
-            component: SearchComponent(props: SearchComponent.Props(
+            for: SearchComponent(props: SearchComponent.Props(
                 searchText: .constant("One"),
                 itemIds: [item.id],
                 searchItemById: { _ in item },

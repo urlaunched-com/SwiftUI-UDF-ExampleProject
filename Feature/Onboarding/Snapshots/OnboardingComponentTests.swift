@@ -26,7 +26,7 @@ final class OnboardingComponentTests: BaseSnapshotTestCase {
             nextPage: OnboardingComponent.Page.testItem()
         )
         snapshot(
-            component: OnboardingComponent(
+            for: OnboardingComponent(
                 props: .init(
                     skipAction: {}
                 ),
@@ -42,7 +42,7 @@ final class OnboardingComponentTests: BaseSnapshotTestCase {
             color: .flMainPink
         )
         snapshot(
-            component: OnboardingComponent(
+            for: OnboardingComponent(
                 props: .init(
                     skipAction: {}
                 ),

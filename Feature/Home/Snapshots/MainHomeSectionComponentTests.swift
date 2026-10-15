@@ -23,7 +23,7 @@ final class MainHomeSectionComponentTests: BaseSnapshotTestCase {
 
     func test_MainHomeSection_loaded_state() {
         snapshot(
-            component: MainHomeSectionComponent(
+            for: MainHomeSectionComponent(
                 props: .init(
                     section: MovieSection.popular,
                     items: Movie.testItems(count: 5),
@@ -36,7 +36,7 @@ final class MainHomeSectionComponentTests: BaseSnapshotTestCase {
 
     func test_MainHomeSection_show_state() {
         snapshot(
-            component: MainHomeSectionComponent(
+            for: MainHomeSectionComponent(
                 props: .init(
                     section: ShowSection.popular,
                     items: Show.testItems(count: 5),

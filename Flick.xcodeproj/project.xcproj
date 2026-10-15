@@ -22,7 +22,7 @@
       "kind": "remote",
       "repository": "https://github.com/Maks-Jago/swiftui-snapshot-test-case",
       "version": {
-        "up-to-next-major-version": "1.6.2",
+        "up-to-next-major-version": "1.7.3",
       },
     }, {
       "kind": "remote",

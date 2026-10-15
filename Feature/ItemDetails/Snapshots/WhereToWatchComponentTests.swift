@@ -38,7 +38,7 @@ final class WhereToWatchComponentTests: BaseSnapshotTestCase {
 
     func test_WhereToWatch_initial_state() {
         snapshot(
-            component: WhereToWatchComponent(props: WhereToWatchComponent.Props(
+            for: WhereToWatchComponent(props: WhereToWatchComponent.Props(
                 item: Show.testItem(),
                 countries: dropDownItems,
                 providers: Provider.fakeItems(count: 3),
@@ -49,7 +49,7 @@ final class WhereToWatchComponentTests: BaseSnapshotTestCase {
 
     func test_WhereToWatch_empty_providers_state() {
         snapshot(
-            component: WhereToWatchComponent(props: WhereToWatchComponent.Props(
+            for: WhereToWatchComponent(props: WhereToWatchComponent.Props(
                 item: Movie.testItem(),
                 countries: dropDownItems,
                 providers: [],

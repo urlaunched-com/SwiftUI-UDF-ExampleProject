@@ -21,7 +21,7 @@ final class RootComponentTests: BaseSnapshotTestCase {
 
     func test_Root_onboarding_state() {
         snapshot(
-            component: RootComponent(
+            for: RootComponent(
                 props: .init(
                     isNeedToPresentOnboarding: true,
                     selectedTab: .constant(.home),
@@ -38,7 +38,7 @@ final class RootComponentTests: BaseSnapshotTestCase {
 
     func test_Root_main_tabs_state() {
         snapshot(
-            component: RootComponent(
+            for: RootComponent(
                 props: .init(
                     isNeedToPresentOnboarding: false,
                     selectedTab: .constant(.home),
@@ -55,7 +55,7 @@ final class RootComponentTests: BaseSnapshotTestCase {
 
     func test_Root_favorites_tab_state() {
         snapshot(
-            component: RootComponent(
+            for: RootComponent(
                 props: .init(
                     isNeedToPresentOnboarding: false,
                     selectedTab: .constant(.favorites),

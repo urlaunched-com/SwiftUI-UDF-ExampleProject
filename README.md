@@ -33,7 +33,7 @@ This project integrates with [The Movie Database (TMDB)](https://www.themoviedb.
 2. **Running Snapshot tests**
 
 	```bash
-	xcodebuild test -project Flick.xcodeproj -scheme Flick -destination "platform=iOS Simulator,name=iPhone 17 Pro,OS=26.5" -skipPackagePluginValidation
+	xcodebuild test -project Flick.xcodeproj -scheme Flick -destination "platform=iOS Simulator,name=iPhone 18 Pro,OS=27.0" -skipPackagePluginValidation
 	```
 
 3. **Create a TMDB account** and generate an API key:  

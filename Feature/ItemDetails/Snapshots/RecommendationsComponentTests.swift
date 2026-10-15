@@ -21,7 +21,7 @@ final class RecommendationsComponentTests: BaseSnapshotTestCase {
 
     func test_Recommendations_empty_state() {
         snapshot(
-            component: RecommendationsComponent(
+            for: RecommendationsComponent(
                 props: .init(
                     title: "Popular",
                     items: [],
@@ -36,7 +36,7 @@ final class RecommendationsComponentTests: BaseSnapshotTestCase {
 
     func test_Recommendations_loaded_state() {
         snapshot(
-            component: RecommendationsComponent(
+            for: RecommendationsComponent(
                 props: .init(
                     title: "Popular",
                     items: Movie.testItems(count: 10),
@@ -51,7 +51,7 @@ final class RecommendationsComponentTests: BaseSnapshotTestCase {
 
     func test_Recommendations_show_loaded_state() {
         snapshot(
-            component: RecommendationsComponent(
+            for: RecommendationsComponent(
                 props: .init(
                     title: "Trending Shows",
                     items: Show.testItems(count: 10),

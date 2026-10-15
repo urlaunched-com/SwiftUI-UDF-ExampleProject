@@ -22,7 +22,7 @@ final class CastSectionComponentTests: BaseSnapshotTestCase {
 
     func test_CastSection_initial_state() {
         snapshot(
-            component: CastSectionComponent(
+            for: CastSectionComponent(
                 props: .init(
                     cast: [],
                     castById: { _ in .fakeItem() },
@@ -36,7 +36,7 @@ final class CastSectionComponentTests: BaseSnapshotTestCase {
     func test_CastSection_loaded_state() {
         let cast = Cast.testItems(count: 6)
         snapshot(
-            component: CastSectionComponent(
+            for: CastSectionComponent(
                 props: .init(
                     cast: cast.ids,
                     castById: { id in cast.first(where: { $0.id == id }) ?? .fakeItem() },
@@ -49,7 +49,7 @@ final class CastSectionComponentTests: BaseSnapshotTestCase {
 
     func test_CastSection_redacted_state() {
         snapshot(
-            component: CastSectionComponent(
+            for: CastSectionComponent(
                 props: .init(
                     cast: Cast.testItems(count: 6).ids,
                     castById: { _ in .fakeItem() },

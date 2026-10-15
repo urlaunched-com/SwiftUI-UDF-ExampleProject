@@ -21,7 +21,7 @@ final class RecommendationsSectionComponentTests: BaseSnapshotTestCase {
 
     func test_RecommendationsSection_empty_state() {
         snapshot(
-            component: RecommendationsSectionComponent(
+            for: RecommendationsSectionComponent(
                 props: .init(
                     item: Movie.fakeItem(),
                     items: [],
@@ -35,7 +35,7 @@ final class RecommendationsSectionComponentTests: BaseSnapshotTestCase {
 
     func test_RecommendationsSection_loaded_state() {
         snapshot(
-            component: RecommendationsSectionComponent(
+            for: RecommendationsSectionComponent(
                 props: .init(
                     item: Movie.fakeItem(),
                     items: Movie.testItems(count: 10),
@@ -49,7 +49,7 @@ final class RecommendationsSectionComponentTests: BaseSnapshotTestCase {
 
     func test_RecommendationsSection_redacted_state() {
         snapshot(
-            component: RecommendationsSectionComponent(
+            for: RecommendationsSectionComponent(
                 props: .init(
                     item: Show.fakeItem(),
                     items: Show.testItems(count: 10),

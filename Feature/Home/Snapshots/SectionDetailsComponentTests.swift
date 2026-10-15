@@ -21,7 +21,7 @@ final class SectionDetailsComponentTests: BaseSnapshotTestCase {
 
     func test_SectionDetails_empty_state() {
         snapshot(
-            component: SectionDetailsComponent(
+            for: SectionDetailsComponent(
                 props: .init(
                     title: "Popular",
                     items: [],
@@ -36,7 +36,7 @@ final class SectionDetailsComponentTests: BaseSnapshotTestCase {
 
     func test_SectionDetails_loaded_state() {
         snapshot(
-            component: SectionDetailsComponent(
+            for: SectionDetailsComponent(
                 props: .init(
                     title: "Popular",
                     items: Movie.testItems(count: 10),
@@ -51,7 +51,7 @@ final class SectionDetailsComponentTests: BaseSnapshotTestCase {
 
     func test_SectionDetails_show_loaded_state() {
         snapshot(
-            component: SectionDetailsComponent(
+            for: SectionDetailsComponent(
                 props: .init(
                     title: "Top Rated Shows",
                     items: Show.testItems(count: 10),

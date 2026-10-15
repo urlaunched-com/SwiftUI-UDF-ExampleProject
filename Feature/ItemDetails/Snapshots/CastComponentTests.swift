@@ -26,7 +26,7 @@ final class CastComponentTests: BaseSnapshotTestCase {
 
     func test_Cast_initial_state() {
         snapshot(
-            component: CastComponent(props: CastComponent.Props(
+            for: CastComponent(props: CastComponent.Props(
                 cast: castItems.map(\.id),
                 castById: { _ in .fakeItem() },
                 dialogStatus: .constant(.dismissed),
@@ -37,7 +37,7 @@ final class CastComponentTests: BaseSnapshotTestCase {
 
     func test_Cast_loaded_state() {
         snapshot(
-            component: CastComponent(props: CastComponent.Props(
+            for: CastComponent(props: CastComponent.Props(
                 cast: castItems.map(\.id),
                 castById: { [castItems] id in
                     castItems.first(where: { $0.id == id }) ?? .fakeItem()

@@ -22,7 +22,7 @@ final class MyFavoritesComponentTests: BaseSnapshotTestCase {
 
     func test_MyFavorites_initial_state() {
         snapshot(
-            component: MyFavoritesComponent(props: MyFavoritesComponent.Props(
+            for: MyFavoritesComponent(props: MyFavoritesComponent.Props(
                 contentType: .constant(.movie),
                 items: Movie.testItems(count: 3),
                 genreById: { _ in .testItem() },
@@ -36,7 +36,7 @@ final class MyFavoritesComponentTests: BaseSnapshotTestCase {
 
     func test_MyFavorites_movies_loaded_state() {
         snapshot(
-            component: MyFavoritesComponent(props: MyFavoritesComponent.Props(
+            for: MyFavoritesComponent(props: MyFavoritesComponent.Props(
                 contentType: .constant(.movie),
                 items: Movie.testItems(count: 10),
                 genreById: { _ in .testItem() },
@@ -50,7 +50,7 @@ final class MyFavoritesComponentTests: BaseSnapshotTestCase {
 
     func test_MyFavorites_shows_loaded_state() {
         snapshot(
-            component: MyFavoritesComponent(props: MyFavoritesComponent.Props(
+            for: MyFavoritesComponent(props: MyFavoritesComponent.Props(
                 contentType: .constant(.show),
                 items: Show.testItems(count: 10),
                 genreById: { _ in .testItem() },
