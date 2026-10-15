@@ -7,9 +7,10 @@
 //
 
 import UDF
-import Models
 import Common
 import SwiftUI
+import MediaModels
+import Models
 
 struct ItemDetailsContainer<F: ItemDetailsFeature>: BindableContainer {
     typealias ContainerComponent = ItemDetailsComponent<F.ItemDetailsFeatureRouting>

@@ -7,7 +7,7 @@
 //
 
 import UDF
-@preconcurrency import Models
+@preconcurrency import MediaModels
 
 public struct HomeForm: Form, HomeFeatureTypes.HomeForm {
     public var contentType: ContentType = .movie

@@ -6,7 +6,7 @@
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 
-import Models
+import MediaModels
 
 public protocol RecommendationsEnvironmentProviding {
     static var recommendationsEnvironment: RecommendationsEnvironment { get }

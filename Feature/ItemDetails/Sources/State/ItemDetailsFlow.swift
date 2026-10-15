@@ -7,6 +7,7 @@
 //
 
 import UDF
+@preconcurrency import MediaModels
 @preconcurrency import Models
 
 public enum ItemDetailsFlow: IdentifiableFlow, @unchecked Sendable {

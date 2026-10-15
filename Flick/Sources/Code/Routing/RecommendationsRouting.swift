@@ -8,10 +8,10 @@
 
 import SwiftUI
 import UDF
-import Models
 import Common
 import Recommendations
 import ItemDetails
+import MediaModels
 
 struct RecommendationsRouting: Routing {
     @ViewBuilder func view(for route: RecommendationsRoute) -> some View {

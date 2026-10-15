@@ -9,8 +9,8 @@
 import SwiftUI
 import UDF
 import Common
-import Models
 import SectionsModels
+import MediaModels
 
 public enum HomeSectionRoute: Hashable {
     case itemDetails(any Item)

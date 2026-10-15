@@ -8,8 +8,8 @@
 
 import MyFavorites
 import API
-import Models
 import SectionsModels
+import MediaModels
 
 extension AppEnvironments: MyFavoritesEnvironmentProviding {
     static var myFavoritesEnvironment: MyFavoritesEnvironment {

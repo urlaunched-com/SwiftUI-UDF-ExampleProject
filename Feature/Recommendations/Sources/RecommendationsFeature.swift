@@ -8,8 +8,8 @@
 
 import UDF
 import Common
-@preconcurrency import Models
 import SwiftUI
+@preconcurrency import MediaModels
 
 public protocol RecommendationsFeature: AppReducer {
     associatedtype RecommendationsEnvironment: RecommendationsEnvironmentProviding
@@ -35,7 +35,7 @@ public struct RecommendationsFeatureState<AppState: RecommendationsFeature, Feat
     
     public init() {}
     
-    public static func entryPoint(input: RecomendationTarget) -> some View {
+    public static func entryPoint(input: MediaReference) -> some View {
         RecommendationsContainer<AppState>(id: input)
     }
 

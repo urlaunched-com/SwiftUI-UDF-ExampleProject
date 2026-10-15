@@ -8,7 +8,7 @@
 
 import UDF
 import UIKit
-@preconcurrency import Models
+@preconcurrency import ReviewModels
 
 enum Cancellation: Hashable {
     case loadShowReview(Review.ID)

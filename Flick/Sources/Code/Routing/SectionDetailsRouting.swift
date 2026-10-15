@@ -8,10 +8,10 @@
 
 import SwiftUI
 import UDF
-import Models
 import Common
 import SectionDetails
 import ItemDetails
+import MediaModels
 
 struct SectionDetailsRouting: Routing {
     typealias Route = SectionDetailsRoute

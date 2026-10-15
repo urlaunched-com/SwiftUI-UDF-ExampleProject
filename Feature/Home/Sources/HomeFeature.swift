@@ -6,11 +6,11 @@
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 
-import Models
 import UDF
 import Common
 import SwiftUI
 import SectionsModels
+import MediaModels
 
 public protocol HomeFeature: AppReducer {
     associatedtype NetworkConnectivityForm: HomeFeatureTypes.NetworkConnectivityForm

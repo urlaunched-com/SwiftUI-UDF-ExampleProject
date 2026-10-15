@@ -8,7 +8,7 @@
 
 import Localizations
 import SwiftUI
-import Models
+import MediaModels
 
 public struct ContentToggle: View {
     @Binding var contentType: ContentType

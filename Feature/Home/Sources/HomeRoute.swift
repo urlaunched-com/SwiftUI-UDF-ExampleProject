@@ -6,8 +6,8 @@
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 
-import Models
 import SectionsModels
+import MediaModels
 
 public enum HomeRoute: Hashable {
     case mainMovieSection(section: MovieSection, items: [Movie])

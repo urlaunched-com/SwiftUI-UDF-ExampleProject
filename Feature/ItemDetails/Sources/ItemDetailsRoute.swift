@@ -8,8 +8,8 @@
 
 import SwiftUI
 import UDF
-import Models
 import Common
+import MediaModels
 
 public enum ItemDetailsRoute: Hashable {
     case cast(any Item)

@@ -22,20 +22,10 @@ public protocol Item: Identifiable, Hashable {
     var posterPath: String? { get }
     var backdropPath: String? { get }
     var genreIds: [Int] { get }
-    var id: ReviewsTarget? { get }
+    var mediaReference: MediaReference { get }
 }
 
 public extension Item {
-    var id: ReviewsTarget? {
-        switch self {
-        case let item as Movie:
-            return .movie(item.id)
-        case let item as Show:
-            return .show(item.id)
-        default:
-            return nil
-        }
-    }
     var durationText: String {
         guard duration > 0 else {
             return ""

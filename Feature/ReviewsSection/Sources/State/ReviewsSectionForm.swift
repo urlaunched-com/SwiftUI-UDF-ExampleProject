@@ -7,8 +7,8 @@
 //
 
 import UDF
-@preconcurrency import Models
 import Common
+@preconcurrency import ReviewModels
 
 public struct ReviewsSectionForm: Form {
     var paginator: Paginator = .init(

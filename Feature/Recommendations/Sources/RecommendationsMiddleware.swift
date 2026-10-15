@@ -7,10 +7,10 @@
 //
 
 import UDF
-@preconcurrency import Models
+@preconcurrency import MediaModels
 
 enum Cancellation: Hashable {
-    case load(RecomendationTarget)
+    case load(MediaReference)
 }
 
 final class RecommendationsMiddleware<F: RecommendationsFeature>: Middleware<F>, @unchecked Sendable {

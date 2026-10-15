@@ -8,6 +8,7 @@
 
 import ItemDetails
 import API
+import MediaModels
 
 extension AppEnvironments: ItemDetailsEnvironmentProviding {
     static var itemDetailsEnvironment: ItemDetailsEnvironment {

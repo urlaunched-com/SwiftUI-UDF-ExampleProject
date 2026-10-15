@@ -8,8 +8,8 @@
 
 import Localizations
 import SwiftUI
-import Models
 import DesignSystem
+import ReviewModels
 
 public struct ReviewHeaderView<ImageView: View>: View {
     let review: Review

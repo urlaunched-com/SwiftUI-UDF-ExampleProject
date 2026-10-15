@@ -7,20 +7,20 @@
 //
 
 import UDF
-import Models
 import SwiftUI
+import MediaModels
 
 struct RecommendationsContainer<F: RecommendationsFeature>: BindableContainer {
     typealias ContainerComponent = RecommendationsComponent<F.RecommendationsRouting>
 
-    let id: RecomendationTarget
+    let id: MediaReference
 
     func scope(for state: F) -> Scope {
         state.recommendationsFeatureState.recommendationsFlow[id]
         state.recommendationsFeatureState.recommendationsForm[id]
     }
     
-    init(id: RecomendationTarget) {
+    init(id: MediaReference) {
         self.id = id
     }
 

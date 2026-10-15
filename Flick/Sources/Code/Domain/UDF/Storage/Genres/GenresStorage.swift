@@ -8,7 +8,7 @@
 
 import Foundation
 import UDF
-@preconcurrency import Models
+@preconcurrency import MediaModels
 
 struct AllGenres: Storage {
     var byId: [Genre.ID: Genre] = [:]

@@ -11,10 +11,10 @@ import DesignSystem
 import Localizations
 import SwiftUI
 import UDF
-import Models
 import SearchModels
 import CustomViews
 import Common
+import MediaModels
 
 struct SearchComponent<R: Routing>: Component where R.Route == SearchRoute {
     struct Props {

@@ -6,7 +6,7 @@
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 
-import Models
+import MediaModels
 
 public enum ItemDetailsTarget: Hashable {
     case movie(Movie.ID)

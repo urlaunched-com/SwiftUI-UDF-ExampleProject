@@ -8,8 +8,9 @@
 
 import SwiftUI
 import UDF
-import Models
 import SectionsModels
+import MediaModels
+import Models
 
 struct HomeSectionContainer<F: HomeSectionFeature>: Container {
     typealias ContainerComponent = HomeSectionComponent<F.HomeSectionFeatureRouting>

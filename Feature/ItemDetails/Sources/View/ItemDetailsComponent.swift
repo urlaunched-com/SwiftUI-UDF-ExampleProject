@@ -11,9 +11,9 @@ import Localizations
 import SwiftUI
 import SwiftUI_Kit
 import UDF
-import Models
 import Common
 import CustomViews
+import MediaModels
 
 struct ItemDetailsComponent<R: Routing>: Component where R.Route == ItemDetailsRoute {
     struct Props {

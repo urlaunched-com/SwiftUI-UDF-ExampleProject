@@ -8,11 +8,11 @@
 
 import SwiftUI
 import UDF
-import Models
 import Common
 import Recommendations
 import RecommendationsSection
 import ItemDetails
+import MediaModels
 
 struct RecommendationsSectionRouting: Routing {
     @ViewBuilder func view(for route: RecommendationsSectionRoute) -> some View {
@@ -24,11 +24,7 @@ struct RecommendationsSectionRouting: Routing {
                 ItemDetailsFeatureState<AppState, ItemDetailsRouting>.entryPoint(input: .show(show.id))
             }
         case let .recommendations(item):
-            if let movie = item as? Movie {
-                RecommendationsFeatureState<AppState, RecommendationsRouting>.entryPoint(input: .movie(movie.id))
-            } else if let show = item as? Show {
-                RecommendationsFeatureState<AppState, RecommendationsRouting>.entryPoint(input: .show(show.id))
-            }
+            RecommendationsFeatureState<AppState, RecommendationsRouting>.entryPoint(input: item.mediaReference)
         case .imageContainer(path: let path, size: let size):
             AppRouter.image(size: size, path: path)
         }

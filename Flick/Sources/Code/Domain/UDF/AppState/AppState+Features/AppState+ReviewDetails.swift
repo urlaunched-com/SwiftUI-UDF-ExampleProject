@@ -7,9 +7,10 @@
 //
 
 import Common
-import Models
 import NetworkConnectivity
 import ReviewDetails
+import MediaModels
+import ReviewModels
 
 extension AppState: ReviewDetailsFeature {
     typealias AllReviews = Flick.AllReviews
@@ -18,7 +19,7 @@ extension AppState: ReviewDetailsFeature {
 
 extension NetworkConnectivity.NetworkConnectivityForm: ReviewDetails.NetworkConnectivityForm {}
 extension AllReviews: ReviewDetails.AllReviews {
-    var movieByID: [Models.Movie.ID: [Models.Review.ID]] {
+    var movieByID: [MediaModels.Movie.ID: [ReviewModels.Review.ID]] {
         byMovieId.mapValues(Array.init)
     }
 }

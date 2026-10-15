@@ -7,7 +7,7 @@
 //
 
 import UDF
-import Models
+import ReviewModels
 
 public enum ReviewsFlow: IdentifiableFlow {
     case none, loadReviews(Int)

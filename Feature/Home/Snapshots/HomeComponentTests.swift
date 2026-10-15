@@ -8,12 +8,12 @@
 
 @testable import Home
 import Common
-import Models
 import SwiftUI
 import SwiftUISnapshotTestCase
 import XCTest
 import UDF
 import SectionsModels
+import MediaModels
 
 final class HomeComponentTests: BaseSnapshotTestCase {
     override func setUp() {

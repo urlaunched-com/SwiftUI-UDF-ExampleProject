@@ -8,6 +8,7 @@
 
 import Recommendations
 import API
+import MediaModels
 
 extension AppEnvironments: RecommendationsEnvironmentProviding {
     static var recommendationsEnvironment: RecommendationsEnvironment {

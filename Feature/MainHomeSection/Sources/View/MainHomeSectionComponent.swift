@@ -9,10 +9,10 @@
 import SwiftUI
 import SwiftUI_Kit
 import UDF
-import Models
 import Common
 import CustomViews
 import SectionsModels
+import MediaModels
 
 struct MainHomeSectionComponent<R: Routing>: Component where R.Route == MainHomeSectionRoute {
     struct Props {

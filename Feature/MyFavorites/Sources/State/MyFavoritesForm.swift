@@ -7,8 +7,8 @@
 //
 
 import UDF
-@preconcurrency import Models
 import Common
+@preconcurrency import MediaModels
 
 public struct MyFavoritesForm: Form {
     public var contentType: ContentType = .movie

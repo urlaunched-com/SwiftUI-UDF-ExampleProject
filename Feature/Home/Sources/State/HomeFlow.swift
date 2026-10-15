@@ -8,8 +8,9 @@
 
 import SwiftUI
 import UDF
-import Models
 import SectionsModels
+import MediaModels
+import Models
 
 public enum HomeFlow: IdentifiableFlow, HomeFeatureTypes.HomeFlow {
     case none, loading

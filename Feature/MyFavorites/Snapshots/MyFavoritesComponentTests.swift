@@ -8,11 +8,11 @@
 @testable import MyFavorites
 import Common
 import Foundation
-import Models
 import SwiftUI
 import SwiftUISnapshotTestCase
 import UDF
 import XCTest
+import MediaModels
 
 final class MyFavoritesComponentTests: BaseSnapshotTestCase {
     override func setUp() {

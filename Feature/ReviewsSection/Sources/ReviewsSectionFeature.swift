@@ -7,9 +7,9 @@
 //
 
 import UDF
-@preconcurrency import Models
 import Common
 import SwiftUI
+@preconcurrency import ReviewModels
 
 public protocol ReviewsSectionFeature: AppReducer {
     associatedtype NetworkConnectivityForm: ReviewsSection.NetworkConnectivityForm

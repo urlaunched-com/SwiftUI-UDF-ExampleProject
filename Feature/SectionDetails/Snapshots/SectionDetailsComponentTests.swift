@@ -7,11 +7,11 @@
 
 @testable import SectionDetails
 import Common
-import Models
 import SwiftUI
 import SwiftUISnapshotTestCase
 import XCTest
 import UDF
+import MediaModels
 
 final class SectionDetailsComponentTests: BaseSnapshotTestCase {
     override func setUp() {

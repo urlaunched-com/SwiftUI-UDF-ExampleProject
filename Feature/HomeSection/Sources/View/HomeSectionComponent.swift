@@ -11,8 +11,8 @@ import SwiftUI
 import UDF
 import Common
 import CustomViews
-import Models
 import SectionsModels
+import MediaModels
 
 struct HomeSectionComponent<R: Routing>: Component where R.Route == HomeSectionRoute {
     struct Props {

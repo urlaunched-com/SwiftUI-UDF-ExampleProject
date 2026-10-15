@@ -7,8 +7,8 @@
 //
 
 import UDF
-import Models
 import Common
+import ReviewModels
 
 struct ReviewsSectionContainer<F: ReviewsSectionFeature>: BindableContainer {
     typealias ContainerComponent = ReviewsSectionComponent<F.ReviewsSectionRouting>

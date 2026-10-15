@@ -8,7 +8,7 @@
 
 import SwiftUI
 import UDF
-import Models
+import MediaModels
 
 public struct SelectiveItemsList<Header: View, ImageView: View>: View {
     var items: [any Item]

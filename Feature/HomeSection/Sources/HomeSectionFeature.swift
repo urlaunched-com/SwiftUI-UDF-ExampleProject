@@ -7,10 +7,10 @@
 //
 
 import UDF
-import Models
 import SwiftUI
 import Common
 import SectionsModels
+import MediaModels
 
 public protocol HomeSectionFeature: AppReducer {
     associatedtype AllMovies: Storage<Movie>

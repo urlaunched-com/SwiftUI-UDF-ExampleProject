@@ -9,7 +9,7 @@
 import UDF
 import UIKit
 import Common
-import Models
+import MediaModels
 
 public enum SectionDetailsRoute: Hashable {
     case imageContainer(path: String?, size: CGSize)

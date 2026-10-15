@@ -219,6 +219,7 @@ public extension MovieRemote {
 // MARK: - Item
 
 public extension Movie {
+    var mediaReference: MediaReference { .movie(id) }
     var year: String { releaseDate?.asYearString ?? "" }
     var duration: Minutes { runtime ?? 0 }
     var rating: Int { Int(voteAverage * 10) }

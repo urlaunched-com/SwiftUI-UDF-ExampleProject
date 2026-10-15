@@ -10,9 +10,9 @@ import DesignSystem
 import Localizations
 import SwiftUI
 import UDF
-import Models
 import Common
 import CustomViews
+import MediaModels
 
 struct MyFavoritesComponent<R: Routing>: Component where R.Route == MyFavoritesRoute {
     struct Props {

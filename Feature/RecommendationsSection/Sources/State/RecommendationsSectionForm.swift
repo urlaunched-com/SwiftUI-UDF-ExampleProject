@@ -7,8 +7,8 @@
 //
 
 import UDF
-@preconcurrency import Models
 import Common
+@preconcurrency import MediaModels
 
 public struct RecommendationsSectionForm: Form {
     var moviesPaginator: Paginator = .init(
@@ -42,7 +42,7 @@ public struct RecommendationsSectionForm: Form {
         }
     }
     
-    public func pageNumber(for recomendationTarget: RecomendationTarget) -> Int {
+    public func pageNumber(for recomendationTarget: MediaReference) -> Int {
         switch recomendationTarget {
         case .show:
             showsPage.pageNumber

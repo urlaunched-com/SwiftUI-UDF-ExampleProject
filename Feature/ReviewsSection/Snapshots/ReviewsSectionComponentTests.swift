@@ -8,11 +8,11 @@
 @testable import ReviewsSection
 import Common
 import Foundation
-import Models
 import SwiftUI
 import SwiftUISnapshotTestCase
 import UDF
 import XCTest
+import ReviewModels
 
 final class ReviewsSectionComponentTests: BaseSnapshotTestCase {
     private var reviews: [Review] {

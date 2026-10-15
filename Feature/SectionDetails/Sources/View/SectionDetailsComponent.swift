@@ -10,9 +10,9 @@ import DesignSystem
 import SwiftUI
 import SwiftUI_Kit
 import UDF
-import Models
 import Common
 import CustomViews
+import MediaModels
 
 struct SectionDetailsComponent<R: Routing>: Component where R.Route == SectionDetailsRoute {
     struct Props {

@@ -7,9 +7,9 @@
 //
 
 import UDF
-@preconcurrency import Models
 import SwiftUI
 import Common
+@preconcurrency import MediaModels
 
 public protocol MyFavoritesFeature: AppReducer {
     associatedtype MyFavoritesRouting: Routing<MyFavoritesRoute>

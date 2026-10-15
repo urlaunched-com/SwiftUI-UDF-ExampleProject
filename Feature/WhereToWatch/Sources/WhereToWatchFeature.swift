@@ -9,7 +9,7 @@
 import UDF
 import Common
 import SwiftUI
-@preconcurrency import Models
+@preconcurrency import MediaModels
 
 public protocol WhereToWatchFeature: AppReducer {
     associatedtype HomeFlow: WhereToWatch.HomeFlow

@@ -7,10 +7,10 @@
 //
 
 import UDF
-@preconcurrency import Models
 import SwiftUI
 import Common
 @preconcurrency import SectionsModels
+@preconcurrency import MediaModels
 
 public protocol SectionDetailsFeature: AppReducer {
     associatedtype NetworkConnectivityForm: SectionDetails.NetworkConnectivityForm

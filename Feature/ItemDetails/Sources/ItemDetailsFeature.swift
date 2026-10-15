@@ -8,8 +8,8 @@
 
 import UDF
 import Common
-@preconcurrency import Models
 import SwiftUI
+@preconcurrency import MediaModels
 
 public protocol ItemDetailsFeature: AppReducer {
     associatedtype AllMovies: Storage<Movie>

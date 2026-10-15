@@ -8,7 +8,7 @@
 
 import SwiftUI
 import Common
-import Models
+import MediaModels
 import UDF
 
 @main

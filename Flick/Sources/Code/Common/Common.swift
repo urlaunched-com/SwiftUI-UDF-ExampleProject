@@ -6,8 +6,8 @@
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 import SwiftUI
-import Models
 import Localizations
+import MediaModels
 
 @ViewBuilder
 func buildView(

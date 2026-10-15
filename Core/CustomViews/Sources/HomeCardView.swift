@@ -8,7 +8,7 @@
 
 import SwiftUI
 import Common
-import Models
+import MediaModels
 
 public struct HomeCardView<ImageView: View>: View {
     @Environment(\.isRedacted) var isRedacted

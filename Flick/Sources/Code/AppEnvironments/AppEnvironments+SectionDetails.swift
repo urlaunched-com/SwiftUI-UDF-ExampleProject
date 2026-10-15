@@ -8,6 +8,7 @@
 
 import SectionDetails
 import API
+import MediaModels
 
 extension AppEnvironments: SectionDetailsEnvironmentProviding {
     static var sectionDetailsEnvironment: SectionDetailsEnvironment {

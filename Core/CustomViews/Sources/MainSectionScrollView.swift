@@ -10,8 +10,8 @@ import Combine
 import DesignSystem
 import SwiftUI
 import UDF
-import Models
 import Common
+import MediaModels
 
 public struct MainSectionScrollView<BackgroundImage: View, CardImage: View>: View {
     var items: [any Item]

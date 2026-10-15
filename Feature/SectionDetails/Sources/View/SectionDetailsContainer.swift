@@ -7,10 +7,11 @@
 //
 
 import UDF
-import Models
 import Common
 import SwiftUI
 import SectionsModels
+import MediaModels
+import Models
 
 struct SectionDetailsContainer<F: SectionDetailsFeature>: Container {
     typealias ContainerComponent = SectionDetailsComponent<F.SectionDetailsFeatureRouting>

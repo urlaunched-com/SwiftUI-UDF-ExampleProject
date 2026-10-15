@@ -6,9 +6,9 @@
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 import UDF
-@preconcurrency import Models
 import Common
 import SwiftUI
+@preconcurrency import MediaModels
 
 public protocol RecommendationsSectionFeature: AppReducer {
     associatedtype RecommendationsSectionEnvironment: RecommendationsSectionEnvironmentProviding
@@ -33,7 +33,7 @@ public struct RecommendationsSectionFeatureState<AppState: RecommendationsSectio
     
     public init() {}
     
-    public static func entryPoint(input: RecomendationTarget) -> some View {
+    public static func entryPoint(input: MediaReference) -> some View {
         RecommendationsSectionContainer<AppState>(id: input)
     }
 

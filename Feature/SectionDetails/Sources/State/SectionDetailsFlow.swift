@@ -8,7 +8,7 @@
 
 import SwiftUI
 import UDF
-import Models
+import MediaModels
 
 public enum SectionDetailsFlow: IdentifiableFlow {
     case none, loadMovies(Int), loadShows(Int)

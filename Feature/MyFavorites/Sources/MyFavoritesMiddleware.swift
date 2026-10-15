@@ -8,7 +8,7 @@
 
 import Foundation
 import UDF
-@preconcurrency import Models
+@preconcurrency import MediaModels
 
 enum MyFavoritesCancellation: Hashable, CaseIterable {
     case loadMovies

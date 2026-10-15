@@ -6,7 +6,7 @@
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 
-import Models
+import ReviewModels
 
 public protocol ReviewDetailsEnvironmentProviding {
     static var reviewDetailsEnvironment: Environment { get }

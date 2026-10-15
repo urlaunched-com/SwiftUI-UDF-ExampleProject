@@ -12,9 +12,9 @@ import SwiftUISnapshotTestCase
 import UDF
 import XCTest
 import Common
-import Models
 import WatchProviderModels
 import FlagKit
+import MediaModels
 
 final class WhereToWatchComponentTests: BaseSnapshotTestCase {
     var dropDownItems: [DropdownItem] {

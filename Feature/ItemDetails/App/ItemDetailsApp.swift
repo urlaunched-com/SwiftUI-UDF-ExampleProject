@@ -6,7 +6,7 @@
 //
 
 import Common
-import Models
+import MediaModels
 import SwiftUI
 
 @main

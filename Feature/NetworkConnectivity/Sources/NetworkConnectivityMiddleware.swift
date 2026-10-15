@@ -8,6 +8,7 @@
 import Combine
 import Foundation
 import UDF
+import Models
 
 final class NetworkConnectivityMiddleware<F: NetworkConnectivityFeature>: Middleware<F>, @unchecked Sendable {
     var environment: NetworkConnectivityEnvironment!

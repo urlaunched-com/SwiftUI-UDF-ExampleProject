@@ -7,7 +7,7 @@
 //
 
 import UDF
-import Models
+import MediaModels
 
 public enum MovieGenresFlow: IdentifiableFlow, HomeFeatureTypes.MovieGenresFlow {
     case none, loading

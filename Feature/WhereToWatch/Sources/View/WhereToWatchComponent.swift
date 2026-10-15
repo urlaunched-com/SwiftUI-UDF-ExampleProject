@@ -9,10 +9,10 @@
 import Localizations
 import SwiftUI
 import UDF
-import Models
 import WatchProviderModels
 import Common
 import FlagKit
+import MediaModels
 
 struct WhereToWatchComponent<R: Routing>: Component where R.Route == WhereToWatchRouter {
     struct Props {

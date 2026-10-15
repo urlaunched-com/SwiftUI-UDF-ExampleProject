@@ -7,7 +7,7 @@
 //
 
 import UDF
-import Models
+import MediaModels
 
 public enum RecommendationsSectionFlow: IdentifiableFlow {
     case none

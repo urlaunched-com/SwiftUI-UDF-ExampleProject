@@ -7,10 +7,10 @@
 //
 
 import Common
-import Models
 import UDF
 import SwiftUI
 import CastModels
+import MediaModels
 
 public protocol CastSectionFeature: AppReducer {
     associatedtype CastSectionNetworkConnectivityForm: CastSection.NetworkConnectivityForm

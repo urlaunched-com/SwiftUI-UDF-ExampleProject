@@ -7,15 +7,15 @@
 //
 
 import UDF
-import Models
 import Common
+import MediaModels
 
 struct RecommendationsSectionContainer<F: RecommendationsSectionFeature>: BindableContainer {
     typealias ContainerComponent = RecommendationsSectionComponent<F.RecommendationsSectionRouting>
 
-    let id: RecomendationTarget
+    let id: MediaReference
 
-    init(id: RecomendationTarget) {
+    init(id: MediaReference) {
         self.id = id
     }
     

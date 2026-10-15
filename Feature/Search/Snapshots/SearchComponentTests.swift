@@ -8,7 +8,7 @@
 @testable import Search
 import Common
 import Foundation
-import Models
+import MediaModels
 import SearchModels
 import SwiftUI
 import SwiftUISnapshotTestCase

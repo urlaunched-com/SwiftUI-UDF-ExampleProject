@@ -7,8 +7,9 @@
 //
 
 import UDF
-import Models
 import SectionsModels
+import MediaModels
+import Models
 
 struct MainHomeSectionContainer<F: MainHomeSectionFeature>: Container {
     typealias ContainerComponent = MainHomeSectionComponent<F.MainHomeSectionFeatureRouting>

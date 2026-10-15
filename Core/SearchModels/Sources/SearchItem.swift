@@ -8,10 +8,10 @@
 
 import API
 import Foundation
-import Models
 import SwiftFoundation
 import UDF
 import Common
+import MediaModels
 
 public struct SearchItem: StorageItem {
     public struct ID: Hashable, Codable {

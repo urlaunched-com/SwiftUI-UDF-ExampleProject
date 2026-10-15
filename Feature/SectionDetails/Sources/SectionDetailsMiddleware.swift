@@ -8,8 +8,8 @@
 
 import Foundation
 import UDF
-@preconcurrency import Models
 @preconcurrency import SectionsModels
+@preconcurrency import MediaModels
 
 enum Cancellation: Hashable, CaseIterable {
     case loadMovies

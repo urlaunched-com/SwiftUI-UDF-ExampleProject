@@ -16,7 +16,6 @@ import HomeSection
 import Image
 import ItemDetails
 import MainHomeSection
-import Models
 import MyFavorites
 import Onboarding
 import Recommendations
@@ -33,6 +32,8 @@ import TabBar
 import WhereToWatch
 import CastModels
 import SectionsModels
+import MediaModels
+import ReviewModels
 
 struct AppRouter {
     var reviewsRouting = ReviewsRouting()
@@ -116,11 +117,11 @@ struct AppRouter {
         ItemDetailsFeatureState<AppState, ItemDetailsRouting>.entryPoint(input: id)
     }
 
-    static func recommendations(id: RecomendationTarget) -> some View {
+    static func recommendations(id: MediaReference) -> some View {
         RecommendationsFeatureState<AppState, RecommendationsRouting>.entryPoint(input: id)
     }
 
-    static func recommendationsSection(id: RecomendationTarget) -> some View {
+    static func recommendationsSection(id: MediaReference) -> some View {
         RecommendationsSectionFeatureState<AppState, RecommendationsSectionRouting>.entryPoint(input: id)
     }
 

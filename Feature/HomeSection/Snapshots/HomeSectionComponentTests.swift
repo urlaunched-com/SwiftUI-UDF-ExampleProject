@@ -9,12 +9,12 @@
 @testable import HomeSection
 import Common
 import Foundation
-import Models
 import SwiftUI
 import SwiftUISnapshotTestCase
 import UDF
 import XCTest
 import SectionsModels
+import MediaModels
 
 final class HomeSectionComponentTests: BaseSnapshotTestCase {
     override func setUp() {

@@ -6,8 +6,8 @@
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 
-import Models
 import SectionsModels
+import MediaModels
 
 public protocol HomeEnvironmentProviding {
     static var homeEnvironment: HomeEnvironment { get }

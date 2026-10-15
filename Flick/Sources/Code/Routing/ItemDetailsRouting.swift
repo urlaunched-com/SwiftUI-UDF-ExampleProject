@@ -8,7 +8,8 @@
 
 import SwiftUI
 import UDF
-import Models
+import MediaModels
+import ReviewModels
 import Common
 import WhereToWatch
 import CastSection
@@ -33,26 +34,10 @@ struct ItemDetailsRouting: Routing {
             )
 
         case let .reviews(item):
-            buildView(
-                item: item,
-                movieView: {
-                    AppRouter.reviewsSection(id: .movie($0.id))
-                },
-                showView: {
-                    AppRouter.reviewsSection(id: .show($0.id))
-                }
-            )
+            AppRouter.reviewsSection(id: ReviewsTarget(mediaReference: item.mediaReference))
 
         case let .recommendations(item):
-            buildView(
-                item: item,
-                movieView: {
-                    AppRouter.recommendationsSection(id: .movie($0.id))
-                },
-                showView: {
-                    AppRouter.recommendationsSection(id: .show($0.id))
-                }
-            )
+            AppRouter.recommendationsSection(id: item.mediaReference)
 
         case let .whereToWatch(item):
             AppRouter.whereToWatch(item: item)

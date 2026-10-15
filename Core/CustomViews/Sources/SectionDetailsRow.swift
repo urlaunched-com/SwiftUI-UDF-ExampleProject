@@ -8,7 +8,7 @@
 
 import DesignSystem
 import SwiftUI
-import Models
+import MediaModels
 
 public struct SectionDetailsRow<IV: View>: View {
     var item: any Item

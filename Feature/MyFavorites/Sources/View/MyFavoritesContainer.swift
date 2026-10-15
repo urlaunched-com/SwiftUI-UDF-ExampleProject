@@ -8,8 +8,8 @@
 
 import SwiftUI
 import UDF
-import Models
 import Common
+import MediaModels
 
 struct MyFavoritesContainer<F: MyFavoritesFeature>: Container {
     typealias ContainerComponent = MyFavoritesComponent<F.MyFavoritesRouting>

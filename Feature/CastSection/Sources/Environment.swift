@@ -6,8 +6,8 @@
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 
-import Models
 import CastModels
+import MediaModels
 
 public protocol CastSectionEnvironmentProviding {
     static var castSectionEnvironment: CastSectionEnvironment { get }

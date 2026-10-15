@@ -10,9 +10,9 @@ import DesignSystem
 import SwiftUI
 import SwiftUI_Kit
 import UDF
-import Models
 import Common
 import CustomViews
+import MediaModels
 
 struct RecommendationsComponent<R: Routing>: Component where R.Route == RecommendationsRoute {
     struct Props {

@@ -13,7 +13,7 @@ import SwiftUISnapshotTestCase
 import UDF
 import XCTest
 import Common
-import Models
+import ReviewModels
 
 final class ReviewDetailsComponentsTests: BaseSnapshotTestCase {
     var review: Review {

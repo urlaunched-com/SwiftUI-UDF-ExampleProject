@@ -211,6 +211,7 @@ public extension ShowRemote {
 // MARK: - Item
 
 public extension Show {
+    var mediaReference: MediaReference { .show(id) }
     var title: String { name }
     var year: String { firstAirDate?.asYearString ?? "" }
     var duration: Minutes { episodeRunTime.first ?? 0 }

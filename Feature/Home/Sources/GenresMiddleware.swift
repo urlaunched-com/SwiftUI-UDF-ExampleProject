@@ -8,7 +8,7 @@
 
 import Foundation
 import UDF
-import Models
+import MediaModels
 
 enum HomeGenresCancellation: Hashable {
     case loadMovieGenres

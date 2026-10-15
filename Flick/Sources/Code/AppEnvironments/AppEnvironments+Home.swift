@@ -8,6 +8,7 @@
 
 import Home
 import API
+import MediaModels
 
 extension AppEnvironments: HomeEnvironmentProviding {
     static var homeEnvironment: HomeEnvironment {

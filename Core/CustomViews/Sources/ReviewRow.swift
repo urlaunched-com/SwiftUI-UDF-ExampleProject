@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-import Models
+import ReviewModels
 
 public struct ReviewRow<ImageView: View>: View {
     let review: Review

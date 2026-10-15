@@ -9,10 +9,10 @@
 import Localizations
 import SwiftUI
 import UDF
-import Models
 import Common
 import CustomViews
 import SectionsModels
+import MediaModels
 
 struct HomeComponent<R: Routing<HomeRoute>>: Component {
     struct Props {

@@ -19,21 +19,6 @@ let appSettings: Settings = .settings(
     ]
 )
 
-let snapshotCommonModelsUDFDependencies: [TargetDependency] = [
-    .target(name: "Common"),
-    .target(name: "Models"),
-    .external(name: "UDF"),
-]
-
-let snapshotCommonUDFDependencies: [TargetDependency] = [
-    .target(name: "Common"),
-    .external(name: "UDF"),
-]
-
-let snapshotUDFDependencies: [TargetDependency] = [
-    .external(name: "UDF"),
-]
-
 let project = Project.app(
     name: "Flick",
     organizationName: "urlaunched",
@@ -48,6 +33,8 @@ let project = Project.app(
         .target(name: "CastSection"),
         .target(name: "Common"),
         .target(name: "Models"),
+        .target(name: "MediaModels"),
+        .target(name: "ReviewModels"),
         .target(name: "ImageModels"),
         .target(name: "SearchModels"),
         .target(name: "WatchProviderModels"),
@@ -127,6 +114,8 @@ func makeUIModules() -> [Module] {
 func makeModelsModules() -> [Module] {
     [
         makeGeneralModelsModule(),
+        makeMediaModels(),
+        makeReviewModels(),
         makeImageModels(),
         makeCastModels(),
         makeSectionsModels(),
@@ -143,11 +132,38 @@ func makeGeneralModelsModule() -> Module {
         frameworkDependancies: [
             .external(name: "SwiftFoundation"),
             .external(name: "UDF"),
+            .target(name: "API"),
+        ],
+        frameworkResources: []
+    )
+}
+
+func makeMediaModels() -> Module {
+    Module(
+        name: "MediaModels",
+        moduleType: .core,
+        path: "MediaModels",
+        frameworkDependancies: [
+            .external(name: "SwiftFoundation"),
+            .external(name: "UDF"),
             .target(name: "DesignSystem"),
             .target(name: "Common"),
             .target(name: "API"),
-            .target(name: "Localizations"),
-            .external(name: "RswiftLibrary"),
+        ],
+        frameworkResources: []
+    )
+}
+
+func makeReviewModels() -> Module {
+    Module(
+        name: "ReviewModels",
+        moduleType: .core,
+        path: "ReviewModels",
+        frameworkDependancies: [
+            .external(name: "SwiftFoundation"),
+            .external(name: "UDF"),
+            .target(name: "API"),
+            .target(name: "MediaModels"),
         ],
         frameworkResources: []
     )
@@ -175,8 +191,8 @@ func makeSearchModels() -> Module {
             .external(name: "SwiftFoundation"),
             .external(name: "UDF"),
             .target(name: "Common"),
-            .target(name: "Models"),
             .target(name: "API"),
+            .target(name: "MediaModels"),
         ],
         frameworkResources: []
     )
@@ -274,9 +290,10 @@ func makeCustomViewsModule() -> Module {
             .external(name: "SDWebImageSwiftUI"),
             .target(name: "Common"),
             .target(name: "DesignSystem"),
-            .target(name: "Models"),
             .target(name: "CastModels"),
             .target(name: "Localizations"),
+            .target(name: "MediaModels"),
+            .target(name: "ReviewModels"),
         ],
         frameworkResources: []
     )
@@ -319,7 +336,9 @@ func makeOnboardingFeature() -> Module {
             .external(name: "RswiftLibrary")
         ],
         frameworkResources: [],
-        snapshotDependencies: snapshotUDFDependencies,
+        snapshotDependencies: [
+            .external(name: "UDF"),
+        ],
         snapshotHostAppDependencies: [
             .external(name: "UDF"),
             .external(name: "SwiftUI-Kit"),
@@ -343,7 +362,10 @@ func makeSignInFeature() -> Module {
             .target(name: "Common"),
         ],
         frameworkResources: [],
-        snapshotDependencies: snapshotCommonUDFDependencies,
+        snapshotDependencies: [
+            .target(name: "Common"),
+            .external(name: "UDF"),
+        ],
         snapshotHostAppDependencies: [
             .external(name: "UDF"),
             .external(name: "SwiftFoundation"),
@@ -362,14 +384,14 @@ func makeWhereToWatchFeature() -> Module {
             .target(name: "Localizations"),
             .external(name: "RswiftLibrary"),
             .target(name: "Common"),
-            .target(name: "Models"),
             .target(name: "WatchProviderModels"),
             .external(name: "FlagKit"),
+            .target(name: "MediaModels"),
         ],
         frameworkResources: [],
         snapshotDependencies: [
             .target(name: "Common"),
-            .target(name: "Models"),
+            .target(name: "MediaModels"),
             .target(name: "WatchProviderModels"),
             .external(name: "FlagKit"),
             .external(name: "UDF"),
@@ -412,7 +434,10 @@ func makeTabBarFeature() -> Module {
             .target(name: "Common"),
         ],
         frameworkResources: [],
-        snapshotDependencies: snapshotCommonUDFDependencies,
+        snapshotDependencies: [
+            .target(name: "Common"),
+            .external(name: "UDF"),
+        ],
         snapshotHostAppDependencies: [
             .external(name: "UDF"),
             .external(name: "SwiftFoundation"),
@@ -434,7 +459,10 @@ func makeRootFeature() -> Module {
             .target(name: "Common"),
         ],
         frameworkResources: [],
-        snapshotDependencies: snapshotCommonUDFDependencies,
+        snapshotDependencies: [
+            .target(name: "Common"),
+            .external(name: "UDF"),
+        ],
         snapshotHostAppDependencies: [
             .external(name: "UDF"),
             .external(name: "SwiftFoundation"),
@@ -457,7 +485,9 @@ func makeImageFeature() -> Module {
             .target(name: "Common"),
         ],
         frameworkResources: [],
-        snapshotDependencies: snapshotUDFDependencies,
+        snapshotDependencies: [
+            .external(name: "UDF"),
+        ],
         snapshotHostAppDependencies: [
             .external(name: "UDF"),
             .external(name: "SDWebImageSwiftUI"),
@@ -476,19 +506,23 @@ func makeSectionDetails() -> Module {
             .external(name: "UDF"),
             .external(name: "SwiftUI-Kit"),
             .target(name: "Common"),
-            .target(name: "Models"),
             .target(name: "SectionsModels"),
             .target(name: "DesignSystem"),
             .target(name: "CustomViews"),
+            .target(name: "Models"),
+            .target(name: "MediaModels"),
         ],
         frameworkResources: [],
-        snapshotDependencies: snapshotCommonModelsUDFDependencies + [
+        snapshotDependencies: [
+            .target(name: "Common"),
+            .target(name: "MediaModels"),
+            .external(name: "UDF"),
             .target(name: "SectionsModels"),
         ],
         snapshotHostAppDependencies: [
             .external(name: "UDF"),
             .target(name: "Common"),
-            .target(name: "Models"),
+            .target(name: "MediaModels"),
         ],
         targets: [.framework, .snapshotTests]
     )
@@ -503,14 +537,17 @@ func makeSearchFeature() -> Module {
             .external(name: "UDF"),
             .external(name: "SwiftFoundation"),
             .target(name: "Common"),
-            .target(name: "Models"),
             .target(name: "SearchModels"),
             .target(name: "CustomViews"),
             .target(name: "DesignSystem"),
             .target(name: "Localizations"),
+            .target(name: "MediaModels"),
         ],
         frameworkResources: [],
-        snapshotDependencies: snapshotCommonModelsUDFDependencies + [
+        snapshotDependencies: [
+            .target(name: "Common"),
+            .target(name: "MediaModels"),
+            .external(name: "UDF"),
             .target(name: "SearchModels"),
         ],
         snapshotHostAppDependencies: [
@@ -532,7 +569,9 @@ func makeSettingsFeature() -> Module {
             .target(name: "Localizations"),
         ],
         frameworkResources: [],
-        snapshotDependencies: snapshotUDFDependencies,
+        snapshotDependencies: [
+            .external(name: "UDF"),
+        ],
         snapshotHostAppDependencies: [
             .external(name: "UDF"),
             .external(name: "SwiftUI-Kit"),
@@ -548,14 +587,18 @@ func makeMyFavoritesFeature() -> Module {
         path: "MyFavorites",
         frameworkDependancies: [
             .external(name: "UDF"),
-            .target(name: "Models"),
             .target(name: "DesignSystem"),
             .target(name: "Localizations"),
             .target(name: "CustomViews"),
             .target(name: "Common"),
+            .target(name: "MediaModels"),
         ],
         frameworkResources: [],
-        snapshotDependencies: snapshotCommonModelsUDFDependencies,
+        snapshotDependencies: [
+            .target(name: "Common"),
+            .target(name: "MediaModels"),
+            .external(name: "UDF"),
+        ],
         snapshotHostAppDependencies: [
             .external(name: "UDF"),
         ],
@@ -572,18 +615,23 @@ func makeItemDetailsFeature() -> Module {
             .external(name: "UDF"),
             .external(name: "SwiftUI-Kit"),
             .target(name: "Common"),
-            .target(name: "Models"),
             .target(name: "DesignSystem"),
             .target(name: "Localizations"),
             .target(name: "CustomViews"),
+            .target(name: "Models"),
+            .target(name: "MediaModels"),
         ],
         frameworkResources: [],
-        snapshotDependencies: snapshotCommonModelsUDFDependencies,
+        snapshotDependencies: [
+            .target(name: "Common"),
+            .target(name: "MediaModels"),
+            .external(name: "UDF"),
+        ],
         snapshotHostAppDependencies: [
             .external(name: "UDF"),
             .external(name: "SwiftUI-Kit"),
             .target(name: "Common"),
-            .target(name: "Models"),
+            .target(name: "MediaModels"),
             .target(name: "ItemDetails"),
         ],
         targets: [.framework, .snapshotTests]
@@ -598,16 +646,24 @@ func makeHomeFeature() -> Module {
         frameworkDependancies: [
             .external(name: "UDF"),
             .target(name: "Common"),
-            .target(name: "Models"),
             .target(name: "SectionsModels"),
             .target(name: "Localizations"),
             .target(name: "CustomViews"),
+            .target(name: "Models"),
+            .target(name: "MediaModels"),
         ],
         frameworkResources: [],
-        snapshotDependencies: snapshotCommonModelsUDFDependencies + [
+        snapshotDependencies: [
+            .target(name: "Common"),
+            .target(name: "MediaModels"),
+            .external(name: "UDF"),
             .target(name: "SectionsModels"),
         ],
-        snapshotHostAppDependencies: snapshotCommonModelsUDFDependencies,
+        snapshotHostAppDependencies: [
+            .target(name: "Common"),
+            .target(name: "MediaModels"),
+            .external(name: "UDF"),
+        ],
         targets: [.framework, .snapshotTests]
     )
 }
@@ -621,12 +677,16 @@ func makeMainHomeSectionFeature() -> Module {
             .external(name: "UDF"),
             .external(name: "SwiftUI-Kit"),
             .target(name: "Common"),
-            .target(name: "Models"),
             .target(name: "SectionsModels"),
             .target(name: "CustomViews"),
+            .target(name: "Models"),
+            .target(name: "MediaModels"),
         ],
         frameworkResources: [],
-        snapshotDependencies: snapshotCommonModelsUDFDependencies + [
+        snapshotDependencies: [
+            .target(name: "Common"),
+            .target(name: "MediaModels"),
+            .external(name: "UDF"),
             .target(name: "SectionsModels"),
         ],
         snapshotHostAppDependencies: [
@@ -645,13 +705,17 @@ func makeHomeSectionFeature() -> Module {
         frameworkDependancies: [
             .external(name: "UDF"),
             .target(name: "Common"),
-            .target(name: "Models"),
             .target(name: "SectionsModels"),
             .target(name: "DesignSystem"),
             .target(name: "CustomViews"),
+            .target(name: "Models"),
+            .target(name: "MediaModels"),
         ],
         frameworkResources: [],
-        snapshotDependencies: snapshotCommonModelsUDFDependencies + [
+        snapshotDependencies: [
+            .target(name: "Common"),
+            .target(name: "MediaModels"),
+            .external(name: "UDF"),
             .target(name: "SectionsModels"),
         ],
         snapshotHostAppDependencies: [
@@ -675,7 +739,9 @@ func makeCastFeature() -> Module {
             .target(name: "Localizations"),
         ],
         frameworkResources: [],
-        snapshotDependencies: snapshotCommonUDFDependencies + [
+        snapshotDependencies: [
+            .target(name: "Common"),
+            .external(name: "UDF"),
             .target(name: "CastModels"),
         ],
         snapshotHostAppDependencies: [
@@ -693,17 +759,25 @@ func makeCastSectionFeature() -> Module {
         frameworkDependancies: [
             .external(name: "UDF"),
             .target(name: "Common"),
-            .target(name: "Models"),
             .target(name: "CastModels"),
             .target(name: "DesignSystem"),
             .target(name: "CustomViews"),
             .target(name: "Localizations"),
+            .target(name: "Models"),
+            .target(name: "MediaModels"),
         ],
         frameworkResources: [],
-        snapshotDependencies: snapshotCommonModelsUDFDependencies + [
+        snapshotDependencies: [
+            .target(name: "Common"),
+            .target(name: "MediaModels"),
+            .external(name: "UDF"),
             .target(name: "CastModels"),
         ],
-        snapshotHostAppDependencies: snapshotCommonModelsUDFDependencies,
+        snapshotHostAppDependencies: [
+            .target(name: "Common"),
+            .target(name: "MediaModels"),
+            .external(name: "UDF"),
+        ],
         targets: [.framework, .snapshotTests]
     )
 }
@@ -717,13 +791,18 @@ func makeReviewDetailsFeature() -> Module {
             .external(name: "UDF"),
             .external(name: "SwiftUI-Kit"),
             .target(name: "Common"),
-            .target(name: "Models"),
             .target(name: "DesignSystem"),
             .target(name: "Localizations"),
             .target(name: "CustomViews"),
+            .target(name: "MediaModels"),
+            .target(name: "ReviewModels"),
         ],
         frameworkResources: [],
-        snapshotDependencies: snapshotCommonModelsUDFDependencies,
+        snapshotDependencies: [
+            .target(name: "Common"),
+            .target(name: "ReviewModels"),
+            .external(name: "UDF"),
+        ],
         snapshotHostAppDependencies: [
             .external(name: "UDF"),
             .external(name: "SwiftUI-Kit"),
@@ -741,13 +820,18 @@ func makeReviewsFeature() -> Module {
             .external(name: "UDF"),
             .external(name: "SwiftUI-Kit"),
             .target(name: "Common"),
-            .target(name: "Models"),
             .target(name: "DesignSystem"),
             .target(name: "Localizations"),
             .target(name: "CustomViews"),
+            .target(name: "MediaModels"),
+            .target(name: "ReviewModels"),
         ],
         frameworkResources: [],
-        snapshotDependencies: snapshotCommonModelsUDFDependencies,
+        snapshotDependencies: [
+            .target(name: "Common"),
+            .target(name: "ReviewModels"),
+            .external(name: "UDF"),
+        ],
         snapshotHostAppDependencies: [
             .external(name: "UDF"),
             .external(name: "SwiftUI-Kit"),
@@ -765,13 +849,18 @@ func makeReviewsSectionFeature() -> Module {
             .external(name: "UDF"),
             .external(name: "SwiftUI-Kit"),
             .target(name: "Common"),
-            .target(name: "Models"),
             .target(name: "DesignSystem"),
             .target(name: "Localizations"),
             .target(name: "CustomViews"),
+            .target(name: "MediaModels"),
+            .target(name: "ReviewModels"),
         ],
         frameworkResources: [],
-        snapshotDependencies: snapshotCommonModelsUDFDependencies,
+        snapshotDependencies: [
+            .target(name: "Common"),
+            .target(name: "ReviewModels"),
+            .external(name: "UDF"),
+        ],
         snapshotHostAppDependencies: [
             .external(name: "UDF"),
             .external(name: "SwiftUI-Kit"),
@@ -789,17 +878,21 @@ func makeRecommendations() -> Module {
             .external(name: "UDF"),
             .external(name: "SwiftUI-Kit"),
             .target(name: "Common"),
-            .target(name: "Models"),
             .target(name: "DesignSystem"),
             .target(name: "CustomViews"),
+            .target(name: "MediaModels"),
         ],
         frameworkResources: [],
-        snapshotDependencies: snapshotCommonModelsUDFDependencies,
+        snapshotDependencies: [
+            .target(name: "Common"),
+            .target(name: "MediaModels"),
+            .external(name: "UDF"),
+        ],
         snapshotHostAppDependencies: [
             .external(name: "UDF"),
             .external(name: "SwiftUI-Kit"),
             .target(name: "Common"),
-            .target(name: "Models"),
+            .target(name: "MediaModels"),
         ],
         targets: [.framework, .snapshotTests]
     )
@@ -814,18 +907,22 @@ func makeRecommendationsSection() -> Module {
             .external(name: "UDF"),
             .external(name: "SwiftUI-Kit"),
             .target(name: "Common"),
-            .target(name: "Models"),
             .target(name: "DesignSystem"),
             .target(name: "Localizations"),
             .target(name: "CustomViews"),
+            .target(name: "MediaModels"),
         ],
         frameworkResources: [],
-        snapshotDependencies: snapshotCommonModelsUDFDependencies,
+        snapshotDependencies: [
+            .target(name: "Common"),
+            .target(name: "MediaModels"),
+            .external(name: "UDF"),
+        ],
         snapshotHostAppDependencies: [
             .external(name: "UDF"),
             .external(name: "SwiftUI-Kit"),
             .target(name: "Common"),
-            .target(name: "Models"),
+            .target(name: "MediaModels"),
         ],
         targets: [.framework, .snapshotTests]
     )

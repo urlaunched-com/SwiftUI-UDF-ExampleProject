@@ -7,7 +7,7 @@
 //
 
 import UDF
-import Models
+import MediaModels
 
 public enum MyFavoritesFlow: IdentifiableFlow {
     case none

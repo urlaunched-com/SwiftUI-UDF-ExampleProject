@@ -7,7 +7,7 @@
 //
 
 import UDF
-@preconcurrency import Models
+@preconcurrency import ReviewModels
 
 public enum ReviewDetailsFlow: IdentifiableFlow {
     case none

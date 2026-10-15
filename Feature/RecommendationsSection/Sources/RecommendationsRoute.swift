@@ -6,9 +6,9 @@
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 
-import Models
 import Common
 import UIKit
+import MediaModels
 
 public enum RecommendationsSectionRoute: Hashable {
     case itemDetails(any Item)

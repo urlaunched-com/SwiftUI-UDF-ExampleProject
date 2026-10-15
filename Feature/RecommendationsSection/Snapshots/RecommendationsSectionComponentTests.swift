@@ -7,11 +7,11 @@
 
 @testable import RecommendationsSection
 import Common
-import Models
 import SwiftUI
 import SwiftUISnapshotTestCase
 import XCTest
 import UDF
+import MediaModels
 
 final class RecommendationsSectionComponentTests: BaseSnapshotTestCase {
     override func setUp() {

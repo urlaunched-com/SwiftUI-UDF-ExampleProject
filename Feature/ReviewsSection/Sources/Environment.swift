@@ -6,7 +6,8 @@
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 
-import Models
+import MediaModels
+import ReviewModels
 
 public protocol ReviewsSectionEnvironmentProviding {
     static var reviewsSectionEnvironment: ReviewsSectionEnvironment { get }

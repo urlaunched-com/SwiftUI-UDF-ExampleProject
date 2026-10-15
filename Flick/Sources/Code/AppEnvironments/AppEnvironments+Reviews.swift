@@ -8,6 +8,7 @@
 
 import Reviews
 import API
+import ReviewModels
 
 extension AppEnvironments: ReviewsEnvironmentProviding {
     static var reviewsEnvironment: ReviewsEnvironment {

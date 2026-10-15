@@ -6,8 +6,8 @@
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 import UIKit
-import Models
 import Common
+import MediaModels
 
 public enum RecommendationsRoute: Hashable {
     case imageContainer(path: String?, size: CGSize)
