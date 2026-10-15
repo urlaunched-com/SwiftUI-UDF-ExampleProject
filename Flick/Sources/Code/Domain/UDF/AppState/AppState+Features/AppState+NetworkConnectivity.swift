@@ -7,4 +7,6 @@
 
 import NetworkConnectivity
 
-extension AppState: NetworkConnectivityFeature {}
+extension AppState: NetworkConnectivityFeature {
+    typealias NetworkConnectivityEnvironment = AppEnvironments
+}

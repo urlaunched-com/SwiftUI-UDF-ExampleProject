@@ -10,6 +10,8 @@ import SwiftUI
 import Common
 
 public protocol NetworkConnectivityFeature: AppReducer {
+    associatedtype NetworkConnectivityEnvironment: NetworkConnectivityEnvironmentProviding
+
     var networkConnectivityFeatureState: NetworkConnectivityFeatureState<Self> { get }
 }
 

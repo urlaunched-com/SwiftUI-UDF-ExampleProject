@@ -6,23 +6,25 @@
 //
 
 import Combine
-import Common
 import Foundation
-import Network
 import UDF
-import Models
 
 final class NetworkConnectivityMiddleware<F: NetworkConnectivityFeature>: Middleware<F>, @unchecked Sendable {
-    var environment: Void!
+    var environment: NetworkConnectivityEnvironment!
 
     enum Cancellation {
         case networkMonitoring
     }
 
-    required init(store: some Store<F>, queue: DispatchQueue) {
+    required convenience init(store: some Store<F>, queue: DispatchQueue) {
+        self.init(store: store, environment: Self.buildLiveEnvironment(for: store), queue: queue)
+    }
+
+    init(store: some Store<F>, environment: NetworkConnectivityEnvironment, queue: DispatchQueue) {
+        self.environment = environment
         super.init(store: store, queue: queue)
 
-        run(NetworkMonitoringEffect(queue: queue), cancellation: Cancellation.networkMonitoring) { state, output in
+        run(NetworkMonitoringEffect(queue: queue, environment: environment), cancellation: Cancellation.networkMonitoring) { state, output in
             guard let networkStatusAction = output as? Actions.UpdateNetworkConnectivityStatus else {
                 return false
             }
@@ -40,18 +42,28 @@ final class NetworkConnectivityMiddleware<F: NetworkConnectivityFeature>: Middle
     }
 }
 
-struct NetworkMonitoringEffect: Effectable {
-    let queue: DispatchQueue
+// MARK: - Environment build methods
 
-    init(queue: DispatchQueue) {
-        self.queue = queue
+extension NetworkConnectivityMiddleware {
+    static func buildLiveEnvironment(for _: some Store<F>) -> NetworkConnectivityEnvironment {
+        F.NetworkConnectivityEnvironment.networkConnectivityEnvironment
     }
 
+    static func buildTestEnvironment(for _: some Store) -> NetworkConnectivityEnvironment {
+        .init(monitorNetwork: { _ in Just(true).eraseToAnyPublisher() })
+    }
+}
+
+// MARK: - Effects
+
+struct NetworkMonitoringEffect: Effectable {
+    let queue: DispatchQueue
+    let environment: NetworkConnectivityEnvironment
+
     var upstream: AnyPublisher<any Action, Never> {
-        NWPathMonitor()
-            .publisher(queue: queue)
-            .map { status in
-                Actions.UpdateNetworkConnectivityStatus(satisfied: status == .satisfied)
+        environment.monitorNetwork(queue)
+            .map { satisfied in
+                Actions.UpdateNetworkConnectivityStatus(satisfied: satisfied)
             }
             .eraseToAnyPublisher()
     }
