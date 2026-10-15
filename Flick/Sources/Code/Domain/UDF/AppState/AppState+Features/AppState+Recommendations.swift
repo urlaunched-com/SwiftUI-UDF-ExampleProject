@@ -11,6 +11,7 @@ import Models
 import NetworkConnectivity
 
 extension AppState: RecommendationsFeature {
+    typealias RecommendationsEnvironment = AppEnvironments
     typealias RecommendationsAllGenres = Flick.AllGenres
     typealias RecommendationsAllMovies = Flick.AllMovies
     typealias RecommendationsAllShows = Flick.AllShows

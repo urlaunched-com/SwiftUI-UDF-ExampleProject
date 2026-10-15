@@ -12,6 +12,7 @@ import Common
 import SwiftUI
 
 public protocol RecommendationsFeature: AppReducer {
+    associatedtype RecommendationsEnvironment: RecommendationsEnvironmentProviding
     associatedtype NetworkConnectivityForm: Recommendations.NetworkConnectivityForm
     associatedtype RecommendationsRouting: Routing<RecommendationsRoute>
     associatedtype AllGenres: Recommendations.AllGenres

@@ -685,7 +685,6 @@ func makeRecommendations() -> Module {
             .target(name: "Models"),
             .target(name: "DesignSystem"),
             .target(name: "CustomViews"),
-            .target(name: "API")
         ],
         frameworkResources: [],
         snapshotDependencies: snapshotCommonModelsUDFDependencies,
@@ -712,7 +711,6 @@ func makeRecommendationsSection() -> Module {
             .target(name: "DesignSystem"),
             .target(name: "Localizations"),
             .target(name: "CustomViews"),
-            .target(name: "API")
         ],
         frameworkResources: [],
         snapshotDependencies: snapshotCommonModelsUDFDependencies,

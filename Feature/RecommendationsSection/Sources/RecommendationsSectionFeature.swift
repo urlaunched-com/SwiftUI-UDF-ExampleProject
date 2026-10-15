@@ -11,6 +11,7 @@ import Common
 import SwiftUI
 
 public protocol RecommendationsSectionFeature: AppReducer {
+    associatedtype RecommendationsSectionEnvironment: RecommendationsSectionEnvironmentProviding
     associatedtype NetworkConnectivityForm: RecommendationsSection.NetworkConnectivityForm
     associatedtype AllGenres: RecommendationsSection.AllGenres
     associatedtype AllMovies: RecommendationsSection.AllMovies

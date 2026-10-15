@@ -12,6 +12,7 @@ import Models
 import NetworkConnectivity
 
 extension AppState: RecommendationsSectionFeature {
+    typealias RecommendationsSectionEnvironment = AppEnvironments
     typealias RecommendationsSectionRouting = Flick.RecommendationsSectionRouting
 }
 
