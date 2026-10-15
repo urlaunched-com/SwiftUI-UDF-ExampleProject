@@ -14,6 +14,7 @@ import Models
 
 extension AppState: SectionDetailsFeature {
     typealias SectionDetailsFeatureRouting = SectionDetailsRouting
+    typealias SectionDetailsEnvironment = AppEnvironments
 }
 
 extension NetworkConnectivity.NetworkConnectivityForm: SectionDetails.NetworkConnectivityForm {}

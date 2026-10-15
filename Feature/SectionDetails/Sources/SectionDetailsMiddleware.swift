@@ -6,7 +6,6 @@
 //  Copyright © 2023 urlaunched.com. All rights reserved.
 //
 
-import API
 import Foundation
 import UDF
 @preconcurrency import Models
@@ -17,12 +16,7 @@ enum Cancellation: Hashable, CaseIterable {
 }
 
 final class SectionDetailsMiddleware<F: SectionDetailsFeature>: Middleware<F>, @unchecked Sendable {
-    struct Environment {
-        var loadMovies: (_ section: String, _ page: Int) async throws -> [Movie]
-        var loadShows: (_ section: String, _ page: Int) async throws -> [Show]
-    }
-
-    var environment: Environment!
+    var environment: SectionDetailsEnvironment!
 
     func scope(for state: F) -> Scope {
         state.networkConnectivityForm
@@ -66,20 +60,11 @@ final class SectionDetailsMiddleware<F: SectionDetailsFeature>: Middleware<F>, @
 // MARK: - Environment buid methods
 
 extension SectionDetailsMiddleware {
-    static func buildLiveEnvironment(for _: some Store<F>) -> Environment {
-        Environment(
-            loadMovies: { section, page in
-                let movies = try await HomeAPIClient.loadMovies(section: section, page: page)
-                return movies.map(\.asMovie)
-            },
-            loadShows: { section, page in
-                let shows = try await HomeAPIClient.loadShows(section: section, page: page)
-                return shows.map(\.asShow)
-            }
-        )
+    static func buildLiveEnvironment(for _: some Store<F>) -> SectionDetailsEnvironment {
+        F.SectionDetailsEnvironment.sectionDetailsEnvironment
     }
 
-    static func buildTestEnvironment(for _: some Store) -> Environment {
+    static func buildTestEnvironment(for _: some Store) -> SectionDetailsEnvironment {
         Environment(
             loadMovies: { _, _ in Movie.fakeItems() },
             loadShows: { _, _ in Show.fakeItems() }
@@ -93,13 +78,13 @@ private extension SectionDetailsMiddleware {
     struct LoadMoviesEffect: ConcurrencyEffect {
         let sectionId: MovieSection.ID?
         let page: Int
-        let environment: SectionDetailsMiddleware.Environment
+        let environment: SectionDetailsEnvironment
 
         func task(flowId: AnyHashable) async throws -> any Action {
             guard let section = sectionId else {
                 throw CancellationError()
             }
-            let data = try await environment.loadMovies(section.urlValue, page)
+            let data = try await environment.loadMovies(section, page)
             return ActionGroup {
                 Actions.DidLoadItems(items: data, id: flowId)
                 Actions.DidLoadNestedItems(parentId: section, items: data.map(\.id), id: flowId)
@@ -110,13 +95,13 @@ private extension SectionDetailsMiddleware {
     struct LoadShowsEffect: ConcurrencyEffect {
         let sectionId: ShowSection.ID?
         let page: Int
-        let environment: SectionDetailsMiddleware.Environment
+        let environment: SectionDetailsEnvironment
 
         func task(flowId: AnyHashable) async throws -> any Action {
             guard let section = sectionId else {
                 throw CancellationError()
             }
-            let data = try await environment.loadShows(section.urlValue, page)
+            let data = try await environment.loadShows(section, page)
             return ActionGroup {
                 Actions.DidLoadItems(items: data, id: flowId)
                 Actions.DidLoadNestedItems(parentId: section, items: data.map(\.id), id: flowId)

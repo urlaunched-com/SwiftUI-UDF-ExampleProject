@@ -18,6 +18,7 @@ public protocol SectionDetailsFeature: AppReducer {
     associatedtype HomeForm: SectionDetails.HomeForm
     associatedtype AllGenres: Storage<Genre>
     associatedtype SectionDetailsFeatureRouting: Routing<SectionDetailsRoute>
+    associatedtype SectionDetailsEnvironment: SectionDetailsEnvironmentProviding
     
     var homeForm: HomeForm { get }
     var sectionDetailsFeatureState: SectionDetailsFeatureState<Self, SectionDetailsFeatureRouting> { get }
