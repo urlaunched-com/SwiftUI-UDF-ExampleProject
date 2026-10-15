@@ -1,5 +1,5 @@
 {
-  "originHash" : "cd4feb5d0b685e518ba869f409beeb2436ac27f00cc277a96298ea5e0ee56d3f",
+  "originHash" : "1351f259ab136799012b789df115b264a23456e2b99efdd9c8993c20205f0b8d",
   "pins" : [
     {
       "identity" : "flagkit",
@@ -78,8 +78,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pointfreeco/swift-snapshot-testing",
       "state" : {
-        "revision" : "ad5e3190cc63dc288f28546f9c6827efc1e9d495",
-        "version" : "1.19.2"
+        "revision" : "28e5de025e3fd98991791bfbf83023ab3708da03",
+        "version" : "1.19.6"
       }
     },
     {
@@ -105,8 +105,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Maks-Jago/swiftui-snapshot-test-case",
       "state" : {
-        "revision" : "1de718e676750e85ff0485d301e64593e6dc3921",
-        "version" : "1.7.2"
+        "revision" : "68b30d9c92fbbf95648b0c24ceb9a54e757e2d17",
+        "version" : "1.7.3"
       }
     },
     {

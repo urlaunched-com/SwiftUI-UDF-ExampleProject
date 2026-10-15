@@ -13,14 +13,14 @@ import UDF
 @MainActor
 class BaseSnapshotTestCase: SnapshotTestCase {
     override class func setUp() {
-        deviceReference = "iPhone 17 Pro"
-        osVersionReference = "26.5"
+        deviceReference = "iPhone 18 Pro"
+        osVersionReference = "27.0"
         super.setUp()
     }
 
     override func setUp() {
         super.setUp()
-        devices = [.iPhone17Pro]
+        devices = [.iPhone18Pro]
         super.setUp()
     }
 }
