@@ -15,6 +15,7 @@ public protocol ReviewDetailsFeature: AppReducer {
     associatedtype NetworkConnectivityForm: ReviewDetails.NetworkConnectivityForm
     associatedtype AllReviews: ReviewDetails.AllReviews
     associatedtype ReviewDetailsFeatureRouting: Routing<ReviewDetailsRoute>
+    associatedtype ReviewDetailsEnvironment: ReviewDetailsEnvironmentProviding
     
     var allReviews: AllReviews { get }
     var networkConnectivityForm: NetworkConnectivityForm { get }

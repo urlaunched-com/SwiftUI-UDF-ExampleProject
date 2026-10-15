@@ -6,7 +6,6 @@
 //  Copyright © 2025 urlaunched.com. All rights reserved.
 //
 
-import API
 import UDF
 @preconcurrency import Models
 
@@ -16,12 +15,7 @@ enum Cancellation: Hashable {
 }
 
 final class ReviewsMiddleware<F: ReviewsFeature>: Middleware<F>, @unchecked Sendable {
-    struct Environment: @unchecked Sendable {
-        var loadShowReviews: (_ showID: Int, _ page: Int) async throws -> [Review]
-        var loadMovieReviews: (_ movieID: Int, _ page: Int) async throws -> [Review]
-    }
-
-    var environment: Environment!
+    var environment: ReviewsEnvironment!
 
     func scope(for state: F) -> Scope {
         state.networkConnectivityForm
@@ -71,26 +65,11 @@ final class ReviewsMiddleware<F: ReviewsFeature>: Middleware<F>, @unchecked Send
 
 // MARK: - Environment build methods
 extension ReviewsMiddleware {
-    static func buildLiveEnvironment(for _: some Store<F>) -> Environment {
-        .init(
-            loadShowReviews: { showID, page in
-                try await ItemDetailsAPIClient.loadShowReviews(
-                    showId: showID,
-                    page: page
-                )
-                .map(\.asReview)
-            },
-            loadMovieReviews: { movieID, page in
-                try await ItemDetailsAPIClient.loadMovieReviews(
-                    movieId: movieID,
-                    page: page
-                )
-                .map(\.asReview)
-            }
-        )
+    static func buildLiveEnvironment(for _: some Store<F>) -> ReviewsEnvironment {
+        F.ReviewsEnvironment.reviewsEnvironment
     }
 
-    static func buildTestEnvironment(for _: some Store) -> Environment {
+    static func buildTestEnvironment(for _: some Store) -> ReviewsEnvironment {
         .init(
             loadShowReviews: { _, _ in Review.testItems(count: 3) },
             loadMovieReviews: { _, _ in Review.testItems(count: 3) }
@@ -103,13 +82,13 @@ private extension ReviewsMiddleware {
     struct LoadShowReviewsEffect: ConcurrencyEffect {
         let showId: Show.ID?
         let page: Int
-        let environment: ReviewsMiddleware.Environment
+        let environment: ReviewsEnvironment
 
         func task(flowId: AnyHashable) async throws -> any Action {
             guard let showId else {
                 throw CancellationError()
             }
-            let reviews = try await environment.loadShowReviews(showId.value, page)
+            let reviews = try await environment.loadShowReviews(showId, page)
             return ActionGroup {
                 Actions.DidLoadItems(items: reviews, id: flowId)
                 Actions.DidLoadNestedItems(parentId: showId, items: reviews.ids)
@@ -120,13 +99,13 @@ private extension ReviewsMiddleware {
     struct LoadMovieReviewsEffect: ConcurrencyEffect {
         let movieId: Movie.ID?
         let page: Int
-        let environment: ReviewsMiddleware.Environment
+        let environment: ReviewsEnvironment
 
         func task(flowId: AnyHashable) async throws -> any Action {
             guard let movieId else {
                 throw CancellationError()
             }
-            let reviews = try await environment.loadMovieReviews(movieId.value, page)
+            let reviews = try await environment.loadMovieReviews(movieId, page)
             return ActionGroup {
                 Actions.DidLoadItems(items: reviews, id: flowId)
                 Actions.DidLoadNestedItems(parentId: movieId, items: reviews.ids)

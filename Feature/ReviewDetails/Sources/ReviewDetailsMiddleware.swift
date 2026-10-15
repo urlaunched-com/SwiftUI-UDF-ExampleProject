@@ -16,11 +16,6 @@ enum Cancellation: Hashable {
 }
 
 final class ReviewDetailsMiddleware<F: ReviewDetailsFeature>: Middleware<F>, @unchecked Sendable {
-
-    struct Environment: Sendable {
-        var loadShowReview: @Sendable (_ reviewID: Review.ID) async throws -> Review
-    }
-
     var environment: Environment!
     
     func scope(for state: F) -> Scope {
@@ -58,11 +53,7 @@ final class ReviewDetailsMiddleware<F: ReviewDetailsFeature>: Middleware<F>, @un
 
 extension ReviewDetailsMiddleware {
     static func buildLiveEnvironment(for _: some Store<F>) -> Environment {
-        .init(
-            loadShowReview: { reviewID in
-                try await ItemDetailsAPIClient.loadReview(reviewID: reviewID.value).asReview
-            }
-        )
+        return F.ReviewDetailsEnvironment.reviewDetailsEnvironment
     }
 
     static func buildTestEnvironment(for _: some Store) -> Environment {

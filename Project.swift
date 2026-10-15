@@ -611,7 +611,6 @@ func makeReviewDetailsFeature() -> Module {
         frameworkDependancies: [
             .external(name: "UDF"),
             .external(name: "SwiftUI-Kit"),
-            .target(name: "API"),
             .target(name: "Common"),
             .target(name: "Models"),
             .target(name: "DesignSystem"),
@@ -641,7 +640,6 @@ func makeReviewsFeature() -> Module {
             .target(name: "DesignSystem"),
             .target(name: "Localizations"),
             .target(name: "CustomViews"),
-            .target(name: "API")
         ],
         frameworkResources: [],
         snapshotDependencies: snapshotCommonModelsUDFDependencies,
@@ -666,7 +664,6 @@ func makeReviewsSectionFeature() -> Module {
             .target(name: "DesignSystem"),
             .target(name: "Localizations"),
             .target(name: "CustomViews"),
-            .target(name: "API")
         ],
         frameworkResources: [],
         snapshotDependencies: snapshotCommonModelsUDFDependencies,

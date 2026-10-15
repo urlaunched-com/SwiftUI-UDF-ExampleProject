@@ -13,6 +13,7 @@ import Reviews
 
 extension AppState: ReviewsFeature {
     typealias ReviewsRouting = Flick.ReviewsRouting
+    typealias ReviewsEnvironment = AppEnvironments
 }
 
 extension NetworkConnectivity.NetworkConnectivityForm: Reviews.NetworkConnectivityForm {}

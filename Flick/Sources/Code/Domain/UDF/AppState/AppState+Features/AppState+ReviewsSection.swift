@@ -10,5 +10,7 @@ import ReviewsSection
 import Models
 import NetworkConnectivity
 
-extension AppState: ReviewsSectionFeature {}
+extension AppState: ReviewsSectionFeature {
+    typealias ReviewsSectionEnvironment = AppEnvironments
+}
 extension NetworkConnectivity.NetworkConnectivityForm: ReviewsSection.NetworkConnectivityForm {}
