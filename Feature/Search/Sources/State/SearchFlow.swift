@@ -8,7 +8,7 @@
 
 import SwiftUI
 import UDF
-import Models
+import SearchModels
 
 public enum SearchFlow: IdentifiableFlow {
     case none

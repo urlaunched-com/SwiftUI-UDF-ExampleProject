@@ -9,6 +9,7 @@
 import Common
 import Foundation
 import Models
+import SearchModels
 import SwiftUI
 import SwiftUISnapshotTestCase
 import UDF

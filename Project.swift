@@ -46,6 +46,10 @@ let project = Project.app(
         .target(name: "Cast"),
         .target(name: "CastSection"),
         .target(name: "Common"),
+        .target(name: "Models"),
+        .target(name: "ImageModels"),
+        .target(name: "SearchModels"),
+        .target(name: "WatchProviderModels"),
         .external(name: "FlagKit"),
         .target(name: "Home"),
         .target(name: "HomeSection"),
@@ -53,7 +57,6 @@ let project = Project.app(
         .target(name: "ItemDetails"),
         .target(name: "Localizations"),
         .target(name: "MainHomeSection"),
-        .target(name: "Models"),
         .target(name: "MyFavorites"),
         .target(name: "NetworkConnectivity"),
         .target(name: "Onboarding"),
@@ -117,10 +120,14 @@ func makeUIModules() -> [Module] {
     ]
 }
 
+// MARK: - Models Modules
+
 func makeModelsModules() -> [Module] {
     [
         makeGeneralModelsModule(),
         makeImageModels(),
+        makeSearchModels(),
+        makeWatchProviderModels(),
     ]
 }
 
@@ -154,6 +161,37 @@ func makeImageModels() -> Module {
         frameworkResources: []
     )
 }
+
+func makeSearchModels() -> Module {
+    Module(
+        name: "SearchModels",
+        moduleType: .core,
+        path: "SearchModels",
+        frameworkDependancies: [
+            .external(name: "SwiftFoundation"),
+            .external(name: "UDF"),
+            .target(name: "Common"),
+            .target(name: "Models"),
+            .target(name: "API"),
+        ],
+        frameworkResources: []
+    )
+}
+
+func makeWatchProviderModels() -> Module {
+    Module(
+        name: "WatchProviderModels",
+        moduleType: .core,
+        path: "WatchProviderModels",
+        frameworkDependancies: [
+            .external(name: "SwiftFoundation"),
+            .target(name: "Localizations"),
+        ],
+        frameworkResources: []
+    )
+}
+
+// MARK: - Core Modules
 
 func makeCommanModule() -> Module {
     return Module(
@@ -235,6 +273,8 @@ func makeLocalizationModule() -> Module {
     )
 }
 
+// MARK: - Feature modules
+
 func makeOnboardingFeature() -> Module {
     return Module(
         name: "Onboarding",
@@ -292,12 +332,14 @@ func makeWhereToWatchFeature() -> Module {
             .external(name: "RswiftLibrary"),
             .target(name: "Common"),
             .target(name: "Models"),
+            .target(name: "WatchProviderModels"),
             .external(name: "FlagKit"),
         ],
         frameworkResources: [],
         snapshotDependencies: [
             .target(name: "Common"),
             .target(name: "Models"),
+            .target(name: "WatchProviderModels"),
             .external(name: "FlagKit"),
             .external(name: "UDF"),
         ],
@@ -428,12 +470,15 @@ func makeSearchFeature() -> Module {
             .external(name: "SwiftFoundation"),
             .target(name: "Common"),
             .target(name: "Models"),
+            .target(name: "SearchModels"),
             .target(name: "CustomViews"),
             .target(name: "DesignSystem"),
             .target(name: "Localizations"),
         ],
         frameworkResources: [],
-        snapshotDependencies: snapshotCommonModelsUDFDependencies,
+        snapshotDependencies: snapshotCommonModelsUDFDependencies + [
+            .target(name: "SearchModels"),
+        ],
         snapshotHostAppDependencies: [
             .external(name: "UDF"),
         ],

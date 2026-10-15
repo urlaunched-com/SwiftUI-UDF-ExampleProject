@@ -7,6 +7,7 @@
 //
 
 import Search
+import SearchModels
 import API
 
 extension AppEnvironments: SearchEnvironmentProviding {

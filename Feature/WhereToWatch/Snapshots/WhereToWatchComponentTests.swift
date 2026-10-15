@@ -13,6 +13,7 @@ import UDF
 import XCTest
 import Common
 import Models
+import WatchProviderModels
 import FlagKit
 
 final class WhereToWatchComponentTests: BaseSnapshotTestCase {

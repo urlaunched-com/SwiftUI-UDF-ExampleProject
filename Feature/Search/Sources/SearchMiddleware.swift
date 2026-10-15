@@ -8,7 +8,7 @@
 
 import Foundation
 import UDF
-@preconcurrency import Models
+@preconcurrency import SearchModels
 
 enum Cancellation: Hashable {
     case loadItems

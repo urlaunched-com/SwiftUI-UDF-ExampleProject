@@ -9,7 +9,7 @@
 import Foundation
 import SwiftFoundation
 import UDF
-@preconcurrency import Models
+@preconcurrency import SearchModels
 import Common
 
 public struct SearchForm: Form {

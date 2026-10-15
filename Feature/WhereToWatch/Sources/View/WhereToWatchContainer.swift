@@ -9,6 +9,7 @@
 import FlagKit
 import UDF
 import Models
+import WatchProviderModels
 import Common
 
 struct WhereToWatchContainer<F: WhereToWatchFeature>: Container {

@@ -8,7 +8,7 @@
 
 import Foundation
 import UDF
-@preconcurrency import Models
+@preconcurrency import SearchModels
 
 struct AllSearchItems: Storage {
     var byId: [SearchItem.ID: SearchItem] = [:]

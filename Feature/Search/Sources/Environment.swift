@@ -6,7 +6,7 @@
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 
-import Models
+@preconcurrency import SearchModels
 
 public protocol SearchEnvironmentProviding {
     static var searchEnvironment: SearchEnvironment { get }

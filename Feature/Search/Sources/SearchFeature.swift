@@ -7,7 +7,7 @@
 //
 import UDF
 import Common
-import Models
+import SearchModels
 import SwiftUI
 
 public protocol SearchFeature: AppReducer {
