@@ -6,13 +6,12 @@
 //  Copyright © 2023 urlaunched.com. All rights reserved.
 //
 
-import API
 import Foundation
 import UDF
 import Models
 
 final class ImageConfigsMiddleware<F: ImageFeature>: Middleware<F>, @unchecked Sendable {
-    var environment: Environment!
+    var environment: ImageEnvironment!
 
     func scope(for state: F) -> Scope {
         state.networkConnectivityForm
@@ -44,26 +43,20 @@ final class ImageConfigsMiddleware<F: ImageFeature>: Middleware<F>, @unchecked S
         }
     }
 
-    struct Environment {
-        var loadImageConfigs: () async throws -> ImageConfigs
-    }
-
     enum Cancellation: Hashable {
         case loadImageConfigs
     }
 }
 
+// MARK: - Environment build methods
+
 extension ImageConfigsMiddleware {
-    static func buildLiveEnvironment(for _: some Store<F>) -> Environment {
-        Environment(
-            loadImageConfigs: {
-                try await ImageConfigsAPIClient.loadConfigs().asImageConfigs
-            }
-        )
+    static func buildLiveEnvironment(for _: some Store<F>) -> ImageEnvironment {
+        F.ImageEnvironment.imageEnvironment
     }
 
-    static func buildTestEnvironment(for _: some Store) -> Environment {
-        Environment(
+    static func buildTestEnvironment(for _: some Store) -> ImageEnvironment {
+        ImageEnvironment(
             loadImageConfigs: { .testItem() }
         )
     }

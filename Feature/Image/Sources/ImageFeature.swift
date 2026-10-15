@@ -12,6 +12,7 @@ import SwiftUI
 
 public protocol ImageFeature: AppReducer {
     associatedtype NetworkConnectivityForm: Image.NetworkConnectivityForm
+    associatedtype ImageEnvironment: ImageEnvironmentProviding
 
     var networkConnectivityForm: NetworkConnectivityForm { get }
     

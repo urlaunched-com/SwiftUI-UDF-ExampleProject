@@ -9,6 +9,8 @@
 import Image
 import NetworkConnectivity
 
-extension AppState: ImageFeature {}
+extension AppState: ImageFeature {
+    typealias ImageEnvironment = AppEnvironments
+}
 
 extension NetworkConnectivity.NetworkConnectivityForm: Image.NetworkConnectivityForm {}
