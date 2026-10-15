@@ -6,7 +6,6 @@
 //  Copyright © 2022 urlaunched.com. All rights reserved.
 //
 
-import API
 import Foundation
 import UDF
 import Models
@@ -17,7 +16,7 @@ enum HomeCancellation: Hashable {
 }
 
 final class HomeMiddleware<F: HomeFeature>: Middleware<F>, @unchecked Sendable {
-    var environment: Environment!
+    var environment: HomeEnvironment!
 
     override func status(for state: F) -> MiddlewareStatus {
         state.networkConnectivityForm.satisfied ? .active : .suspend
@@ -30,7 +29,7 @@ final class HomeMiddleware<F: HomeFeature>: Middleware<F>, @unchecked Sendable {
                 return
             }
             execute(flowId: HomeFlow.id, cancellation: HomeCancellation.loadMovies(section)) { [unowned self] taskId in
-                let data = try await environment.loadMovies(section.urlValue)
+                let data = try await environment.loadMovies(section)
                 return ActionGroup {
                     Actions.DidLoadItems(items: data, id: taskId)
                     Actions.DidLoadNestedItems(parentId: section, items: data.map(\.id), id: taskId)
@@ -42,7 +41,7 @@ final class HomeMiddleware<F: HomeFeature>: Middleware<F>, @unchecked Sendable {
                 return
             }
             execute(flowId: HomeFlow.id, cancellation: HomeCancellation.loadShows(section)) { [unowned self] taskId in
-                let data = try await environment.loadShows(section.urlValue)
+                let data = try await environment.loadShows(section)
                 return ActionGroup {
                     Actions.DidLoadItems(items: data, id: taskId)
                     Actions.DidLoadNestedItems(parentId: section, items: data.map(\.id), id: taskId)
@@ -53,29 +52,17 @@ final class HomeMiddleware<F: HomeFeature>: Middleware<F>, @unchecked Sendable {
             break
         }
     }
-
-    struct Environment {
-        var loadMovies: (_ section: String) async throws -> [Movie]
-        var loadShows: (_ section: String) async throws -> [Show]
-    }
 }
 
+// MARK: - Environment build methods
+
 extension HomeMiddleware {
-    static func buildLiveEnvironment(for _: some Store<F>) -> Environment {
-        Environment(
-            loadMovies: {
-                let movies = try await HomeAPIClient.loadMovies(section: $0)
-                return movies.map(\.asMovie)
-            },
-            loadShows: {
-                let shows = try await HomeAPIClient.loadShows(section: $0)
-                return shows.map(\.asShow)
-            }
-        )
+    static func buildLiveEnvironment(for _: some Store<F>) -> HomeEnvironment {
+        F.HomeEnvironment.homeEnvironment
     }
 
-    static func buildTestEnvironment(for _: some Store) -> Environment {
-        Environment(
+    static func buildTestEnvironment(for _: some Store) -> HomeEnvironment {
+        HomeEnvironment(
             loadMovies: { _ in Movie.fakeItems() },
             loadShows: { _ in Show.fakeItems() }
         )

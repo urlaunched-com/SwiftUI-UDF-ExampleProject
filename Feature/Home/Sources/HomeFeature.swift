@@ -16,6 +16,7 @@ public protocol HomeFeature: AppReducer {
     associatedtype AllMovies: HomeFeatureTypes.AllMovies
     associatedtype AllShows: HomeFeatureTypes.AllShows
     associatedtype HomeFeatureRouting: Routing<HomeRoute>
+    associatedtype HomeEnvironment: HomeEnvironmentProviding
 
     var networkConnectivityForm: NetworkConnectivityForm { get }
     var allMovies: AllMovies { get }

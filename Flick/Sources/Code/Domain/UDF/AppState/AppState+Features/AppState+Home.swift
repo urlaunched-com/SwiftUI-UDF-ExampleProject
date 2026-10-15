@@ -10,6 +10,7 @@ import Home
 import NetworkConnectivity
 
 extension AppState: HomeFeature {
+    typealias HomeEnvironment = AppEnvironments
     typealias HomeForm = Home.HomeForm
     typealias HomeFlow = Home.HomeFlow
     typealias MovieGenresFlow = Home.MovieGenresFlow

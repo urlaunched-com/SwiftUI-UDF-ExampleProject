@@ -6,7 +6,6 @@
 //  Copyright © 2022 urlaunched.com. All rights reserved.
 //
 
-import API
 import Foundation
 import UDF
 import Models
@@ -17,7 +16,7 @@ enum HomeGenresCancellation: Hashable {
 }
 
 final class GenresMiddleware<F: HomeFeature>: Middleware<F>, @unchecked Sendable {
-    var environment: Environment!
+    var environment: HomeGenresEnvironment!
 
     func scope(for state: F) -> Scope {
         state.networkConnectivityForm
@@ -45,29 +44,17 @@ final class GenresMiddleware<F: HomeFeature>: Middleware<F>, @unchecked Sendable
             }
         }
     }
-
-    struct Environment {
-        var loadMovieGenres: () async throws -> [Genre]
-        var loadShowGenres: () async throws -> [Genre]
-    }
 }
 
+// MARK: - Environment build methods
+
 extension GenresMiddleware {
-    static func buildLiveEnvironment(for _: some Store<F>) -> Environment {
-        Environment(
-            loadMovieGenres: {
-                let movieGenres = try await HomeAPIClient.loadMovieGenres()
-                return movieGenres.map(\.asGenre)
-            },
-            loadShowGenres: {
-                let showGenres = try await HomeAPIClient.loadShowGenres()
-                return showGenres.map(\.asGenre)
-            }
-        )
+    static func buildLiveEnvironment(for _: some Store<F>) -> HomeGenresEnvironment {
+        F.HomeEnvironment.homeGenresEnvironment
     }
 
-    static func buildTestEnvironment(for _: some Store) -> Environment {
-        Environment(
+    static func buildTestEnvironment(for _: some Store) -> HomeGenresEnvironment {
+        HomeGenresEnvironment(
             loadMovieGenres: { Genre.fakeItems() },
             loadShowGenres: { Genre.fakeItems() }
         )
