@@ -10,5 +10,7 @@ import MyFavorites
 import NetworkConnectivity
 import Common
 
-extension AppState: MyFavoritesFeature {}
+extension AppState: MyFavoritesFeature {
+    typealias MyFavoritesEnvironment = AppEnvironments
+}
 extension NetworkConnectivity.NetworkConnectivityForm: MyFavorites.NetworkConnectivityForm {}

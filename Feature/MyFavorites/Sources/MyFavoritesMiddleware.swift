@@ -6,7 +6,6 @@
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 
-import API
 import Foundation
 import UDF
 @preconcurrency import Models
@@ -17,7 +16,7 @@ enum MyFavoritesCancellation: Hashable, CaseIterable {
 }
 
 final class MyFavoritesMiddleware<F: MyFavoritesFeature>: Middleware<F>, @unchecked Sendable {
-    var environment: Environment!
+    var environment: MyFavoritesEnvironment!
 
     func scope(for state: F) -> Scope {
         state.networkConnectivityForm
@@ -52,35 +51,17 @@ final class MyFavoritesMiddleware<F: MyFavoritesFeature>: Middleware<F>, @unchec
             break
         }
     }
-
-    struct Environment {
-        var loadMovies: (_ page: Int) async throws -> [Movie]
-        var loadShows: (_ page: Int) async throws -> [Show]
-    }
 }
 
+// MARK: - Environment build methods
+
 extension MyFavoritesMiddleware {
-    static func buildLiveEnvironment(for _: some Store<F>) -> Environment {
-        Environment(
-            loadMovies: { page in
-                let movies = try await HomeAPIClient.loadMovies(
-                    section: MovieSection.nowPlaying.urlValue,
-                    page: page
-                )
-                return movies.map(\.asMovie)
-            },
-            loadShows: { page in
-                let shows = try await HomeAPIClient.loadShows(
-                    section: ShowSection.popular.urlValue,
-                    page: page
-                )
-                return shows.map(\.asShow)
-            }
-        )
+    static func buildLiveEnvironment(for _: some Store<F>) -> MyFavoritesEnvironment {
+        F.MyFavoritesEnvironment.myFavoritesEnvironment
     }
 
-    static func buildTestEnvironment(for _: some Store) -> Environment {
-        Environment(
+    static func buildTestEnvironment(for _: some Store) -> MyFavoritesEnvironment {
+        MyFavoritesEnvironment(
             loadMovies: { _ in Movie.testItems(count: 3) },
             loadShows: { _ in Show.testItems(count: 3) }
         )

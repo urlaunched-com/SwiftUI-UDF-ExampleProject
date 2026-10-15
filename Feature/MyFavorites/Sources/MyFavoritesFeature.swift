@@ -17,6 +17,7 @@ public protocol MyFavoritesFeature: AppReducer {
     associatedtype MyFavoritesAllMovies: Storage<Movie>
     associatedtype MyFavoritesAllShows: Storage<Show>
     associatedtype MyFavoritesAllGenres: Storage<Genre>
+    associatedtype MyFavoritesEnvironment: MyFavoritesEnvironmentProviding
 
     var myFavoritesFeatureState: MyFavoritesFeatureState<Self, MyFavoritesRouting> { get }
     var networkConnectivityForm: MyFavoritesNetworkConnectivityForm { get }
