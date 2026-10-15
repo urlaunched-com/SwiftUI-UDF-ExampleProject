@@ -5,6 +5,7 @@
 //  Created by Bogdan Petkanych on 22.07.2026.
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
+
 import UDF
 import Common
 @preconcurrency import Models
@@ -16,6 +17,7 @@ public protocol ItemDetailsFeature: AppReducer {
     associatedtype AllGenres: Storage<Genre>
     associatedtype NetworkConnectivityForm: ItemDetails.NetworkConnectivityForm
     associatedtype ItemDetailsFeatureRouting: Routing<ItemDetailsRoute>
+    associatedtype ItemDetailsEnvironment: ItemDetailsEnvironmentProviding
 
     var itemDetailsFeatureState: ItemDetailsFeatureState<Self, ItemDetailsFeatureRouting> { get }
     var networkConnectivityForm: NetworkConnectivityForm { get }

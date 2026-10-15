@@ -12,6 +12,7 @@ import NetworkConnectivity
 
 extension AppState: ItemDetailsFeature {
     typealias ItemDetailsFeatureRouting = ItemDetailsRouting
+    typealias ItemDetailsEnvironment = AppEnvironments
 }
 
 extension NetworkConnectivity.NetworkConnectivityForm: ItemDetails.NetworkConnectivityForm {}

@@ -6,6 +6,7 @@
 //
 
 import UDF
+import Models
 
 public struct NetworkConnectivityForm: Form {
     public var satisfied = true

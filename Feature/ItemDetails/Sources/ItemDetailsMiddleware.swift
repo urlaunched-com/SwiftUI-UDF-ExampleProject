@@ -6,7 +6,6 @@
 //  Copyright © 2025 urlaunched.com. All rights reserved.
 //
 
-import API
 import UDF
 import Models
 
@@ -15,13 +14,7 @@ enum Cancellation: Hashable {
 }
 
 final class ItemDetailsMiddleware<F: ItemDetailsFeature>: Middleware<F>, @unchecked Sendable {
-
-    var environment: Environment!
-
-    struct Environment {
-        var loadMovieDetails: (_ movieId: Int) async throws -> Movie
-        var loadShowDetails: (_ showId: Int) async throws -> Show
-    }
+    var environment: ItemDetailsEnvironment!
 
     func scope(for state: F) -> Scope {
         state.networkConnectivityForm
@@ -43,7 +36,7 @@ final class ItemDetailsMiddleware<F: ItemDetailsFeature>: Middleware<F>, @unchec
                         $0.binded(to: ItemDetailsContainer<F>.self, by: id)
                     }
                 ) { [unowned self] taskId in
-                    let movie = try await self.environment.loadMovieDetails(movieID.value)
+                    let movie = try await self.environment.loadMovieDetails(movieID)
                     return Actions.DidLoadItem(item: movie, id: taskId)
                 }
 
@@ -55,7 +48,7 @@ final class ItemDetailsMiddleware<F: ItemDetailsFeature>: Middleware<F>, @unchec
                         $0.binded(to: ItemDetailsContainer<F>.self, by: id)
                     }
                 ) { [unowned self] taskId in
-                    let show = try await self.environment.loadShowDetails(showID.value)
+                    let show = try await self.environment.loadShowDetails(showID)
                     return Actions.DidLoadItem(item: show, id: taskId)
                 }
             default:
@@ -67,18 +60,11 @@ final class ItemDetailsMiddleware<F: ItemDetailsFeature>: Middleware<F>, @unchec
 
 // MARK: - Environment build methods
 extension ItemDetailsMiddleware {
-    static func buildLiveEnvironment(for _: some Store<F>) -> Environment {
-        .init(
-            loadMovieDetails: { movieId in
-                try await ItemDetailsAPIClient.loadMovie(movieId: movieId).asMovie
-            },
-            loadShowDetails: { showId in
-                try await ItemDetailsAPIClient.loadShow(showId: showId).asShow
-            }
-        )
+    static func buildLiveEnvironment(for _: some Store<F>) -> ItemDetailsEnvironment {
+        F.ItemDetailsEnvironment.itemDetailsEnvironment
     }
 
-    static func buildTestEnvironment(for _: some Store) -> Environment {
+    static func buildTestEnvironment(for _: some Store) -> ItemDetailsEnvironment {
         .init(
             loadMovieDetails: { _ in .testItem() },
             loadShowDetails: { _ in .testItem() }
