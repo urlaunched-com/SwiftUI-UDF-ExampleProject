@@ -8,15 +8,15 @@
 @testable import Cast
 import Common
 import Foundation
-import Models
 import SwiftUI
 import SwiftUISnapshotTestCase
 import UDF
 import XCTest
+import CastModels
 
 final class CastComponentTests: BaseSnapshotTestCase {
-    private var castItems: [Models.Cast] {
-        Models.Cast.testItems(count: 9)
+    private var castItems: [CastModels.Cast] {
+        CastModels.Cast.testItems(count: 9)
     }
 
     override func setUp() {

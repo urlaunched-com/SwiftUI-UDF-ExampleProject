@@ -8,12 +8,13 @@
 
 import SwiftUI
 import UDF
-import Models
 import Common
+import Models
+import SectionsModels
 
 public enum HomeSectionRoute: Hashable {
     case itemDetails(any Item)
-    case sectionDetails(any Models.Section)
+    case sectionDetails(any SectionsModels.Section)
     case imageContainer(path: String?, size: CGSize, type: ImageType = .poster)
 
     public func hash(into hasher: inout Hasher) {

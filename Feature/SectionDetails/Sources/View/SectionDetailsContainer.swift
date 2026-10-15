@@ -10,17 +10,18 @@ import UDF
 import Models
 import Common
 import SwiftUI
+import SectionsModels
 
 struct SectionDetailsContainer<F: SectionDetailsFeature>: Container {
     typealias ContainerComponent = SectionDetailsComponent<F.SectionDetailsFeatureRouting>
-    let section: any Models.Section
+    let section: any SectionsModels.Section
 
     func scope(for state: F) -> Scope {
         state.sectionDetailsFeatureState.sectionDetailsForm
         state.sectionDetailsFeatureState.sectionDetailsFlow
     }
     
-    init(section: any Models.Section) {
+    init(section: any SectionsModels.Section) {
         self.section = section
     }
 

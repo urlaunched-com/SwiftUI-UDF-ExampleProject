@@ -8,15 +8,16 @@
 
 import UDF
 import Models
+import SectionsModels
 
 struct MainHomeSectionContainer<F: MainHomeSectionFeature>: Container {
     typealias ContainerComponent = MainHomeSectionComponent<F.MainHomeSectionFeatureRouting>
 
-    let section: any Section
+    let section: any SectionsModels.Section
     let items: [any Item]
 
     init(
-        section: any Section,
+        section: any SectionsModels.Section,
         items: [any Item]
     ) {
         self.section = section

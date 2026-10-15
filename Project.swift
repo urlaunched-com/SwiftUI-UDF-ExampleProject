@@ -44,6 +44,7 @@ let project = Project.app(
     targetDependancies: [
         .target(name: "API"),
         .target(name: "Cast"),
+        .target(name: "CastModels"),
         .target(name: "CastSection"),
         .target(name: "Common"),
         .target(name: "Models"),
@@ -69,6 +70,7 @@ let project = Project.app(
         .external(name: "SDWebImageSwiftUI"),
         .target(name: "Search"),
         .target(name: "SectionDetails"),
+        .target(name: "SectionsModels"),
         .target(name: "Settings"),
         .target(name: "SignIn"),
         .external(name: "UDF"),
@@ -126,6 +128,8 @@ func makeModelsModules() -> [Module] {
     [
         makeGeneralModelsModule(),
         makeImageModels(),
+        makeCastModels(),
+        makeSectionsModels(),
         makeSearchModels(),
         makeWatchProviderModels(),
     ]
@@ -191,6 +195,32 @@ func makeWatchProviderModels() -> Module {
     )
 }
 
+func makeCastModels() -> Module {
+    Module(
+        name: "CastModels",
+        moduleType: .core,
+        path: "CastModels",
+        frameworkDependancies: [
+            .external(name: "SwiftFoundation"),
+            .external(name: "UDF"),
+            .target(name: "API"),
+        ],
+        frameworkResources: []
+    )
+}
+
+func makeSectionsModels() -> Module {
+    Module(
+        name: "SectionsModels",
+        moduleType: .core,
+        path: "SectionsModels",
+        frameworkDependancies: [
+            .target(name: "Localizations"),
+        ],
+        frameworkResources: []
+    )
+}
+
 // MARK: - Core Modules
 
 func makeCommanModule() -> Module {
@@ -245,6 +275,7 @@ func makeCustomViewsModule() -> Module {
             .target(name: "Common"),
             .target(name: "DesignSystem"),
             .target(name: "Models"),
+            .target(name: "CastModels"),
             .target(name: "Localizations"),
         ],
         frameworkResources: []
@@ -446,11 +477,14 @@ func makeSectionDetails() -> Module {
             .external(name: "SwiftUI-Kit"),
             .target(name: "Common"),
             .target(name: "Models"),
+            .target(name: "SectionsModels"),
             .target(name: "DesignSystem"),
             .target(name: "CustomViews"),
         ],
         frameworkResources: [],
-        snapshotDependencies: snapshotCommonModelsUDFDependencies,
+        snapshotDependencies: snapshotCommonModelsUDFDependencies + [
+            .target(name: "SectionsModels"),
+        ],
         snapshotHostAppDependencies: [
             .external(name: "UDF"),
             .target(name: "Common"),
@@ -565,11 +599,14 @@ func makeHomeFeature() -> Module {
             .external(name: "UDF"),
             .target(name: "Common"),
             .target(name: "Models"),
+            .target(name: "SectionsModels"),
             .target(name: "Localizations"),
             .target(name: "CustomViews"),
         ],
         frameworkResources: [],
-        snapshotDependencies: snapshotCommonModelsUDFDependencies,
+        snapshotDependencies: snapshotCommonModelsUDFDependencies + [
+            .target(name: "SectionsModels"),
+        ],
         snapshotHostAppDependencies: snapshotCommonModelsUDFDependencies,
         targets: [.framework, .snapshotTests]
     )
@@ -585,10 +622,13 @@ func makeMainHomeSectionFeature() -> Module {
             .external(name: "SwiftUI-Kit"),
             .target(name: "Common"),
             .target(name: "Models"),
+            .target(name: "SectionsModels"),
             .target(name: "CustomViews"),
         ],
         frameworkResources: [],
-        snapshotDependencies: snapshotCommonModelsUDFDependencies,
+        snapshotDependencies: snapshotCommonModelsUDFDependencies + [
+            .target(name: "SectionsModels"),
+        ],
         snapshotHostAppDependencies: [
             .external(name: "UDF"),
             .external(name: "SwiftUI-Kit"),
@@ -606,11 +646,14 @@ func makeHomeSectionFeature() -> Module {
             .external(name: "UDF"),
             .target(name: "Common"),
             .target(name: "Models"),
+            .target(name: "SectionsModels"),
             .target(name: "DesignSystem"),
             .target(name: "CustomViews"),
         ],
         frameworkResources: [],
-        snapshotDependencies: snapshotCommonModelsUDFDependencies,
+        snapshotDependencies: snapshotCommonModelsUDFDependencies + [
+            .target(name: "SectionsModels"),
+        ],
         snapshotHostAppDependencies: [
             .external(name: "UDF"),
         ],
@@ -626,13 +669,15 @@ func makeCastFeature() -> Module {
         frameworkDependancies: [
             .external(name: "UDF"),
             .target(name: "Common"),
-            .target(name: "Models"),
+            .target(name: "CastModels"),
             .target(name: "DesignSystem"),
             .target(name: "CustomViews"),
             .target(name: "Localizations"),
         ],
         frameworkResources: [],
-        snapshotDependencies: snapshotCommonModelsUDFDependencies,
+        snapshotDependencies: snapshotCommonUDFDependencies + [
+            .target(name: "CastModels"),
+        ],
         snapshotHostAppDependencies: [
             .external(name: "UDF"),
         ],
@@ -649,12 +694,15 @@ func makeCastSectionFeature() -> Module {
             .external(name: "UDF"),
             .target(name: "Common"),
             .target(name: "Models"),
+            .target(name: "CastModels"),
             .target(name: "DesignSystem"),
             .target(name: "CustomViews"),
             .target(name: "Localizations"),
         ],
         frameworkResources: [],
-        snapshotDependencies: snapshotCommonModelsUDFDependencies,
+        snapshotDependencies: snapshotCommonModelsUDFDependencies + [
+            .target(name: "CastModels"),
+        ],
         snapshotHostAppDependencies: snapshotCommonModelsUDFDependencies,
         targets: [.framework, .snapshotTests]
     )

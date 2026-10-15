@@ -10,20 +10,20 @@ import DesignSystem
 import Localizations
 import SwiftUI
 import UDF
-import Models
 import Common
 import CustomViews
+import CastModels
 
 struct CastComponent<R: Routing<CastRoute>>: Component {
     struct Props {
-        var cast: [Models.Cast.ID]
-        var castById: (Models.Cast.ID) -> Models.Cast
+        var cast: [CastModels.Cast.ID]
+        var castById: (CastModels.Cast.ID) -> CastModels.Cast
         var dialogStatus: Binding<DialogStatus>
         var router: Router<R>
 
         init(
-            cast: [Models.Cast.ID],
-            castById: @escaping (Models.Cast.ID) -> Models.Cast,
+            cast: [CastModels.Cast.ID],
+            castById: @escaping (CastModels.Cast.ID) -> CastModels.Cast,
             dialogStatus: Binding<DialogStatus>,
             router: Router<R> = .init()
         ) {

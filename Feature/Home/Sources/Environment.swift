@@ -7,6 +7,7 @@
 //
 
 import Models
+import SectionsModels
 
 public protocol HomeEnvironmentProviding {
     static var homeEnvironment: HomeEnvironment { get }

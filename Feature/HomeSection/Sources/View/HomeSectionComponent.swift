@@ -12,16 +12,17 @@ import UDF
 import Common
 import CustomViews
 import Models
+import SectionsModels
 
 struct HomeSectionComponent<R: Routing>: Component where R.Route == HomeSectionRoute {
     struct Props {
-        var section: any Models.Section
+        var section: any SectionsModels.Section
         var items: [any Item]
         var genreById: (Genre.ID) -> Genre
         var router: Router<R>
 
         init(
-            section: any Models.Section,
+            section: any SectionsModels.Section,
             items: [any Item],
             genreById: @escaping (Genre.ID) -> Genre,
             router: Router<R> = .init()

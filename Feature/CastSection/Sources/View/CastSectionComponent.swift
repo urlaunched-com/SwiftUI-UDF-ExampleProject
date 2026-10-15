@@ -10,9 +10,9 @@ import DesignSystem
 import Localizations
 import SwiftUI
 import UDF
-import Models
 import CustomViews
 import Common
+import CastModels
 
 struct CastSectionComponent<R: Routing<CastSectionRoute>>: Component {
     struct Props {

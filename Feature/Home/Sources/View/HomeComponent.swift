@@ -12,6 +12,7 @@ import UDF
 import Models
 import Common
 import CustomViews
+import SectionsModels
 
 struct HomeComponent<R: Routing<HomeRoute>>: Component {
     struct Props {

@@ -10,6 +10,7 @@ import UDF
 @preconcurrency import Models
 import SwiftUI
 import Common
+@preconcurrency import SectionsModels
 
 public protocol MainHomeSectionFeature: AppReducer {
     associatedtype AllMovies: Storage<Movie>

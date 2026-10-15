@@ -10,6 +10,7 @@ import Models
 import UDF
 import Common
 import SwiftUI
+import SectionsModels
 
 public protocol HomeFeature: AppReducer {
     associatedtype NetworkConnectivityForm: HomeFeatureTypes.NetworkConnectivityForm

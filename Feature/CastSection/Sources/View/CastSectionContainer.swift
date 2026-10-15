@@ -9,6 +9,7 @@
 import Common
 import Models
 import UDF
+import CastModels
 
 struct CastSectionContainer<F: CastSectionFeature>: BindableContainer {
     typealias ContainerComponent = CastSectionComponent<F.CastSectionRouting>

@@ -14,6 +14,7 @@ import SwiftUI
 import SwiftUISnapshotTestCase
 import UDF
 import XCTest
+import SectionsModels
 
 final class HomeSectionComponentTests: BaseSnapshotTestCase {
     override func setUp() {

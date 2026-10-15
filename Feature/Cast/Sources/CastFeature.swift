@@ -7,12 +7,12 @@
 //
 
 import UDF
-import Models
 import Common
 import SwiftUI
+import CastModels
 
 public protocol CastFeature: AppReducer {
-    associatedtype CastAllCast: Storage<Models.Cast>
+    associatedtype CastAllCast: Storage<CastModels.Cast>
     associatedtype CastFeatureRouting: Routing<CastRoute>
 
     var allCast: CastAllCast { get }

@@ -7,6 +7,7 @@
 //
 
 import Models
+import CastModels
 
 public protocol CastSectionEnvironmentProviding {
     static var castSectionEnvironment: CastSectionEnvironment { get }

@@ -9,6 +9,7 @@
 import Foundation
 import UDF
 import Models
+import SectionsModels
 
 enum HomeCancellation: Hashable {
     case loadMovies(MovieSection)

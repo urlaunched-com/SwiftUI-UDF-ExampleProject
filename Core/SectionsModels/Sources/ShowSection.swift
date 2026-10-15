@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Common
 import Localizations
 
 public enum ShowSection: Section {

@@ -8,6 +8,7 @@
 
 import UDF
 @preconcurrency import Models
+@preconcurrency import CastModels
 
 enum CastSectionCancellation: Hashable {
     case loadMovieCast(Movie.ID)

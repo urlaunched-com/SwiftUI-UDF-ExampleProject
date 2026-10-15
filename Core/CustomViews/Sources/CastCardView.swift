@@ -7,7 +7,9 @@
 //
 
 import SwiftUI
-import Models
+import CastModels
+import Common
+import DesignSystem
 
 public struct CastCardView<IV: View>: View {
     @Environment(\.isRedacted) var isRedacted

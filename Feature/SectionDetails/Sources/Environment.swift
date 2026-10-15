@@ -7,6 +7,7 @@
 //
 
 import Models
+import SectionsModels
 
 public protocol SectionDetailsEnvironmentProviding {
     static var sectionDetailsEnvironment: SectionDetailsEnvironment { get }

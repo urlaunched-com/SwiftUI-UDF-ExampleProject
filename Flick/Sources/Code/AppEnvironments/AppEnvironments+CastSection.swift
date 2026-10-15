@@ -8,6 +8,7 @@
 
 import CastSection
 import API
+import CastModels
 
 extension AppEnvironments: CastSectionEnvironmentProviding {
     static var castSectionEnvironment: CastSectionEnvironment {

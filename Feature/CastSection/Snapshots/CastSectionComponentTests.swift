@@ -7,12 +7,12 @@
 //
 
 import Common
-import Models
 import SwiftUI
 import SwiftUISnapshotTestCase
 import XCTest
 @testable import CastSection
 import UDF
+import CastModels
 
 final class CastSectionComponentTests: BaseSnapshotTestCase {
     override func setUp() {

@@ -9,15 +9,16 @@
 import SwiftUI
 import UDF
 import Models
+import SectionsModels
 
 struct HomeSectionContainer<F: HomeSectionFeature>: Container {
     typealias ContainerComponent = HomeSectionComponent<F.HomeSectionFeatureRouting>
 
-    let section: any Models.Section
+    let section: any SectionsModels.Section
     let items: [any Item]
 
     init(
-        section: any Models.Section,
+        section: any SectionsModels.Section,
         items: [any Item]
     ) {
         self.section = section

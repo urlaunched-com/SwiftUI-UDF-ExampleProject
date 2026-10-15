@@ -7,15 +7,15 @@
 //
 
 import UDF
-import Models
 import Common
+import CastModels
 
 struct CastContainer<F: CastFeature>: Container {
     typealias ContainerComponent = CastComponent<F.CastFeatureRouting>
 
-    let cast: [Models.Cast.ID]
+    let cast: [CastModels.Cast.ID]
 
-    init(cast: [Models.Cast.ID]) {
+    init(cast: [CastModels.Cast.ID]) {
         self.cast = cast
     }
 

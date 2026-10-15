@@ -7,6 +7,7 @@
 //
 
 import Models
+import SectionsModels
 
 public enum HomeRoute: Hashable {
     case mainMovieSection(section: MovieSection, items: [Movie])

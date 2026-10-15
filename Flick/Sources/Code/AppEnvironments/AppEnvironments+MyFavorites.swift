@@ -9,6 +9,7 @@
 import MyFavorites
 import API
 import Models
+import SectionsModels
 
 extension AppEnvironments: MyFavoritesEnvironmentProviding {
     static var myFavoritesEnvironment: MyFavoritesEnvironment {

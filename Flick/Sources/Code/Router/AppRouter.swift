@@ -31,6 +31,8 @@ import Settings
 import SignIn
 import TabBar
 import WhereToWatch
+import CastModels
+import SectionsModels
 
 struct AppRouter {
     var reviewsRouting = ReviewsRouting()
@@ -86,13 +88,13 @@ struct AppRouter {
         CastSectionFeatureState<AppState, CastSectionRouting>.entryPoint(input: id)
     }
 
-    static func homeSection<S: Models.Section>(section: S, items: [any Item]) -> some View {
+    static func homeSection<S: SectionsModels.Section>(section: S, items: [any Item]) -> some View {
         let input = HomeSectionFeatureState<AppState, HomeSectionRouting>.Input(section: section, items: items)
         return HomeSectionFeatureState<AppState, HomeSectionRouting>.entryPoint(input: input)
     }
 
     @ViewBuilder
-    static func mainHomeSection<S: Models.Section>(section: S, items: [any Item]) -> some View {
+    static func mainHomeSection<S: SectionsModels.Section>(section: S, items: [any Item]) -> some View {
         if let movieSection = section as? MovieSection {
             MainHomeSectionFeatureState<AppState, MainHomeSectionRouting>.entryPoint(input: .movie(section: movieSection, items: items))
         } else if let showSection = section as? ShowSection {
@@ -135,7 +137,7 @@ struct AppRouter {
     }
 
     @ViewBuilder
-    static func sectionDetails(section: any Models.Section) -> some View {
+    static func sectionDetails(section: any SectionsModels.Section) -> some View {
         if let movieSection = section as? MovieSection {
             SectionDetailsFeatureState<AppState, SectionDetailsRouting>.entryPoint(input: .movie(movieSection))
         } else if let showSection = section as? ShowSection {

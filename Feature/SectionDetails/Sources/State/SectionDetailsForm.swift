@@ -9,6 +9,7 @@
 import UDF
 @preconcurrency import Models
 import Common
+@preconcurrency import SectionsModels
 
 public struct SectionDetailsForm: Form {
     var moviesPaginator: Paginator = .init(

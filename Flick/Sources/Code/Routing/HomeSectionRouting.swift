@@ -14,6 +14,7 @@ import HomeSection
 import Image
 import SectionDetails
 import ItemDetails
+import SectionsModels
 
 struct HomeSectionRouting: Routing {
     @ViewBuilder func view(for route: HomeSectionRoute) -> some View {

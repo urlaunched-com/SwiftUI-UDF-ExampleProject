@@ -10,6 +10,7 @@ import UDF
 import Models
 import SwiftUI
 import Common
+import SectionsModels
 
 public protocol HomeSectionFeature: AppReducer {
     associatedtype AllMovies: Storage<Movie>
@@ -26,10 +27,10 @@ public protocol HomeSectionFeature: AppReducer {
 
 public struct HomeSectionFeatureState<AppState: HomeSectionFeature, FeatureRouting: Routing<HomeSectionRoute>>: FeatureState {
     public struct Input {
-        public let section: any Models.Section
+        public let section: any SectionsModels.Section
         public let items: [any Item]
         
-        public init(section: any Models.Section, items: [any Item]) {
+        public init(section: any SectionsModels.Section, items: [any Item]) {
             self.section = section
             self.items = items
         }

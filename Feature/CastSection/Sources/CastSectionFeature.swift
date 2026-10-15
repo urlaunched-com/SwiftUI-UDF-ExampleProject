@@ -10,6 +10,7 @@ import Common
 import Models
 import UDF
 import SwiftUI
+import CastModels
 
 public protocol CastSectionFeature: AppReducer {
     associatedtype CastSectionNetworkConnectivityForm: CastSection.NetworkConnectivityForm
@@ -43,8 +44,8 @@ public enum CastSection {
         var satisfied: Bool { get }
     }
 
-    public protocol AllCast: Storage<Models.Cast> {
-        var byMovieId: [Movie.ID: OrderedSet<Models.Cast.ID>] { get }
-        var byShowId: [Show.ID: OrderedSet<Models.Cast.ID>] { get }
+    public protocol AllCast: Storage<CastModels.Cast> {
+        var byMovieId: [Movie.ID: OrderedSet<CastModels.Cast.ID>] { get }
+        var byShowId: [Show.ID: OrderedSet<CastModels.Cast.ID>] { get }
     }
 }
