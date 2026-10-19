@@ -6,10 +6,10 @@
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 
-import Search
-import NetworkConnectivity
+import SearchModule
+import NetworkConnectivityModule
 
 extension AppState: SearchFeature {
     typealias AllSearchItems = Flick.AllSearchItems
 }
-extension NetworkConnectivity.NetworkConnectivityForm: Search.NetworkConnectivityForm {}
+extension NetworkConnectivityModule.NetworkConnectivityForm: Search.NetworkConnectivityForm {}

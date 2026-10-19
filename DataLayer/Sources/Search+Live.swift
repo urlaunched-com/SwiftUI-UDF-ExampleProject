@@ -8,7 +8,7 @@
 
 import API
 import Models
-import Search
+import SearchModule
 
 public extension SearchEnvironment {
     static var live: Self {

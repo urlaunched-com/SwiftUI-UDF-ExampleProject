@@ -6,10 +6,10 @@
 //
 
 import Common
-import Home
-import ItemDetails
-import Reviews
-import Root
+import HomeModule
+import ItemDetailsModule
+import ReviewsModule
+import RootModule
 import SwiftUI
 import UDF
 

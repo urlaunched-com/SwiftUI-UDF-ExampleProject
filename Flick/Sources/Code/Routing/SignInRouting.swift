@@ -9,7 +9,7 @@
 import SwiftUI
 import UDF
 import Models
-import Auth
+import AuthModule
 
 struct SignInRouting: Routing {
     @ViewBuilder func view(for route: SignInRoute) -> some View {

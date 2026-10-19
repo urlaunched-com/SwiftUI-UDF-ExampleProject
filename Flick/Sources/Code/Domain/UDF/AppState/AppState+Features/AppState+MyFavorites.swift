@@ -6,9 +6,9 @@
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 
-import MyFavorites
-import NetworkConnectivity
+import MyFavoritesModule
+import NetworkConnectivityModule
 import Common
 
 extension AppState: MyFavoritesFeature {}
-extension NetworkConnectivity.NetworkConnectivityForm: MyFavorites.NetworkConnectivityForm {}
+extension NetworkConnectivityModule.NetworkConnectivityForm: MyFavorites.NetworkConnectivityForm {}

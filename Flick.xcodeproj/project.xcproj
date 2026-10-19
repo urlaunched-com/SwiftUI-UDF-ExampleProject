@@ -57,19 +57,19 @@
           ],
         }, {
           "kind": "group",
-          "path": "Feature",
+          "path": "Features",
           "children": [
-            { "path": "Auth" },
-            { "path": "Home" },
-            { "path": "Image" },
-            { "path": "ItemDetails" },
-            { "path": "MyFavorites" },
-            { "path": "NetworkConnectivity" },
-            { "path": "Onboarding" },
-            { "path": "Reviews" },
-            { "path": "Root" },
-            { "path": "Search" },
-            { "path": "Settings" },
+            { "path": "AuthModule" },
+            { "path": "HomeModule" },
+            { "path": "ImageModule" },
+            { "path": "ItemDetailsModule" },
+            { "path": "MyFavoritesModule" },
+            { "path": "NetworkConnectivityModule" },
+            { "path": "OnboardingModule" },
+            { "path": "ReviewsModule" },
+            { "path": "RootModule" },
+            { "path": "SearchModule" },
+            { "path": "SettingsModule" },
           ],
         },
         { "path": "DataLayer" },
@@ -81,66 +81,66 @@
       "kind": "group",
       "name": "Snapshots",
       "children": [
-        { "kind": "folder", "path": "SnapshotTest", "target-membership": [ "AuthSnapshotTests", "HomeSnapshotTests", "ImageSnapshotTests", "ItemDetailsSnapshotTests", "MyFavoritesSnapshotTests", "OnboardingSnapshotTests", "ReviewsSnapshotTests", "RootSnapshotTests", "SearchSnapshotTests", "SettingsSnapshotTests" ] },
+        { "kind": "folder", "path": "SnapshotTest", "target-membership": [ "AuthModuleSnapshotTests", "HomeModuleSnapshotTests", "ImageModuleSnapshotTests", "ItemDetailsModuleSnapshotTests", "MyFavoritesModuleSnapshotTests", "OnboardingModuleSnapshotTests", "ReviewsModuleSnapshotTests", "RootModuleSnapshotTests", "SearchModuleSnapshotTests", "SettingsModuleSnapshotTests" ] },
         {
           "kind": "group",
-          "name": "Auth",
+          "name": "AuthModule",
           "children": [
-            { "kind": "folder", "path": "Feature/Auth/Snapshots", "target-membership": [ "AuthSnapshotTests" ] },
+            { "kind": "folder", "path": "Features/AuthModule/Snapshots", "target-membership": [ "AuthModuleSnapshotTests" ] },
           ],
         }, {
           "kind": "group",
-          "name": "Home",
+          "name": "HomeModule",
           "children": [
-            { "kind": "folder", "path": "Feature/Home/Snapshots", "target-membership": [ "HomeSnapshotTests" ] },
+            { "kind": "folder", "path": "Features/HomeModule/Snapshots", "target-membership": [ "HomeModuleSnapshotTests" ] },
           ],
         }, {
           "kind": "group",
-          "name": "Image",
+          "name": "ImageModule",
           "children": [
-            { "kind": "folder", "path": "Feature/Image/Snapshots", "target-membership": [ "ImageSnapshotTests" ] },
+            { "kind": "folder", "path": "Features/ImageModule/Snapshots", "target-membership": [ "ImageModuleSnapshotTests" ] },
           ],
         }, {
           "kind": "group",
-          "name": "ItemDetails",
+          "name": "ItemDetailsModule",
           "children": [
-            { "kind": "folder", "path": "Feature/ItemDetails/Snapshots", "target-membership": [ "ItemDetailsSnapshotTests" ] },
+            { "kind": "folder", "path": "Features/ItemDetailsModule/Snapshots", "target-membership": [ "ItemDetailsModuleSnapshotTests" ] },
           ],
         }, {
           "kind": "group",
-          "name": "MyFavorites",
+          "name": "MyFavoritesModule",
           "children": [
-            { "kind": "folder", "path": "Feature/MyFavorites/Snapshots", "target-membership": [ "MyFavoritesSnapshotTests" ] },
+            { "kind": "folder", "path": "Features/MyFavoritesModule/Snapshots", "target-membership": [ "MyFavoritesModuleSnapshotTests" ] },
           ],
         }, {
           "kind": "group",
-          "name": "Onboarding",
+          "name": "OnboardingModule",
           "children": [
-            { "kind": "folder", "path": "Feature/Onboarding/Snapshots", "target-membership": [ "OnboardingSnapshotTests" ] },
+            { "kind": "folder", "path": "Features/OnboardingModule/Snapshots", "target-membership": [ "OnboardingModuleSnapshotTests" ] },
           ],
         }, {
           "kind": "group",
-          "name": "Reviews",
+          "name": "ReviewsModule",
           "children": [
-            { "kind": "folder", "path": "Feature/Reviews/Snapshots", "target-membership": [ "ReviewsSnapshotTests" ] },
+            { "kind": "folder", "path": "Features/ReviewsModule/Snapshots", "target-membership": [ "ReviewsModuleSnapshotTests" ] },
           ],
         }, {
           "kind": "group",
-          "name": "Root",
+          "name": "RootModule",
           "children": [
-            { "kind": "folder", "path": "Feature/Root/Snapshots", "target-membership": [ "RootSnapshotTests" ] },
+            { "kind": "folder", "path": "Features/RootModule/Snapshots", "target-membership": [ "RootModuleSnapshotTests" ] },
           ],
         }, {
           "kind": "group",
-          "name": "Search",
+          "name": "SearchModule",
           "children": [
-            { "kind": "folder", "path": "Feature/Search/Snapshots", "target-membership": [ "SearchSnapshotTests" ] },
+            { "kind": "folder", "path": "Features/SearchModule/Snapshots", "target-membership": [ "SearchModuleSnapshotTests" ] },
           ],
         }, {
           "kind": "group",
-          "name": "Settings",
+          "name": "SettingsModule",
           "children": [
-            { "kind": "folder", "path": "Feature/Settings/Snapshots", "target-membership": [ "SettingsSnapshotTests" ] },
+            { "kind": "folder", "path": "Features/SettingsModule/Snapshots", "target-membership": [ "SettingsModuleSnapshotTests" ] },
           ],
         },
       ],
@@ -158,16 +158,16 @@
       "children": [
         { "path": "<PRODUCTS>/Flick.app", "id": "EA60FED804941BE5E01F3CCC", "type": "wrapper.application", "index": false },
         { "path": "<PRODUCTS>/SnapshotTestsHostApp.app", "id": "6B2C36EE270B49DEB0F99D1F", "type": "wrapper.application", "index": false },
-        { "path": "<PRODUCTS>/AuthSnapshotTests.xctest", "id": "A5F63264BB346FF8AF34064A", "type": "wrapper.cfbundle", "index": false },
-        { "path": "<PRODUCTS>/HomeSnapshotTests.xctest", "id": "650B36DF7E54EB28DB1F1A28", "type": "wrapper.cfbundle", "index": false },
-        { "path": "<PRODUCTS>/ImageSnapshotTests.xctest", "id": "7EBC645896B8CB18215F5303", "type": "wrapper.cfbundle", "index": false },
-        { "path": "<PRODUCTS>/ItemDetailsSnapshotTests.xctest", "id": "082301A6E4A71FCED8C85713", "type": "wrapper.cfbundle", "index": false },
-        { "path": "<PRODUCTS>/MyFavoritesSnapshotTests.xctest", "id": "701D8EA8676FE9AE1A72C082", "type": "wrapper.cfbundle", "index": false },
-        { "path": "<PRODUCTS>/OnboardingSnapshotTests.xctest", "id": "7E79A10BAFDD397682B57B68", "type": "wrapper.cfbundle", "index": false },
-        { "path": "<PRODUCTS>/ReviewsSnapshotTests.xctest", "id": "E10011D5182D1700EEAB52E8", "type": "wrapper.cfbundle", "index": false },
-        { "path": "<PRODUCTS>/RootSnapshotTests.xctest", "id": "B58385D84D44E9641C28EA44", "type": "wrapper.cfbundle", "index": false },
-        { "path": "<PRODUCTS>/SearchSnapshotTests.xctest", "id": "284488DE383FD729F7D91E07", "type": "wrapper.cfbundle", "index": false },
-        { "path": "<PRODUCTS>/SettingsSnapshotTests.xctest", "id": "43B9657BC06BDBF7BC146485", "type": "wrapper.cfbundle", "index": false },
+        { "path": "<PRODUCTS>/AuthModuleSnapshotTests.xctest", "id": "A5F63264BB346FF8AF34064A", "type": "wrapper.cfbundle", "index": false },
+        { "path": "<PRODUCTS>/HomeModuleSnapshotTests.xctest", "id": "650B36DF7E54EB28DB1F1A28", "type": "wrapper.cfbundle", "index": false },
+        { "path": "<PRODUCTS>/ImageModuleSnapshotTests.xctest", "id": "7EBC645896B8CB18215F5303", "type": "wrapper.cfbundle", "index": false },
+        { "path": "<PRODUCTS>/ItemDetailsModuleSnapshotTests.xctest", "id": "082301A6E4A71FCED8C85713", "type": "wrapper.cfbundle", "index": false },
+        { "path": "<PRODUCTS>/MyFavoritesModuleSnapshotTests.xctest", "id": "701D8EA8676FE9AE1A72C082", "type": "wrapper.cfbundle", "index": false },
+        { "path": "<PRODUCTS>/OnboardingModuleSnapshotTests.xctest", "id": "7E79A10BAFDD397682B57B68", "type": "wrapper.cfbundle", "index": false },
+        { "path": "<PRODUCTS>/ReviewsModuleSnapshotTests.xctest", "id": "E10011D5182D1700EEAB52E8", "type": "wrapper.cfbundle", "index": false },
+        { "path": "<PRODUCTS>/RootModuleSnapshotTests.xctest", "id": "B58385D84D44E9641C28EA44", "type": "wrapper.cfbundle", "index": false },
+        { "path": "<PRODUCTS>/SearchModuleSnapshotTests.xctest", "id": "284488DE383FD729F7D91E07", "type": "wrapper.cfbundle", "index": false },
+        { "path": "<PRODUCTS>/SettingsModuleSnapshotTests.xctest", "id": "43B9657BC06BDBF7BC146485", "type": "wrapper.cfbundle", "index": false },
       ],
     },
   ],
@@ -191,7 +191,7 @@
           "product-name": "API",
           "build-phase": { "build-phase": "frameworks" },
         }, {
-          "product-name": "Auth",
+          "product-name": "AuthModule",
           "build-phase": { "build-phase": "frameworks" },
         }, {
           "product-name": "Common",
@@ -200,37 +200,37 @@
           "product-name": "DataLayer",
           "build-phase": { "build-phase": "frameworks" },
         }, {
-          "product-name": "Home",
+          "product-name": "HomeModule",
           "build-phase": { "build-phase": "frameworks" },
         }, {
-          "product-name": "Image",
+          "product-name": "ImageModule",
           "build-phase": { "build-phase": "frameworks" },
         }, {
-          "product-name": "ItemDetails",
+          "product-name": "ItemDetailsModule",
           "build-phase": { "build-phase": "frameworks" },
         }, {
           "product-name": "Models",
           "build-phase": { "build-phase": "frameworks" },
         }, {
-          "product-name": "MyFavorites",
+          "product-name": "MyFavoritesModule",
           "build-phase": { "build-phase": "frameworks" },
         }, {
-          "product-name": "NetworkConnectivity",
+          "product-name": "NetworkConnectivityModule",
           "build-phase": { "build-phase": "frameworks" },
         }, {
-          "product-name": "Onboarding",
+          "product-name": "OnboardingModule",
           "build-phase": { "build-phase": "frameworks" },
         }, {
-          "product-name": "Reviews",
+          "product-name": "ReviewsModule",
           "build-phase": { "build-phase": "frameworks" },
         }, {
-          "product-name": "Root",
+          "product-name": "RootModule",
           "build-phase": { "build-phase": "frameworks" },
         }, {
-          "product-name": "Search",
+          "product-name": "SearchModule",
           "build-phase": { "build-phase": "frameworks" },
         }, {
-          "product-name": "Settings",
+          "product-name": "SettingsModule",
           "build-phase": { "build-phase": "frameworks" },
         }, {
           "package": "SwiftUI-UDF",
@@ -270,9 +270,9 @@
         "TARGETED_DEVICE_FAMILY": "1",
       },
     }, {
-      "name": "AuthSnapshotTests",
+      "name": "AuthModuleSnapshotTests",
       "id": "B2D903BF42C69360E94128F1",
-      "product": "Products/AuthSnapshotTests.xctest",
+      "product": "Products/AuthModuleSnapshotTests.xctest",
       "product-type": "bundle.unit-test",
       "specialized-configurations": [
         { "name": "Debug", "file": "xcconfigs/SnapshotTests.xcconfig" },
@@ -288,7 +288,7 @@
       ],
       "package-product-members": [
         {
-          "product-name": "Auth",
+          "product-name": "AuthModule",
           "build-phase": { "build-phase": "frameworks" },
         }, {
           "product-name": "Common",
@@ -304,13 +304,13 @@
         },
       ],
       "build-settings": {
-        "PRODUCT_BUNDLE_IDENTIFIER": "com.urlaunched.AuthSnapshotTests",
+        "PRODUCT_BUNDLE_IDENTIFIER": "com.urlaunched.AuthModuleSnapshotTests",
         "TEST_HOST": "$(BUILT_PRODUCTS_DIR)/SnapshotTestsHostApp.app/SnapshotTestsHostApp",
       },
     }, {
-      "name": "HomeSnapshotTests",
+      "name": "HomeModuleSnapshotTests",
       "id": "D3ACCA16DB93805D7A88CB5C",
-      "product": "Products/HomeSnapshotTests.xctest",
+      "product": "Products/HomeModuleSnapshotTests.xctest",
       "product-type": "bundle.unit-test",
       "specialized-configurations": [
         { "name": "Debug", "file": "xcconfigs/SnapshotTests.xcconfig" },
@@ -329,7 +329,7 @@
           "product-name": "Common",
           "build-phase": { "build-phase": "frameworks" },
         }, {
-          "product-name": "Home",
+          "product-name": "HomeModule",
           "build-phase": { "build-phase": "frameworks" },
         }, {
           "product-name": "Models",
@@ -345,13 +345,13 @@
         },
       ],
       "build-settings": {
-        "PRODUCT_BUNDLE_IDENTIFIER": "com.urlaunched.HomeSnapshotTests",
+        "PRODUCT_BUNDLE_IDENTIFIER": "com.urlaunched.HomeModuleSnapshotTests",
         "TEST_HOST": "$(BUILT_PRODUCTS_DIR)/SnapshotTestsHostApp.app/SnapshotTestsHostApp",
       },
     }, {
-      "name": "ImageSnapshotTests",
+      "name": "ImageModuleSnapshotTests",
       "id": "5463D88E68943EA9B52A9E17",
-      "product": "Products/ImageSnapshotTests.xctest",
+      "product": "Products/ImageModuleSnapshotTests.xctest",
       "product-type": "bundle.unit-test",
       "specialized-configurations": [
         { "name": "Debug", "file": "xcconfigs/SnapshotTests.xcconfig" },
@@ -367,7 +367,7 @@
       ],
       "package-product-members": [
         {
-          "product-name": "Image",
+          "product-name": "ImageModule",
           "build-phase": { "build-phase": "frameworks" },
         }, {
           "package": "SwiftUI-UDF",
@@ -380,13 +380,13 @@
         },
       ],
       "build-settings": {
-        "PRODUCT_BUNDLE_IDENTIFIER": "com.urlaunched.ImageSnapshotTests",
+        "PRODUCT_BUNDLE_IDENTIFIER": "com.urlaunched.ImageModuleSnapshotTests",
         "TEST_HOST": "$(BUILT_PRODUCTS_DIR)/SnapshotTestsHostApp.app/SnapshotTestsHostApp",
       },
     }, {
-      "name": "ItemDetailsSnapshotTests",
+      "name": "ItemDetailsModuleSnapshotTests",
       "id": "3053F8827390B6F8679E11D9",
-      "product": "Products/ItemDetailsSnapshotTests.xctest",
+      "product": "Products/ItemDetailsModuleSnapshotTests.xctest",
       "product-type": "bundle.unit-test",
       "specialized-configurations": [
         { "name": "Debug", "file": "xcconfigs/SnapshotTests.xcconfig" },
@@ -405,7 +405,7 @@
           "product-name": "Common",
           "build-phase": { "build-phase": "frameworks" },
         }, {
-          "product-name": "ItemDetails",
+          "product-name": "ItemDetailsModule",
           "build-phase": { "build-phase": "frameworks" },
         }, {
           "product-name": "Models",
@@ -425,13 +425,13 @@
         },
       ],
       "build-settings": {
-        "PRODUCT_BUNDLE_IDENTIFIER": "com.urlaunched.ItemDetailsSnapshotTests",
+        "PRODUCT_BUNDLE_IDENTIFIER": "com.urlaunched.ItemDetailsModuleSnapshotTests",
         "TEST_HOST": "$(BUILT_PRODUCTS_DIR)/SnapshotTestsHostApp.app/SnapshotTestsHostApp",
       },
     }, {
-      "name": "MyFavoritesSnapshotTests",
+      "name": "MyFavoritesModuleSnapshotTests",
       "id": "EE115AC0D53B9EE14F1C0EA4",
-      "product": "Products/MyFavoritesSnapshotTests.xctest",
+      "product": "Products/MyFavoritesModuleSnapshotTests.xctest",
       "product-type": "bundle.unit-test",
       "specialized-configurations": [
         { "name": "Debug", "file": "xcconfigs/SnapshotTests.xcconfig" },
@@ -453,7 +453,7 @@
           "product-name": "Models",
           "build-phase": { "build-phase": "frameworks" },
         }, {
-          "product-name": "MyFavorites",
+          "product-name": "MyFavoritesModule",
           "build-phase": { "build-phase": "frameworks" },
         }, {
           "package": "SwiftUI-UDF",
@@ -466,13 +466,13 @@
         },
       ],
       "build-settings": {
-        "PRODUCT_BUNDLE_IDENTIFIER": "com.urlaunched.MyFavoritesSnapshotTests",
+        "PRODUCT_BUNDLE_IDENTIFIER": "com.urlaunched.MyFavoritesModuleSnapshotTests",
         "TEST_HOST": "$(BUILT_PRODUCTS_DIR)/SnapshotTestsHostApp.app/SnapshotTestsHostApp",
       },
     }, {
-      "name": "OnboardingSnapshotTests",
+      "name": "OnboardingModuleSnapshotTests",
       "id": "4AB387072B022D0F086BBCDF",
-      "product": "Products/OnboardingSnapshotTests.xctest",
+      "product": "Products/OnboardingModuleSnapshotTests.xctest",
       "product-type": "bundle.unit-test",
       "specialized-configurations": [
         { "name": "Debug", "file": "xcconfigs/SnapshotTests.xcconfig" },
@@ -488,7 +488,7 @@
       ],
       "package-product-members": [
         {
-          "product-name": "Onboarding",
+          "product-name": "OnboardingModule",
           "build-phase": { "build-phase": "frameworks" },
         }, {
           "package": "SwiftUI-UDF",
@@ -501,13 +501,13 @@
         },
       ],
       "build-settings": {
-        "PRODUCT_BUNDLE_IDENTIFIER": "com.urlaunched.OnboardingSnapshotTests",
+        "PRODUCT_BUNDLE_IDENTIFIER": "com.urlaunched.OnboardingModuleSnapshotTests",
         "TEST_HOST": "$(BUILT_PRODUCTS_DIR)/SnapshotTestsHostApp.app/SnapshotTestsHostApp",
       },
     }, {
-      "name": "ReviewsSnapshotTests",
+      "name": "ReviewsModuleSnapshotTests",
       "id": "E437A092D8F2B1C98453A432",
-      "product": "Products/ReviewsSnapshotTests.xctest",
+      "product": "Products/ReviewsModuleSnapshotTests.xctest",
       "product-type": "bundle.unit-test",
       "specialized-configurations": [
         { "name": "Debug", "file": "xcconfigs/SnapshotTests.xcconfig" },
@@ -529,7 +529,7 @@
           "product-name": "Models",
           "build-phase": { "build-phase": "frameworks" },
         }, {
-          "product-name": "Reviews",
+          "product-name": "ReviewsModule",
           "build-phase": { "build-phase": "frameworks" },
         }, {
           "package": "SwiftUI-UDF",
@@ -542,13 +542,13 @@
         },
       ],
       "build-settings": {
-        "PRODUCT_BUNDLE_IDENTIFIER": "com.urlaunched.ReviewsSnapshotTests",
+        "PRODUCT_BUNDLE_IDENTIFIER": "com.urlaunched.ReviewsModuleSnapshotTests",
         "TEST_HOST": "$(BUILT_PRODUCTS_DIR)/SnapshotTestsHostApp.app/SnapshotTestsHostApp",
       },
     }, {
-      "name": "RootSnapshotTests",
+      "name": "RootModuleSnapshotTests",
       "id": "F3CA3B147B5DFE1A41A95F37",
-      "product": "Products/RootSnapshotTests.xctest",
+      "product": "Products/RootModuleSnapshotTests.xctest",
       "product-type": "bundle.unit-test",
       "specialized-configurations": [
         { "name": "Debug", "file": "xcconfigs/SnapshotTests.xcconfig" },
@@ -567,7 +567,7 @@
           "product-name": "Common",
           "build-phase": { "build-phase": "frameworks" },
         }, {
-          "product-name": "Root",
+          "product-name": "RootModule",
           "build-phase": { "build-phase": "frameworks" },
         }, {
           "package": "SwiftUI-UDF",
@@ -580,13 +580,13 @@
         },
       ],
       "build-settings": {
-        "PRODUCT_BUNDLE_IDENTIFIER": "com.urlaunched.RootSnapshotTests",
+        "PRODUCT_BUNDLE_IDENTIFIER": "com.urlaunched.RootModuleSnapshotTests",
         "TEST_HOST": "$(BUILT_PRODUCTS_DIR)/SnapshotTestsHostApp.app/SnapshotTestsHostApp",
       },
     }, {
-      "name": "SearchSnapshotTests",
+      "name": "SearchModuleSnapshotTests",
       "id": "52CC62A9A482FC2E6E10DE36",
-      "product": "Products/SearchSnapshotTests.xctest",
+      "product": "Products/SearchModuleSnapshotTests.xctest",
       "product-type": "bundle.unit-test",
       "specialized-configurations": [
         { "name": "Debug", "file": "xcconfigs/SnapshotTests.xcconfig" },
@@ -608,7 +608,7 @@
           "product-name": "Models",
           "build-phase": { "build-phase": "frameworks" },
         }, {
-          "product-name": "Search",
+          "product-name": "SearchModule",
           "build-phase": { "build-phase": "frameworks" },
         }, {
           "package": "SwiftUI-UDF",
@@ -621,13 +621,13 @@
         },
       ],
       "build-settings": {
-        "PRODUCT_BUNDLE_IDENTIFIER": "com.urlaunched.SearchSnapshotTests",
+        "PRODUCT_BUNDLE_IDENTIFIER": "com.urlaunched.SearchModuleSnapshotTests",
         "TEST_HOST": "$(BUILT_PRODUCTS_DIR)/SnapshotTestsHostApp.app/SnapshotTestsHostApp",
       },
     }, {
-      "name": "SettingsSnapshotTests",
+      "name": "SettingsModuleSnapshotTests",
       "id": "51A4F63EC1F557D41B5D4352",
-      "product": "Products/SettingsSnapshotTests.xctest",
+      "product": "Products/SettingsModuleSnapshotTests.xctest",
       "product-type": "bundle.unit-test",
       "specialized-configurations": [
         { "name": "Debug", "file": "xcconfigs/SnapshotTests.xcconfig" },
@@ -643,7 +643,7 @@
       ],
       "package-product-members": [
         {
-          "product-name": "Settings",
+          "product-name": "SettingsModule",
           "build-phase": { "build-phase": "frameworks" },
         }, {
           "package": "SwiftUI-UDF",
@@ -656,7 +656,7 @@
         },
       ],
       "build-settings": {
-        "PRODUCT_BUNDLE_IDENTIFIER": "com.urlaunched.SettingsSnapshotTests",
+        "PRODUCT_BUNDLE_IDENTIFIER": "com.urlaunched.SettingsModuleSnapshotTests",
         "TEST_HOST": "$(BUILT_PRODUCTS_DIR)/SnapshotTestsHostApp.app/SnapshotTestsHostApp",
       },
     },

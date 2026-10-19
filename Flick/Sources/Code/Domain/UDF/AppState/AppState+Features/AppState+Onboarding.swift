@@ -6,9 +6,9 @@
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 
-import Onboarding
-import Root
+import OnboardingModule
+import RootModule
 
 extension AppState: OnboardingFeature {}
 
-extension Root.RootForm: Onboarding.RootForm {}
+extension RootModule.RootForm: Onboarding.RootForm {}

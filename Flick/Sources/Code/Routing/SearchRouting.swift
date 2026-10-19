@@ -9,8 +9,8 @@
 import SwiftUI
 import UDF
 import Models
-import Search
-import Image
+import SearchModule
+import ImageModule
 
 struct SearchRouting: Routing {
     @ViewBuilder func view(for route: SearchRoute) -> some View {

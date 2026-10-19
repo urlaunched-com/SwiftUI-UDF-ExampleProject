@@ -5,6 +5,6 @@
 //  Created by Bogdan Petkanych on 22.07.2026.
 //
 
-import NetworkConnectivity
+import NetworkConnectivityModule
 
 extension AppState: NetworkConnectivityFeature {}

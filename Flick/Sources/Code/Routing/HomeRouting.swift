@@ -8,8 +8,8 @@
 
 import SwiftUI
 import UDF
-import Home
-import ItemDetails
+import HomeModule
+import ItemDetailsModule
 
 struct HomeRouting: Routing {
     @ViewBuilder func view(for route: HomeRoute) -> some View {

@@ -8,7 +8,7 @@
 
 import API
 import Models
-import Reviews
+import ReviewsModule
 
 public extension ReviewsEnvironment {
     static var live: Self {

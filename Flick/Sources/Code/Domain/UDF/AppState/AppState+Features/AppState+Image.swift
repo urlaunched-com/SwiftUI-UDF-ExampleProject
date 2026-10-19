@@ -6,9 +6,9 @@
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 
-import Image
-import NetworkConnectivity
+import ImageModule
+import NetworkConnectivityModule
 
 extension AppState: ImageFeature {}
 
-extension NetworkConnectivity.NetworkConnectivityForm: Image.NetworkConnectivityForm {}
+extension NetworkConnectivityModule.NetworkConnectivityForm: Image.NetworkConnectivityForm {}

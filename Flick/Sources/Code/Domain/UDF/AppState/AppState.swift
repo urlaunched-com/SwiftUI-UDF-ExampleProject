@@ -9,17 +9,17 @@ import Foundation
 import UDF
 import Common
 import DataLayer
-import Auth
-import Home
-import Image
-import ItemDetails
-import MyFavorites
-import NetworkConnectivity
-import Onboarding
-import Reviews
-import Root
-import Search
-import Settings
+import AuthModule
+import HomeModule
+import ImageModule
+import ItemDetailsModule
+import MyFavoritesModule
+import NetworkConnectivityModule
+import OnboardingModule
+import ReviewsModule
+import RootModule
+import SearchModule
+import SettingsModule
 
 struct AppState: AppReducer {
     typealias Environments = FlickEnvironments
@@ -48,15 +48,15 @@ struct AppState: AppReducer {
 
 // MARK: - Bridges to state that one feature owns and another one requires
 extension AppState {
-    var homeForm: Home.HomeForm {
+    var homeForm: HomeModule.HomeForm {
         homeFeatureState.homeForm
     }
 
-    var rootForm: Root.RootForm {
+    var rootForm: RootModule.RootForm {
         rootFeatureState.rootForm
     }
 
-    var networkConnectivityForm: NetworkConnectivity.NetworkConnectivityForm {
+    var networkConnectivityForm: NetworkConnectivityModule.NetworkConnectivityForm {
         networkConnectivityFeatureState.networkConnectivityForm
     }
 }

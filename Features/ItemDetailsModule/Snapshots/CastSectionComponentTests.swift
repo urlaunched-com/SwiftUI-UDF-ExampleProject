@@ -1,0 +1,63 @@
+//
+//  CastSectionComponentTests.swift
+//  SnapshotTests
+//
+//  Created by Bogdan Petkanych on 22.07.2026.
+//  Copyright © 2026 urlaunched. All rights reserved.
+//
+
+import Common
+import Models
+import SwiftUI
+import SwiftUISnapshotTestCase
+import UDF
+import XCTest
+@testable import ItemDetailsModule
+import SwiftFoundation
+
+final class CastSectionComponentTests: BaseSnapshotTestCase {
+    override func setUp() {
+        isRecording = false
+        super.setUp()
+    }
+
+    func test_CastSection_initial_state() {
+        snapshot(
+            for: CastSectionComponent(
+                props: .init(
+                    cast: [],
+                    castById: { _ in .fakeItem() },
+                    isRedacted: false,
+                    router: .init(routing: MockedRouting())
+                )
+            )
+        )
+    }
+
+    func test_CastSection_loaded_state() {
+        let cast = Cast.testItems(count: 6)
+        snapshot(
+            for: CastSectionComponent(
+                props: .init(
+                    cast: cast.ids,
+                    castById: { id in cast.first(where: { $0.id == id }) ?? .fakeItem() },
+                    isRedacted: false,
+                    router: .init(routing: MockedRouting())
+                )
+            )
+        )
+    }
+
+    func test_CastSection_redacted_state() {
+        snapshot(
+            for: CastSectionComponent(
+                props: .init(
+                    cast: Cast.testItems(count: 6).ids,
+                    castById: { _ in .fakeItem() },
+                    isRedacted: true,
+                    router: .init(routing: MockedRouting())
+                )
+            )
+        )
+    }
+}

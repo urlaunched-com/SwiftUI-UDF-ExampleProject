@@ -6,14 +6,14 @@
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 
-import ItemDetails
-import NetworkConnectivity
+import ItemDetailsModule
+import NetworkConnectivityModule
 
 extension AppState: ItemDetailsFeature {
     typealias AllCast = Flick.AllCast
 }
 
-extension NetworkConnectivity.NetworkConnectivityForm: ItemDetails.NetworkConnectivityForm {}
+extension NetworkConnectivityModule.NetworkConnectivityForm: ItemDetails.NetworkConnectivityForm {}
 extension AllMovies: ItemDetails.AllMovies {}
 extension AllShows: ItemDetails.AllShows {}
 extension AllCast: ItemDetails.AllCast {}

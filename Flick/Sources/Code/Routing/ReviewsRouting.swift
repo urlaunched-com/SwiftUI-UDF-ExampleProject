@@ -8,7 +8,7 @@
 
 import SwiftUI
 import UDF
-import Reviews
+import ReviewsModule
 
 struct ReviewsRouting: Routing {
     @ViewBuilder func view(for route: ReviewsRoute) -> some View {

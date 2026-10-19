@@ -55,7 +55,7 @@ This project integrates with [The Movie Database (TMDB)](https://www.themoviedb.
 Modularity is at the heart of Flick. Every module is a local Swift package with its own `Package.swift`:
 
 - **`Core/`** — shared building blocks: `API`, `Models`, `Common`, `DesignSystem`, `CustomViews`, `Localizations`.
-- **`Feature/`** — one package per flow (`Auth`, `Onboarding`, `Root`, `Home`, `ItemDetails`, `Reviews`, `Search`, `MyFavorites`, `Settings`), plus the shared `Image` and `NetworkConnectivity` features. A flow owns all of its screens, state, middleware and internal navigation.
+- **`Features/`** — one package per flow (`AuthModule`, `OnboardingModule`, `RootModule`, `HomeModule`, `ItemDetailsModule`, `ReviewsModule`, `SearchModule`, `MyFavoritesModule`, `SettingsModule`), plus the shared `ImageModule` and `NetworkConnectivityModule` features. A flow owns all of its screens, state, middleware and internal navigation.
 - **`DataLayer/`** — builds every flow's live environment on top of `API`. Features never import `API`; the data layer knows the features, not the other way around.
 - **`Flick/`** — the app: it mounts each flow's `FeatureState` in `AppState`, supplies `Environments`, and resolves the routes that lead from one flow to another.
 
@@ -96,7 +96,7 @@ This ensures:
 - Scalable modular design
 - Modular architecture built on Swift packages: independent feature modules with explicit dependencies
 
-📦 Example: [`Search`](./Feature/Search)
+📦 Example: [`SearchModule`](./Features/SearchModule)
 
 ---
 

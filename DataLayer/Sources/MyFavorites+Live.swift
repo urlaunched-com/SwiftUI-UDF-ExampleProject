@@ -8,7 +8,7 @@
 
 import API
 import Models
-import MyFavorites
+import MyFavoritesModule
 
 public extension MyFavoritesEnvironment {
     static var live: Self {

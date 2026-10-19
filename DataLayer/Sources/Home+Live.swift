@@ -8,7 +8,7 @@
 
 import API
 import Models
-import Home
+import HomeModule
 
 public extension HomeEnvironment {
     static var live: Self {

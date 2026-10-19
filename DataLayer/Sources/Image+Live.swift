@@ -8,7 +8,7 @@
 
 import API
 import Models
-import Image
+import ImageModule
 
 public extension ImageConfigsEnvironment {
     static var live: Self {

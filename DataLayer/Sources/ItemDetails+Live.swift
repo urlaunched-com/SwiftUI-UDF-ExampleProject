@@ -8,7 +8,7 @@
 
 import API
 import Models
-import ItemDetails
+import ItemDetailsModule
 
 public extension ItemDetailsEnvironment {
     static var live: Self {

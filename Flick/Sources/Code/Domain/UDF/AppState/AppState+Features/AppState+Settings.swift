@@ -6,8 +6,8 @@
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 
-import Settings
-import Home
+import SettingsModule
+import HomeModule
 
 extension AppState: SettingsFeature {
 }

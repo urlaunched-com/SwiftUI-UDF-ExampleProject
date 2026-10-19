@@ -68,7 +68,7 @@ fastlane/test_output
 
 ### Local packages resolve through the app workspace ###
 Core/*/Package.resolved
-Feature/*/Package.resolved
+Features/*/Package.resolved
 DataLayer/Package.resolved
 SourcePackages/
 output/

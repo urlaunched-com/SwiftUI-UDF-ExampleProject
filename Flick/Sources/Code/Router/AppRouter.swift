@@ -8,18 +8,18 @@
 
 import UDF
 import SwiftUI
-import Auth
+import AuthModule
 import Common
-import Home
-import Image
-import ItemDetails
+import HomeModule
+import ImageModule
+import ItemDetailsModule
 import Models
-import MyFavorites
-import Onboarding
-import Reviews
-import Root
-import Search
-import Settings
+import MyFavoritesModule
+import OnboardingModule
+import ReviewsModule
+import RootModule
+import SearchModule
+import SettingsModule
 
 /// Entry points of every flow module the app composes.
 enum AppRouter {

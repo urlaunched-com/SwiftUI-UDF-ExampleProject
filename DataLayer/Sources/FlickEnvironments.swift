@@ -6,12 +6,12 @@
 //  © 2026 You are launched
 //
 
-import Home
-import Image
-import ItemDetails
-import MyFavorites
-import Reviews
-import Search
+import HomeModule
+import ImageModule
+import ItemDetailsModule
+import MyFavoritesModule
+import ReviewsModule
+import SearchModule
 
 /// The live environments of every flow, built on top of the API layer.
 ///

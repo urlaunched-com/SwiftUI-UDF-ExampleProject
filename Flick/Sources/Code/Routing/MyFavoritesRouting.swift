@@ -7,7 +7,7 @@
 
 import SwiftUI
 import UDF
-import MyFavorites
+import MyFavoritesModule
 
 struct MyFavoritesRouting: Routing {
     @ViewBuilder func view(for route: MyFavoritesRoute) -> some View {

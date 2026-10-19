@@ -8,7 +8,7 @@
 
 import SwiftUI
 import UDF
-import ItemDetails
+import ItemDetailsModule
 
 struct ItemDetailsRouting: Routing {
     @ViewBuilder func view(for route: ItemDetailsRoute) -> some View {

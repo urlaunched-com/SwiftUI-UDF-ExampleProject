@@ -6,7 +6,7 @@
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 
-import Auth
+import AuthModule
 
 extension AppState: SignInFeature {}
 

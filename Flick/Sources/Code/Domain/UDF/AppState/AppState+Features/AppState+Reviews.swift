@@ -6,12 +6,12 @@
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 
-import NetworkConnectivity
-import Reviews
+import NetworkConnectivityModule
+import ReviewsModule
 
 extension AppState: ReviewsFeature {
     typealias AllReviews = Flick.AllReviews
 }
 
-extension NetworkConnectivity.NetworkConnectivityForm: Reviews.NetworkConnectivityForm {}
+extension NetworkConnectivityModule.NetworkConnectivityForm: Reviews.NetworkConnectivityForm {}
 extension AllReviews: Reviews.AllReviews {}

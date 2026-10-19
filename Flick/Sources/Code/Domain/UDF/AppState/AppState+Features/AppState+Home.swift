@@ -6,16 +6,16 @@
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 
-import Home
-import NetworkConnectivity
+import HomeModule
+import NetworkConnectivityModule
 
 extension AppState: HomeFeature {
-    typealias NetworkConnectivityForm = NetworkConnectivity.NetworkConnectivityForm
+    typealias NetworkConnectivityForm = NetworkConnectivityModule.NetworkConnectivityForm
     typealias AllMovies = Flick.AllMovies
     typealias AllShows = Flick.AllShows
     typealias AllGenres = Flick.AllGenres
 }
 
-extension NetworkConnectivity.NetworkConnectivityForm: HomeFeatureTypes.NetworkConnectivityForm {}
+extension NetworkConnectivityModule.NetworkConnectivityForm: HomeFeatureTypes.NetworkConnectivityForm {}
 extension AllMovies: HomeFeatureTypes.AllMovies {}
 extension AllShows: HomeFeatureTypes.AllShows {}
