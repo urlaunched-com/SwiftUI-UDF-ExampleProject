@@ -15,6 +15,18 @@ jobs:
     steps:
       - checkout
       - restore_cache:
+          name: Restore Module Graph Tool
+          keys:
+            - v1-module-graph-{{ checksum "Tools/Package.resolved" }}
+      - run:
+          name: Check Module Graph
+          command: Scripts/module-graph.sh --ci
+      - save_cache:
+          name: Cache Module Graph Tool
+          key: v1-module-graph-{{ checksum "Tools/Package.resolved" }}
+          paths:
+            - Tools/.build
+      - restore_cache:
           name: Restore Cached SwiftPM Packages
           keys:
             - v1-spm-{{ checksum "Flick.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved" }}
@@ -41,7 +53,8 @@ jobs:
               -clonedSourcePackagesDirPath SourcePackages \
               -resultBundlePath "$FL_OUTPUT_DIR/Flick.xcresult" \
               -skipPackagePluginValidation \
-              -skipMacroValidation
+              -skipMacroValidation \
+              DIAGNOSE_MISSING_TARGET_DEPENDENCIES=YES_ERROR
       - store_artifacts:
           path: output
           destination: test-results

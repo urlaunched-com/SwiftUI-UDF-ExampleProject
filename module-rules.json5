@@ -1,0 +1,23 @@
+// Module graph rules, checked by module-graph on commit and on CI. Every Swift package in the repo is
+// part of the graph; Apple frameworks and external packages are left out.
+{
+  // Folders whose packages are not part of the app, such as the Tools package that builds module-graph.
+  ignore: ["Tools"],
+
+  // Dependencies that must not exist. `from` and `to` are globs of repo-relative package folders.
+  forbidden: [
+    {
+      from: "Feature/*",
+      to: ["Feature/*", "DataLayer", "Core/API"],
+      reason: "Flows are independent: they get data through their environment and reach other flows through routes the app resolves",
+    },
+    {
+      from: "DataLayer",
+      to: ["Core/CustomViews", "Core/DesignSystem", "Core/Localizations"],
+      reason: "DataLayer builds the features' live environments on top of API",
+    },
+    { from: "Core/*", to: ["Feature/*", "DataLayer"] },
+    { from: "Core/Models", to: ["Core/API"], reason: "Remote-to-domain mapping lives in DataLayer" },
+    { from: "Core/API", to: ["*"], reason: "API is the bottom of the graph" },
+  ],
+}
