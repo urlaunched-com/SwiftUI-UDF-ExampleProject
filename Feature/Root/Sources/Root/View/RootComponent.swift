@@ -8,6 +8,7 @@
 import Common
 import SwiftUI
 import UDF
+import DesignSystem
 
 struct RootComponent<R: Routing>: Component where R.Route == RootScreenRoute {
     struct Props {

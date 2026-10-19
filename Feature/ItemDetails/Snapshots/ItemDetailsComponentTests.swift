@@ -12,6 +12,7 @@ import SwiftUI
 import SwiftUISnapshotTestCase
 import UDF
 import XCTest
+import SwiftFoundation
 
 final class ItemDetailsComponentTests: BaseSnapshotTestCase {
     override func setUp() {

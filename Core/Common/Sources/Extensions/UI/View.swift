@@ -9,6 +9,7 @@
 import SwiftUI
 import SwiftUI_Kit
 import UDF
+import DesignSystem
 
 public extension View {
     func customNavigationTitle(_ title: String) -> some View {

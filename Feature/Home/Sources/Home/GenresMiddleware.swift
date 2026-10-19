@@ -9,6 +9,7 @@
 import Foundation
 import UDF
 import Models
+import SwiftFoundation
 
 public struct GenresEnvironment {
     public var loadMovieGenres: () async throws -> [Genre]

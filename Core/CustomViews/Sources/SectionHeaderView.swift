@@ -8,6 +8,8 @@
 
 import Localizations
 import SwiftUI
+import DesignSystem
+import RswiftResources
 
 public struct SectionHeaderView: View {
     var title: String

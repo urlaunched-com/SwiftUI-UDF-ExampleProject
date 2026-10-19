@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftFoundation
 
 public struct ItemsResponse<I: Decodable>: Decodable {
     public var page: Int

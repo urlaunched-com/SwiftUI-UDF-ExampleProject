@@ -9,6 +9,8 @@
 import Localizations
 import SwiftUI
 import Models
+import DesignSystem
+import RswiftResources
 
 public struct ContentToggle: View {
     @Binding var contentType: ContentType

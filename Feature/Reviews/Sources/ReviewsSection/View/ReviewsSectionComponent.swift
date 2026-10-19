@@ -13,6 +13,8 @@ import UDF
 import Models
 import CustomViews
 import Common
+import RswiftResources
+import SwiftUI_Kit
 
 struct ReviewsSectionComponent<R: Routing>: Component where R.Route == ReviewsSectionRoute {
     struct Props {

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftFoundation
 
 public struct ImageConfigsRemote: Decodable {
     public var baseUrl: String

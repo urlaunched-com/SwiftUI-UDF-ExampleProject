@@ -9,6 +9,7 @@
 import Foundation
 import UDF
 @preconcurrency import Models
+import SwiftFoundation
 
 public struct SectionDetailsEnvironment {
     public var loadMovies: (_ section: MovieSection.ID, _ page: Int) async throws -> [Movie]

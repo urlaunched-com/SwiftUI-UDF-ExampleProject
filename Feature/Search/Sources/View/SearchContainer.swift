@@ -9,6 +9,8 @@
 import SwiftUI
 import UDF
 import Common
+import Models
+import SwiftUI_Kit
 
 struct SearchContainer<F: SearchFeature>: Container {
     typealias ContainerComponent = SearchComponent<F.SearchRouting>

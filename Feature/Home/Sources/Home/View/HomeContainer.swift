@@ -10,6 +10,7 @@ import Common
 import Models
 import SwiftUI
 import UDF
+import SwiftFoundation
 
 struct HomeContainer<F: HomeFeature>: Container {
     typealias ContainerComponent = HomeComponent<HomeScreenRouting<F>>

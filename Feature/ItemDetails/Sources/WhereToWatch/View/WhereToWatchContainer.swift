@@ -10,6 +10,7 @@ import FlagKit
 import UDF
 import Models
 import Common
+import SwiftFoundation
 
 struct WhereToWatchContainer<F: ItemDetailsFeature>: Container {
     typealias ContainerComponent = WhereToWatchComponent<WhereToWatchRouting<F>>

@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import DesignSystem
 
 public struct TabBarItemPresenter {
     private let tabBarItem: TabBarItem

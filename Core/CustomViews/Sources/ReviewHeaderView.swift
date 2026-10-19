@@ -10,6 +10,9 @@ import Localizations
 import SwiftUI
 import Models
 import DesignSystem
+import RswiftResources
+import SwiftFoundation
+import SwiftUI_Kit
 
 public struct ReviewHeaderView<ImageView: View>: View {
     let review: Review

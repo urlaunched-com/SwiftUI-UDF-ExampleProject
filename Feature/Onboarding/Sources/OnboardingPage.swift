@@ -10,6 +10,7 @@ import DesignSystem
 import Foundation
 import SwiftUI
 import Localizations
+import RswiftResources
 
 protocol Pageable: Identifiable where ID == Int {
     var id: Int { get }

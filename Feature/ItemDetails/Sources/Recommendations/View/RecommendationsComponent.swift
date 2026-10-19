@@ -13,6 +13,7 @@ import UDF
 import Models
 import Common
 import CustomViews
+import SwiftFoundation
 
 struct RecommendationsComponent<R: Routing>: Component where R.Route == RecommendationsRoute {
     struct Props {

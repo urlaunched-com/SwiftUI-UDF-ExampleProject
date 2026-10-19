@@ -12,6 +12,8 @@ import SwiftUI
 import UDF
 import Models
 import Common
+import SwiftFoundation
+import SwiftUI_Kit
 
 public struct MainSectionScrollView<BackgroundImage: View, CardImage: View>: View {
     var items: [any Item]

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftFoundation
 
 public struct SessionResponse: Decodable {
     public var success: Bool

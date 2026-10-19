@@ -11,6 +11,8 @@ import SwiftUI
 import SwiftUI_Kit
 import UDF
 import Common
+import DesignSystem
+import RswiftResources
 
 struct SettingsComponent: Component {
     struct Props {

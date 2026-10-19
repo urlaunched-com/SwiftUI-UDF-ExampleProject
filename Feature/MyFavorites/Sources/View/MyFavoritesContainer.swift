@@ -10,6 +10,7 @@ import SwiftUI
 import UDF
 import Models
 import Common
+import SwiftFoundation
 
 struct MyFavoritesContainer<F: MyFavoritesFeature>: Container {
     typealias ContainerComponent = MyFavoritesComponent<F.MyFavoritesRouting>

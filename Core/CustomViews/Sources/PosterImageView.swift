@@ -9,6 +9,7 @@
 import SDWebImageSwiftUI
 import SwiftUI
 import Common
+import DesignSystem
 
 public struct PosterImageView<ImageView: View>: View {
     @Environment(\.isRedacted) var isRedacted

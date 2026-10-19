@@ -8,6 +8,8 @@
 
 import SwiftUI
 import Models
+import DesignSystem
+import SwiftFoundation
 
 public struct ReviewRow<ImageView: View>: View {
     let review: Review

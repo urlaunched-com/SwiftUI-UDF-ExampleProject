@@ -8,6 +8,7 @@
 
 import Foundation
 import Localizations
+import RswiftResources
 
 public enum MovieSection: Section {
     case popular

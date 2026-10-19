@@ -35,7 +35,10 @@ let package = Package(
                 .product(name: "Reviews", package: "Reviews"),
                 .product(name: "Search", package: "Search"),
             ],
-            path: "Sources"
+            path: "Sources",
+            swiftSettings: [
+                .enableUpcomingFeature("MemberImportVisibility"),
+            ]
         ),
     ],
     swiftLanguageModes: [.v5]

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftUI_Kit
+import Combine
 
 public struct SearchTextField<Value: Hashable>: View {
     private let placeholder: String

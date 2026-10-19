@@ -11,6 +11,8 @@ import Localizations
 import SwiftUI
 import UDF
 import Common
+import RswiftResources
+import SwiftUI_Kit
 
 struct SignInComponent<R: Routing>: Component where R.Route == SignInRoute {
     struct Props {

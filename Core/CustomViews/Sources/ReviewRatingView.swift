@@ -8,6 +8,7 @@
 
 import DesignSystem
 import SwiftUI
+import SwiftUI_Kit
 
 public struct ReviewRatingView: View {
     public let rating: Int

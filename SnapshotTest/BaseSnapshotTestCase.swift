@@ -7,6 +7,7 @@
 //
 
 import SwiftUISnapshotTestCase
+import XCTest
 
 @MainActor
 class BaseSnapshotTestCase: SnapshotTestCase {

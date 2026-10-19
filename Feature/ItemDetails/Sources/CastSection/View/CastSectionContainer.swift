@@ -9,6 +9,7 @@
 import Common
 import Models
 import UDF
+import SwiftFoundation
 
 struct CastSectionContainer<F: ItemDetailsFeature>: BindableContainer {
     typealias ContainerComponent = CastSectionComponent<CastSectionRouting<F>>

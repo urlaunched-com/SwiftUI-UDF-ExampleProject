@@ -7,6 +7,7 @@
 //
 import SwiftUI
 import SwiftUI_Kit
+import DesignSystem
 
 public struct RatingCircle: View {
     var value: String

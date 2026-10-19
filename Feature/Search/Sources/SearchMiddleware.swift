@@ -9,6 +9,7 @@
 import Foundation
 import UDF
 @preconcurrency import Models
+import SwiftFoundation
 
 public struct SearchEnvironment {
     public var loadItems: (_ query: String, _ page: Int) async throws -> [SearchItem]

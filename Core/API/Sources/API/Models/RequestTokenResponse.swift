@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftFoundation
 
 public struct RequestTokenResponse: Decodable {
     public var success: Bool

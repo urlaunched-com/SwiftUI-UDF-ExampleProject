@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftFoundation
 
 public struct ShowRemote: Decodable {
     public var id: Int

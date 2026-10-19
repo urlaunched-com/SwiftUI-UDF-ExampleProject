@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftFoundation
 
 public extension URLRequest {
     func loadValidResult<Item: Decodable>(

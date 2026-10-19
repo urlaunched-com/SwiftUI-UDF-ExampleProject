@@ -9,6 +9,7 @@
 import Foundation
 import Common
 import Localizations
+import RswiftResources
 
 public enum ShowSection: Section {
     case popular

@@ -24,6 +24,9 @@ let package = Package(
             resources: [
                 .process("Resources"),
             ],
+            swiftSettings: [
+                .enableUpcomingFeature("MemberImportVisibility"),
+            ],
             plugins: [
                 .plugin(name: "RswiftGeneratePublicResources", package: "R.swift"),
             ]

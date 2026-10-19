@@ -11,6 +11,7 @@ import SwiftUI
 import SwiftUISnapshotTestCase
 import UDF
 import XCTest
+import DesignSystem
 
 final class OnboardingComponentTests: BaseSnapshotTestCase {
     override func setUp() {

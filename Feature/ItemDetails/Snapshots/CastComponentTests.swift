@@ -13,6 +13,7 @@ import SwiftUI
 import SwiftUISnapshotTestCase
 import UDF
 import XCTest
+import SwiftFoundation
 
 final class CastComponentTests: BaseSnapshotTestCase {
     private var castItems: [Models.Cast] {

@@ -13,6 +13,7 @@ import SwiftUISnapshotTestCase
 import UDF
 import XCTest
 @testable import ItemDetails
+import SwiftFoundation
 
 final class CastSectionComponentTests: BaseSnapshotTestCase {
     override func setUp() {

@@ -12,6 +12,7 @@ import SwiftUI
 import SwiftUISnapshotTestCase
 import UDF
 import XCTest
+import SwiftFoundation
 
 final class RecommendationsSectionComponentTests: BaseSnapshotTestCase {
     override func setUp() {

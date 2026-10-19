@@ -13,6 +13,8 @@ import UDF
 import Models
 import CustomViews
 import Common
+import RswiftResources
+import SwiftFoundation
 
 struct ReviewDetailsComponent<R: Routing>: Component where R.Route == ReviewDetailsRoute {
     struct Props {

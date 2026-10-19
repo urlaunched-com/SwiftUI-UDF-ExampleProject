@@ -11,6 +11,7 @@ import Localizations
 import SwiftUI
 import SwiftUI_Kit
 import UDF
+import RswiftResources
 
 struct OnboardingComponent: Component {
     struct Props {

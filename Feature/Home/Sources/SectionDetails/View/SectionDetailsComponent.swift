@@ -13,6 +13,7 @@ import UDF
 import Models
 import Common
 import CustomViews
+import SwiftFoundation
 
 struct SectionDetailsComponent<R: Routing>: Component where R.Route == SectionDetailsRoute {
     struct Props {

@@ -14,6 +14,7 @@ import XCTest
 import Common
 import Models
 import FlagKit
+import SwiftFoundation
 
 final class WhereToWatchComponentTests: BaseSnapshotTestCase {
     var dropDownItems: [DropdownItem] {

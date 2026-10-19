@@ -27,7 +27,10 @@ let package = Package(
                 .product(name: "SwiftFoundation", package: "SwiftFoundation"),
                 .product(name: "UDF", package: "SwiftUI-UDF"),
             ],
-            path: "Sources"
+            path: "Sources",
+            swiftSettings: [
+                .enableUpcomingFeature("MemberImportVisibility"),
+            ]
         ),
     ],
     swiftLanguageModes: [.v5]

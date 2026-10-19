@@ -19,7 +19,10 @@ let package = Package(
             dependencies: [
                 .product(name: "SwiftFoundation", package: "SwiftFoundation"),
             ],
-            path: "Sources"
+            path: "Sources",
+            swiftSettings: [
+                .enableUpcomingFeature("MemberImportVisibility"),
+            ]
         ),
     ],
     swiftLanguageModes: [.v5]

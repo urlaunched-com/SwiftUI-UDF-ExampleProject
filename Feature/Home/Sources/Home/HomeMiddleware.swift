@@ -9,6 +9,7 @@
 import Foundation
 import UDF
 import Models
+import SwiftFoundation
 
 public struct HomeEnvironment {
     public var loadMovies: (_ section: MovieSection.ID) async throws -> [Movie]

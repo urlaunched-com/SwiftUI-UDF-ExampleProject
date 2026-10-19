@@ -10,6 +10,7 @@ import Foundation
 import SwiftFoundation
 import Common
 import Localizations
+import RswiftResources
 
 public struct Provider {
     public var type: ProviderType

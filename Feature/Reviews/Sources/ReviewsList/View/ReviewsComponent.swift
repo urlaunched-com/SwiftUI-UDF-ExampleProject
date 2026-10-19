@@ -13,6 +13,9 @@ import UDF
 import Models
 import CustomViews
 import Common
+import RswiftResources
+import SwiftFoundation
+import SwiftUI_Kit
 
 struct ReviewsComponent<R: Routing<ReviewsListRoute>>: Component {
     struct Props {

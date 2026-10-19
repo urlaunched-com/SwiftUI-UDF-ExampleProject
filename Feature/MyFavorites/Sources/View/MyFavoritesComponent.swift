@@ -13,6 +13,8 @@ import UDF
 import Models
 import Common
 import CustomViews
+import RswiftResources
+import SwiftUI_Kit
 
 struct MyFavoritesComponent<R: Routing>: Component where R.Route == MyFavoritesRoute {
     struct Props {

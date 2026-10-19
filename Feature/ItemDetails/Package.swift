@@ -35,7 +35,10 @@ let package = Package(
                 .product(name: "UDF", package: "SwiftUI-UDF"),
                 .product(name: "UDFMacros", package: "UDFMacros"),
             ],
-            path: "Sources"
+            path: "Sources",
+            swiftSettings: [
+                .enableUpcomingFeature("MemberImportVisibility"),
+            ]
         ),
     ],
     swiftLanguageModes: [.v5]

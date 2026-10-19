@@ -9,6 +9,7 @@
 import UDF
 import Models
 import Common
+import SwiftFoundation
 
 struct ReviewsSectionContainer<F: ReviewsFeature>: BindableContainer {
     typealias ContainerComponent = ReviewsSectionComponent<ReviewsSectionRouting<F>>

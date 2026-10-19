@@ -14,6 +14,8 @@ import UDF
 import Models
 import Common
 import CustomViews
+import RswiftResources
+import SwiftFoundation
 
 struct ItemDetailsComponent<R: Routing>: Component where R.Route == ItemDetailsScreenRoute {
     struct Props {

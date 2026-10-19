@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftFoundation
 
 public struct ReviewRemote: Decodable {
     public var id: String

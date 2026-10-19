@@ -9,6 +9,8 @@
 import DesignSystem
 import Localizations
 import SwiftUI
+import RswiftResources
+import SwiftUI_Kit
 
 struct AuthView<Content: View>: View {
     var title: String

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftFoundation
 
 public struct AuthorRemote: Decodable {
     public var name: String
