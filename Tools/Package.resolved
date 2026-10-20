@@ -1,6 +1,15 @@
 {
-  "originHash" : "5fed8dc442751eda23243d36e1e0b311755303e980d5527a319bd6e6d9ef8315",
+  "originHash" : "a33f329e461b39e339314b496f43157f5d0c6fbc54810ddf0570fd8d8e8a4aa6",
   "pins" : [
+    {
+      "identity" : "modulegraph",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/urlaunched-com/ModuleGraph.git",
+      "state" : {
+        "revision" : "332a35690126762aa08c501a990a28933a1c9054",
+        "version" : "1.0.0"
+      }
+    },
     {
       "identity" : "swift-syntax",
       "kind" : "remoteSourceControl",

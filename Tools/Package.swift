@@ -10,8 +10,7 @@ let package = Package(
         .macOS(.v14),
     ],
     dependencies: [
-        // A local checkout for now; becomes `.package(url:from:)` once module-graph has its own repository.
-        .package(path: "../../../Experiments/ModuleGraph"),
+        .package(url: "https://github.com/urlaunched-com/ModuleGraph.git", from: "1.0.0"),
     ],
     targets: []
 )
