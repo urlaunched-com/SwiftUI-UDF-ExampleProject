@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Module graph</title>
+  <style>
+    body { margin: 0; }
+    #container { display: flex; align-items: center; justify-content: center; width: 100%; height: 100vh; overflow: hidden; touch-action: none; }
+    #container .mermaid-highlighter-canvas { width: 100%; flex-shrink: 0; transform-origin: center; }
+    #container svg { display: block; width: 100%; height: auto; max-width: none !important; }
+    .zoom-controls { position: fixed; top: 16px; right: 16px; z-index: 1; display: flex; overflow: hidden; border: 1px solid #cbd5e1; border-radius: 8px; background: #fff; box-shadow: 0 2px 6px #0001; }
+    .zoom-controls button { min-width: 44px; height: 44px; padding: 0 12px; border: 0; background: transparent; color: #334155; font: 24px system-ui, sans-serif; cursor: pointer; }
+    .zoom-controls button + button { border-left: 1px solid #cbd5e1; }
+    .zoom-controls button:hover { background: #eff6ff; }
+    .zoom-controls button:focus-visible { outline: 2px solid #2563eb; outline-offset: -3px; }
+    #zoom-reset { min-width: 84px; font-size: 18px; font-variant-numeric: tabular-nums; }
+  </style>
+</head>
+<body>
+  <!-- Only this module is needed; mermaid is loaded from CDN via mermaidUrl. -->
+  <script src="https://unpkg.com/mermaid-highlighter@1.1.2/index.js"></script>
+  <div id="container"></div>
+  <div class="zoom-controls" role="group" aria-label="Zoom controls">
+    <button type="button" id="zoom-out" aria-label="Zoom out">−</button>
+    <button type="button" id="zoom-reset" title="Reset zoom to 100%" aria-label="Reset zoom to 100%">100%</button>
+    <button type="button" id="zoom-in" aria-label="Zoom in">+</button>
+  </div>
+  <pre id="source" hidden>
+__MODULE_GRAPH__
+  </pre>
+  <script>
+    const graph = document.getElementById('source').textContent.trim();
+    const { edges } = MermaidHighlighter.parseFlowchart(graph);
+    const incoming = new Map();
+    for (const [from, to] of edges) {
+      if (!incoming.has(to)) incoming.set(to, []);
+      incoming.get(to).push(from);
+    }
+    const container = document.getElementById('container');
+    const zoomValue = document.getElementById('zoom-reset');
+    const diagram = MermaidHighlighter.renderToContainer(
+      container,
+      graph,
+      {
+        mermaidUrl: 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js',
+        enableScrollZoom: false,
+        enableDragPan: true,
+        onZoomChange: level => zoomValue.textContent = Math.round(level * 100) + '%'
+      }
+    );
+    document.getElementById('zoom-out').addEventListener('click', () => diagram.zoomOut());
+    document.getElementById('zoom-in').addEventListener('click', () => diagram.zoomIn());
+    zoomValue.addEventListener('click', () => diagram.resetZoom());
+
+    // The SVG's built-in click handler runs first; keep only its upstream highlights.
+    container.addEventListener('click', () => {
+      const svg = diagram.getSvg();
+      const active = svg?.querySelector('g.node.is-active');
+      if (!active) return;
+
+      const nodeId = node => node.id.match(/flowchart-(.+)-\d+$/)?.[1];
+      const upstream = new Set([nodeId(active)]);
+      for (const node of upstream) {
+        for (const parent of incoming.get(node) || []) upstream.add(parent);
+      }
+      const upstreamEdges = new Set(edges
+        .filter(([from, to]) => upstream.has(from) && upstream.has(to))
+        .map(([from, to]) => from + '_' + to));
+      const isUpstreamEdge = element => upstreamEdges.has(
+        (element.getAttribute('data-id') || '').replace(/^L_/, '').replace(/_\d+$/, '')
+      );
+
+      svg.querySelectorAll('g.node').forEach(node => {
+        node.classList.toggle('is-relevant', upstream.has(nodeId(node)));
+      });
+      svg.querySelectorAll('path[data-edge="true"]').forEach(edge => {
+        edge.classList.toggle('is-relevant', isUpstreamEdge(edge));
+      });
+      svg.querySelectorAll('.edgeLabels > g.edgeLabel').forEach(label => {
+        const relevant = isUpstreamEdge(label.querySelector('[data-id]') || label);
+        label.classList.toggle('is-relevant', relevant);
+        label.querySelectorAll('[class*="edgeLabel"]').forEach(inner => {
+          inner.classList.toggle('is-relevant', relevant);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
