@@ -10,6 +10,7 @@ import HomeModule
 import ImageModule
 import ItemDetailsModule
 import MyFavoritesModule
+import NetworkConnectivityModule
 import ReviewsModule
 import SearchModule
 
@@ -22,6 +23,7 @@ public enum FlickEnvironments:
     ImageEnvironmentProviding,
     ItemDetailsEnvironmentProviding,
     MyFavoritesEnvironmentProviding,
+    NetworkConnectivityEnvironmentProviding,
     ReviewsEnvironmentProviding,
     SearchEnvironmentProviding
 {
@@ -41,6 +43,9 @@ public enum FlickEnvironments:
 
     // MARK: - My Favorites
     public static var myFavorites: MyFavoritesEnvironment { .live }
+
+    // MARK: - Network Connectivity
+    public static var networkConnectivity: NetworkConnectivityEnvironment { .live }
 
     // MARK: - Reviews
     public static var reviewsSection: ReviewsSectionEnvironment { .live }

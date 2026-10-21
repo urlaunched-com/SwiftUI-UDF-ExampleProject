@@ -6,23 +6,27 @@
 //
 
 import Combine
-import Common
 import Foundation
-import Network
 import UDF
 import Models
 
 final class NetworkConnectivityMiddleware<F: NetworkConnectivityFeature>: Middleware<F>, @unchecked Sendable {
-    public var environment: Void!
+    public typealias Environment = NetworkConnectivityEnvironment
+    public var environment: Environment!
 
     public enum Cancellation {
         case networkMonitoring
     }
 
-    public required init(store: some Store<F>, queue: DispatchQueue) {
+    public required convenience init(store: some Store<F>, queue: DispatchQueue) {
+        self.init(store: store, environment: Self.buildLiveEnvironment(for: store), queue: queue)
+    }
+
+    public init(store: some Store<F>, environment: Environment, queue: DispatchQueue) {
+        self.environment = environment
         super.init(store: store, queue: queue)
 
-        run(NetworkMonitoringEffect(queue: queue), cancellation: Cancellation.networkMonitoring) { state, output in
+        run(NetworkMonitoringEffect(queue: queue, environment: environment), cancellation: Cancellation.networkMonitoring) { state, output in
             guard let networkStatusAction = output as? Actions.UpdateNetworkConnectivityStatus else {
                 return false
             }
@@ -40,18 +44,35 @@ final class NetworkConnectivityMiddleware<F: NetworkConnectivityFeature>: Middle
     }
 }
 
+// MARK: - Environment build methods
+
+extension NetworkConnectivityMiddleware {
+    static func buildLiveEnvironment(for _: some Store<F>) -> Environment {
+        F.Environments.networkConnectivity
+    }
+
+    static func buildTestEnvironment(for _: some Store) -> Environment {
+        Environment(
+            monitorNetwork: { _ in Just(true).eraseToAnyPublisher() }
+        )
+    }
+}
+
+// MARK: - Effects
+
 public struct NetworkMonitoringEffect: Effectable {
     public let queue: DispatchQueue
+    public let environment: NetworkConnectivityEnvironment
 
-    public init(queue: DispatchQueue) {
+    public init(queue: DispatchQueue, environment: NetworkConnectivityEnvironment) {
         self.queue = queue
+        self.environment = environment
     }
 
     public var upstream: AnyPublisher<any Action, Never> {
-        NWPathMonitor()
-            .publisher(queue: queue)
-            .map { status in
-                Actions.UpdateNetworkConnectivityStatus(satisfied: status == .satisfied)
+        environment.monitorNetwork(queue)
+            .map { satisfied in
+                Actions.UpdateNetworkConnectivityStatus(satisfied: satisfied)
             }
             .eraseToAnyPublisher()
     }

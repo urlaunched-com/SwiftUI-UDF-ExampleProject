@@ -23,6 +23,7 @@ graph TD
   DataLayer --> ItemDetailsModule
   DataLayer --> Models
   DataLayer --> MyFavoritesModule
+  DataLayer --> NetworkConnectivityModule
   DataLayer --> ReviewsModule
   DataLayer --> SearchModule
 
