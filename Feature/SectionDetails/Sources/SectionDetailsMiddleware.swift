@@ -88,7 +88,7 @@ private extension SectionDetailsMiddleware {
             let data = try await environment.loadMovies(section, page)
             return ActionGroup {
                 Actions.DidLoadItems(items: data, id: flowId)
-                Actions.DidLoadNestedItems(parentId: section, items: data.map(\.id), id: flowId)
+                Actions.DidLoadNestedItems(parentId: section, items: data, id: flowId)
             }
         }
     }
@@ -105,7 +105,7 @@ private extension SectionDetailsMiddleware {
             let data = try await environment.loadShows(section, page)
             return ActionGroup {
                 Actions.DidLoadItems(items: data, id: flowId)
-                Actions.DidLoadNestedItems(parentId: section, items: data.map(\.id), id: flowId)
+                Actions.DidLoadNestedItems(parentId: section, items: data, id: flowId)
             }
         }
     }

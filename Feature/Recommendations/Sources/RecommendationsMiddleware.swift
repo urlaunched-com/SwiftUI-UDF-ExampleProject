@@ -91,7 +91,7 @@ private extension RecommendationsMiddleware {
             let movies = try await environment.loadMovies(movieId, page)
             return ActionGroup {
                 Actions.DidLoadItems(items: movies, id: flowId)
-                Actions.DidLoadNestedItems(parentId: movieId, items: movies.ids)
+                Actions.DidLoadNestedItems(parentId: movieId, items: movies)
             }
         }
     }
@@ -108,7 +108,7 @@ private extension RecommendationsMiddleware {
             let shows = try await environment.loadShows(showId, page)
             return ActionGroup {
                 Actions.DidLoadItems(items: shows, id: flowId)
-                Actions.DidLoadNestedItems(parentId: showId, items: shows.ids)
+                Actions.DidLoadNestedItems(parentId: showId, items: shows)
             }
         }
     }

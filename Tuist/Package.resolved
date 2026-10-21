@@ -1,5 +1,5 @@
 {
-  "originHash" : "1351f259ab136799012b789df115b264a23456e2b99efdd9c8993c20205f0b8d",
+  "originHash" : "d413706054dfb439c4c948dc866668cf516b7abd142938674829b53e3c20d6ba",
   "pins" : [
     {
       "identity" : "flagkit",
@@ -87,8 +87,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/swiftlang/swift-syntax",
       "state" : {
-        "revision" : "9de99a78f099e59caf2b2beec65a4c45d54b2081",
-        "version" : "603.0.1"
+        "revision" : "0687f71944021d616d34d922343dcef086855920",
+        "version" : "600.0.1"
       }
     },
     {
@@ -125,6 +125,15 @@
       "state" : {
         "revision" : "49d867da40648159be659cea1eb019c90f9114b0",
         "version" : "0.6.5"
+      }
+    },
+    {
+      "identity" : "udfmacros",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/urlaunched-com/UDFMacros",
+      "state" : {
+        "revision" : "108abdf0e08a9699084d44470b5e54e19ce9aa76",
+        "version" : "0.3.0"
       }
     },
     {

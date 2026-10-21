@@ -8,27 +8,8 @@
 
 import Foundation
 import UDF
+import UDFMacros
 @preconcurrency import SearchModels
 
-struct AllSearchItems: Storage {
-    var byId: [SearchItem.ID: SearchItem] = [:]
-
-    mutating func reduce(_ action: some Action) {
-        switch action {
-        case let action as Actions.DidLoadItems<SearchItem>:
-            byId.insert(items: action.items)
-
-        case let action as Actions.DidLoadItem<SearchItem>:
-            byId.insert(item: action.item)
-
-        case let action as Actions.DidUpdateItem<SearchItem>:
-            byId[action.item.id] = action.item
-
-        case let action as Actions.DeleteItem<SearchItem>:
-            byId.removeValue(forKey: action.item.id)
-
-        default:
-            break
-        }
-    }
-}
+@Storage(SearchItem.self)
+struct AllSearchItems: Storage {}

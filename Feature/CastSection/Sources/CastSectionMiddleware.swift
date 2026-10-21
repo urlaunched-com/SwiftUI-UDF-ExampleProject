@@ -41,7 +41,7 @@ final class CastSectionMiddleware<F: CastSectionFeature>: Middleware<F>, @unchec
                     let cast = try await self.environment.loadMovieCast(movieId)
                     return ActionGroup {
                         Actions.DidLoadItems(items: cast, id: taskId)
-                        Actions.DidLoadNestedItems(parentId: movieId, items: cast.ids)
+                        Actions.DidLoadNestedItems(parentId: movieId, items: cast)
                     }
                 }
 
@@ -56,7 +56,7 @@ final class CastSectionMiddleware<F: CastSectionFeature>: Middleware<F>, @unchec
                     let cast = try await self.environment.loadShowCast(showId)
                     return ActionGroup {
                         Actions.DidLoadItems(items: cast, id: taskId)
-                        Actions.DidLoadNestedItems(parentId: showId, items: cast.ids)
+                        Actions.DidLoadNestedItems(parentId: showId, items: cast)
                     }
                 }
 

@@ -8,36 +8,13 @@
 
 import Foundation
 import UDF
+import UDFMacros
 @preconcurrency import CastModels
 @preconcurrency import MediaModels
 
-struct AllCast: Storage {
-    var byId: [Cast.ID: Cast] = [:]
-    var byMovieId: [Movie.ID: OrderedSet<Cast.ID>] = [:]
-    var byShowId: [Show.ID: OrderedSet<Cast.ID>] = [:]
-
-    mutating func reduce(_ action: some Action) {
-        switch action {
-        case let action as Actions.DidLoadNestedItems<Movie.ID, Cast.ID>:
-            byMovieId.append(action.items, by: action.parentId)
-
-        case let action as Actions.DidLoadNestedItems<Show.ID, Cast.ID>:
-            byShowId.append(action.items, by: action.parentId)
-
-        case let action as Actions.DidLoadItems<Cast>:
-            byId.insert(items: action.items)
-
-        case let action as Actions.DidLoadItem<Cast>:
-            byId.insert(item: action.item)
-
-        case let action as Actions.DidUpdateItem<Cast>:
-            byId[action.item.id] = action.item
-
-        case let action as Actions.DeleteItem<Cast>:
-            byId.removeValue(forKey: action.item.id)
-
-        default:
-            break
-        }
-    }
-}
+@Storage(Cast.self)
+@StorageRelationships(
+    .hasMany(Movie.self),
+    .hasMany(Show.self)
+)
+struct AllCast: Storage {}

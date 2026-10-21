@@ -34,7 +34,7 @@ final class HomeMiddleware<F: HomeFeature>: Middleware<F>, @unchecked Sendable {
                 let data = try await environment.loadMovies(section)
                 return ActionGroup {
                     Actions.DidLoadItems(items: data, id: taskId)
-                    Actions.DidLoadNestedItems(parentId: section, items: data.map(\.id), id: taskId)
+                    Actions.DidLoadNestedItems(parentId: section, items: data, id: taskId)
                 }
             }
 
@@ -46,7 +46,7 @@ final class HomeMiddleware<F: HomeFeature>: Middleware<F>, @unchecked Sendable {
                 let data = try await environment.loadShows(section)
                 return ActionGroup {
                     Actions.DidLoadItems(items: data, id: taskId)
-                    Actions.DidLoadNestedItems(parentId: section, items: data.map(\.id), id: taskId)
+                    Actions.DidLoadNestedItems(parentId: section, items: data, id: taskId)
                 }
             }
 

@@ -92,7 +92,7 @@ private extension ReviewsMiddleware {
             let reviews = try await environment.loadShowReviews(showId, page)
             return ActionGroup {
                 Actions.DidLoadItems(items: reviews, id: flowId)
-                Actions.DidLoadNestedItems(parentId: showId, items: reviews.ids)
+                Actions.DidLoadNestedItems(parentId: showId, items: reviews)
             }
         }
     }
@@ -109,7 +109,7 @@ private extension ReviewsMiddleware {
             let reviews = try await environment.loadMovieReviews(movieId, page)
             return ActionGroup {
                 Actions.DidLoadItems(items: reviews, id: flowId)
-                Actions.DidLoadNestedItems(parentId: movieId, items: reviews.ids)
+                Actions.DidLoadNestedItems(parentId: movieId, items: reviews)
             }
         }
     }

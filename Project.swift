@@ -62,6 +62,7 @@ let project = Project.app(
         .target(name: "Settings"),
         .target(name: "SignIn"),
         .external(name: "UDF"),
+        .external(name: "UDFMacros"),
         .external(name: "SwiftFoundation"),
         .external(name: "SwiftUI-Kit"),
         .target(name: "TabBar"),

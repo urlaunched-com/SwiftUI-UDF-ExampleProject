@@ -25,6 +25,7 @@ let package = Package(
         .package(url: "https://github.com/SDWebImage/SDWebImageSwiftUI", .upToNextMajor(from: "3.1.3")),
         .package(url: "https://github.com/Maks-Jago/swiftui-snapshot-test-case", .upToNextMajor(from: "1.7.3")),
         .package(url: "https://github.com/Maks-Jago/SwiftUI-UDF", exact: "2.0.0-alpha.4"),
+        .package(url: "https://github.com/urlaunched-com/UDFMacros", exact: "0.3.0"),
         .package(url: "https://github.com/Maks-Jago/SwiftFoundation", .upToNextMajor(from: "0.4.1")),
         .package(url: "https://github.com/Maks-Jago/SwiftUIKit", .upToNextMajor(from: "0.6.5")),
         .package(url: "https://github.com/mac-cain13/R.swift.git", .upToNextMajor(from: "7.0.0"))

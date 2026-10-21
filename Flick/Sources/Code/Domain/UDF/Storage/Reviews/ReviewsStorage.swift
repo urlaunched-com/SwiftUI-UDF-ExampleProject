@@ -8,36 +8,13 @@
 
 import Foundation
 import UDF
+import UDFMacros
 @preconcurrency import MediaModels
 @preconcurrency import ReviewModels
 
-struct AllReviews: Storage {
-    var byId: [Review.ID: Review] = [:]
-    var byMovieId: [Movie.ID: OrderedSet<Review.ID>] = [:]
-    var byShowId: [Show.ID: OrderedSet<Review.ID>] = [:]
-
-    mutating func reduce(_ action: some Action) {
-        switch action {
-        case let action as Actions.DidLoadNestedItems<Movie.ID, Review.ID>:
-            byMovieId.append(action.items, by: action.parentId)
-
-        case let action as Actions.DidLoadNestedItems<Show.ID, Review.ID>:
-            byShowId.append(action.items, by: action.parentId)
-
-        case let action as Actions.DidLoadItems<Review>:
-            byId.insert(items: action.items)
-
-        case let action as Actions.DidLoadItem<Review>:
-            byId.insert(item: action.item)
-
-        case let action as Actions.DidUpdateItem<Review>:
-            byId[action.item.id] = action.item
-
-        case let action as Actions.DeleteItem<Review>:
-            byId.removeValue(forKey: action.item.id)
-
-        default:
-            break
-        }
-    }
-}
+@Storage(Review.self)
+@StorageRelationships(
+    .hasMany(Movie.self),
+    .hasMany(Show.self)
+)
+struct AllReviews: Storage {}
