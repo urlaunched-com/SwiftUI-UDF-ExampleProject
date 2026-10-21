@@ -1,8 +1,8 @@
 //
-//  AppEnvironments+Reviews.swift
+//  Reviews+Environment.swift
 //  Flick
 //
-//  Created by Bogdan Petkanych on 15.10.2026.
+//  Created by Bogdan Petkanych on 21.10.2026.
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 
@@ -10,8 +10,8 @@ import Reviews
 import API
 import ReviewModels
 
-extension AppEnvironments: ReviewsEnvironmentProviding {
-    static var reviewsEnvironment: ReviewsEnvironment {
+public extension ReviewsEnvironment {
+    static var environment: Self {
         ReviewsEnvironment(
             loadShowReviews: { showID, page in
                 try await ItemDetailsAPIClient.loadShowReviews(

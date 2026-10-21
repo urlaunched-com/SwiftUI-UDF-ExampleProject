@@ -6,7 +6,6 @@
 //  Copyright © 2023 urlaunched.com. All rights reserved.
 //
 
-import API
 import Foundation
 import SwiftFoundation
 import UDF
@@ -181,32 +180,6 @@ public extension SearchItem {
 
     static func testItemIds(count: Int) -> [Self.ID] {
         (0 ..< count).map { ID(value: $0) }
-    }
-}
-
-// MARK: - asSearchItem
-
-public extension SearchItemRemote {
-    var asSearchItem: SearchItem {
-        .init(id: .init(value: id),
-              adult: adult,
-              backdropPath: backdropPath,
-              name: name,
-              originalLanguage: originalLanguage,
-              originalName: originalName,
-              overview: overview,
-              posterPath: posterPath,
-              mediaType: mediaType,
-              genreIds: genreIds,
-              popularity: popularity,
-              firstAirDate: DateFormatter.customIso8601ShortFromServer.date(from: firstAirDate ?? ""),
-              voteAverage: voteAverage,
-              voteCount: voteCount,
-              originCountry: originCountry,
-              title: title,
-              originalTitle: originalTitle,
-              releaseDate: DateFormatter.customIso8601ShortFromServer.date(from: ""),
-              video: video)
     }
 }
 

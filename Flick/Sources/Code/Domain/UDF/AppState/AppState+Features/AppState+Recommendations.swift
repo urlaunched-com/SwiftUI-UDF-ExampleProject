@@ -6,12 +6,13 @@
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 
+import DataLayer
 import Recommendations
 import Models
 import NetworkConnectivity
 
 extension AppState: RecommendationsFeature {
-    typealias RecommendationsEnvironment = AppEnvironments
+    typealias RecommendationsEnvironment = FlickEnvironments
     typealias RecommendationsAllGenres = Flick.AllGenres
     typealias RecommendationsAllMovies = Flick.AllMovies
     typealias RecommendationsAllShows = Flick.AllShows

@@ -6,13 +6,14 @@
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 
+import DataLayer
 import ItemDetails
 import Common
 import NetworkConnectivity
 
 extension AppState: ItemDetailsFeature {
     typealias ItemDetailsFeatureRouting = ItemDetailsRouting
-    typealias ItemDetailsEnvironment = AppEnvironments
+    typealias ItemDetailsEnvironment = FlickEnvironments
 }
 
 extension NetworkConnectivity.NetworkConnectivityForm: ItemDetails.NetworkConnectivityForm {}

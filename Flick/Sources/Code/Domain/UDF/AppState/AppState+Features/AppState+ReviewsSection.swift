@@ -6,11 +6,12 @@
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 
+import DataLayer
 import ReviewsSection
 import Models
 import NetworkConnectivity
 
 extension AppState: ReviewsSectionFeature {
-    typealias ReviewsSectionEnvironment = AppEnvironments
+    typealias ReviewsSectionEnvironment = FlickEnvironments
 }
 extension NetworkConnectivity.NetworkConnectivityForm: ReviewsSection.NetworkConnectivityForm {}

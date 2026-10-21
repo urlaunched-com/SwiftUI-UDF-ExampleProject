@@ -1,8 +1,8 @@
 //
-//  AppEnvironments+SectionDetails.swift
+//  SectionDetails+Environment.swift
 //  Flick
 //
-//  Created by Bogdan Petkanych on 15.10.2026.
+//  Created by Bogdan Petkanych on 21.10.2026.
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 
@@ -10,8 +10,8 @@ import SectionDetails
 import API
 import MediaModels
 
-extension AppEnvironments: SectionDetailsEnvironmentProviding {
-    static var sectionDetailsEnvironment: SectionDetailsEnvironment {
+public extension SectionDetailsEnvironment {
+    static var environment: Self {
         SectionDetailsEnvironment(
             loadMovies: { section, page in
                 let movies = try await HomeAPIClient.loadMovies(section: section.urlValue, page: page)

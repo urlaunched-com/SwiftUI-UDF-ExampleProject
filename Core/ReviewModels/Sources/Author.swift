@@ -6,7 +6,6 @@
 //  Copyright © 2023 urlaunched.com. All rights reserved.
 //
 
-import API
 import Foundation
 import SwiftFoundation
 
@@ -64,19 +63,6 @@ public extension Author {
         avatarPath: String? = "/utEXl2EDiXBK6f41wCLsvprvMg4.jpg",
         rating: Int? = 10
     ) -> Self {
-        .init(
-            name: name,
-            username: username,
-            avatarPath: avatarPath,
-            rating: rating
-        )
-    }
-}
-
-// MARK: - asAuthor
-
-public extension AuthorRemote {
-    var asAuthor: Author {
         .init(
             name: name,
             username: username,

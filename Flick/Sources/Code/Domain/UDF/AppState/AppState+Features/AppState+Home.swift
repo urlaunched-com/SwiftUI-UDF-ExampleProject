@@ -6,11 +6,12 @@
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 
+import DataLayer
 import Home
 import NetworkConnectivity
 
 extension AppState: HomeFeature {
-    typealias HomeEnvironment = AppEnvironments
+    typealias HomeEnvironment = FlickEnvironments
     typealias HomeForm = Home.HomeForm
     typealias HomeFlow = Home.HomeFlow
     typealias MovieGenresFlow = Home.MovieGenresFlow

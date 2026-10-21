@@ -6,13 +6,14 @@
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 
+import DataLayer
 import CastSection
 import Common
 import NetworkConnectivity
 
 extension AppState: CastSectionFeature {
     typealias AllCast = Flick.AllCast
-    typealias CastSectionEnvironment = AppEnvironments
+    typealias CastSectionEnvironment = FlickEnvironments
 }
 
 extension NetworkConnectivity.NetworkConnectivityForm: CastSection.NetworkConnectivityForm {}

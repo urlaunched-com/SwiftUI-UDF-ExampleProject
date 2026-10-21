@@ -1,8 +1,8 @@
 //
-//  AppEnvironments+ItemDetails.swift
+//  ItemDetails+Environment.swift
 //  Flick
 //
-//  Created by Bogdan Petkanych on 15.10.26.
+//  Created by Bogdan Petkanych on 21.10.2026.
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 
@@ -10,8 +10,8 @@ import ItemDetails
 import API
 import MediaModels
 
-extension AppEnvironments: ItemDetailsEnvironmentProviding {
-    static var itemDetailsEnvironment: ItemDetailsEnvironment {
+public extension ItemDetailsEnvironment {
+    static var environment: Self {
         ItemDetailsEnvironment(
             loadMovieDetails: { movieID in
                 try await ItemDetailsAPIClient.loadMovie(movieId: movieID.value).asMovie

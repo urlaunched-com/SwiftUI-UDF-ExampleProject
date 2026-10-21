@@ -6,13 +6,14 @@
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 
+import DataLayer
 import RecommendationsSection
 import Common
 import Models
 import NetworkConnectivity
 
 extension AppState: RecommendationsSectionFeature {
-    typealias RecommendationsSectionEnvironment = AppEnvironments
+    typealias RecommendationsSectionEnvironment = FlickEnvironments
     typealias RecommendationsSectionRouting = Flick.RecommendationsSectionRouting
 }
 

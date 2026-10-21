@@ -6,7 +6,6 @@
 //  Copyright © 2022 urlaunched.com. All rights reserved.
 //
 
-import API
 import Foundation
 import SwiftFoundation
 import UDF
@@ -186,33 +185,6 @@ public extension Movie {
 
     static func testItemIds(count: Int) -> [Self.ID] {
         (0 ..< count).map { ID(value: $0) }
-    }
-}
-
-// MARK: - asMovie
-
-public extension MovieRemote {
-    var asMovie: Movie {
-        .init(
-            id: .init(value: id),
-            posterPath: posterPath,
-            adult: adult,
-            overview: overview,
-            releaseDate: DateFormatter.customIso8601ShortFromServer.date(from: releaseDate),
-            genreIds: genreIds,
-            originalTitle: originalTitle,
-            originalLanguage: originalLanguage,
-            title: title,
-            backdropPath: backdropPath,
-            popularity: popularity,
-            voteCount: voteCount,
-            video: video,
-            voteAverage: voteAverage,
-            revenue: revenue,
-            budget: budget,
-            status: status,
-            runtime: runtime
-        )
     }
 }
 

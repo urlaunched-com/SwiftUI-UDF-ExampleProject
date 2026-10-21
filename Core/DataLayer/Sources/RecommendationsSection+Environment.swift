@@ -1,18 +1,18 @@
 //
-//  AppEnvironments+Recommendations.swift
+//  RecommendationsSection+Environment.swift
 //  Flick
 //
-//  Created by Bogdan Petkanych on 15.10.26.
+//  Created by Bogdan Petkanych on 21.10.2026.
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 
-import Recommendations
+import RecommendationsSection
 import API
 import MediaModels
 
-extension AppEnvironments: RecommendationsEnvironmentProviding {
-    static var recommendationsEnvironment: RecommendationsEnvironment {
-        RecommendationsEnvironment(
+public extension RecommendationsSectionEnvironment {
+    static var environment: Self {
+        RecommendationsSectionEnvironment(
             loadMovies: { movieID, page in
                 try await ItemDetailsAPIClient.loadMovieRecommendations(
                     movieId: movieID.value,

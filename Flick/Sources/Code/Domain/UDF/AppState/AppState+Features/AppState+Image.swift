@@ -6,11 +6,12 @@
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 
+import DataLayer
 import Image
 import NetworkConnectivity
 
 extension AppState: ImageFeature {
-    typealias ImageEnvironment = AppEnvironments
+    typealias ImageEnvironment = FlickEnvironments
 }
 
 extension NetworkConnectivity.NetworkConnectivityForm: Image.NetworkConnectivityForm {}

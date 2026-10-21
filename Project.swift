@@ -28,6 +28,7 @@ let project = Project.app(
     appSettings: appSettings,
     targetDependancies: [
         .target(name: "API"),
+        .target(name: "DataLayer"),
         .target(name: "Cast"),
         .target(name: "CastModels"),
         .target(name: "CastSection"),
@@ -72,10 +73,42 @@ let project = Project.app(
     ].flatMap { $0 }
 )
 
+func makeDataLayerModule() -> Module {
+    Module(
+        name: "DataLayer",
+        moduleType: .core,
+        path: "DataLayer",
+        frameworkDependancies: [
+            .target(name: "API"),
+            .target(name: "Common"),
+            .target(name: "CastModels"),
+            .target(name: "ImageModels"),
+            .target(name: "MediaModels"),
+            .target(name: "ReviewModels"),
+            .target(name: "SearchModels"),
+            .target(name: "SectionsModels"),
+            .target(name: "CastSection"),
+            .target(name: "Home"),
+            .target(name: "Image"),
+            .target(name: "ItemDetails"),
+            .target(name: "MyFavorites"),
+            .target(name: "Recommendations"),
+            .target(name: "RecommendationsSection"),
+            .target(name: "ReviewDetails"),
+            .target(name: "Reviews"),
+            .target(name: "ReviewsSection"),
+            .target(name: "Search"),
+            .target(name: "SectionDetails"),
+        ],
+        frameworkResources: []
+    )
+}
+
 func makeAllCoreModules() -> [Module] {
     return [
         makeCommanModule(),
         makeAPIModule(),
+        makeDataLayerModule(),
         makeDesignSystemModule(),
         makeLocalizationModule(),
         makeCustomViewsModule(),
@@ -132,7 +165,6 @@ func makeGeneralModelsModule() -> Module {
         frameworkDependancies: [
             .external(name: "SwiftFoundation"),
             .external(name: "UDF"),
-            .target(name: "API"),
         ],
         frameworkResources: []
     )
@@ -148,7 +180,6 @@ func makeMediaModels() -> Module {
             .external(name: "UDF"),
             .target(name: "DesignSystem"),
             .target(name: "Common"),
-            .target(name: "API"),
         ],
         frameworkResources: []
     )
@@ -162,7 +193,6 @@ func makeReviewModels() -> Module {
         frameworkDependancies: [
             .external(name: "SwiftFoundation"),
             .external(name: "UDF"),
-            .target(name: "API"),
             .target(name: "MediaModels"),
         ],
         frameworkResources: []
@@ -176,7 +206,6 @@ func makeImageModels() -> Module {
         path: "ImageModels",
         frameworkDependancies: [
             .external(name: "SwiftFoundation"),
-            .target(name: "API"),
         ],
         frameworkResources: []
     )
@@ -191,7 +220,6 @@ func makeSearchModels() -> Module {
             .external(name: "SwiftFoundation"),
             .external(name: "UDF"),
             .target(name: "Common"),
-            .target(name: "API"),
             .target(name: "MediaModels"),
         ],
         frameworkResources: []
@@ -219,7 +247,6 @@ func makeCastModels() -> Module {
         frameworkDependancies: [
             .external(name: "SwiftFoundation"),
             .external(name: "UDF"),
-            .target(name: "API"),
         ],
         frameworkResources: []
     )

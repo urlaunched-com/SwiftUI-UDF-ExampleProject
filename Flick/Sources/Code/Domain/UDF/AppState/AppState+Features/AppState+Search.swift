@@ -6,11 +6,12 @@
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 
+import DataLayer
 import Search
 import NetworkConnectivity
 
 extension AppState: SearchFeature {
     typealias AllSearchItems = Flick.AllSearchItems
-    typealias SearchEnvironment = AppEnvironments
+    typealias SearchEnvironment = FlickEnvironments
 }
 extension NetworkConnectivity.NetworkConnectivityForm: Search.NetworkConnectivityForm {}

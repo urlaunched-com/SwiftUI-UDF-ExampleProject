@@ -1,8 +1,8 @@
 //
-//  AppEnvironments+MyFavorites.swift
+//  MyFavorites+Environment.swift
 //  Flick
 //
-//  Created by Bogdan Petkanych on 15.10.26.
+//  Created by Bogdan Petkanych on 21.10.2026.
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 
@@ -11,8 +11,8 @@ import API
 import SectionsModels
 import MediaModels
 
-extension AppEnvironments: MyFavoritesEnvironmentProviding {
-    static var myFavoritesEnvironment: MyFavoritesEnvironment {
+public extension MyFavoritesEnvironment {
+    static var environment: Self {
         MyFavoritesEnvironment(
             loadMovies: { page in
                 let movies = try await HomeAPIClient.loadMovies(

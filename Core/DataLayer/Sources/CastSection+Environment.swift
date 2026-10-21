@@ -1,8 +1,8 @@
 //
-//  AppEnvironments+CastSection.swift
+//  CastSection+Environment.swift
 //  Flick
 //
-//  Created by Bogdan Petkanych on 15.10.26.
+//  Created by Bogdan Petkanych on 21.10.2026.
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 
@@ -10,8 +10,8 @@ import CastSection
 import API
 import CastModels
 
-extension AppEnvironments: CastSectionEnvironmentProviding {
-    static var castSectionEnvironment: CastSectionEnvironment {
+public extension CastSectionEnvironment {
+    static var environment: Self {
         CastSectionEnvironment(
             loadMovieCast: { movieID in
                 try await ItemDetailsAPIClient.loadMovieCast(movieId: movieID.value).map(\.asCast)

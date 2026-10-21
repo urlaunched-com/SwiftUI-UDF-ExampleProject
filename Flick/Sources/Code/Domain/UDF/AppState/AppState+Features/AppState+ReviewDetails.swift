@@ -6,6 +6,7 @@
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 
+import DataLayer
 import Common
 import NetworkConnectivity
 import ReviewDetails
@@ -14,7 +15,7 @@ import ReviewModels
 
 extension AppState: ReviewDetailsFeature {
     typealias AllReviews = Flick.AllReviews
-    typealias ReviewDetailsEnvironment = AppEnvironments
+    typealias ReviewDetailsEnvironment = FlickEnvironments
 }
 
 extension NetworkConnectivity.NetworkConnectivityForm: ReviewDetails.NetworkConnectivityForm {}

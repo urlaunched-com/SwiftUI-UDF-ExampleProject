@@ -6,6 +6,7 @@
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 
+import DataLayer
 import SectionDetails
 import Home
 import NetworkConnectivity
@@ -14,7 +15,7 @@ import Models
 
 extension AppState: SectionDetailsFeature {
     typealias SectionDetailsFeatureRouting = SectionDetailsRouting
-    typealias SectionDetailsEnvironment = AppEnvironments
+    typealias SectionDetailsEnvironment = FlickEnvironments
 }
 
 extension NetworkConnectivity.NetworkConnectivityForm: SectionDetails.NetworkConnectivityForm {}

@@ -6,7 +6,6 @@
 //  Copyright © 2022 urlaunched.com. All rights reserved.
 //
 
-import API
 import Foundation
 import SwiftFoundation
 import UDF
@@ -179,32 +178,6 @@ public extension Show {
 
     static func testItemIds(count: Int) -> [Self.ID] {
         (0 ..< count).map { ID(value: $0) }
-    }
-}
-
-// MARK: - asShow
-
-public extension ShowRemote {
-    var asShow: Show {
-        .init(
-            id: .init(value: id),
-            posterPath: posterPath,
-            popularity: popularity,
-            backdropPath: backdropPath,
-            voteAverage: voteAverage,
-            overview: overview,
-            firstAirDate: DateFormatter.customIso8601ShortFromServer.date(from: firstAirDate),
-            originCountry: originCountry,
-            genreIds: genreIds,
-            originalLanguage: originalLanguage,
-            voteCount: voteCount,
-            name: name,
-            originalName: originalName,
-            episodeRunTime: episodeRunTime,
-            status: status,
-            networks: networks.map(\.asNetwork),
-            type: type
-        )
     }
 }
 

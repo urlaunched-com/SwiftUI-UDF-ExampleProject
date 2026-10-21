@@ -1,8 +1,8 @@
 //
-//  AppEnvironments+Home.swift
+//  Home+Environment.swift
 //  Flick
 //
-//  Created by Bogdan Petkanych on 15.10.26.
+//  Created by Bogdan Petkanych on 21.10.2026.
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 
@@ -10,8 +10,8 @@ import Home
 import API
 import MediaModels
 
-extension AppEnvironments: HomeEnvironmentProviding {
-    static var homeEnvironment: HomeEnvironment {
+public extension HomeEnvironment {
+    static var environment: Self {
         HomeEnvironment(
             loadMovies: { section in
                 let movies = try await HomeAPIClient.loadMovies(section: section.urlValue)
@@ -23,8 +23,10 @@ extension AppEnvironments: HomeEnvironmentProviding {
             }
         )
     }
+}
 
-    static var homeGenresEnvironment: HomeGenresEnvironment {
+public extension HomeGenresEnvironment {
+    static var environment: Self {
         HomeGenresEnvironment(
             loadMovieGenres: {
                 let movieGenres = try await HomeAPIClient.loadMovieGenres()

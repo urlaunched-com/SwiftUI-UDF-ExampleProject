@@ -6,7 +6,6 @@
 //  Copyright © 2023 urlaunched.com. All rights reserved.
 //
 
-import API
 import Foundation
 import SwiftFoundation
 
@@ -35,22 +34,6 @@ public struct ImageConfigs: Hashable {
         self.posterSizes = posterSizes
         self.profileSizes = profileSizes
         self.stillSizes = stillSizes
-    }
-}
-
-// MARK: - asImageConfiguration
-
-public extension ImageConfigsRemote {
-    var asImageConfigs: ImageConfigs {
-        .init(
-            baseUrl: baseUrl,
-            secureBaseUrl: secureBaseUrl,
-            backdropSizes: backdropSizes.compactMap { Int($0.dropFirst()) },
-            logoSizes: logoSizes.compactMap { Int($0.dropFirst()) },
-            posterSizes: posterSizes.compactMap { Int($0.dropFirst()) },
-            profileSizes: profileSizes.compactMap { Int($0.dropFirst()) },
-            stillSizes: stillSizes.compactMap { Int($0.dropFirst()) }
-        )
     }
 }
 
