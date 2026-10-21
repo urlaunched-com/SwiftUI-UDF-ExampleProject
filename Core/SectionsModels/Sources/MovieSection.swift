@@ -19,10 +19,10 @@ public enum MovieSection: Section {
 
     public var title: String {
         switch self {
-        case .popular: Localization.homePopularMoviesSectionTitle()
-        case .nowPlaying: Localization.homeNowPlayingMoviesSectionTitle()
-        case .upcoming: Localization.homeUpcomingMoviesSectionTitle()
-        case .topRated: Localization.homeTopRatedMoviesSectionTitle()
+        case .popular: LocalizationsStrings.Home.popularMoviesSectionTitle
+        case .nowPlaying: LocalizationsStrings.Home.nowPlayingMoviesSectionTitle
+        case .upcoming: LocalizationsStrings.Home.upcomingMoviesSectionTitle
+        case .topRated: LocalizationsStrings.Home.topRatedMoviesSectionTitle
         }
     }
 

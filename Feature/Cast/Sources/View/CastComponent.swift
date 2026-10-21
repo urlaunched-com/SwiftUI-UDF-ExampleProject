@@ -7,7 +7,6 @@
 //
 
 import DesignSystem
-import Localizations
 import SwiftUI
 import UDF
 import Common
@@ -76,7 +75,7 @@ struct CastComponent<R: Routing<CastRoute>>: Component {
             }
         }
         .background(Color.flMain.edgesIgnoringSafeArea(.all))
-        .customNavigationTitle(Localization.itemDetailsCastNavigationTitle())
+        .customNavigationTitle(CastStrings.ItemDetails.castNavigationTitle)
         .dialog(status: props.dialogStatus)
     }
 }

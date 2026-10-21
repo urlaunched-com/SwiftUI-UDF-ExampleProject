@@ -18,10 +18,10 @@ public enum ShowSection: Section {
     public var id: Self { self }
     public var title: String {
         switch self {
-        case .popular: Localization.homePopularShowsSectionTitle()
-        case .airingToday: Localization.homeAiringTodayShowsSectionTitle()
-        case .onTheAir: Localization.homeOnTVShowsSectionTitle()
-        case .topRated: Localization.homeTopRatedShowsSectionTitle()
+        case .popular: LocalizationsStrings.Home.popularShowsSectionTitle
+        case .airingToday: LocalizationsStrings.Home.airingTodayShowsSectionTitle
+        case .onTheAir: LocalizationsStrings.Home.onTVShowsSectionTitle
+        case .topRated: LocalizationsStrings.Home.topRatedShowsSectionTitle
         }
     }
 

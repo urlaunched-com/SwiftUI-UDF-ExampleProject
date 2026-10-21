@@ -73,7 +73,7 @@ struct ReviewsComponent<R: Routing<ReviewsRoute>>: Component {
             .listStyle(.plain)
             .scrollContentBackground(.hidden)
         }
-        .customNavigationTitle(Localization.itemDetailsReviewsNavigationTitle())
+        .customNavigationTitle(LocalizationsStrings.ItemDetails.reviewsNavigationTitle)
         .background(Color.flMain.edgesIgnoringSafeArea(.all))
     }
 }

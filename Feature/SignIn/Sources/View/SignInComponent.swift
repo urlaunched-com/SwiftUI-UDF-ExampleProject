@@ -7,7 +7,6 @@
 //
 
 import DesignSystem
-import Localizations
 import SwiftUI
 import UDF
 import Common
@@ -48,12 +47,12 @@ struct SignInComponent<R: Routing>: Component where R.Route == SignInRoute {
     }
 
     var body: some View {
-        AuthView(title: Localization.authSignUpTitle()) {
+        AuthView(title: SignInStrings.Auth.signUpTitle) {
             VStack {
                 AuthTextField(
                     text: props.username,
                     placeholderImage: .userCircle,
-                    placeholderText: Localization.authUsernamePlaceholder(),
+                    placeholderText: SignInStrings.Auth.usernamePlaceholder,
                     placeholderColor: .flPurpleLight,
                     textFieldId: Field.username,
                     isFocused: $focusedField
@@ -66,7 +65,7 @@ struct SignInComponent<R: Routing>: Component where R.Route == SignInRoute {
                 AuthTextField(
                     text: props.password,
                     placeholderImage: .lock,
-                    placeholderText: Localization.authPasswordPlaceholder(),
+                    placeholderText: SignInStrings.Auth.passwordPlaceholder,
                     placeholderColor: .flPurpleLight,
                     isSecure: true,
                     textFieldId: Field.password,
@@ -77,7 +76,7 @@ struct SignInComponent<R: Routing>: Component where R.Route == SignInRoute {
                 }
                 .padding(.top, 60)
 
-                Text(Localization.authForgotPasswordButtonTitle())
+                Text(SignInStrings.Auth.forgotPasswordButtonTitle)
                     .customFont(.subheadline)
                     .foregroundStyle(.flMainPink)
                     .frame(maxWidth: .infinity, alignment: .trailing)
@@ -87,16 +86,16 @@ struct SignInComponent<R: Routing>: Component where R.Route == SignInRoute {
                     .padding(.top)
 
                 PrimaryButton(
-                    title: Localization.authSignInButtonTitle(),
+                    title: SignInStrings.Auth.signInButtonTitle,
                     action: signInAction
                 )
                 .padding(.top, 36)
 
                 HStack {
-                    Text(Localization.authSignUpButtonDescription())
+                    Text(SignInStrings.Auth.signUpButtonDescription)
                         .foregroundStyle(.flText)
 
-                    Text(Localization.authSignUpButtonTitle())
+                    Text(SignInStrings.Auth.signUpButtonTitle)
                         .foregroundStyle(.flMainPink)
                         .embedInPlainButton {
                             globalRouter.navigate(for: R.self, to: .signUp)

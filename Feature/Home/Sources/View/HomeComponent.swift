@@ -6,7 +6,6 @@
 //  Copyright © 2022 urlaunched.com. All rights reserved.
 //
 
-import Localizations
 import SwiftUI
 import UDF
 import Common
@@ -70,7 +69,7 @@ struct HomeComponent<R: Routing<HomeRoute>>: Component {
             .padding(.bottom)
         }
         .navigationBarTitleDisplayMode(.inline)
-        .customNavigationTitle(Localization.homeNavigationTitle())
+        .customNavigationTitle(HomeStrings.Home.navigationTitle)
     }
 }
 

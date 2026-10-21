@@ -1,0 +1,7 @@
+// MARK: - Onboarding
+"onboarding.firstPageTitle" = "Discover your favorite\nmovies & TV shows";
+"onboarding.secondPageTitle" = "Express your opinion\nin ratings and reviews";
+"onboarding.thirdPageTitle" = "Add the best movies &\nTV Shows to favorites";
+"onboarding.fourthPageTitle" = "Stay up with\nnew releases";
+"onboarding.skipButtonTitle" = "Skip";
+"onboarding.getStartedButtonTitle" = "Get Started";

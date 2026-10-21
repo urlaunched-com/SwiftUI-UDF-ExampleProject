@@ -6,7 +6,6 @@
 //  Copyright © 2023 urlaunched.com. All rights reserved.
 //
 
-import Localizations
 import SwiftUI
 import SwiftUI_Kit
 import UDF
@@ -31,16 +30,16 @@ struct SettingsComponent: Component {
 
     var body: some View {
         ScrollView {
-            settingsRow(title: Localization.settingsPrivacyPolicyTitle()) {
+            settingsRow(title: SettingsStrings.Settings.privacyPolicyTitle) {
                 selectedLink = .privacyPolicy
             }
-            settingsRow(title: Localization.settingsTmdbAPITitle()) {
+            settingsRow(title: SettingsStrings.Settings.tmdbAPITitle) {
                 selectedLink = .tmdbAPI
             }
-            settingsRow(title: Localization.settingsAboutUsTitle()) {
+            settingsRow(title: SettingsStrings.Settings.aboutUsTitle) {
                 selectedLink = .aboutUs
             }
-            settingsRow(title: Localization.settingsRateThisAppTitle(), isLast: true) {
+            settingsRow(title: SettingsStrings.Settings.rateThisAppTitle, isLast: true) {
                 props.rateThisAppAction()
             }
         }
@@ -51,7 +50,7 @@ struct SettingsComponent: Component {
         }
         .toolbar {
             ToolbarItem(placement: .principal) {
-                Text(Localization.settingsNavigationTitle())
+                Text(SettingsStrings.Settings.navigationTitle)
                     .customFont(.headline)
                     .foregroundStyle(.flDark)
             }

@@ -6,7 +6,6 @@
 //  Copyright © 2023 urlaunched.com. All rights reserved.
 //
 
-import Localizations
 import SwiftUI
 import UDF
 import WatchProviderModels
@@ -61,7 +60,7 @@ struct WhereToWatchComponent<R: Routing>: Component where R.Route == WhereToWatc
                 .padding(.top)
 
                 DropdownSelector(
-                    placeholder: Localization.whereToWatchSelectCountryTitle(),
+                    placeholder: WhereToWatchStrings.WhereToWatch.selectCountryTitle,
                     options: filteredCountries,
                     isSelecting: $isSelecting,
                     selectedItem: $selectedCountry
@@ -83,7 +82,7 @@ struct WhereToWatchComponent<R: Routing>: Component where R.Route == WhereToWatc
         }
         .toolbar {
             ToolbarItem(placement: .principal) {
-                Text(Localization.whereToWatchNavigationTitle())
+                Text(WhereToWatchStrings.WhereToWatch.navigationTitle)
                     .customFont(.headline)
                     .foregroundStyle(.flText)
             }

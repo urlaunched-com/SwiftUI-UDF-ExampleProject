@@ -44,7 +44,6 @@ let project = Project.app(
         .target(name: "HomeSection"),
         .target(name: "Image"),
         .target(name: "ItemDetails"),
-        .target(name: "Localizations"),
         .target(name: "MainHomeSection"),
         .target(name: "MyFavorites"),
         .target(name: "NetworkConnectivity"),
@@ -332,19 +331,9 @@ func makeLocalizationModule() -> Module {
         name: "Localizations",
         moduleType: .core,
         path: "Localizations",
-        frameworkDependancies: [
-            .external(name: "RswiftLibrary")
-        ],
+        frameworkDependancies: [],
         frameworkResources: [
             "Resources/**"
-        ],
-        frameworkScripts: [
-            .pre(
-                script: """
-                "$PROJECT_DIR/Core/Localizations/rswift" generate --access-level public "$PROJECT_DIR/Core/Localizations/Sources/R.generated.swift"
-                """,
-                name: "R.swift"
-            )
         ]
     )
 }
@@ -360,17 +349,14 @@ func makeOnboardingFeature() -> Module {
             .external(name: "UDF"),
             .external(name: "SwiftUI-Kit"),
             .target(name: "DesignSystem"),
-            .target(name: "Localizations"),
-            .external(name: "RswiftLibrary")
         ],
-        frameworkResources: [],
+        frameworkResources: ["Resources/**"],
         snapshotDependencies: [
             .external(name: "UDF"),
         ],
         snapshotHostAppDependencies: [
             .external(name: "UDF"),
             .external(name: "SwiftUI-Kit"),
-            .external(name: "RswiftLibrary"),
         ],
         targets: [.framework, .snapshotTests]
     )
@@ -385,11 +371,9 @@ func makeSignInFeature() -> Module {
             .external(name: "UDF"),
             .external(name: "SwiftFoundation"),
             .target(name: "DesignSystem"),
-            .target(name: "Localizations"),
-            .external(name: "RswiftLibrary"),
             .target(name: "Common"),
         ],
-        frameworkResources: [],
+        frameworkResources: ["Resources/**"],
         snapshotDependencies: [
             .target(name: "Common"),
             .external(name: "UDF"),
@@ -409,14 +393,12 @@ func makeWhereToWatchFeature() -> Module {
         path: "WhereToWatch",
         frameworkDependancies: [
             .external(name: "UDF"),
-            .target(name: "Localizations"),
-            .external(name: "RswiftLibrary"),
             .target(name: "Common"),
             .target(name: "WatchProviderModels"),
             .external(name: "FlagKit"),
             .target(name: "MediaModels"),
         ],
-        frameworkResources: [],
+        frameworkResources: ["Resources/**"],
         snapshotDependencies: [
             .target(name: "Common"),
             .target(name: "MediaModels"),
@@ -426,7 +408,6 @@ func makeWhereToWatchFeature() -> Module {
         ],
         snapshotHostAppDependencies: [
             .external(name: "UDF"),
-            .external(name: "RswiftLibrary"),
             .external(name: "FlagKit"),
         ],
         targets: [.framework, .snapshotTests]
@@ -568,10 +549,9 @@ func makeSearchFeature() -> Module {
             .target(name: "SearchModels"),
             .target(name: "CustomViews"),
             .target(name: "DesignSystem"),
-            .target(name: "Localizations"),
             .target(name: "MediaModels"),
         ],
-        frameworkResources: [],
+        frameworkResources: ["Resources/**"],
         snapshotDependencies: [
             .target(name: "Common"),
             .target(name: "MediaModels"),
@@ -594,9 +574,8 @@ func makeSettingsFeature() -> Module {
             .external(name: "UDF"),
             .external(name: "SwiftUI-Kit"),
             .target(name: "Common"),
-            .target(name: "Localizations"),
         ],
-        frameworkResources: [],
+        frameworkResources: ["Resources/**"],
         snapshotDependencies: [
             .external(name: "UDF"),
         ],
@@ -616,12 +595,11 @@ func makeMyFavoritesFeature() -> Module {
         frameworkDependancies: [
             .external(name: "UDF"),
             .target(name: "DesignSystem"),
-            .target(name: "Localizations"),
             .target(name: "CustomViews"),
             .target(name: "Common"),
             .target(name: "MediaModels"),
         ],
-        frameworkResources: [],
+        frameworkResources: ["Resources/**"],
         snapshotDependencies: [
             .target(name: "Common"),
             .target(name: "MediaModels"),
@@ -644,12 +622,11 @@ func makeItemDetailsFeature() -> Module {
             .external(name: "SwiftUI-Kit"),
             .target(name: "Common"),
             .target(name: "DesignSystem"),
-            .target(name: "Localizations"),
             .target(name: "CustomViews"),
             .target(name: "Models"),
             .target(name: "MediaModels"),
         ],
-        frameworkResources: [],
+        frameworkResources: ["Resources/**"],
         snapshotDependencies: [
             .target(name: "Common"),
             .target(name: "MediaModels"),
@@ -675,12 +652,11 @@ func makeHomeFeature() -> Module {
             .external(name: "UDF"),
             .target(name: "Common"),
             .target(name: "SectionsModels"),
-            .target(name: "Localizations"),
             .target(name: "CustomViews"),
             .target(name: "Models"),
             .target(name: "MediaModels"),
         ],
-        frameworkResources: [],
+        frameworkResources: ["Resources/**"],
         snapshotDependencies: [
             .target(name: "Common"),
             .target(name: "MediaModels"),
@@ -764,9 +740,8 @@ func makeCastFeature() -> Module {
             .target(name: "CastModels"),
             .target(name: "DesignSystem"),
             .target(name: "CustomViews"),
-            .target(name: "Localizations"),
         ],
-        frameworkResources: [],
+        frameworkResources: ["Resources/**"],
         snapshotDependencies: [
             .target(name: "Common"),
             .external(name: "UDF"),
@@ -790,11 +765,10 @@ func makeCastSectionFeature() -> Module {
             .target(name: "CastModels"),
             .target(name: "DesignSystem"),
             .target(name: "CustomViews"),
-            .target(name: "Localizations"),
             .target(name: "Models"),
             .target(name: "MediaModels"),
         ],
-        frameworkResources: [],
+        frameworkResources: ["Resources/**"],
         snapshotDependencies: [
             .target(name: "Common"),
             .target(name: "MediaModels"),
@@ -878,12 +852,11 @@ func makeReviewsSectionFeature() -> Module {
             .external(name: "SwiftUI-Kit"),
             .target(name: "Common"),
             .target(name: "DesignSystem"),
-            .target(name: "Localizations"),
             .target(name: "CustomViews"),
             .target(name: "MediaModels"),
             .target(name: "ReviewModels"),
         ],
-        frameworkResources: [],
+        frameworkResources: ["Resources/**"],
         snapshotDependencies: [
             .target(name: "Common"),
             .target(name: "ReviewModels"),
@@ -936,11 +909,10 @@ func makeRecommendationsSection() -> Module {
             .external(name: "SwiftUI-Kit"),
             .target(name: "Common"),
             .target(name: "DesignSystem"),
-            .target(name: "Localizations"),
             .target(name: "CustomViews"),
             .target(name: "MediaModels"),
         ],
-        frameworkResources: [],
+        frameworkResources: ["Resources/**"],
         snapshotDependencies: [
             .target(name: "Common"),
             .target(name: "MediaModels"),

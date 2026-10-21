@@ -7,7 +7,6 @@
 //
 
 import DesignSystem
-import Localizations
 import SwiftUI
 import SwiftUI_Kit
 import UDF
@@ -95,7 +94,7 @@ extension OnboardingComponent {
     var pageButtons: some View {
         if page.nextPage == nil {
             Button(action: props.skipAction) {
-                Text(Localization.onboardingGetStartedButtonTitle())
+                Text(OnboardingStrings.Onboarding.getStartedButtonTitle)
                     .customFont(.title3)
                     .foregroundStyle(.flWhite)
                     .frame(maxWidth: .infinity)
@@ -104,7 +103,7 @@ extension OnboardingComponent {
             .padding(.horizontal)
         } else {
             HStack {
-                Button(Localization.onboardingSkipButtonTitle(), action: props.skipAction)
+                Button(OnboardingStrings.Onboarding.skipButtonTitle, action: props.skipAction)
                     .buttonStyle(.plain)
                     .foregroundStyle(.flGray)
                 Spacer()

@@ -7,7 +7,6 @@
 //
 
 import DesignSystem
-import Localizations
 import SwiftUI
 import UDF
 import CustomViews
@@ -49,7 +48,7 @@ struct ReviewsSectionComponent<R: Routing>: Component where R.Route == ReviewsSe
         if let id = props.reviews.first {
             VStack(alignment: .leading, spacing: 24) {
                 SectionHeaderView(
-                    title: Localization.itemDetailsReviewsSectionTitle(props.reviews.count),
+                    title: ReviewsSectionStrings.ItemDetails.reviewsSectionTitle(props.reviews.count),
                     seeAllAction: {
                         globalRouter.navigate(for: R.self, to: .reviews(props.id))
                     }

@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import Localizations
 import Common
 
 struct DropdownSelector: View {
@@ -32,7 +31,7 @@ struct DropdownSelector: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             HStack {
                 Image(uiImage: selectedItem?.image ?? .init(systemName: "flag.fill")!)
-                Text(selectedItem?.title ?? Localization.whereToWatchSelectCountryTitle())
+                Text(selectedItem?.title ?? WhereToWatchStrings.WhereToWatch.selectCountryTitle)
                     .customFont(.body)
                     .foregroundStyle(.flText)
                 Spacer()

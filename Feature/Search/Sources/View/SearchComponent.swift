@@ -8,7 +8,6 @@
 
 import Combine
 import DesignSystem
-import Localizations
 import SwiftUI
 import UDF
 import SearchModels
@@ -77,7 +76,7 @@ struct SearchComponent<R: Routing>: Component where R.Route == SearchRoute {
         }
         .background(Color.flMain)
         .background(ignoresSafeAreaEdges: .all)
-        .customNavigationTitle(Localization.searchNavigationTitle())
+        .customNavigationTitle(SearchStrings.Search.navigationTitle)
         .onTapGesture {
             focusedField = .none
         }
@@ -104,7 +103,7 @@ private extension SearchComponent {
 
     var searchTextField: some View {
         SearchTextField(
-            placeholder: Localization.searchSearchPlaceholder(),
+            placeholder: SearchStrings.Search.searchPlaceholder,
             text: props.searchText,
             textFieldId: Field.search,
             isFocused: $focusedField
@@ -206,8 +205,8 @@ private extension SearchComponent {
                 .foregroundStyle(.flPurpleLight)
             Text(
                 props.searchText.wrappedValue.isEmpty
-                    ? Localization.searchListPlaceholder()
-                    : Localization.searchNoResultsPlaceholder()
+                    ? SearchStrings.Search.listPlaceholder
+                    : SearchStrings.Search.noResultsPlaceholder
             )
             .foregroundStyle(.flPurpleLight)
             .customFont(.subheadline)

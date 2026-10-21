@@ -1,0 +1,6 @@
+// MARK: - Settings
+"settings.navigationTitle" = "Settings";
+"settings.privacyPolicyTitle" = "Privacy Policy";
+"settings.tmdbAPITitle" = "TMDB API";
+"settings.aboutUsTitle" = "About Us";
+"settings.rateThisAppTitle" = "Rate this App";

@@ -7,7 +7,6 @@
 //
 
 import DesignSystem
-import Localizations
 import SwiftUI
 import SwiftUI_Kit
 import UDF
@@ -85,7 +84,7 @@ struct ItemDetailsComponent<R: Routing>: Component where R.Route == ItemDetailsR
                 // TODO: - Add action later
                 Button(action: {}) {
                     HStack(spacing: 6) {
-                        Text(Localization.itemDetailsTrailerButtonTitle())
+                        Text(ItemDetailsStrings.ItemDetails.trailerButtonTitle)
                             .customFont(.subheadline)
                         Image.playCircle
                             .template
@@ -179,7 +178,7 @@ private extension ItemDetailsComponent {
                     )
                 }
 
-                Text(Localization.itemDetailsWhereToWatchButtonTitle())
+                Text(ItemDetailsStrings.ItemDetails.whereToWatchButtonTitle)
                     .customFont(.title3)
                     .foregroundStyle(.flWhite)
                     .frame(maxWidth: .infinity)
@@ -212,12 +211,12 @@ private extension ItemDetailsComponent {
             HStack(spacing: 0) {
                 secondaryInfoRow(
                     image: .videoPlay,
-                    title: Localization.itemDetailsStatusSectionTitle(),
+                    title: ItemDetailsStrings.ItemDetails.statusSectionTitle,
                     value: props.item.statusText
                 )
                 secondaryInfoRow(
                     image: .global,
-                    title: Localization.itemDetailsLanguageSectionTitle(),
+                    title: ItemDetailsStrings.ItemDetails.languageSectionTitle,
                     value: props.item.language
                 )
             }
@@ -226,12 +225,12 @@ private extension ItemDetailsComponent {
                 HStack(spacing: 0) {
                     secondaryInfoRow(
                         image: .moneySend,
-                        title: Localization.itemDetailsBudgetSectionTitle(),
+                        title: ItemDetailsStrings.ItemDetails.budgetSectionTitle,
                         value: movie.budget.asAmountOfMoney
                     )
                     secondaryInfoRow(
                         image: .moneyRecieve,
-                        title: Localization.itemDetailsRevenueSectionTitle(),
+                        title: ItemDetailsStrings.ItemDetails.revenueSectionTitle,
                         value: movie.revenue.asAmountOfMoney
                     )
                 }
@@ -239,12 +238,12 @@ private extension ItemDetailsComponent {
                 HStack(spacing: 0) {
                     secondaryInfoRow(
                         image: .camera,
-                        title: Localization.itemDetailsNetworkSectionTitle(),
+                        title: ItemDetailsStrings.ItemDetails.networkSectionTitle,
                         value: show.networks.first?.name ?? "-"
                     )
                     secondaryInfoRow(
                         image: .subtitle,
-                        title: Localization.itemDetailsTypeSectionTitle(),
+                        title: ItemDetailsStrings.ItemDetails.typeSectionTitle,
                         value: show.typeText
                     )
                 }

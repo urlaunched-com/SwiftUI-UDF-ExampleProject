@@ -7,7 +7,6 @@
 //
 
 import DesignSystem
-import Localizations
 import SwiftUI
 import UDF
 import Common
@@ -68,7 +67,7 @@ struct MyFavoritesComponent<R: Routing>: Component where R.Route == MyFavoritesR
                 )
             }
         )
-        .customNavigationTitle(Localization.myFavoritesNavigationTitle())
+        .customNavigationTitle(MyFavoritesStrings.MyFavorites.navigationTitle)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {

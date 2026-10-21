@@ -1,0 +1,5 @@
+// MARK: - Search
+"search.navigationTitle" = "Search";
+"search.searchPlaceholder" = "Search for a movie, TV series...";
+"search.listPlaceholder" = "Start search right now!";
+"search.noResultsPlaceholder" = "No search results.";

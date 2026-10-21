@@ -7,7 +7,6 @@
 //
 
 import DesignSystem
-import Localizations
 import SwiftUI
 import UDF
 import CustomViews
@@ -47,7 +46,7 @@ struct CastSectionComponent<R: Routing<CastSectionRoute>>: Component {
         if props.cast.isNotEmpty {
             VStack(alignment: .leading, spacing: 21) {
                 SectionHeaderView(
-                    title: Localization.itemDetailsCastSectionTitle(),
+                    title: CastSectionStrings.ItemDetails.castSectionTitle,
                     seeAllAction: {
                         globalRouter.navigate(for: R.self, to: .cast(props.cast))
                     }

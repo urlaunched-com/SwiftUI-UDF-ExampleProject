@@ -7,7 +7,6 @@
 //
 
 import DesignSystem
-import Localizations
 import SwiftUI
 
 struct AuthView<Content: View>: View {
@@ -31,7 +30,7 @@ struct AuthView<Content: View>: View {
             ToolbarItem(placement: .principal) {
                 HStack(spacing: 8) {
                     Image.videoNormal.foregroundStyle(.flMainPink)
-                    Text(Localization.authNavigationTitle())
+                    Text(SignInStrings.Auth.navigationTitle)
                         .customFont(.title3)
                         .foregroundColor(.flText)
                 }

@@ -26,7 +26,7 @@ public struct SectionHeaderView: View {
             Spacer()
             Button(action: seeAllAction) {
                 HStack(spacing: 0) {
-                    Text(Localization.homeSectionHeaderButtonTitle())
+                    Text(LocalizationsStrings.Home.sectionHeaderButtonTitle)
                         .customFont(.subheadline)
                         .foregroundStyle(.flMainPink)
                     Image.Arrow.right

@@ -9,7 +9,6 @@
 import DesignSystem
 import Foundation
 import SwiftUI
-import Localizations
 
 protocol Pageable: Identifiable where ID == Int {
     var id: Int { get }
@@ -32,7 +31,7 @@ extension OnboardingComponent {
 
         static var first: Page = .init(
             id: 0,
-            title: Localization.onboardingFirstPageTitle(),
+            title: OnboardingStrings.Onboarding.firstPageTitle,
             image: Image.Onboarding.first,
             color: .flOnboardOrange,
             nextPage: Page.second
@@ -40,7 +39,7 @@ extension OnboardingComponent {
 
         static var second: Page = .init(
             id: 1,
-            title: Localization.onboardingSecondPageTitle(),
+            title: OnboardingStrings.Onboarding.secondPageTitle,
             image: Image.Onboarding.second,
             color: .flOnboardYellow,
             nextPage: Page.third
@@ -48,7 +47,7 @@ extension OnboardingComponent {
 
         static var third: Page = .init(
             id: 2,
-            title: Localization.onboardingThirdPageTitle(),
+            title: OnboardingStrings.Onboarding.thirdPageTitle,
             image: Image.Onboarding.third,
             color: .flOnboardBlue,
             nextPage: Page.fourth
@@ -56,7 +55,7 @@ extension OnboardingComponent {
 
         static var fourth: Page = .init(
             id: 3,
-            title: Localization.onboardingFourthPageTitle(),
+            title: OnboardingStrings.Onboarding.fourthPageTitle,
             image: Image.Onboarding.fourth,
             color: .flMainPink
         )

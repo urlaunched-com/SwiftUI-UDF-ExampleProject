@@ -7,7 +7,6 @@
 //
 
 import DesignSystem
-import Localizations
 import SwiftUI
 import UDF
 import CustomViews
@@ -49,7 +48,7 @@ struct RecommendationsSectionComponent<R: Routing>: Component where R.Route == R
         if !props.items.isEmpty {
             VStack(alignment: .leading, spacing: 24) {
                 SectionHeaderView(
-                    title: Localization.itemDetailsRecommendationsSectionTitle(),
+                    title: RecommendationsSectionStrings.ItemDetails.recommendationsSectionTitle,
                     seeAllAction: {
                         globalRouter.navigate(for: R.self, to: .recommendations(props.item))
                     }

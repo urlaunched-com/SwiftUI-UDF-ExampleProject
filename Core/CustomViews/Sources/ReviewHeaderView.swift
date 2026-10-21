@@ -46,7 +46,7 @@ public struct ReviewHeaderView<ImageView: View>: View {
             .frame(size)
             .clipShape(Circle())
 
-            Text(Localization.itemDetailsReviewHeaderTitle(review.authorDetails.username))
+            Text(LocalizationsStrings.ItemDetails.reviewHeaderTitle(review.authorDetails.username))
                 .lineLimit(2)
                 .frame(maxWidth: .infinity, alignment: .leading)
 

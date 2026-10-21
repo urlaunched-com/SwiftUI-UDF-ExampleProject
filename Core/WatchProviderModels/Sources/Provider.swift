@@ -48,9 +48,9 @@ public enum ProviderType {
     public var localizableTitle: String {
         switch self {
         case .flatRate, .rent:
-            Localization.whereToWatchStreamTitle()
+            LocalizationsStrings.WhereToWatch.streamTitle
         case .buy:
-            Localization.whereToWatchBuyTitle()
+            LocalizationsStrings.WhereToWatch.buyTitle
         }
     }
 }

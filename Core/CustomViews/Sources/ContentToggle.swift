@@ -36,7 +36,7 @@ public struct ContentToggle: View {
 extension ContentToggle {
     private func contentTypeButton(_ type: ContentType, isSelected: Bool) -> some View {
         VStack(spacing: 12) {
-            Text(type == .movie ? Localization.contentToggleMoviesTitle() : Localization.contentToggleShowsTitle())
+            Text(type == .movie ? LocalizationsStrings.ContentToggle.moviesTitle : LocalizationsStrings.ContentToggle.showsTitle)
                 .foregroundStyle(isSelected ? .flText : .flPurpleLight)
                 .onTapGesture {
                     contentType = type

@@ -68,7 +68,7 @@ struct ReviewDetailsComponent<R: Routing>: Component where R.Route == ReviewDeta
         }
         .dialog(status: props.dialog)
         .redacted(reason: props.isRedacted ? .placeholder : [])
-        .customNavigationTitle(Localization.itemDetailsReviewsNavigationTitle())
+        .customNavigationTitle(LocalizationsStrings.ItemDetails.reviewsNavigationTitle)
         .background(Color.flMain.edgesIgnoringSafeArea(.all))
     }
 }
