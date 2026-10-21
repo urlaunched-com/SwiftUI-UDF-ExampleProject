@@ -32,6 +32,12 @@ __MODULE_GRAPH__
   <script>
     const markdown = document.getElementById('source').textContent;
     const graph = markdown.match(/```mermaid\s*\n([\s\S]*?)```/)[1].trim();
+    const { edges } = MermaidHighlighter.parseFlowchart(graph);
+    const incoming = new Map();
+    for (const [from, to] of edges) {
+      if (!incoming.has(to)) incoming.set(to, []);
+      incoming.get(to).push(from);
+    }
     const container = document.getElementById('container');
     const zoomValue = document.getElementById('zoom-reset');
     const diagram = MermaidHighlighter.renderToContainer(
@@ -47,6 +53,39 @@ __MODULE_GRAPH__
     document.getElementById('zoom-out').addEventListener('click', () => diagram.zoomOut());
     document.getElementById('zoom-in').addEventListener('click', () => diagram.zoomIn());
     zoomValue.addEventListener('click', () => diagram.resetZoom());
+
+    // The SVG's built-in click handler runs first; keep only its upstream highlights.
+    container.addEventListener('click', () => {
+      const svg = diagram.getSvg();
+      const active = svg?.querySelector('g.node.is-active');
+      if (!active) return;
+
+      const nodeId = node => node.id.match(/flowchart-(.+)-\d+$/)?.[1];
+      const upstream = new Set([nodeId(active)]);
+      for (const node of upstream) {
+        for (const parent of incoming.get(node) || []) upstream.add(parent);
+      }
+      const upstreamEdges = new Set(edges
+        .filter(([from, to]) => upstream.has(from) && upstream.has(to))
+        .map(([from, to]) => from + '_' + to));
+      const isUpstreamEdge = element => upstreamEdges.has(
+        (element.getAttribute('data-id') || '').replace(/^L_/, '').replace(/_\d+$/, '')
+      );
+
+      svg.querySelectorAll('g.node').forEach(node => {
+        node.classList.toggle('is-relevant', upstream.has(nodeId(node)));
+      });
+      svg.querySelectorAll('path[data-edge="true"]').forEach(edge => {
+        edge.classList.toggle('is-relevant', isUpstreamEdge(edge));
+      });
+      svg.querySelectorAll('.edgeLabels > g.edgeLabel').forEach(label => {
+        const relevant = isUpstreamEdge(label.querySelector('[data-id]') || label);
+        label.classList.toggle('is-relevant', relevant);
+        label.querySelectorAll('[class*="edgeLabel"]').forEach(inner => {
+          inner.classList.toggle('is-relevant', relevant);
+        });
+      });
+    });
   </script>
 </body>
 </html>
