@@ -24,25 +24,6 @@ public protocol ReviewsFeature: AppReducer {
     var reviewsFeatureState: ReviewsFeatureState<Self, ReviewsRouting> { get }
 }
 
-/// The live environments the Reviews flow's middleware needs. The host supplies them, so the flow
-/// never depends on the API layer that builds them.
-public protocol ReviewsEnvironmentProviding {
-    static var reviewsSection: ReviewsSectionEnvironment { get }
-    static var reviews: ReviewsEnvironment { get }
-    static var reviewDetails: ReviewDetailsEnvironment { get }
-}
-
-public enum Reviews {
-    public protocol NetworkConnectivityForm: UDF.Form {
-        var satisfied: Bool { get }
-    }
-
-    public protocol AllReviews: Storage<Review> {
-        var byMovieId: [Movie.ID: OrderedSet<Review.ID>] { get }
-        var byShowId: [Show.ID: OrderedSet<Review.ID>] { get }
-    }
-}
-
 /// The state of the whole Reviews flow: the reviews section, the full reviews list and a single review.
 ///
 /// The flow is entered through the reviews section. Everything beyond it is reached through the flow's
@@ -79,4 +60,23 @@ public struct ReviewsFeatureState<AppState: ReviewsFeature, FeatureRouting: Rout
         ReviewsMiddleware<AppState>.self
         ReviewDetailsMiddleware<AppState>.self
     }
+}
+
+public enum Reviews {
+    public protocol NetworkConnectivityForm: UDF.Form {
+        var satisfied: Bool { get }
+    }
+
+    public protocol AllReviews: Storage<Review> {
+        var byMovieId: [Movie.ID: OrderedSet<Review.ID>] { get }
+        var byShowId: [Show.ID: OrderedSet<Review.ID>] { get }
+    }
+}
+
+/// The live environments the Reviews flow's middleware needs. The host supplies them, so the flow
+/// never depends on the API layer that builds them.
+public protocol ReviewsEnvironmentProviding {
+    static var reviewsSection: ReviewsSectionEnvironment { get }
+    static var reviews: ReviewsEnvironment { get }
+    static var reviewDetails: ReviewDetailsEnvironment { get }
 }

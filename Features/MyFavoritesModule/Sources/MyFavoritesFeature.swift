@@ -26,13 +26,6 @@ public protocol MyFavoritesFeature: AppReducer {
     var allGenres: MyFavoritesAllGenres { get }
 }
 
-/// The live environments the MyFavorites flow's middleware needs. The host supplies them, so the flow
-/// never depends on the API layer that builds them.
-public protocol MyFavoritesEnvironmentProviding {
-    static var myFavorites: MyFavoritesEnvironment { get }
-}
-
-
 public struct MyFavoritesFeatureState<AppState: MyFavoritesFeature, FeatureRouting: Routing<MyFavoritesRoute>>: FeatureState {
     var myFavoritesForm = MyFavoritesForm()
     var myFavoritesFlow = MyFavoritesFlow()
@@ -52,4 +45,10 @@ public enum MyFavorites {
     public protocol NetworkConnectivityForm: UDF.Form {
         var satisfied: Bool { get }
     }
+}
+
+/// The live environments the MyFavorites flow's middleware needs. The host supplies them, so the flow
+/// never depends on the API layer that builds them.
+public protocol MyFavoritesEnvironmentProviding {
+    static var myFavorites: MyFavoritesEnvironment { get }
 }

@@ -19,12 +19,6 @@ public protocol ImageFeature: AppReducer {
     var imageFeatureState: ImageFeatureState<Self> { get }
 }
 
-/// The live environments the Image flow's middleware needs. The host supplies them, so the flow
-/// never depends on the API layer that builds them.
-public protocol ImageEnvironmentProviding {
-    static var imageConfigs: ImageConfigsEnvironment { get }
-}
-
 public struct ImageFeatureState<AppState: ImageFeature>: FeatureState {
     public typealias FeatureRouting = EmptyRouting
     
@@ -60,4 +54,10 @@ public enum Image {
     public protocol NetworkConnectivityForm: UDF.Form {
         var satisfied: Bool { get }
     }
+}
+
+/// The live environments the Image flow's middleware needs. The host supplies them, so the flow
+/// never depends on the API layer that builds them.
+public protocol ImageEnvironmentProviding {
+    static var imageConfigs: ImageConfigsEnvironment { get }
 }

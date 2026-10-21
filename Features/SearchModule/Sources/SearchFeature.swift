@@ -22,12 +22,6 @@ public protocol SearchFeature: AppReducer {
     var allSearchItems: SearchAllSearchItems { get }
 }
 
-/// The live environments the Search flow's middleware needs. The host supplies them, so the flow
-/// never depends on the API layer that builds them.
-public protocol SearchEnvironmentProviding {
-    static var search: SearchEnvironment { get }
-}
-
 public struct SearchFeatureState<AppState: SearchFeature, FeatureRouting: Routing<SearchRoute>>: FeatureState {
     var searchForm = SearchForm()
     var searchFlow = SearchFlow()
@@ -47,4 +41,10 @@ public enum Search {
     public protocol NetworkConnectivityForm: UDF.Form {
         var satisfied: Bool { get }
     }
+}
+
+/// The live environments the Search flow's middleware needs. The host supplies them, so the flow
+/// never depends on the API layer that builds them.
+public protocol SearchEnvironmentProviding {
+    static var search: SearchEnvironment { get }
 }

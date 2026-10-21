@@ -30,34 +30,6 @@ public protocol ItemDetailsFeature: AppReducer {
     var itemDetailsFeatureState: ItemDetailsFeatureState<Self, ItemDetailsRouting> { get }
 }
 
-/// The live environments the ItemDetails flow's middleware needs. The host supplies them, so the flow
-/// never depends on the API layer that builds them.
-public protocol ItemDetailsEnvironmentProviding {
-    static var itemDetails: ItemDetailsEnvironment { get }
-    static var castSection: CastSectionEnvironment { get }
-    static var recommendationsSection: RecommendationsSectionEnvironment { get }
-    static var recommendations: RecommendationsEnvironment { get }
-}
-
-public enum ItemDetails {
-    public protocol NetworkConnectivityForm: UDF.Form {
-        var satisfied: Bool { get }
-    }
-
-    public protocol AllMovies: Storage<Movie> {
-        var recommendationsByMovieId: [Movie.ID: OrderedSet<Movie.ID>] { get }
-    }
-
-    public protocol AllShows: Storage<Show> {
-        var recommendationsByShowId: [Show.ID: OrderedSet<Show.ID>] { get }
-    }
-
-    public protocol AllCast: Storage<Models.Cast> {
-        var byMovieId: [Movie.ID: OrderedSet<Models.Cast.ID>] { get }
-        var byShowId: [Show.ID: OrderedSet<Models.Cast.ID>] { get }
-    }
-}
-
 /// The state of the whole Item Details flow: the details page with its cast and recommendations
 /// sections, the full cast and recommendations lists, and where to watch.
 ///
@@ -100,4 +72,32 @@ public struct ItemDetailsFeatureState<AppState: ItemDetailsFeature, FeatureRouti
         RecommendationsSectionMiddleware<AppState>.self
         RecommendationsMiddleware<AppState>.self
     }
+}
+
+public enum ItemDetails {
+    public protocol NetworkConnectivityForm: UDF.Form {
+        var satisfied: Bool { get }
+    }
+
+    public protocol AllMovies: Storage<Movie> {
+        var recommendationsByMovieId: [Movie.ID: OrderedSet<Movie.ID>] { get }
+    }
+
+    public protocol AllShows: Storage<Show> {
+        var recommendationsByShowId: [Show.ID: OrderedSet<Show.ID>] { get }
+    }
+
+    public protocol AllCast: Storage<Models.Cast> {
+        var byMovieId: [Movie.ID: OrderedSet<Models.Cast.ID>] { get }
+        var byShowId: [Show.ID: OrderedSet<Models.Cast.ID>] { get }
+    }
+}
+
+/// The live environments the ItemDetails flow's middleware needs. The host supplies them, so the flow
+/// never depends on the API layer that builds them.
+public protocol ItemDetailsEnvironmentProviding {
+    static var itemDetails: ItemDetailsEnvironment { get }
+    static var castSection: CastSectionEnvironment { get }
+    static var recommendationsSection: RecommendationsSectionEnvironment { get }
+    static var recommendations: RecommendationsEnvironment { get }
 }
