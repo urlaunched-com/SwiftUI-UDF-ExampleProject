@@ -1,5 +1,5 @@
 //
-//  NavigableFeatureState.swift
+//  NavigatingFeatureState.swift
 //  Flick
 //
 //  Created by Maksym Horobets on 15.10.2026.
@@ -9,7 +9,7 @@ import UDF
 import SwiftUI
 
 /// A feature whose screens push other screens of the same feature onto the navigation stack hosting it.
-public protocol NavigableFeatureState: FeatureState {
+public protocol NavigatingFeatureState: FeatureState {
     associatedtype Destinations: ViewModifier
 
     /// The routings of the screens the feature pushes internally, listed one per line:
@@ -57,7 +57,7 @@ public struct RoutingDestination<R: Routing>: ViewModifier where R.Route: Hashab
 public extension View {
     /// Lets this navigation stack show every screen a feature pushes internally, without the app
     /// knowing what those screens are.
-    func navigationDestinations<Feature: NavigableFeatureState>(for feature: Feature.Type) -> some View {
+    func navigationDestinations<Feature: NavigatingFeatureState>(for feature: Feature.Type) -> some View {
         modifier(Feature.destinations)
     }
 }
