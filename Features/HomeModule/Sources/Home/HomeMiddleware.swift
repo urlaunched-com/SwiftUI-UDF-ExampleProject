@@ -1,0 +1,83 @@
+//
+//  HomeMiddleware.swift
+//  Flick
+//
+//  Created by Alexander Sharko on 01.12.2022.
+//  Copyright © 2022 urlaunched.com. All rights reserved.
+//
+
+import Foundation
+import UDF
+import Models
+import SwiftFoundation
+
+public struct HomeEnvironment {
+    public var loadMovies: (_ section: MovieSection.ID) async throws -> [Movie]
+    public var loadShows: (_ section: ShowSection.ID) async throws -> [Show]
+
+    public init(
+        loadMovies: @escaping (_ section: MovieSection.ID) async throws -> [Movie],
+        loadShows: @escaping (_ section: ShowSection.ID) async throws -> [Show]
+    ) {
+        self.loadMovies = loadMovies
+        self.loadShows = loadShows
+    }
+}
+
+public enum HomeCancellation: Hashable {
+    case loadMovies(MovieSection)
+    case loadShows(ShowSection)
+}
+
+final class HomeMiddleware<F: HomeFeature>: Middleware<F>, @unchecked Sendable {
+    public typealias Environment = HomeEnvironment
+    public var environment: Environment!
+
+    public override func status(for state: F) -> MiddlewareStatus {
+        state.networkConnectivityForm.satisfied ? .active : .suspend
+    }
+
+    public func reduce(_ action: some Action, for _: F) {
+        switch action {
+        case let action as Actions.LoadHomeSection where action.sectionId.base is MovieSection:
+            guard let section = action.sectionId.base as? MovieSection else {
+                return
+            }
+            execute(flowId: HomeFlow.id, cancellation: HomeCancellation.loadMovies(section)) { [unowned self] taskId in
+                let data = try await environment.loadMovies(section)
+                return ActionGroup {
+                    Actions.DidLoadItems(items: data, id: taskId)
+                    Actions.DidLoadNestedItems(parentId: section, items: data, id: taskId)
+                }
+            }
+
+        case let action as Actions.LoadHomeSection where action.sectionId.base is ShowSection:
+            guard let section = action.sectionId.base as? ShowSection else {
+                return
+            }
+            execute(flowId: HomeFlow.id, cancellation: HomeCancellation.loadShows(section)) { [unowned self] taskId in
+                let data = try await environment.loadShows(section)
+                return ActionGroup {
+                    Actions.DidLoadItems(items: data, id: taskId)
+                    Actions.DidLoadNestedItems(parentId: section, items: data, id: taskId)
+                }
+            }
+
+        default:
+            break
+        }
+    }
+}
+
+extension HomeMiddleware {
+    static func buildLiveEnvironment(for _: some Store<F>) -> Environment {
+        F.Environments.home
+    }
+
+    static func buildTestEnvironment(for _: some Store) -> Environment {
+        Environment(
+            loadMovies: { _ in Movie.fakeItems() },
+            loadShows: { _ in Show.fakeItems() }
+        )
+    }
+}

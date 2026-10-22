@@ -1,0 +1,38 @@
+#!/bin/sh
+# Regenerates and stages MODULE_GRAPH.md, and blocks the commit on module graph violations.
+# Runs only when the commit can change the graph: a manifest, the rules or the tool is staged,
+# or a staged Swift diff adds or removes an import.
+# Enable once per clone: git config core.hooksPath .githooks
+set -eu
+
+graph_files='(^|/)Package\.swift$|^module-rules\.json5$|^MODULE_GRAPH\.md$|^Tools/Package\.resolved$'
+import_line='^[-+][[:space:]]*(@[[:alnum:]_]+(\([^)]*\))?[[:space:]]+)*import[[:space:]]'
+
+if ! git diff --cached --name-only | grep -qE "$graph_files" \
+    && ! git diff --cached --unified=0 -- '*.swift' | grep -qE "$import_line"; then
+    exit 0
+fi
+
+repo=$(git rev-parse --show-toplevel)
+cd "$repo"
+
+# Check what is being committed, not the working tree: export the staged manifests, sources and rules.
+snapshot=$(mktemp -d "${TMPDIR:-/tmp}/module-graph.XXXXXX")
+trap 'rm -rf "$snapshot"' EXIT
+git ls-files -z -- '*.swift' module-rules.json5 | git checkout-index -z --stdin --prefix="$snapshot/"
+# Unstaged rules come from the working tree. Without any, the tool writes a template into the repo and fails.
+if [ ! -f "$snapshot/module-rules.json5" ]; then
+    [ -f module-rules.json5 ] || { Scripts/module-graph.sh; exit 1; }
+    cp module-rules.json5 "$snapshot/"
+fi
+
+# Xcode and other apps hide this output, so without a terminal the violations also appear in a dialog.
+# Its "Show All" opens the full list, which stays in .git until the next blocked commit.
+set -- "$snapshot" "$repo/MODULE_GRAPH.md"
+[ -t 2 ] || set -- --dialog "$(git rev-parse --absolute-git-dir)/module-graph-blocked-commit.txt" "$@"
+
+if ! Scripts/module-graph.sh "$@"; then
+    echo "[ModuleGraph] Commit blocked. Fix the violations above (MODULE_GRAPH.md shows the graph being committed)." >&2
+    exit 1
+fi
+git add MODULE_GRAPH.md

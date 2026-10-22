@@ -1,103 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Scheme
-   LastUpgradeVersion = "1410"
-   version = "1.7">
-   <BuildAction
-      parallelizeBuildables = "YES"
-      buildImplicitDependencies = "YES">
+<Scheme LastUpgradeVersion = "2600" version = "1.7">
+   <BuildAction parallelizeBuildables = "YES" buildImplicitDependencies = "YES">
       <BuildActionEntries>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "508E9E72291278DC00C8BE18"
-               BuildableName = "Flick.app"
-               BlueprintName = "Flick"
-               ReferencedContainer = "container:Flick.xcodeproj">
-            </BuildableReference>
+         <BuildActionEntry buildForTesting = "YES" buildForRunning = "YES" buildForProfiling = "YES" buildForArchiving = "YES" buildForAnalyzing = "YES">
+            <BuildableReference BuildableIdentifier = "primary" BlueprintIdentifier = "700DE720BBB1800CC6855FB0" BuildableName = "Flick.app" BlueprintName = "Flick" ReferencedContainer = "container:Flick.xcodeproj"></BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
-   <TestAction
-      buildConfiguration = "Debug"
-      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
-      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
-      <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "508E9E82291278E200C8BE18"
-               BuildableName = "SnapshotTests.xctest"
-               BlueprintName = "SnapshotTests"
-               ReferencedContainer = "container:Flick.xcodeproj">
-            </BuildableReference>
-            <LocationScenarioReference
-               identifier = "New York, NY, USA"
-               referenceType = "1">
-            </LocationScenarioReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "508E9EC52912809900C8BE18"
-               BuildableName = "UnitTests.xctest"
-               BlueprintName = "UnitTests"
-               ReferencedContainer = "container:Flick.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-      </Testables>
+   <TestAction buildConfiguration = "Debug" selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB" selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB" shouldUseLaunchSchemeArgsEnv = "YES">
+      <Testables><TestableReference skipped = "NO" parallelizable = "YES"><BuildableReference BuildableIdentifier = "primary" BlueprintIdentifier = "B2D903BF42C69360E94128F1" BuildableName = "AuthModuleSnapshotTests.xctest" BlueprintName = "AuthModuleSnapshotTests" ReferencedContainer = "container:Flick.xcodeproj"></BuildableReference></TestableReference><TestableReference skipped = "NO" parallelizable = "YES"><BuildableReference BuildableIdentifier = "primary" BlueprintIdentifier = "D3ACCA16DB93805D7A88CB5C" BuildableName = "HomeModuleSnapshotTests.xctest" BlueprintName = "HomeModuleSnapshotTests" ReferencedContainer = "container:Flick.xcodeproj"></BuildableReference></TestableReference><TestableReference skipped = "NO" parallelizable = "YES"><BuildableReference BuildableIdentifier = "primary" BlueprintIdentifier = "5463D88E68943EA9B52A9E17" BuildableName = "ImageModuleSnapshotTests.xctest" BlueprintName = "ImageModuleSnapshotTests" ReferencedContainer = "container:Flick.xcodeproj"></BuildableReference></TestableReference><TestableReference skipped = "NO" parallelizable = "YES"><BuildableReference BuildableIdentifier = "primary" BlueprintIdentifier = "3053F8827390B6F8679E11D9" BuildableName = "ItemDetailsModuleSnapshotTests.xctest" BlueprintName = "ItemDetailsModuleSnapshotTests" ReferencedContainer = "container:Flick.xcodeproj"></BuildableReference></TestableReference><TestableReference skipped = "NO" parallelizable = "YES"><BuildableReference BuildableIdentifier = "primary" BlueprintIdentifier = "EE115AC0D53B9EE14F1C0EA4" BuildableName = "MyFavoritesModuleSnapshotTests.xctest" BlueprintName = "MyFavoritesModuleSnapshotTests" ReferencedContainer = "container:Flick.xcodeproj"></BuildableReference></TestableReference><TestableReference skipped = "NO" parallelizable = "YES"><BuildableReference BuildableIdentifier = "primary" BlueprintIdentifier = "4AB387072B022D0F086BBCDF" BuildableName = "OnboardingModuleSnapshotTests.xctest" BlueprintName = "OnboardingModuleSnapshotTests" ReferencedContainer = "container:Flick.xcodeproj"></BuildableReference></TestableReference><TestableReference skipped = "NO" parallelizable = "YES"><BuildableReference BuildableIdentifier = "primary" BlueprintIdentifier = "E437A092D8F2B1C98453A432" BuildableName = "ReviewsModuleSnapshotTests.xctest" BlueprintName = "ReviewsModuleSnapshotTests" ReferencedContainer = "container:Flick.xcodeproj"></BuildableReference></TestableReference><TestableReference skipped = "NO" parallelizable = "YES"><BuildableReference BuildableIdentifier = "primary" BlueprintIdentifier = "F3CA3B147B5DFE1A41A95F37" BuildableName = "RootModuleSnapshotTests.xctest" BlueprintName = "RootModuleSnapshotTests" ReferencedContainer = "container:Flick.xcodeproj"></BuildableReference></TestableReference><TestableReference skipped = "NO" parallelizable = "YES"><BuildableReference BuildableIdentifier = "primary" BlueprintIdentifier = "52CC62A9A482FC2E6E10DE36" BuildableName = "SearchModuleSnapshotTests.xctest" BlueprintName = "SearchModuleSnapshotTests" ReferencedContainer = "container:Flick.xcodeproj"></BuildableReference></TestableReference><TestableReference skipped = "NO" parallelizable = "YES"><BuildableReference BuildableIdentifier = "primary" BlueprintIdentifier = "51A4F63EC1F557D41B5D4352" BuildableName = "SettingsModuleSnapshotTests.xctest" BlueprintName = "SettingsModuleSnapshotTests" ReferencedContainer = "container:Flick.xcodeproj"></BuildableReference></TestableReference></Testables>
    </TestAction>
-   <LaunchAction
-      buildConfiguration = "Debug"
-      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
-      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      launchStyle = "0"
-      useCustomWorkingDirectory = "NO"
-      ignoresPersistentStateOnLaunch = "NO"
-      debugDocumentVersioning = "YES"
-      debugServiceExtension = "internal"
-      allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "508E9E72291278DC00C8BE18"
-            BuildableName = "Flick.app"
-            BlueprintName = "Flick"
-            ReferencedContainer = "container:Flick.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
+   <LaunchAction buildConfiguration = "Debug" selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB" selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB" launchStyle = "0" useCustomWorkingDirectory = "NO" ignoresPersistentStateOnLaunch = "NO" debugDocumentVersioning = "YES" debugServiceExtension = "internal" allowLocationSimulation = "YES">
+      <BuildableProductRunnable runnableDebuggingMode = "0"><BuildableReference BuildableIdentifier = "primary" BlueprintIdentifier = "700DE720BBB1800CC6855FB0" BuildableName = "Flick.app" BlueprintName = "Flick" ReferencedContainer = "container:Flick.xcodeproj"></BuildableReference></BuildableProductRunnable>
    </LaunchAction>
-   <ProfileAction
-      buildConfiguration = "Release"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      savedToolIdentifier = ""
-      useCustomWorkingDirectory = "NO"
-      debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "508E9E72291278DC00C8BE18"
-            BuildableName = "Flick.app"
-            BlueprintName = "Flick"
-            ReferencedContainer = "container:Flick.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
+   <ProfileAction buildConfiguration = "Release" shouldUseLaunchSchemeArgsEnv = "YES" savedToolIdentifier = "" useCustomWorkingDirectory = "NO" debugDocumentVersioning = "YES">
+      <BuildableProductRunnable runnableDebuggingMode = "0"><BuildableReference BuildableIdentifier = "primary" BlueprintIdentifier = "700DE720BBB1800CC6855FB0" BuildableName = "Flick.app" BlueprintName = "Flick" ReferencedContainer = "container:Flick.xcodeproj"></BuildableReference></BuildableProductRunnable>
    </ProfileAction>
-   <AnalyzeAction
-      buildConfiguration = "Debug">
-   </AnalyzeAction>
-   <ArchiveAction
-      buildConfiguration = "Release"
-      revealArchiveInOrganizer = "YES">
-   </ArchiveAction>
+   <AnalyzeAction buildConfiguration = "Debug"></AnalyzeAction>
+   <ArchiveAction buildConfiguration = "Release" revealArchiveInOrganizer = "YES"></ArchiveAction>
 </Scheme>

@@ -1,0 +1,77 @@
+# CircleCI configuration file
+version: 2.1
+
+references:
+  container_config: &container_config
+    macos:
+      xcode: "27.1"
+    resource_class: m4pro.medium
+
+jobs:
+  validate_mr:
+    <<: *container_config
+    environment:
+      FL_OUTPUT_DIR: output
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restore Module Graph Tool
+          keys:
+            - v1-module-graph-{{ checksum "Tools/Package.resolved" }}
+      - run:
+          name: Check Module Graph
+          command: Scripts/module-graph.sh --ci
+      - save_cache:
+          name: Cache Module Graph Tool
+          key: v1-module-graph-{{ checksum "Tools/Package.resolved" }}
+          paths:
+            - Tools/.build
+      - restore_cache:
+          name: Restore Cached SwiftPM Packages
+          keys:
+            - v1-spm-{{ checksum "Flick.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved" }}
+            - v1-spm-
+      - run:
+          name: Resolve Swift Packages
+          command: |
+            xcodebuild -resolvePackageDependencies \
+              -project Flick.xcodeproj \
+              -scheme Flick \
+              -clonedSourcePackagesDirPath SourcePackages
+      - save_cache:
+          name: Cache SwiftPM Packages
+          key: v1-spm-{{ checksum "Flick.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved" }}
+          paths:
+            - SourcePackages
+      - run:
+          name: Run Tests
+          command: |
+            xcodebuild test \
+              -project Flick.xcodeproj \
+              -scheme Flick \
+              -destination "platform=iOS Simulator,name=iPhone 18 Pro,OS=27.0" \
+              -clonedSourcePackagesDirPath SourcePackages \
+              -resultBundlePath "$FL_OUTPUT_DIR/Flick.xcresult" \
+              -skipPackagePluginValidation \
+              -skipMacroValidation \
+              DIAGNOSE_MISSING_TARGET_DEPENDENCIES=YES_ERROR
+      - store_artifacts:
+          path: output
+          destination: test-results
+
+# workflows:
+#   merge_request_workflow:
+#     jobs:
+#       - validate_mr
+#     when:
+#       or:
+#         - matches:
+#             pattern: /^feature\/.*/
+#             value: << pipeline.git.branch >>
+#         - matches:
+#             pattern: /^chore\/.*/
+#             value: << pipeline.git.branch >>
+#         - matches:
+#             pattern: /^fix\/.*/
+#             value: << pipeline.git.branch >>
+#         - equal: [ main, << pipeline.git.branch >> ]
