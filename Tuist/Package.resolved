@@ -1,0 +1,132 @@
+{
+  "originHash" : "dd511908bb7f64f99d6a5392f91880b55e2df8f93d0dcd63a75b8aed20c5c5d3",
+  "pins" : [
+    {
+      "identity" : "flagkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/madebybowtie/FlagKit",
+      "state" : {
+        "revision" : "f12111d91902d23fd1d9cc7ad9198030b049795d",
+        "version" : "2.4.0"
+      }
+    },
+    {
+      "identity" : "runtime",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/urlaunched-com/Runtime",
+      "state" : {
+        "revision" : "ea112a73f7a8772a92b125ceeaaf61f1844466bd",
+        "version" : "2.2.6"
+      }
+    },
+    {
+      "identity" : "sdwebimage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SDWebImage/SDWebImage",
+      "state" : {
+        "revision" : "2de3a496eaf6df9a1312862adcfd54acd73c39c0",
+        "version" : "5.21.7"
+      }
+    },
+    {
+      "identity" : "sdwebimageswiftui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SDWebImage/SDWebImageSwiftUI",
+      "state" : {
+        "revision" : "0e331457ca9af2f0b08bcaa138a91ffb907b004f",
+        "version" : "3.1.4"
+      }
+    },
+    {
+      "identity" : "swift-collections",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-collections",
+      "state" : {
+        "revision" : "35a1edcb8ebd2bfe251d587f0b69e62af28f508c",
+        "version" : "1.7.3"
+      }
+    },
+    {
+      "identity" : "swift-custom-dump",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pointfreeco/swift-custom-dump",
+      "state" : {
+        "revision" : "06c57924455064182d6b217f06ebc05d00cb2990",
+        "version" : "1.5.0"
+      }
+    },
+    {
+      "identity" : "swift-snapshot-testing",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pointfreeco/swift-snapshot-testing",
+      "state" : {
+        "revision" : "28e5de025e3fd98991791bfbf83023ab3708da03",
+        "version" : "1.19.6"
+      }
+    },
+    {
+      "identity" : "swift-syntax",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/swiftlang/swift-syntax",
+      "state" : {
+        "revision" : "0687f71944021d616d34d922343dcef086855920",
+        "version" : "600.0.1"
+      }
+    },
+    {
+      "identity" : "swiftfoundation",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Maks-Jago/SwiftFoundation",
+      "state" : {
+        "revision" : "b03db4a15a9f77c78f69b02fb8c5469c477be31b",
+        "version" : "0.4.1"
+      }
+    },
+    {
+      "identity" : "swiftui-snapshot-test-case",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Maks-Jago/swiftui-snapshot-test-case",
+      "state" : {
+        "revision" : "68b30d9c92fbbf95648b0c24ceb9a54e757e2d17",
+        "version" : "1.7.3"
+      }
+    },
+    {
+      "identity" : "swiftui-udf",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Maks-Jago/SwiftUI-UDF",
+      "state" : {
+        "revision" : "a9a004de2cdff234e8db1d1f225671ec2502da23",
+        "version" : "2.0.0-alpha.4"
+      }
+    },
+    {
+      "identity" : "swiftuikit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Maks-Jago/SwiftUIKit",
+      "state" : {
+        "revision" : "49d867da40648159be659cea1eb019c90f9114b0",
+        "version" : "0.6.5"
+      }
+    },
+    {
+      "identity" : "udfmacros",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/urlaunched-com/UDFMacros",
+      "state" : {
+        "revision" : "108abdf0e08a9699084d44470b5e54e19ce9aa76",
+        "version" : "0.3.0"
+      }
+    },
+    {
+      "identity" : "xctest-dynamic-overlay",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pointfreeco/xctest-dynamic-overlay",
+      "state" : {
+        "revision" : "dfd70507def84cb5fb821278448a262c6ff2bbad",
+        "version" : "1.9.0"
+      }
+    }
+  ],
+  "version" : 2
+}

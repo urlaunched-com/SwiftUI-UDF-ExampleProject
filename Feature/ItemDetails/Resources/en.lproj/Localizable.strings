@@ -1,0 +1,9 @@
+// MARK: - ItemDetails
+"itemDetails.whereToWatchButtonTitle" = "Where to watch";
+"itemDetails.statusSectionTitle" = "Status";
+"itemDetails.languageSectionTitle" = "Language";
+"itemDetails.budgetSectionTitle" = "Budget";
+"itemDetails.revenueSectionTitle" = "Revenue";
+"itemDetails.networkSectionTitle" = "Network";
+"itemDetails.typeSectionTitle" = "Type";
+"itemDetails.trailerButtonTitle" = "Trailer";

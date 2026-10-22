@@ -1,0 +1,47 @@
+//
+//  ReviewsSectionFeature.swift
+//  Flick
+//
+//  Created by Bogdan Petkanych on 21.07.2026.
+//  Copyright © 2026 urlaunched. All rights reserved.
+//
+
+import UDF
+import Common
+import SwiftUI
+@preconcurrency import ReviewModels
+
+public protocol ReviewsSectionFeature: AppReducer {
+    associatedtype NetworkConnectivityForm: ReviewsSection.NetworkConnectivityForm
+    associatedtype AllReviews: Storage<Review>
+    associatedtype ReviewsSectionRouting: Routing<ReviewsSectionRoute>
+    associatedtype ReviewsSectionEnvironment: ReviewsSectionEnvironmentProviding
+    
+    var allReviews: AllReviews { get }
+    var reviewsSectionFeatureState: ReviewsSectionFeatureState<Self, ReviewsSectionRouting> { get }
+    var networkConnectivityForm: NetworkConnectivityForm { get }
+}
+
+public struct ReviewsSectionFeatureState<AppState: ReviewsSectionFeature, FeatureRouting: Routing<ReviewsSectionRoute>>: FeatureState {
+    @BindableReducer(ReviewsSectionForm.self, bindedTo: ReviewsSectionContainer<AppState>.self)
+    var reviewsSectionForm
+    @BindableReducer(ReviewsSectionFlow.self, bindedTo: ReviewsSectionContainer<AppState>.self)
+    var reviewsSectionFlow
+    
+    public init() {}
+    
+    public static func entryPoint(input: ReviewsTarget) -> some View {
+        ReviewsSectionContainer<AppState>(id: input)
+    }
+
+    @MiddlewareBuilder<AppState>
+    public static func registerMiddlewares(in store: any Store<AppState>) -> [MiddlewareWrapper<AppState>] {
+        ReviewsSectionMiddleware<AppState>.self
+    }
+}
+
+public enum ReviewsSection {
+    public protocol NetworkConnectivityForm: UDF.Form {
+        var satisfied: Bool { get }
+    }
+}

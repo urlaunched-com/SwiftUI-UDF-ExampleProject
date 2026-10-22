@@ -1,0 +1,45 @@
+//
+//  MainHomeSectionContainer.swift
+//  Flick
+//
+//  Created by Bogdan Petkanych on 22.07.2026.
+//  Copyright © 2026 urlaunched. All rights reserved.
+//
+
+import UDF
+import SectionsModels
+import MediaModels
+import Models
+
+struct MainHomeSectionContainer<F: MainHomeSectionFeature>: Container {
+    typealias ContainerComponent = MainHomeSectionComponent<F.MainHomeSectionFeatureRouting>
+
+    let section: any SectionsModels.Section
+    let items: [any Item]
+
+    init(
+        section: any SectionsModels.Section,
+        items: [any Item]
+    ) {
+        self.section = section
+        self.items = items
+    }
+
+    func scope(for state: F) -> Scope {
+        state.allShows
+        state.allMovies
+    }
+
+    func map(store: EnvironmentStore<F>) -> ContainerComponent.Props {
+        .init(
+            section: section,
+            items: items,
+            genreById: store.state.allGenres.by(id:),
+            router: .init(routing: F.MainHomeSectionFeatureRouting())
+        )
+    }
+
+    func onContainerDidLoad(store: EnvironmentStore<F>) {
+        store.dispatch(Actions.LoadHomeSection(sectionId: section.id))
+    }
+}

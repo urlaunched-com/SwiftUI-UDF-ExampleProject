@@ -1,6 +1,9 @@
 # 🎬 Flick — Movie App Demo
 
-**Flick** is a modular Swift demo project built to demonstrate **Unidirectional Data Flow (UDF)** and **Swift Package Manager (SPM)** principles in iOS development. This app is designed to be a modern example of scalable architecture, modularization, and clean UI design.
+
+**Flick** is a modular Swift demo project built to demonstrate **Unidirectional Data Flow (UDF)** and **Tuist**-driven project generation principles in iOS development.
+
+The project showcases a modern approach to scalable architecture, modularization, dependency management, and clean UI design using a fully modular setup powered by **Tuist**.
 
 ---
 
@@ -19,10 +22,34 @@ This project integrates with [The Movie Database (TMDB)](https://www.themoviedb.
 
 ### 🔧 To run the app properly, you need to:
 
-1. **Create a TMDB account** and generate an API key:  
+1. **Install Tuist** (if not already installed)
+
+	```bash
+	brew install tuist
+	```
+	
+2. **Then install project dependencies:**
+
+	```bash
+	tuist install
+	```
+	
+3. **Generate the Xcode project**
+
+	```bash
+	tuist generate
+	```
+
+4. **Running Snapshot tests**
+
+	```bash
+	tuist test
+	```
+
+5. **Create a TMDB account** and generate an API key:  
    [https://www.themoviedb.org/settings/api](https://www.themoviedb.org/settings/api)
 
-2. **Add your API key** in the appropriate configuration file or environment.  
+6. **Add your API key** in the appropriate configuration file or environment.  
    For this project, issert you API key in kTMDBApiKey property in [`BaseAPI.swift`](./API/Sources/API/BaseAPI.swift)
 
    ```swift
@@ -35,13 +62,18 @@ This project integrates with [The Movie Database (TMDB)](https://www.themoviedb.
 
 ## 🗂️ Modules
 
-Modularity is at the heart of Flick. Each feature is encapsulated in its own folder under `Modules/` and follows a clean separation of UI, logic, and state.
+Modularity is at the heart of Flick. Each feature is encapsulated in its own folder under `Modules/`, while each reusable UI component is further encapsulated in its own Tuist framework under `UI/FrameworkName`. This structure follows a clean separation of UI, logic, and state, ensuring strong isolation between features, improved reusability, **selective testing with Tuist** and scalable architecture across the project.
 
 ---
 
+## Tuist Dependency Graph
+
+The project structure is visualized through a generated dependency graph:
+![Tuist Dependency Graph](./graph.png)
+
 ## 🔍 Typical Module Structure
 
-Most feature modules follow a consistent structure:
+Most feature app feature modules follow a consistent structure:
 
 ```
 📁 ModuleName
@@ -49,35 +81,32 @@ Most feature modules follow a consistent structure:
 │   ├── ModuleNameFlow.swift (e.g. SearchFlow.swift)
 │   └── ModuleNameForm.swift (e.g. SearchForm.swift)
 ├── 📁 View
-│   ├── ModuleNameComponent.swift (e.g. SearchComponent.swift)
+│   ├── ModuleNameRouting.swift (e.g. SearchRouting.swift)
 │   └── ModuleNameContainer.swift (e.g. SearchContainer.swift)
 ├── Middleware.swift (optional side effects, e.g. SearchMiddleware.swift)
 ```
 
+Framework module follow a consistent structure:
+
+```
+📁 ModuleName
+├── 📁 Sources
+│   ├── ModuleNameComponent.swift (e.g. SearchComponent.swift)
+│   ├── ModuleNameContent.swift (e.g. SearchContent.swift)
+│   ├── ModuleNameRoute.swift (e.g. SearchRoute.swift)
+├── 📁 Snapshots
+│   ├── 📁 __Snapshots__
+│   ├── ModuleComponentTests.swift (e.g. SearchComponentTests.swift)
+```
+
 This ensures:
+
 - Clear separation of concerns (UI, logic, effects)
 - Easy testability
 - Scalable modular design
+- Modular architecture powered by Tuist: enabling independent feature frameworks; explicit dependency management, and reproducible Xcode project generation across the entire codebase
 
 📦 Example: [`Search`](./Flick/Code/Modules/Search)
-
----
-
-## 🧪 Snapshot Testing
-
-UI consistency is maintained using snapshot testing.
-
-📁 [`SnapshotTests/`](./SnapshotTests)  
-- Tests like `SnapshotTestCase+Component.swift`  
-- UI snapshots are stored under `Snapshots/`
-
----
-
-## 🔩 SPM Modularization
-
-Each logical unit (DesignSystem, API, Localization) is a Swift package:
-- Improved compile times
-- Better code reuse
 
 ---
 

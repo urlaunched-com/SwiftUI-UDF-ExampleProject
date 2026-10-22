@@ -1,0 +1,19 @@
+"home.sectionHeaderButtonTitle" = "See all";
+"home.popularMoviesSectionTitle" = "Popular";
+"home.nowPlayingMoviesSectionTitle" = "Now playing";
+"home.upcomingMoviesSectionTitle" = "Upcoming";
+"home.topRatedMoviesSectionTitle" = "Top Rated";
+"home.popularShowsSectionTitle" = "Popular";
+"home.airingTodayShowsSectionTitle" = "Airing today";
+"home.onTVShowsSectionTitle" = "On TV";
+"home.topRatedShowsSectionTitle" = "Top Rated";
+
+"itemDetails.reviewHeaderTitle" = "A review by %@";
+"itemDetails.reviewsNavigationTitle" = "Reviews";
+"itemDetails.reviewDetailsNavigationTitle" = "Reviews";
+
+"whereToWatch.streamTitle" = "Stream";
+"whereToWatch.buyTitle" = "Buy";
+
+"contentToggle.moviesTitle" = "Movies";
+"contentToggle.showsTitle" = "TV Series";

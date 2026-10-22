@@ -1,0 +1,76 @@
+//
+//  ItemDetailsReviewsComponent.swift
+//  Flick
+//
+//  Created by Alexander Sharko on 08.02.2023.
+//  Copyright © 2023 urlaunched.com. All rights reserved.
+//
+
+import DesignSystem
+import SwiftUI
+import UDF
+import CustomViews
+import Common
+import ReviewModels
+
+struct ReviewsSectionComponent<R: Routing>: Component where R.Route == ReviewsSectionRoute {
+    struct Props {
+        var id: ReviewsTarget
+        var reviews: [Review.ID]
+        var reviewById: (Review.ID) -> Review
+        var isRedacted: Bool
+        var router: Router<R> = .init()
+        
+        init(
+            id: ReviewsTarget,
+            reviews: [Review.ID],
+            reviewById: @escaping (Review.ID) -> Review,
+            isRedacted: Bool,
+            router: Router<R>
+        ) {
+            self.id = id
+            self.reviews = reviews
+            self.reviewById = reviewById
+            self.isRedacted = isRedacted
+            self.router = router
+        }
+    }
+
+    var props: Props
+    
+    init(props: Props) {
+        self.props = props
+    }
+
+    @Environment(\.globalRouter) private var globalRouter
+
+    var body: some View {
+        if let id = props.reviews.first {
+            VStack(alignment: .leading, spacing: 24) {
+                SectionHeaderView(
+                    title: ReviewsSectionStrings.ItemDetails.reviewsSectionTitle(props.reviews.count),
+                    seeAllAction: {
+                        globalRouter.navigate(for: R.self, to: .reviews(props.id))
+                    }
+                )
+                
+                let review = props.reviewById(id)
+                ReviewRow(review: review, imageView: props.router.view(
+                    for: .imageContainer(
+                        path: review.authorDetails.avatarPath,
+                        size: CGSize(width: 48, height: 48),
+                        type: .profile
+                    )
+                ))
+                .embedInPlainButton {
+                    globalRouter.navigate(for: R.self, to: .reviewDetails(id))
+                }
+                .buttonStyle(.scaled)
+                .padding(.horizontal)
+            }
+            .isRedacted(props.isRedacted)
+            .disabled(props.isRedacted)
+            .toolbar(.hidden, for: .tabBar)
+        }
+    }
+}

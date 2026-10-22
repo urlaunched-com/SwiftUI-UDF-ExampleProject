@@ -1,0 +1,17 @@
+// MARK: - Auth
+"auth.navigationTitle" = "Flick";
+"auth.signUpTitle" = "Create your account";
+"auth.usernamePlaceholder" = "Username";
+"auth.passwordPlaceholder" = "Password";
+"auth.confirmPasswordPlaceholder" = "Confirm Password";
+"auth.emailPlaceholder" = "Email";
+"auth.createAccountButtonTitle" = "Create account";
+"auth.signInButtonDescription" = "Already have an account?";
+"auth.signInButtonTitle" = "Sign in";
+"auth.signInTitle" = "Login to your account";
+"auth.forgotPasswordButtonTitle" = "Forgot password?";
+"auth.signUpButtonDescription" = "Don`t have an account?";
+"auth.signUpButtonTitle" = "SignUp";
+"auth.resetPasswordTitle" = "Reset password";
+"auth.resetPasswordButtonTitle" = "Reset password";
+"auth.savePasswordButtonTitle" = "Save password";
