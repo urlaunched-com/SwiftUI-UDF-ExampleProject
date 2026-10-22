@@ -44,13 +44,3 @@ public enum HomeRoute: Hashable {
         }
     }
 }
-
-/// Registers every screen of the flow that can be pushed onto the hosting navigation stack.
-struct HomeDestinations<AppState: HomeFeature>: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .navigationDestination(for: MainHomeSectionRouting<AppState>.self)
-            .navigationDestination(for: HomeSectionRouting<AppState>.self)
-            .navigationDestination(for: SectionDetailsRouting<AppState>.self)
-    }
-}

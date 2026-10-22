@@ -18,17 +18,6 @@ public enum ItemDetailsRoute: Hashable {
     case imageContainer(path: String?, size: CGSize, type: ImageType = .poster)
 }
 
-/// Registers every screen of the flow that can be pushed onto the hosting navigation stack.
-struct ItemDetailsDestinations<AppState: ItemDetailsFeature>: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .navigationDestination(for: ItemDetailsScreenRouting<AppState>.self)
-            .navigationDestination(for: CastSectionRouting<AppState>.self)
-            .navigationDestination(for: RecommendationsSectionRouting<AppState>.self)
-            .navigationDestination(for: RecommendationsRouting<AppState>.self)
-    }
-}
-
 // MARK: - Targets
 
 public extension ItemDetailsTarget {

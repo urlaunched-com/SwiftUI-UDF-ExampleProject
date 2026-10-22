@@ -49,7 +49,9 @@ public struct HomeFeatureState<AppState: HomeFeature, FeatureRouting: Routing<Ho
 
     /// Registers the flow's internal destinations on the navigation stack that hosts it.
     public static var destinations: some ViewModifier {
-        HomeDestinations<AppState>()
+        MainHomeSectionRouting<AppState>.self
+        HomeSectionRouting<AppState>.self
+        SectionDetailsRouting<AppState>.self
     }
 
     public static func registerMiddlewares(in store: any Store<AppState>) -> [MiddlewareWrapper<AppState>] {

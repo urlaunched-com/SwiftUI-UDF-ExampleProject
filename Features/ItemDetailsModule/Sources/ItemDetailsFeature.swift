@@ -63,7 +63,10 @@ public struct ItemDetailsFeatureState<AppState: ItemDetailsFeature, FeatureRouti
 
     /// Registers the flow's internal destinations on the navigation stack that hosts it.
     public static var destinations: some ViewModifier {
-        ItemDetailsDestinations<AppState>()
+        ItemDetailsScreenRouting<AppState>.self
+        CastSectionRouting<AppState>.self
+        RecommendationsSectionRouting<AppState>.self
+        RecommendationsRouting<AppState>.self
     }
 
     public static func registerMiddlewares(in store: any Store<AppState>) -> [MiddlewareWrapper<AppState>] {
