@@ -5,10 +5,6 @@
 //  Created by Bogdan Petkanych on 22.07.2026.
 //
 
-import Common
-import HomeModule
-import ItemDetailsModule
-import ReviewsModule
 import RootModule
 import SwiftUI
 import UDF
@@ -22,17 +18,19 @@ struct RootRouting: Routing {
             AppRouter.signIn()
         case .home:
             AppRouter.home()
-                .navigationDestinations(for: HomeFeatureState<AppState, HomeRouting>.self)
-                .navigationDestinations(for: ItemDetailsFeatureState<AppState, ItemDetailsRouting>.self)
-                .navigationDestinations(for: ReviewsFeatureState<AppState, ReviewsRouting>.self)
+                .appRoutes()
         case .search:
             AppRouter.search()
+                .appRoutes()
         case .randomizer:
             Text("Randomizer")
+                .appRoutes()
         case .favorites:
             AppRouter.myFavorites()
+                .appRoutes()
         case .profile:
             AppRouter.settings()
+                .appRoutes()
         }
     }
 }

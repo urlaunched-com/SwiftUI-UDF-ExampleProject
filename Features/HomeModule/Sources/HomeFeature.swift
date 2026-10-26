@@ -32,7 +32,8 @@ public protocol HomeFeature: AppReducer {
 ///
 /// The flow is entered through the home page. Everything beyond it is reached through the flow's
 /// internal routes, which the app registers with ``destinations`` without knowing what they are.
-public struct HomeFeatureState<AppState: HomeFeature, FeatureRouting: Routing<HomeRoute>>: FeatureState {
+/// The full list of a section is also reachable from outside the flow through ``HomeLink``.
+public struct HomeFeatureState<AppState: HomeFeature, FeatureRouting: Routing<HomeRoute>>: FeatureState, DeepLinkableFeatureState {
     public var homeForm = HomeForm()
     public var homeFlow = HomeFlow()
     public var movieGenresFlow = MovieGenresFlow()
@@ -53,6 +54,9 @@ public struct HomeFeatureState<AppState: HomeFeature, FeatureRouting: Routing<Ho
         HomeSectionRouting<AppState>.self
         SectionDetailsRouting<AppState>.self
     }
+
+    /// The routing of the screens a ``HomeLink`` opens.
+    public typealias LinkRouting = HomeLinkRouting<AppState>
 
     public static func registerMiddlewares(in store: any Store<AppState>) -> [MiddlewareWrapper<AppState>] {
         HomeMiddleware<AppState>.self

@@ -10,7 +10,7 @@ import Foundation
 import Localizations
 import RswiftResources
 
-public enum MovieSection: Section {
+public enum MovieSection: Section, Sendable {
     case popular
     case nowPlaying
     case upcoming

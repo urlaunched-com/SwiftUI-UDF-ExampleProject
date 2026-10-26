@@ -8,7 +8,7 @@
 
 import Models
 
-public enum ItemDetailsTarget: Hashable {
+public enum ItemDetailsTarget: Hashable, Sendable {
     case movie(Movie.ID)
     case show(Show.ID)
 }

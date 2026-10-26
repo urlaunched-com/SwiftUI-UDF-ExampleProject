@@ -12,7 +12,7 @@ import UDF
 import Common
 
 public struct Movie: Item, StorageItem {
-    public struct ID: Hashable, Codable {
+    public struct ID: Hashable, Codable, Sendable {
         public var value: Int
         
         public init(value: Int) {

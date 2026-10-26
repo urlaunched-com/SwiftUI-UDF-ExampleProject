@@ -14,6 +14,17 @@
 <true/>
 <key>ITSAppUsesNonExemptEncryption</key>
 <false/>
+<key>CFBundleURLTypes</key>
+<array>
+	<dict>
+		<key>CFBundleURLName</key>
+		<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+		<key>CFBundleURLSchemes</key>
+		<array>
+			<string>flick</string>
+		</array>
+	</dict>
+</array>
 <key>UIAppFonts</key>
 <array>
 	<string>Poppins-Regular.ttf</string>

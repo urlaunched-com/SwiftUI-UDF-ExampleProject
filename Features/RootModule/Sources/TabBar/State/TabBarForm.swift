@@ -73,6 +73,14 @@ public struct TabBarForm: UDF.Form {
             }
             updateTabBarHidden(selectedTabPath)
 
+        case let action as Actions.SetNavigationTab:
+            selectedTab = action.tab
+            selectedTabPath = .init()
+            for link in action.path {
+                selectedTabPath.append(link)
+            }
+            updateTabBarHidden(selectedTabPath)
+
         case let action as Actions.UpdateFormField<NavigationTabForm<HomeTab>> where action.keyPath == \.path:
             guard let path = action.value as? NavigationPath else {
                 break

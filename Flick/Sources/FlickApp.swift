@@ -6,6 +6,7 @@
 //
 
 import API
+import Common
 import SwiftUI
 import UDF
 import RootModule
@@ -30,6 +31,12 @@ struct FlickApp: App {
     var body: some Scene {
         WindowGroup {
             RootFeatureState<AppState, RootRouting>.entryPoint()
+                .onDeepLink { url in
+                    guard let link = FlickDeepLink(url: url) else {
+                        return
+                    }
+                    globalStore.dispatch(Actions.SetNavigationTab(tab: link.tab, path: link.path))
+                }
         }
     }
 }

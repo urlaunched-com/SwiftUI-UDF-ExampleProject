@@ -16,6 +16,8 @@ struct HomeSectionContainer<F: HomeFeature>: Container {
     let section: any Models.Section
     let items: [any Item]
 
+    @Environment(\.globalRouter) private var globalRouter
+
     init(
         section: any Models.Section,
         items: [any Item]
@@ -34,7 +36,12 @@ struct HomeSectionContainer<F: HomeFeature>: Container {
             section: section,
             items: items,
             genreById: store.state.allGenres.by(id:),
-            router: .init(routing: HomeSectionRouting<F>())
+            router: .init(routing: HomeSectionRouting<F>()),
+            seeAllAction: {
+                if let link = HomeLink(section: section) {
+                    globalRouter.navigate(for: HomeLinkRouting<F>.self, to: link)
+                }
+            }
         )
     }
 

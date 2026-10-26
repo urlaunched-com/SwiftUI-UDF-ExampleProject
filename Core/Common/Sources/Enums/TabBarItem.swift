@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum TabBarItem: String, Hashable, CaseIterable {
+public enum TabBarItem: String, Hashable, CaseIterable, Sendable {
     case home, search, randomizer, favorites, profile
 
     public var id: Self { self }

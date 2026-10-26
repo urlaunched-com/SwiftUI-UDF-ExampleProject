@@ -35,7 +35,7 @@ public protocol ItemDetailsFeature: AppReducer {
 ///
 /// The flow is entered through the details page. Everything beyond it is reached through the flow's
 /// internal routes, which the app registers with ``destinations`` without knowing what they are.
-public struct ItemDetailsFeatureState<AppState: ItemDetailsFeature, FeatureRouting: Routing<ItemDetailsRoute>>: FeatureState {
+public struct ItemDetailsFeatureState<AppState: ItemDetailsFeature, FeatureRouting: Routing<ItemDetailsRoute>>: FeatureState, DeepLinkableFeatureState {
     @BindableReducer(ItemDetailsForm.self, bindedTo: ItemDetailsContainer<AppState>.self)
     var itemDetailsForm
     @BindableReducer(ItemDetailsFlow.self, bindedTo: ItemDetailsContainer<AppState>.self)
@@ -68,6 +68,9 @@ public struct ItemDetailsFeatureState<AppState: ItemDetailsFeature, FeatureRouti
         RecommendationsSectionRouting<AppState>.self
         RecommendationsRouting<AppState>.self
     }
+
+    /// The routing of the details page an ``ItemDetailsTarget`` link opens.
+    public typealias LinkRouting = ItemDetailsLinkRouting<AppState>
 
     public static func registerMiddlewares(in store: any Store<AppState>) -> [MiddlewareWrapper<AppState>] {
         ItemDetailsMiddleware<AppState>.self

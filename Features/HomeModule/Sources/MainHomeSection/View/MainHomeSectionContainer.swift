@@ -6,6 +6,7 @@
 //  Copyright © 2026 urlaunched. All rights reserved.
 //
 
+import struct SwiftUI.Environment
 import UDF
 import Models
 
@@ -14,6 +15,8 @@ struct MainHomeSectionContainer<F: HomeFeature>: Container {
 
     let section: any Section
     let items: [any Item]
+
+    @Environment(\.globalRouter) private var globalRouter
 
     init(
         section: any Section,
@@ -33,7 +36,12 @@ struct MainHomeSectionContainer<F: HomeFeature>: Container {
             section: section,
             items: items,
             genreById: store.state.allGenres.by(id:),
-            router: .init(routing: MainHomeSectionRouting<F>())
+            router: .init(routing: MainHomeSectionRouting<F>()),
+            seeAllAction: {
+                if let link = HomeLink(section: section) {
+                    globalRouter.navigate(for: HomeLinkRouting<F>.self, to: link)
+                }
+            }
         )
     }
 

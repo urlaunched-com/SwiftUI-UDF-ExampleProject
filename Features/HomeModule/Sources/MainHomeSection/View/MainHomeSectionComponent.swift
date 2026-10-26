@@ -19,17 +19,20 @@ struct MainHomeSectionComponent<R: Routing>: Component where R.Route == MainHome
         var items: [any Item]
         var genreById: (Genre.ID) -> Genre?
         var router: Router<R>
+        var seeAllAction: () -> Void
 
         init(
             section: any Models.Section,
             items: [any Item],
             genreById: @escaping (Genre.ID) -> Genre?,
-            router: Router<R>
+            router: Router<R>,
+            seeAllAction: @escaping () -> Void = {}
         ) {
             self.section = section
             self.items = items
             self.genreById = genreById
             self.router = router
+            self.seeAllAction = seeAllAction
         }
     }
 
@@ -45,9 +48,7 @@ struct MainHomeSectionComponent<R: Routing>: Component where R.Route == MainHome
         VStack(spacing: 10) {
             SectionHeaderView(
                 title: props.section.title,
-                seeAllAction: {
-                    globalRouter.navigate(for: R.self, to: .sectionDetails(props.section))
-                }
+                seeAllAction: props.seeAllAction
             )
             .padding(.bottom)
 

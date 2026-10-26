@@ -11,7 +11,7 @@ import Common
 import Localizations
 import RswiftResources
 
-public enum ShowSection: Section {
+public enum ShowSection: Section, Sendable {
     case popular
     case airingToday
     case onTheAir
