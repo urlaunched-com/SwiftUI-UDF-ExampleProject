@@ -15,7 +15,7 @@ let package = Package(
         .package(path: "../DesignSystem"),
         .package(path: "../Localizations"),
         .package(path: "../Models"),
-        .package(url: "https://github.com/Maks-Jago/SwiftUI-UDF", branch: "2.0.0"),
+        .package(url: "https://github.com/Maks-Jago/SwiftUI-UDF", branch: "feature/research-and-implement-navigablefeaturestate-guid_869fkx6bg"),
         .package(url: "https://github.com/Maks-Jago/SwiftUIKit", from: "0.6.5"),
         .package(url: "https://github.com/SDWebImage/SDWebImageSwiftUI", from: "3.1.3"),
     ],

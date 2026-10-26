@@ -17,7 +17,7 @@ let package = Package(
         .package(path: "../../Core/Localizations"),
         .package(path: "../../Core/Models"),
         .package(url: "https://github.com/madebybowtie/FlagKit", from: "2.0.0"),
-        .package(url: "https://github.com/Maks-Jago/SwiftUI-UDF", branch: "2.0.0"),
+        .package(url: "https://github.com/Maks-Jago/SwiftUI-UDF", branch: "feature/research-and-implement-navigablefeaturestate-guid_869fkx6bg"),
         .package(url: "https://github.com/Maks-Jago/SwiftUIKit", from: "0.6.5"),
         .package(url: "https://github.com/urlaunched-com/UDFMacros", from: "0.3.0"),
     ],

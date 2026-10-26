@@ -25,6 +25,8 @@ public struct OnboardingFeatureState<AppState: OnboardingFeature>: FeatureState 
         OnboardingContainer<AppState>()
     }
 
+    public static var destinations: some ViewModifier {}
+
     public static func registerMiddlewares(in store: any Store<AppState>) -> [MiddlewareWrapper<AppState>] {
     }
 }

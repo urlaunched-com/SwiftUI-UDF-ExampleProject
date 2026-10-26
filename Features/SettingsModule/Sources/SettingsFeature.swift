@@ -25,6 +25,8 @@ public struct SettingsFeatureState<AppState: SettingsFeature>: FeatureState {
         SettingsContainer<AppState>()
     }
 
+    public static var destinations: some ViewModifier {}
+
     public static func registerMiddlewares(in store: any Store<AppState>) -> [MiddlewareWrapper<AppState>] {
     }
 }

@@ -35,7 +35,7 @@ public protocol ItemDetailsFeature: AppReducer {
 ///
 /// The flow is entered through the details page. Everything beyond it is reached through the flow's
 /// internal routes, which the app registers with ``destinations`` without knowing what they are.
-public struct ItemDetailsFeatureState<AppState: ItemDetailsFeature, FeatureRouting: Routing<ItemDetailsRoute>>: NavigatingFeatureState {
+public struct ItemDetailsFeatureState<AppState: ItemDetailsFeature, FeatureRouting: Routing<ItemDetailsRoute>>: FeatureState {
     @BindableReducer(ItemDetailsForm.self, bindedTo: ItemDetailsContainer<AppState>.self)
     var itemDetailsForm
     @BindableReducer(ItemDetailsFlow.self, bindedTo: ItemDetailsContainer<AppState>.self)

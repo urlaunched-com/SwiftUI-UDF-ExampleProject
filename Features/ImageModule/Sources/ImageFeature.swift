@@ -45,6 +45,8 @@ public struct ImageFeatureState<AppState: ImageFeature>: FeatureState {
         ImageContainer<AppState>(size: input.size, path: input.path, type: input.type, isLoaderPresented: input.isLoaderPresented)
     }
 
+    public static var destinations: some ViewModifier {}
+
     public static func registerMiddlewares(in store: any Store<AppState>) -> [MiddlewareWrapper<AppState>] {
         ImageConfigsMiddleware<AppState>.self
     }

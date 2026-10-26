@@ -32,6 +32,8 @@ public struct SearchFeatureState<AppState: SearchFeature, FeatureRouting: Routin
         SearchContainer<AppState>()
     }
 
+    public static var destinations: some ViewModifier {}
+
     public static func registerMiddlewares(in store: any Store<AppState>) -> [MiddlewareWrapper<AppState>] {
         SearchMiddleware<AppState>.self
     }

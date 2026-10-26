@@ -30,6 +30,8 @@ public struct RootFeatureState<AppState: RootFeature, FeatureRouting: Routing<Ro
         RootContainer<AppState>()
     }
 
+    public static var destinations: some ViewModifier {}
+
     public static func registerMiddlewares(in store: any Store<AppState>) -> [MiddlewareWrapper<AppState>] {
     }
 }

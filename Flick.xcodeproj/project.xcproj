@@ -16,7 +16,7 @@
       "kind": "remote",
       "repository": "https://github.com/Maks-Jago/SwiftUI-UDF",
       "version": {
-        "branch": "2.0.0",
+        "branch": "feature/research-and-implement-navigablefeaturestate-guid_869fkx6bg",
       },
     }, {
       "kind": "remote",

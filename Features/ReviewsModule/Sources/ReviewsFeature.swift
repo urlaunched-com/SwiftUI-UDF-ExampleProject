@@ -28,7 +28,7 @@ public protocol ReviewsFeature: AppReducer {
 ///
 /// The flow is entered through the reviews section. Everything beyond it is reached through the flow's
 /// internal routes, which the app registers with ``destinations`` without knowing what they are.
-public struct ReviewsFeatureState<AppState: ReviewsFeature, FeatureRouting: Routing<ReviewsRoute>>: NavigatingFeatureState {
+public struct ReviewsFeatureState<AppState: ReviewsFeature, FeatureRouting: Routing<ReviewsRoute>>: FeatureState {
     @BindableReducer(ReviewsSectionForm.self, bindedTo: ReviewsSectionContainer<AppState>.self)
     var reviewsSectionForm
     @BindableReducer(ReviewsSectionFlow.self, bindedTo: ReviewsSectionContainer<AppState>.self)

@@ -36,6 +36,8 @@ public struct MyFavoritesFeatureState<AppState: MyFavoritesFeature, FeatureRouti
         MyFavoritesContainer<AppState>()
     }
 
+    public static var destinations: some ViewModifier {}
+
     public static func registerMiddlewares(in store: any Store<AppState>) -> [MiddlewareWrapper<AppState>] {
         MyFavoritesMiddleware<AppState>.self
     }

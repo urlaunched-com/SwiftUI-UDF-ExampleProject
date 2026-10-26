@@ -1,5 +1,5 @@
 {
-  "originHash" : "6cd96f87490969cbe00e8ef824cfdc65ec88294fee757f0f15ff2b661c276dd6",
+  "originHash" : "62668c88f5d77688d7cba466de3c80c2de3e4b098599a9fd2a146322cfe2f153",
   "pins" : [
     {
       "identity" : "flagkit",
@@ -123,8 +123,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Maks-Jago/SwiftUI-UDF",
       "state" : {
-        "branch" : "2.0.0",
-        "revision" : "a9a004de2cdff234e8db1d1f225671ec2502da23"
+        "branch" : "feature/research-and-implement-navigablefeaturestate-guid_869fkx6bg",
+        "revision" : "dc9eb2c79e9d33069e5c308cb4cbff8bdf1f1340"
       }
     },
     {
