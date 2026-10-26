@@ -42,8 +42,7 @@ struct RootContainer<F: RootFeature>: Container {
             profileTabPath: Binding(
                 get: { store.state.rootFeatureState.tabBarForm.profileNavigationPath },
                 set: { store.dispatch(Actions.UpdateFormField(keyPath: \TabBarForm.profileNavigationPath, value: $0)) }
-            ),
-            router: .init(routing: RootScreenRouting<F>())
+            )
         )
     }
 }

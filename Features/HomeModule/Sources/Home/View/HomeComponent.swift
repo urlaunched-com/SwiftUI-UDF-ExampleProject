@@ -25,7 +25,7 @@ struct HomeComponent<R: Routing<HomeScreenRoute>>: Component {
         var isMoviesRedacted: (MovieSection) -> Bool
         var isShowsRedacted: (ShowSection) -> Bool
         var dialogStatus: Binding<DialogStatus>
-        var router: Router<R>
+        var router: Router<R> = .init()
 
         init(
             contentType: Binding<ContentType>,

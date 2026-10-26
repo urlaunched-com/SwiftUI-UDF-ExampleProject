@@ -25,7 +25,7 @@ struct SearchComponent<R: Routing>: Component where R.Route == SearchRoute {
         var searchItemById: (SearchItem.ID) -> SearchItem
         var genreById: (Genre.ID) -> Genre
         var loadMoreAction: Command
-        var router: Router<R>
+        var router: Router<R> = .init()
         
         init(
             searchText: Binding<String>,
@@ -33,7 +33,7 @@ struct SearchComponent<R: Routing>: Component where R.Route == SearchRoute {
             searchItemById: @escaping (SearchItem.ID) -> SearchItem,
             genreById: @escaping (Genre.ID) -> Genre,
             loadMoreAction: @escaping Command,
-            router: Router<R>
+            router: Router<R> = .init()
         ) {
             self.searchText = searchText
             self.itemIds = itemIds

@@ -30,8 +30,7 @@ struct RecommendationsContainer<F: ItemDetailsFeature>: BindableContainer {
             items: items,
             genreById: store.state.allGenres.by(id:),
             loadMoreAction: loadNewPageIfNeeded,
-            dialog: dialog,
-            router: .init(routing: RecommendationsRouting<F>())
+            dialog: dialog
         )
     }
 

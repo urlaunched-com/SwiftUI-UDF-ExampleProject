@@ -31,7 +31,6 @@ struct RecommendationsSectionContainer<F: ItemDetailsFeature>: BindableContainer
             items: items,
             isRedacted: isRedacted,
             genreById: store.state.allGenres.by(id:),
-            router: .init(routing: RecommendationsSectionRouting<F>()),
         )
     }
 

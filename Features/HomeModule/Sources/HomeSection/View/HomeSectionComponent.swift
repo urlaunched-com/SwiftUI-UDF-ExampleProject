@@ -20,7 +20,7 @@ struct HomeSectionComponent<R: Routing>: Component where R.Route == HomeSectionR
         var section: any Models.Section
         var items: [any Item]
         var genreById: (Genre.ID) -> Genre
-        var router: Router<R>
+        var router: Router<R> = .init()
 
         init(
             section: any Models.Section,

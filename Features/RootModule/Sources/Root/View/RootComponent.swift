@@ -19,7 +19,7 @@ struct RootComponent<R: Routing>: Component where R.Route == RootScreenRoute {
         var randomizerTabPath: Binding<NavigationPath>
         var favoritesTabPath: Binding<NavigationPath>
         var profileTabPath: Binding<NavigationPath>
-        var router: Router<R>
+        var router: Router<R> = .init()
 
         init(
             isNeedToPresentOnboarding: Bool,
@@ -29,7 +29,7 @@ struct RootComponent<R: Routing>: Component where R.Route == RootScreenRoute {
             randomizerTabPath: Binding<NavigationPath>,
             favoritesTabPath: Binding<NavigationPath>,
             profileTabPath: Binding<NavigationPath>,
-            router: Router<R>,
+            router: Router<R> = .init(),
         ) {
             self.isNeedToPresentOnboarding = isNeedToPresentOnboarding
             self.selectedTab = selectedTab

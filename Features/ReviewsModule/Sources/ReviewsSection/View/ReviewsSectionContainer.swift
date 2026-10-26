@@ -30,8 +30,7 @@ struct ReviewsSectionContainer<F: ReviewsFeature>: BindableContainer {
             id: id,
             reviews: isRedacted ? Review.fakeItems().ids : reviews,
             reviewById: reviewById,
-            isRedacted: isRedacted,
-            router: .init(routing: ReviewsSectionRouting<F>())
+            isRedacted: isRedacted
         )
     }
 

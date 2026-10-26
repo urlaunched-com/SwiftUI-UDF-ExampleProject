@@ -42,8 +42,7 @@ struct WhereToWatchContainer<F: ItemDetailsFeature>: Container {
                     return .init(title: code, image: image)
                 }
             }(),
-            providers: Provider.fakeItems(count: 3),
-            router: .init(routing: WhereToWatchRouting<F>())
+            providers: Provider.fakeItems(count: 3)
         )
     }
 }

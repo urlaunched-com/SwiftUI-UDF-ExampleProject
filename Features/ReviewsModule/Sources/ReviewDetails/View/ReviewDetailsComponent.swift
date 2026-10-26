@@ -22,7 +22,7 @@ struct ReviewDetailsComponent<R: Routing>: Component where R.Route == ReviewDeta
         var reviewByID: (Review.ID) -> Review
         var isRedacted: Bool
         var dialog: Binding<DialogStatus>
-        var router: Router<R>
+        var router: Router<R> = .init()
         
         init(
             id: Review.ID,

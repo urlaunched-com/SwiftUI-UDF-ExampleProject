@@ -32,8 +32,7 @@ struct MainHomeSectionContainer<F: HomeFeature>: Container {
         .init(
             section: section,
             items: items,
-            genreById: store.state.allGenres.by(id:),
-            router: .init(routing: MainHomeSectionRouting<F>())
+            genreById: store.state.allGenres.by(id:)
         )
     }
 

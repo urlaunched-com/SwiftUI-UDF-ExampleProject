@@ -21,7 +21,7 @@ struct CastComponent<R: Routing<CastRoute>>: Component {
         var cast: [Models.Cast.ID]
         var castById: (Models.Cast.ID) -> Models.Cast
         var dialogStatus: Binding<DialogStatus>
-        var router: Router<R>
+        var router: Router<R> = .init()
 
         init(
             cast: [Models.Cast.ID],

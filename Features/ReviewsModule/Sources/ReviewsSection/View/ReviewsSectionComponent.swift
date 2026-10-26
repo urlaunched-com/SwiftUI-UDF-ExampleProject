@@ -29,7 +29,7 @@ struct ReviewsSectionComponent<R: Routing>: Component where R.Route == ReviewsSe
             reviews: [Review.ID],
             reviewById: @escaping (Review.ID) -> Review,
             isRedacted: Bool,
-            router: Router<R>
+            router: Router<R> = .init()
         ) {
             self.id = id
             self.reviews = reviews

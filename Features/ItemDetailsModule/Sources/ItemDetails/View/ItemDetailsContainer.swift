@@ -29,8 +29,7 @@ struct ItemDetailsContainer<F: ItemDetailsFeature>: BindableContainer {
         .init(
             item: item,
             genreById: store.state.allGenres.by(id:),
-            dialog: dialog,
-            router: .init(routing: ItemDetailsScreenRouting<F>())
+            dialog: dialog
         )
     }
 

@@ -28,8 +28,7 @@ struct SignInContainer<F: SignInFeature>: Container {
             password: store.$state.signInFeatureState.signInForm.password,
             signInAction: { dismiss() },
             isLoaderPresented: .init { store.state.signInFeatureState.signInFlow != .none },
-            dialogStatus: store.$state.signInFeatureState.signInForm.dialog,
-            router: .init(routing: F.SignInRouting())
+            dialogStatus: store.$state.signInFeatureState.signInForm.dialog
         )
     }
 }

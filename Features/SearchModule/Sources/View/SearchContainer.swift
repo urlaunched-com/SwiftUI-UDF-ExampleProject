@@ -29,8 +29,7 @@ struct SearchContainer<F: SearchFeature>: Container {
             itemIds: store.state.searchFeatureState.searchForm.items,
             searchItemById: store.state.allSearchItems.by(id:),
             genreById: { _ in .testItem() },
-            loadMoreAction: loadNewPageIfNeeded,
-            router: .init(routing: F.SearchRouting())
+            loadMoreAction: loadNewPageIfNeeded
         )
     }
 

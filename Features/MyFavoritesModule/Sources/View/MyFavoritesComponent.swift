@@ -24,7 +24,7 @@ struct MyFavoritesComponent<R: Routing>: Component where R.Route == MyFavoritesR
         var loadMoreAction: Command
         var isRedacted: Bool
         var dialog: Binding<DialogStatus>
-        var router: Router<R>
+        var router: Router<R> = .init()
 
         init(
             contentType: Binding<ContentType>,
