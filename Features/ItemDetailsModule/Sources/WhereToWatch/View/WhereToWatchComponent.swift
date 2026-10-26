@@ -16,7 +16,7 @@ import DesignSystem
 import RswiftResources
 import SwiftFoundation
 
-struct WhereToWatchComponent<R: Routing>: Component where R.Route == WhereToWatchRouter {
+struct WhereToWatchComponent<R: Routing>: Component where R.Route == WhereToWatchRoute {
     struct Props {
         var item: any Item
         var countries: [DropdownItem]
@@ -154,7 +154,7 @@ private extension WhereToWatchComponent {
                 }
             }(),
             providers: Provider.fakeItems(count: 3),
-            router: .init(routing: MockedRouting<WhereToWatchRouter>())
+            router: .init(routing: MockedRouting<WhereToWatchRoute>())
         )
     )
 }

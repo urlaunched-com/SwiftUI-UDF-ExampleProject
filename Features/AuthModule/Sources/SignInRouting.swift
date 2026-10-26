@@ -1,5 +1,5 @@
 //
-//  SignInRouter.swift
+//  SignInRouting.swift
 //  Flick
 //
 //  Created by Bogdan Petkanych on 06.05.2026.

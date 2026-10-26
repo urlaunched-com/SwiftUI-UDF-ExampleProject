@@ -1,5 +1,5 @@
 //
-//  SearchContent.swift
+//  SearchRouting.swift
 //  Flick
 //
 //  Created by Bogdan Petkanych on 15.05.2026.

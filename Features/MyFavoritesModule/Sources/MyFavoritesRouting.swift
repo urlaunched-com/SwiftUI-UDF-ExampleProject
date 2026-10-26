@@ -1,5 +1,5 @@
 //
-//  MyFavoritesRoute.swift
+//  MyFavoritesRouting.swift
 //  Flick
 //
 //  Created by Bogdan Petkanych on 21.07.2026.

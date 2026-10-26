@@ -43,7 +43,7 @@ final class WhereToWatchComponentTests: BaseSnapshotTestCase {
                 item: Show.testItem(),
                 countries: dropDownItems,
                 providers: Provider.fakeItems(count: 3),
-                router: .init(routing: MockedRouting<WhereToWatchRouter>())
+                router: .init(routing: MockedRouting<WhereToWatchRoute>())
             ))
         )
     }
@@ -54,7 +54,7 @@ final class WhereToWatchComponentTests: BaseSnapshotTestCase {
                 item: Movie.testItem(),
                 countries: dropDownItems,
                 providers: [],
-                router: .init(routing: MockedRouting<WhereToWatchRouter>())
+                router: .init(routing: MockedRouting<WhereToWatchRoute>())
             ))
         )
     }
