@@ -60,3 +60,15 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
+
+### Swift packages ###
+.build/
+.swiftpm/
+.DS_Store
+
+### Local packages resolve through the app workspace ###
+Core/*/Package.resolved
+Features/*/Package.resolved
+DataLayer/Package.resolved
+SourcePackages/
+output/
